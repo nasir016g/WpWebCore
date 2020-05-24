@@ -8,3 +8,15 @@ WpCoreSolution/Libraries/Wp.Service/obj/
 WpCoreSolution/Presentation/Wp.Web.Api/obj/
 
 WpCoreSolution/Presentation/Wp.Web.Framework/obj/
+
+WpCoreSolution/.vs/
+
+WpCoreSolution/Libraries/Wp.Data/bin/
+
+WpCoreSolution/Libraries/Wp.Core/bin/
+
+WpCoreSolution/Libraries/Wp.Service/bin/
+
+WpCoreSolution/Presentation/Wp.Web.Api/bin/
+
+WpCoreSolution/Presentation/Wp.Web.Framework/bin/
