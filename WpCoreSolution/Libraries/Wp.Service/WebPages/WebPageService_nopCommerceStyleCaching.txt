@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Wp.Data;
+using Wp.Core.Domain.General;
+using Wp.Core.Caching;
+using Wp.Core.Domain.Sections;
+
+namespace Wp.Services
+{
+  #region interface
+  public interface IWebPageService
+  {
+    IList<WebPage> GetAll();
+    WebPage GetById(int id);
+    WebPage GetByVirtualPath(string virtualPath);
+    WebPage GetBySectionId(int sectionId);
+    void Insert(WebPage webPage);
+    void Update(WebPage webPage);
+    void Delete(WebPage webPage);
+
+    IList<WebPageRole> GetRolesByPageId(int webPageId);   
+    void DeleteRolesByPageId(int webPageId);
+
+  }
+#endregion
+
+  public class WebPageService : IWebPageService
+  {
+    #region Constants
+    private const string PAGES_BY_ID_KEY = "Wp.page.id-{0}";
+    private const string PAGES_PATTERN_KEY = "Wp.page.";
+    #endregion
+
+    public ICacheManager _cacheManager { get; set; } 
+    public IRepository<WebPage> _webPageRepository { get; set; }
+    public IRepository<WebPageRole> _webPageRoleRepository { get; set; }
+    public IRepository<Section> _sectionRepository { get; set; }
+
+    public WebPageService(ICacheManager cacheManager, IRepository<WebPage> webPageRepository, IRepository<WebPageRole> webPageRoleRepository, IRepository<Section> sectionRepository)
+    {
+      this._cacheManager = cacheManager;
+      this._webPageRepository = webPageRepository;
+      this._webPageRoleRepository = webPageRoleRepository;
+      this._sectionRepository = sectionRepository;
+    }
+
+    public IList<WebPage> GetAll()
+    {
+     return _webPageRepository.Table().ToList();
+    }
+
+    public WebPage GetById(int id)
+    {
+      string key = string.Format(PAGES_BY_ID_KEY, id);
+      var  page = _cacheManager.Get(key, () => _webPageRepository.GetById(id));      
+
+      return page;      
+    }
+
+    public WebPage GetBySectionId(int sectionId)
+    {
+      return _sectionRepository.GetById(sectionId).WebPage;
+    }
+
+    public WebPage GetByVirtualPath(string virtualPath)
+    {
+      if (virtualPath == "")
+       return _webPageRepository.Table().FirstOrDefault();
+      
+      return _webPageRepository.Table().SingleOrDefault(x => x.VirtualPath.ToLower() == virtualPath.ToLower());
+    }
+
+    public void Insert(WebPage webPage)
+    {
+      _webPageRepository.Save(webPage);
+    }
+
+    public void Update(WebPage webPage)
+    {      
+      _webPageRepository.Save(webPage);
+
+      _cacheManager.RemoveByPattern(PAGES_PATTERN_KEY);
+     //CacheManager.Remove(string.Format(PAGES_BY_ID_KEY, webPage.Id));      
+    }
+
+    public void Delete(WebPage webPage)
+    {
+      _webPageRepository.Delete(webPage);
+
+      _cacheManager.RemoveByPattern(PAGES_PATTERN_KEY);
+    }
+
+    public IList<WebPageRole> GetRolesByPageId(int webPageId)
+    {
+      return _webPageRoleRepository.Table().Where(x => x.WebPageId == webPageId).ToList();
+    }
+    public void DeleteRolesByPageId(int webPageId)
+    {
+      var existingRoles = _webPageRoleRepository.Table().Where(x => x.WebPageId == webPageId);
+      foreach (var r in existingRoles)
+      {
+        _webPageRoleRepository.Delete(r);
+      }
+    }
+  }
+}

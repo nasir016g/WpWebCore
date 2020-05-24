@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Mappings\Albums\**" />
+    <Compile Remove="Mappings\Career\**" />
+    <Compile Remove="Mappings\Common\**" />
+    <Compile Remove="Mappings\Expenses\**" />
+    <EmbeddedResource Remove="Mappings\Albums\**" />
+    <EmbeddedResource Remove="Mappings\Career\**" />
+    <EmbeddedResource Remove="Mappings\Common\**" />
+    <EmbeddedResource Remove="Mappings\Expenses\**" />
+    <None Remove="Mappings\Albums\**" />
+    <None Remove="Mappings\Career\**" />
+    <None Remove="Mappings\Common\**" />
+    <None Remove="Mappings\Expenses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Mappings\Expenses\ExpenseExpenseTagMap.cs" />
+    <Compile Include="Mappings\Expenses\ExpenseMap.cs" />
+    <Compile Include="Mappings\Expenses\ExpenseTagMap.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wp.Core\Wp.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.identity.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore\2.1.1\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\WpDb\" />
+  </ItemGroup>
+
+</Project>

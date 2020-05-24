@@ -1,0 +1,14 @@
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Services.deps.json
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Services.dll
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Services.pdb
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Core.dll
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Data.dll
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Data.pdb
+C:\Git\WpCore\WpCoreSolution\Wp.Service\bin\Release\netcoreapp3.1\Wp.Core.pdb
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.csprojAssemblyReference.cache
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.csproj.CoreCompileInputs.cache
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.AssemblyInfoInputs.cache
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.AssemblyInfo.cs
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.csproj.CopyComplete
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.dll
+C:\Git\WpCore\WpCoreSolution\Wp.Service\obj\Release\netcoreapp3.1\Wp.Services.pdb

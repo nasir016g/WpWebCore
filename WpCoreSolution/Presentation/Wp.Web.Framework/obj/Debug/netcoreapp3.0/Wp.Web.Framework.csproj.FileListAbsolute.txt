@@ -1,0 +1,15 @@
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Web.Framework.deps.json
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Web.Framework.dll
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Web.Framework.pdb
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Core.dll
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Data.dll
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Service.dll
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Core.pdb
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Service.pdb
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\bin\Debug\netcoreapp3.0\Wp.Data.pdb
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.csprojAssemblyReference.cache
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.AssemblyInfoInputs.cache
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.AssemblyInfo.cs
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.csproj.CopyComplete
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.dll
+C:\Git\WpCore\WpCoreSolution\Presentation\Wp.Web.Framework\obj\Debug\netcoreapp3.0\Wp.Web.Framework.pdb
