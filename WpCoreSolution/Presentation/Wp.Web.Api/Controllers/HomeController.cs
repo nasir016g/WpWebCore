@@ -17,7 +17,7 @@ namespace Wp.Web.Api.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page 4.";
+            ViewData["Message"] = "Your application description page 5.";
 
             return View();
         }
