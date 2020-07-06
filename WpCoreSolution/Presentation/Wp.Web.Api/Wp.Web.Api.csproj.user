@@ -13,6 +13,6 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-    <NameOfLastUsedPublishProfile>Wpwapi - Web Deploy</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>WpWebApi2020 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
