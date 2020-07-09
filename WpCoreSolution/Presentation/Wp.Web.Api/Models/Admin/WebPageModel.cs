@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wp.Core.Domain.WebPages;
 
 namespace Wp.Web.Api.Models.Admin
 {
@@ -23,8 +24,8 @@ namespace Wp.Web.Api.Models.Admin
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public PermissionLevel PermissionLevel { get; set; }
         }
-
 
     }
 }

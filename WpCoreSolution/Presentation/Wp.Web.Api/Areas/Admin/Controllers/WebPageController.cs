@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
@@ -21,24 +23,46 @@ namespace Wp.Web.Api.Areas.Admin.Controllers
     {
         private readonly IWebPageService _webPageService;
         private readonly ISectionService _sectionService;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public WebPageController(IWebPageService webPageService, ISectionService sectionService)
+        public WebPageController(IWebPageService webPageService, ISectionService sectionService, RoleManager<IdentityRole> roleManager)
         {
             _webPageService = webPageService;
             _sectionService = sectionService;
+            _roleManager = roleManager;
+            
         }
 
         #region Utitlites
 
+        private List<WebPageModel.WebPageRoleModel> GetAllRoles(WebPage webPage)
+        {
+            List<WebPageModel.WebPageRoleModel> allModels = (from role in _roleManager.Roles
+                                                where !(role.Name == SystemRoleNames.Administrators.ToString() || role.Name == SystemRoleNames.Users.ToString())
+                                                select new WebPageModel.WebPageRoleModel { Name = role.Name }).ToList();
+
+            foreach (var model in allModels)
+            {
+                var role = webPage.Roles.FirstOrDefault(x => x.Name == model.Name);
+                if (role != null)
+                {
+                    model.PermissionLevel = role.PermissionLevel;
+                }
+            }
+
+            return allModels;
+        }
+
         private void PrepareModels(WebPage entity, WebPageModel model)
         {
-            var roles = _webPageService.GetRolesByPageId(entity.Id).ToList();
-            var roleModelList = new List<WebPageModel.WebPageRoleModel>();
-            roles.ForEach(x =>
-            {
-                roleModelList.Add(new WebPageModel.WebPageRoleModel { Id = x.Id, Name = x.Name });
-            });
-            model.Roles = roleModelList;
+            //var roles = _webPageService.GetRolesByPageId(entity.Id).ToList();
+            //var roleModelList = new List<WebPageModel.WebPageRoleModel>();
+            //roles.ForEach(x =>
+            //{
+            //    roleModelList.Add(new WebPageModel.WebPageRoleModel { Id = x.Id, Name = x.Name });
+            //});
+            //model.Roles = roleModelList;
+            model.Roles = GetAllRoles(entity);
         }
 
         #endregion
