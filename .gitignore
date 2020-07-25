@@ -26,3 +26,9 @@ WpCoreSolution/Presentation/Wp.Web.Api/Properties/PublishProfiles/
 WpCoreSolution/Presentation/Wp.Web.Admin.Api/obj/
 
 WpCoreSolution/Presentation/Wp.Web.Api_Old/obj/
+
+WpCoreSolution/Presentation/Wp.Web.Admin.Api/Wp.Web.Admin.Api.csproj.user
+
+WpCoreSolution/Presentation/Wp.Web.Api_Old/Wp.Web.Api_Old.csproj.user
+
+WpCoreSolution/Presentation/Wp.Web.Api_Old/bin/
