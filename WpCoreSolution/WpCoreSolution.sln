@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{958CA3F8-53E2-4926-9771-39F87EB9BD8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Web.Api", "Presentation\Wp.Web.Api\Wp.Web.Api.csproj", "{07952156-4815-4EE4-808C-BFD03CB0FAF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Web.Api_Old", "Presentation\Wp.Web.Api_Old\Wp.Web.Api_Old.csproj", "{07952156-4815-4EE4-808C-BFD03CB0FAF8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Data", "Libraries\Wp.Data\Wp.Data.csproj", "{3F38FD3A-A701-4156-AFAE-0999A93924C9}"
 EndProject

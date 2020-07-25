@@ -11,7 +11,7 @@ using Wp.Data.Mappings;
 
 namespace Wp.Data
 {
-    public class WpDbContext : IdentityDbContext<ApplicationUser>, IDbContext
+    public class WpDbContext : IdentityDbContext<ApplicationUser>//, IDbContext
     {
         private readonly string _connectionString;
         private readonly Tenant _tenant;
