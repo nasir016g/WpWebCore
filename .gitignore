@@ -22,3 +22,7 @@ WpCoreSolution/Presentation/Wp.Web.Api/bin/
 WpCoreSolution/Presentation/Wp.Web.Framework/bin/
 
 WpCoreSolution/Presentation/Wp.Web.Api/Properties/PublishProfiles/
+
+WpCoreSolution/Presentation/Wp.Web.Admin.Api/obj/
+
+WpCoreSolution/Presentation/Wp.Web.Api_Old/obj/
