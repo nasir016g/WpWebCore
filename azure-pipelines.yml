@@ -7,12 +7,7 @@ trigger:
   branches:
       include:
       - master
-  paths:
-    include:
-    - WpCoreSolution/Presentation/Wp.Web.Admin.Api/*
-    exclude:
-    - WpCoreSolution/Presentation/Wp.Web.Api_Old/*
-
+  
 pool:
   vmImage: 'windows-latest'
 
