@@ -8,11 +8,11 @@ namespace Wp.Core.Domain.Expenses
         public string Category { get; set; }
         public string Description { get; set; }
 
-        private ICollection<Expense> _expense;
+        private ICollection<Expense> _expenses;
         public virtual ICollection<Expense> Expenses
         {
-            get { return _expense ?? (_expense = new List<Expense>()); }
-            set { _expense = value; }
+            get { return _expenses ?? (_expenses = new List<Expense>()); }
+            set { _expenses = value; }
         }
     }
 }

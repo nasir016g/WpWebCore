@@ -7,5 +7,8 @@ namespace Wp.Web.Admin.Api.Models.Admin
         public string Name { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
+
+        public List<ExpenseModel> Expenses { get; set; }
+
     }
 }

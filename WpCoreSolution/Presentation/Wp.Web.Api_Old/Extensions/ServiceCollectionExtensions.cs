@@ -47,7 +47,8 @@ namespace Wp.Web.Api.Extensions
                 //    x.MigrationsAssembly("Wp.Data");
                 //    x.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                 //});
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
+                options.UseLazyLoadingProxies()
+               .UseSqlite(configuration.GetConnectionString("DefaultConnection"),
                 sqliteOptionsAction: x =>
                 {
                     x.MigrationsAssembly("Wp.Data");

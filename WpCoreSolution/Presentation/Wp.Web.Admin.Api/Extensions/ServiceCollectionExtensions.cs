@@ -44,7 +44,9 @@ namespace Wp.Web.Admin.Api.Extensions
                 //    x.MigrationsAssembly("Wp.Data");
                 //    x.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                 //});
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
+                options
+                //.UseLazyLoadingProxies(useLazyLoadingProxies: true)
+                .UseSqlite(configuration.GetConnectionString("DefaultConnection"),
                 sqliteOptionsAction: x =>
                 {
                     x.MigrationsAssembly("Wp.Data");
@@ -64,6 +66,8 @@ namespace Wp.Web.Admin.Api.Extensions
                     x.MigrationsAssembly("Wp.Data");
                 });
             });
+
+            services.AddEntityFrameworkProxies();
 
             services.AddScoped<ITenantService, TenantService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -103,6 +107,7 @@ namespace Wp.Web.Admin.Api.Extensions
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(ITenantsBaseRepository), typeof(TenantsBaseRepository));
             services.AddScoped(typeof(IExpenseRepository), typeof(ExpenseRepository));
+            services.AddScoped(typeof(IExpenseCategoryRepository), typeof(ExpenseCategoryRepository));
             //services.AddScoped<IWebPageRepository, WebPageRepository>();
             //services.AddScoped<IWebPageRoleRepository, WebPageRoleRepository>();
             //services.AddScoped<ISectionRepository, SectionRepository>();

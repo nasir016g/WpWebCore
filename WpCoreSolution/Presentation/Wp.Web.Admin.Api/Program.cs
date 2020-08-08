@@ -15,8 +15,8 @@ namespace Wp.Web.Admin.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseSerilog();
+                .UseStartup<Startup>();
+                //.UseSerilog();
     }
 
 

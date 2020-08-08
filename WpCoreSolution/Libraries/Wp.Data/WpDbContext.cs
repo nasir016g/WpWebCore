@@ -38,9 +38,11 @@ namespace Wp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.EnableSensitiveDataLogging();
             if (_tenant != null) // tenant
             {
-               // optionsBuilder.UseSqlServer(_tenant.ConnectionString);
+                // optionsBuilder.UseSqlServer(_tenant.ConnectionString);
+
                 optionsBuilder.UseSqlite(_tenant.ConnectionString);
             }
             else if (_connectionString != null) //

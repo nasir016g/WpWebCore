@@ -3,6 +3,7 @@ using Wp.Core.Domain.Expenses;
 using System.Linq;
 using Wp.Data;
 using Wp.Core;
+using Wp.Core.Interfaces.Repositories;
 
 namespace Wp.Services.Expenses
 {
@@ -10,8 +11,9 @@ namespace Wp.Services.Expenses
     {
         private readonly IUnitOfWork unitOfWork;
         private IBaseRepository<ExpenseCategory> expenseCategoryRepo;
+        // IExpenseCategoryRepository expenseCategoryRepo; // with includes
 
-        public ExpenseCategoryService(IUnitOfWork unitOfWork, 
+        public ExpenseCategoryService(IUnitOfWork unitOfWork,
             IBaseRepository<ExpenseCategory> expenseCategoryRepo) : base(unitOfWork, expenseCategoryRepo)
         {
             this.unitOfWork = unitOfWork;

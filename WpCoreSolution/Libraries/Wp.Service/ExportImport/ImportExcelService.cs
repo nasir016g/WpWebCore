@@ -236,6 +236,7 @@ namespace Wp.Services.ExportImport
 
         public void ImportExpensesFromXlsx(Stream stream)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var xlPackage = new ExcelPackage(stream))
             {
                 // get the first worksheet in the workbook
