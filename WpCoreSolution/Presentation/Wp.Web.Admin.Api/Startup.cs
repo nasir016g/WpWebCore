@@ -15,7 +15,9 @@ using Wp.Core.Security;
 using Wp.Data;
 using Wp.Web.Api.Admin.Extensions;
 using Wp.Web.Api.Admin.Infrastructure.Mapper;
-using ServiceCollectionExtensions = Wp.Web.Api.Admin.Extensions.ServiceCollectionExtensions;
+using Wp.Web.Framework.Extensions;
+//using ServiceCollectionExtensions = Wp.Web.Api.Admin.Extensions.ServiceCollectionExtensions;
+using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
 namespace Wp.Web.Api.Admin
 {
@@ -93,7 +95,7 @@ namespace Wp.Web.Api.Admin
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         ServiceCollectionExtensions.Migrate(app);
-        Extensions.ServiceCollectionExtensions.AddLogger();
+        ServiceCollectionExtensions.AddLogger();
         if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
