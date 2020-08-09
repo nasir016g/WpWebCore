@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Wp.Core.Domain.WebPages;
 using Wp.Services.WebPages;
-using Wp.Web.Admin.Api.Models;
+using Wp.Web.Api.Admin.Models;
 
-namespace Wp.Web.Admin.Api.Infrastructure.Mapper
+namespace Wp.Web.Api.Admin.Infrastructure.Mapper
 {
     //public class DependencyResolver : IValueResolver<WebPage, WebPageModel, IEnumerable<WebPageModel.WebPageRoleModel>>
     //{

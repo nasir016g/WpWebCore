@@ -13,11 +13,11 @@ using Newtonsoft.Json.Serialization;
 using System.Reflection;
 using Wp.Core.Security;
 using Wp.Data;
-using Wp.Web.Admin.Api.Extensions;
-using Wp.Web.Admin.Api.Infrastructure.Mapper;
-using ServiceCollectionExtensions = Wp.Web.Admin.Api.Extensions.ServiceCollectionExtensions;
+using Wp.Web.Api.Admin.Extensions;
+using Wp.Web.Api.Admin.Infrastructure.Mapper;
+using ServiceCollectionExtensions = Wp.Web.Api.Admin.Extensions.ServiceCollectionExtensions;
 
-namespace Wp.Web.Admin.Api
+namespace Wp.Web.Api.Admin
 {
     public class Startup
     {

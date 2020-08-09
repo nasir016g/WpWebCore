@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Wp.Services.Installation;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Produces("application/json")]
     [Route("api/Install")]

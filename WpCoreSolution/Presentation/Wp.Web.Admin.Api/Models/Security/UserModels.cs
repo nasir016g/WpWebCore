@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wp.Web.Admin.Api.Models.Admin
+namespace Wp.Web.Api.Admin.Models.Admin
 {
     public class UserModel
     {

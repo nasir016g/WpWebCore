@@ -59,7 +59,7 @@ namespace Wp.Services.Common
             var ids = ParseCustomAttributeIds(attributesXml);
             foreach (int id in ids)
             {
-                var attribute = CustomAttributeService.GetCustomAttributeById(id);
+                var attribute = CustomAttributeService.GetById(id);
                 if (attribute != null)
                 {
                     result.Add(attribute);
@@ -206,7 +206,7 @@ namespace Wp.Services.Common
             var attributes1 = ParseCustomAttributes(attributesXml);
 
             //validate required custom attributes (whether they're chosen/selected/entered)
-            var attributes2 = CustomAttributeService.GetAllCustomAttributes();
+            var attributes2 = CustomAttributeService.GetAll();
             foreach (var a2 in attributes2)
             {
                 if (a2.IsRequired)

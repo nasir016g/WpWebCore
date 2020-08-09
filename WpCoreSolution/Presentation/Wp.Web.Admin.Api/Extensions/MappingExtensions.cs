@@ -8,10 +8,10 @@ using Wp.Core.Domain.WebPages;
 using Wp.Services.Localization;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
-using Wp.Web.Admin.Api.Infrastructure.Mapper;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Infrastructure.Mapper;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Extensions.Mapper
+namespace Wp.Web.Api.Admin.Extensions.Mapper
 {
     public static class MappingExtensions
     {

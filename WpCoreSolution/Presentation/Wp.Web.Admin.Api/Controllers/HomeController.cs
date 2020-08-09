@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Wp.Web.Admin.Api.Models;
+using Wp.Web.Api.Admin.Models;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     public class HomeController : Controller
     {

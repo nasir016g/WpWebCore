@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wp.Web.Admin.Api.Models
+namespace Wp.Web.Api.Admin.Models
 {
     public class SearchResultModel<T>
     {

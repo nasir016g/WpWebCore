@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Wp.Web.Admin.Api.Models.AccountViewModels
+namespace Wp.Web.Api.Admin.Models.AccountViewModels
 {
     public class LoginViewModel
     {

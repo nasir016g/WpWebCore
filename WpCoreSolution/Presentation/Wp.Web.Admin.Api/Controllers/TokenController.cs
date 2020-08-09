@@ -8,9 +8,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Wp.Core.Security;
-using Wp.Web.Admin.Api.Models.AccountViewModels;
+using Wp.Web.Api.Admin.Models.AccountViewModels;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Route("api/[controller]")]
     public class TokenController : Controller

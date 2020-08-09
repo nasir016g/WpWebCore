@@ -8,19 +8,13 @@ using Wp.Core.Domain.Common;
 
 namespace Wp.Services.Common
 {
-    public partial interface IGenericAttributeService
+    public partial interface IGenericAttributeService : IEntityService<GenericAttribute>
     {
         
-        void DeleteAttribute(GenericAttribute attribute);
       
-        void DeleteAttributes(IList<GenericAttribute> attributes);
-
-        GenericAttribute GetAttributeById(int attributeId);
-        
-        void InsertAttribute(GenericAttribute attribute);
+        void DeleteAttributes(IList<GenericAttribute> attributes);    
 
       
-        void UpdateAttribute(GenericAttribute attribute);
 
       
         IList<GenericAttribute> GetAttributesForEntity(int entityId, string keyGroup);

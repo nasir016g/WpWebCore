@@ -8,10 +8,11 @@ using Wp.Core.Caching;
 using Wp.Core.Common;
 using Wp.Core.Domain.Common;
 using Wp.Data;
+using Wp.Data.Extensions;
 
 namespace Wp.Services.Common
 {
-    public partial class GenericAttributeService : IGenericAttributeService
+    public partial class GenericAttributeService : EntityService<GenericAttribute>, IGenericAttributeService
     {
         #region Constants
 
@@ -31,7 +32,7 @@ namespace Wp.Services.Common
 
         #region Fields
 
-        private readonly IEntityBaseRepository<GenericAttribute> _genericAttributeRepository;
+        private readonly IBaseRepository<GenericAttribute> _genericAttributeRepository;
         private readonly ICacheManager _cacheManager;
        
 
@@ -45,8 +46,8 @@ namespace Wp.Services.Common
         /// <param name="cacheManager">Cache manager</param>
         /// <param name="genericAttributeRepository">Generic attribute repository</param>
         /// <param name="eventPublisher">Event published</param>
-        public GenericAttributeService(ICacheManager cacheManager,
-            IEntityBaseRepository<GenericAttribute> genericAttributeRepository)            
+        public GenericAttributeService(IUnitOfWork unitOfWork, ICacheManager cacheManager,
+            IBaseRepository<GenericAttribute> genericAttributeRepository) : base(unitOfWork, genericAttributeRepository)           
         {
             _cacheManager = cacheManager;
             _genericAttributeRepository = genericAttributeRepository;
@@ -54,18 +55,8 @@ namespace Wp.Services.Common
 
         #endregion
 
-        #region Methods
-      
-        public virtual void DeleteAttribute(GenericAttribute attribute)
-        {
-            if (attribute == null)
-                throw new ArgumentNullException("attribute");
-
-            _genericAttributeRepository.Delete(attribute);
-
-            //cache
-            _cacheManager.RemoveByPattern(GENERICATTRIBUTE_PATTERN_KEY);
-        }
+        #region Methods      
+        
 
         public virtual void DeleteAttributes(IList<GenericAttribute> attributes)
         {
@@ -78,40 +69,11 @@ namespace Wp.Services.Common
             //event notification
             foreach (var attribute in attributes)
             {
-                _genericAttributeRepository.Delete(attribute);
+                base.Delete(attribute);
             }
         }
        
-        public virtual GenericAttribute GetAttributeById(int attributeId)
-        {
-            if (attributeId == 0)
-                return null;
-
-            return _genericAttributeRepository.GetById(attributeId);
-        }
-
-        public virtual void InsertAttribute(GenericAttribute attribute)
-        {
-            if (attribute == null)
-                throw new ArgumentNullException("attribute");
-
-            _genericAttributeRepository.Save(attribute);
-
-            //cache
-            _cacheManager.RemoveByPattern(GENERICATTRIBUTE_PATTERN_KEY);          
-        }
-      
-        public virtual void UpdateAttribute(GenericAttribute attribute)
-        {
-            if (attribute == null)
-                throw new ArgumentNullException("attribute");
-
-            _genericAttributeRepository.Save(attribute);
-
-            //cache
-            _cacheManager.RemoveByPattern(GENERICATTRIBUTE_PATTERN_KEY);
-            
-        }
+       
 
         /// <summary>
         /// Get attributes
@@ -163,13 +125,13 @@ namespace Wp.Services.Common
                 if (string.IsNullOrWhiteSpace(valueStr))
                 {
                     //delete
-                    DeleteAttribute(prop);
+                    base.Delete(prop);
                 }
                 else
                 {
                     //update
                     prop.Value = valueStr;
-                    UpdateAttribute(prop);
+                    base.Update(prop);
                 }
             }
             else
@@ -186,7 +148,7 @@ namespace Wp.Services.Common
                        
 
                     };
-                    InsertAttribute(prop);
+                    base.Insert(prop);
                 }
             }
         }

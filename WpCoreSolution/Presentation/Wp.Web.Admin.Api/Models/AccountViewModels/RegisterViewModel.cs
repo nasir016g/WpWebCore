@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wp.Web.Admin.Api.Models.AccountViewModels
+namespace Wp.Web.Api.Admin.Models.AccountViewModels
 {
     public class RegisterViewModel
     {

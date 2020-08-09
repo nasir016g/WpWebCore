@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wp.Web.Admin.Api.Models.Admin
+namespace Wp.Web.Api.Admin.Models.Admin
 {
     public class ExpenseModel 
     {

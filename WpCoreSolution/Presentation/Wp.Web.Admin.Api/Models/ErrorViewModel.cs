@@ -1,6 +1,6 @@
 using System;
 
-namespace Wp.Web.Admin.Api.Models
+namespace Wp.Web.Api.Admin.Models
 {
     public class ErrorViewModel
     {

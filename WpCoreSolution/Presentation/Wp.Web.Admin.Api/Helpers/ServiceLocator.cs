@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wp.Web.Admin.Api.Helpers
+namespace Wp.Web.Api.Admin.Helpers
 {
     public static class ServiceLocator
     {

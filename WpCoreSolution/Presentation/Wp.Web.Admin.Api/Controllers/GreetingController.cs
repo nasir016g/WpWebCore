@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     public class Country
     {

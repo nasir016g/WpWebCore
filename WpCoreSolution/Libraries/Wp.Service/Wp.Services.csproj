@@ -6,16 +6,18 @@
 
   <ItemGroup>
     <Compile Remove="Albums\**" />
-    <Compile Remove="Common\**" />
     <EmbeddedResource Remove="Albums\**" />
-    <EmbeddedResource Remove="Common\**" />
     <None Remove="Albums\**" />
-    <None Remove="Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\ThemeService.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DocX" Version="1.6.0" />
     <PackageReference Include="EPPlus" Version="5.1.2" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />

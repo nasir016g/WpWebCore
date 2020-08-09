@@ -28,7 +28,7 @@ using Wp.Services.Sections;
 using Wp.Services.WebPages;
 using Wp.Web.Framework;
 
-namespace Wp.Web.Admin.Api.Extensions
+namespace Wp.Web.Api.Admin.Extensions
 {
     public static class ServiceCollectionExtensions
     {

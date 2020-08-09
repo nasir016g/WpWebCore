@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;
 using Wp.Data;
 
 namespace Wp.Services.Common
 {
-    public partial class CustomAttributeService : ICustomAttributeService
+    public partial class CustomAttributeService : EntityService<CustomAttribute>, ICustomAttributeService
     {
         #region Constants
 
@@ -48,8 +49,8 @@ namespace Wp.Services.Common
 
         #region Fields
 
-        private readonly IEntityBaseRepository<CustomAttribute> _customAttributeRepository;
-        private readonly IEntityBaseRepository<CustomAttributeValue> _customAttributeValueRepository;
+        private readonly IBaseRepository<CustomAttribute> _customAttributeRepository;
+        private readonly IBaseRepository<CustomAttributeValue> _customAttributeValueRepository;
         private readonly ICacheManager _cacheManager;
 
         #endregion
@@ -63,10 +64,10 @@ namespace Wp.Services.Common
         /// <param name="customAttributeRepository">Custom attribute repository</param>
         /// <param name="customAttributeValueRepository">Custom attribute value repository</param>
         /// <param name="eventPublisher">Event published</param>
-        public CustomAttributeService(ICacheManager cacheManager,
-            IEntityBaseRepository<CustomAttribute> customAttributeRepository,
-            IEntityBaseRepository<CustomAttributeValue> customAttributeValueRepository
-           )
+        public CustomAttributeService(IUnitOfWork unitOfWork, ICacheManager cacheManager,
+            IBaseRepository<CustomAttribute> customAttributeRepository,
+            IBaseRepository<CustomAttributeValue> customAttributeValueRepository
+           ) : base(unitOfWork, customAttributeRepository)
         {
             this._cacheManager = cacheManager;
             this._customAttributeRepository = customAttributeRepository;
@@ -78,28 +79,7 @@ namespace Wp.Services.Common
 
         #region Methods
 
-        /// <summary>
-        /// Deletes an custom attribute
-        /// </summary>
-        /// <param name="customAttribute">Custom attribute</param>
-        public virtual void DeleteCustomAttribute(CustomAttribute customAttribute)
-        {
-            if (customAttribute == null)
-                throw new ArgumentNullException("customAttribute");
-
-            _customAttributeRepository.Delete(customAttribute);
-
-            _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
-
-         
-        }
-
-        /// <summary>
-        /// Gets all custom attributes
-        /// </summary>
-        /// <returns>Custom attributes</returns>
-        public virtual IList<CustomAttribute> GetAllCustomAttributes()
+        public override IList<CustomAttribute> GetAll()
         {
             string key = CUSTOMATTRIBUTES_ALL_KEY;
             return _cacheManager.Get(key, () =>
@@ -111,67 +91,49 @@ namespace Wp.Services.Common
             });
         }
 
-        /// <summary>
-        /// Gets an custom attribute 
-        /// </summary>
-        /// <param name="customAttributeId">Custom attribute identifier</param>
-        /// <returns>Custom attribute</returns>
-        public virtual CustomAttribute GetCustomAttributeById(int customAttributeId)
+        public override CustomAttribute GetById(int id)
         {
-            if (customAttributeId == 0)
+            if (id == 0)
                 return null;
 
-            string key = string.Format(CUSTOMATTRIBUTES_BY_ID_KEY, customAttributeId);
-            return _cacheManager.Get(key, () => _customAttributeRepository.GetById(customAttributeId));
+            string key = string.Format(CUSTOMATTRIBUTES_BY_ID_KEY, id);
+            return _cacheManager.Get(key, () => _customAttributeRepository.GetById(id));
         }
 
-        /// <summary>
-        /// Inserts an custom attribute
-        /// </summary>
-        /// <param name="customAttribute">Custom attribute</param>
-        public virtual void InsertCustomAttribute(CustomAttribute customAttribute)
+
+        public override void Insert(CustomAttribute entity)
         {
-            if (customAttribute == null)
+            if (entity == null)
                 throw new ArgumentNullException("customAttribute");
 
-            _customAttributeRepository.Save(customAttribute);
+            base.Insert(entity);
 
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
-
         }
 
-        /// <summary>
-        /// Updates the custom attribute
-        /// </summary>
-        /// <param name="customAttribute">Custom attribute</param>
-        public virtual void UpdateCustomAttribute(CustomAttribute customAttribute)
+        public override void Update(CustomAttribute entity)
         {
-            if (customAttribute == null)
+            if (entity == null)
                 throw new ArgumentNullException("customAttribute");
 
-            _customAttributeRepository.Save(customAttribute);
+            base.Update(entity);
 
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
-
         }
 
-        /// <summary>
-        /// Deletes an custom attribute value
-        /// </summary>
-        /// <param name="customAttributeValue">Custom attribute value</param>
-        public virtual void DeleteCustomAttributeValue(CustomAttributeValue customAttributeValue)
+        public override void Delete(CustomAttribute entity)
         {
-            if (customAttributeValue == null)
+            if (entity == null)
                 throw new ArgumentNullException("customAttributeValue");
 
-            _customAttributeValueRepository.Delete(customAttributeValue);
+            base.Delete(entity);
 
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
-
         }
+
 
         /// <summary>
         /// Gets custom attribute values by custom attribute identifier
@@ -215,7 +177,8 @@ namespace Wp.Services.Common
             if (customAttributeValue == null)
                 throw new ArgumentNullException("customAttributeValue");
 
-            _customAttributeValueRepository.Save(customAttributeValue);
+            _customAttributeValueRepository.Add(customAttributeValue);
+            _unitOfWork.Complete();
 
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
@@ -231,8 +194,7 @@ namespace Wp.Services.Common
             if (customAttributeValue == null)
                 throw new ArgumentNullException("customAttributeValue");
 
-            _customAttributeValueRepository.Save(customAttributeValue);
-
+            _unitOfWork.Complete();
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTES_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CUSTOMATTRIBUTEVALUES_PATTERN_KEY);
 

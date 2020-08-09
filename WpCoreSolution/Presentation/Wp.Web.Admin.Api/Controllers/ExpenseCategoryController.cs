@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Wp.Services.Expenses;
-using Wp.Web.Admin.Api.Extensions.Mapper;
+using Wp.Web.Api.Admin.Extensions.Mapper;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

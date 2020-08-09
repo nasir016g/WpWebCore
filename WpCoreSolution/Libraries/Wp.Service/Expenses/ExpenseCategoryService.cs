@@ -9,14 +9,12 @@ namespace Wp.Services.Expenses
 {
     public class ExpenseCategoryService : EntityService<ExpenseCategory>, IExpenseCategoryService
     {
-        private readonly IUnitOfWork unitOfWork;
         private IBaseRepository<ExpenseCategory> expenseCategoryRepo;
         // IExpenseCategoryRepository expenseCategoryRepo; // with includes
 
         public ExpenseCategoryService(IUnitOfWork unitOfWork,
             IBaseRepository<ExpenseCategory> expenseCategoryRepo) : base(unitOfWork, expenseCategoryRepo)
         {
-            this.unitOfWork = unitOfWork;
             this.expenseCategoryRepo = expenseCategoryRepo;
         }
 

@@ -9,11 +9,11 @@ using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
-using Wp.Web.Admin.Api.Controllers;
-using Wp.Web.Admin.Api.Extensions.Mapper;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Controllers;
+using Wp.Web.Api.Admin.Extensions.Mapper;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]

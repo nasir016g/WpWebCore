@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Wp.Core;
-using Wp.Web.Admin.Api.Extensions.Mapper;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Extensions.Mapper;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -15,9 +15,7 @@ namespace Wp.Services.Common
     {
         #region Fields
 
-        private readonly IWebHelper _webHelper;
         private readonly ILocalizationService _localizationService;
-        private readonly ILanguageService _languageService;
         private readonly IWorkContext _workContext;
 
         #endregion
@@ -213,12 +211,10 @@ namespace Wp.Services.Common
 
         #region Ctor
 
-        public PdfService(IWebHelper webHelper, ILocalizationService localizationService, ILanguageService languageService, IWorkContext workContext)
+        public PdfService(ILocalizationService localizationService, IWorkContext workContext)
         {
-            this._webHelper = webHelper;
-            this._localizationService = localizationService;
-            this._languageService = languageService;
-            this._workContext = workContext;
+            _localizationService = localizationService;
+            _workContext = workContext;
         }
 
         #endregion

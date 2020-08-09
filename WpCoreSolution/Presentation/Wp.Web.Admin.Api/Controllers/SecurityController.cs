@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Wp.Core.Domain.Security;
 using Wp.Core.Security;
 using Wp.Service.Security;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

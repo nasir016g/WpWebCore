@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Wp.Core.Domain.WebPages;
 
-namespace Wp.Web.Admin.Api.Models.Admin
+namespace Wp.Web.Api.Admin.Models.Admin
 {
     public class WebPageModel
     {

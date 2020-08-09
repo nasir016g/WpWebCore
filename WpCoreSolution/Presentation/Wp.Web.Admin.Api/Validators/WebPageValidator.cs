@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Validators.Admin
+namespace Wp.Web.Api.Admin.Validators.Admin
 {
     public class WebPageValidator : AbstractValidator<WebPageModel>
     {

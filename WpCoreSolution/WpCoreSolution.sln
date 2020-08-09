@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Core", "Libraries\Wp.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Services", "Libraries\Wp.Service\Wp.Services.csproj", "{0D7C7344-6685-420F-9D76-2C7777D341C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wp.Web.Admin.Api", "Presentation\Wp.Web.Admin.Api\Wp.Web.Admin.Api.csproj", "{C3F5CC0A-14B9-44DC-B46E-C03F5736ADA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Web.Api.Admin", "Presentation\Wp.Web.Admin.Api\Wp.Web.Api.Admin.csproj", "{C3F5CC0A-14B9-44DC-B46E-C03F5736ADA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

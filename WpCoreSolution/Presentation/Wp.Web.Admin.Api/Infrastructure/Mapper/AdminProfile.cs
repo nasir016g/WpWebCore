@@ -2,9 +2,9 @@
 using Wp.Core.Domain.Expenses;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Infrastructure
+namespace Wp.Web.Api.Admin.Infrastructure
 {
     public class AdminProfile : Profile
     {

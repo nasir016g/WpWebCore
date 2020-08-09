@@ -5,11 +5,11 @@ using System.Linq;
 using Wp.Services.Expenses;
 using Wp.Services.ExportImport;
 using Wp.Services.Models;
-using Wp.Web.Admin.Api.Extensions.Mapper;
-using Wp.Web.Admin.Api.Models;
-using Wp.Web.Admin.Api.Models.Admin;
+using Wp.Web.Api.Admin.Extensions.Mapper;
+using Wp.Web.Api.Admin.Models;
+using Wp.Web.Api.Admin.Models.Admin;
 
-namespace Wp.Web.Admin.Api.Controllers
+namespace Wp.Web.Api.Admin.Controllers
 {
     [Route("api/[controller]")]
     //[ApiController]

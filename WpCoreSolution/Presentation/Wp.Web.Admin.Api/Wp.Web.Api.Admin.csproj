@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-Wp.Web.Admin.Api-E7502399-4A51-4708-9028-A32CAF496AF4</UserSecretsId>
+    <UserSecretsId>aspnet-Wp.Web.Api.Admin-E7502399-4A51-4708-9028-A32CAF496AF4</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

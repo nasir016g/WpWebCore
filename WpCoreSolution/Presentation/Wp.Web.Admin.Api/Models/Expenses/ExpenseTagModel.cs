@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wp.Web.Admin.Api.Models.Admin
+namespace Wp.Web.Api.Admin.Models.Admin
 {
     public class ExpenseTagModel
     {
