@@ -4,18 +4,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using Wp.Core;
 using Wp.Core.Security;
 using Wp.Data;
-using Wp.Web.Api.Admin.Extensions;
-using Wp.Web.Api.Admin.Infrastructure.Mapper;
 using Wp.Web.Framework.Extensions;
+using Wp.Web.Framework.Infrastructure.Mapper;
 //using ServiceCollectionExtensions = Wp.Web.Api.Admin.Extensions.ServiceCollectionExtensions;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
@@ -65,10 +64,11 @@ namespace Wp.Web.Api.Admin
                 //options.User.RequireUniqueEmail = false;
             });
 
-            services.AddJwt(Configuration); // comment this line out when using mvc views otherwise loging will not work
+            //services.AddJwt(Configuration); // comment this line out when using mvc views otherwise loging will not work
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
+            services.AddFrontend();
             services.AddAutoMapper(typeof(Startup));
             AutoMapperConfiguration.Init();
             services.AddControllersWithViews()
@@ -89,14 +89,16 @@ namespace Wp.Web.Api.Admin
                 option.UseInMemory("default");
             });
         }
-    
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-        ServiceCollectionExtensions.Migrate(app);
-        ServiceCollectionExtensions.AddLogger();
-        if (env.IsDevelopment())
+            ServiceCollectionExtensions.AddLogger();
+            ServiceCollectionExtensions.Migrate(app);
+            ServiceLocator.Instance = app.ApplicationServices;
+
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -109,16 +111,12 @@ namespace Wp.Web.Api.Admin
             }
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

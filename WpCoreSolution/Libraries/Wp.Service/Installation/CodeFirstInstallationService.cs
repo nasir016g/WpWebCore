@@ -13,11 +13,8 @@ using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
 using Wp.Core.Domain.Seo;
-using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
 using Wp.Core.Security;
-using Wp.Data;
-using Wp.Service.Helpers;
 using Wp.Service.Security;
 using Wp.Services.Configuration;
 using Wp.Services.Expenses;
@@ -115,6 +112,8 @@ namespace Wp.Services.Installation
                 var p = _webPageRepo.Table.Where(x => x.VirtualPath == page.VirtualPath).FirstOrDefault();
                 if (p == null)
                 {
+                    page.CreatedOn = DateTime.Now;
+                    page.UpdatedOn = DateTime.Now;
                     _webPageRepo.Add(page);
                     var urlRecord = new UrlRecord()
                     {

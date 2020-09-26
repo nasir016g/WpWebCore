@@ -5,9 +5,9 @@ using System.Linq;
 using Wp.Services.Expenses;
 using Wp.Services.ExportImport;
 using Wp.Services.Models;
-using Wp.Web.Api.Admin.Extensions.Mapper;
-using Wp.Web.Api.Admin.Models;
-using Wp.Web.Api.Admin.Models.Admin;
+using Wp.Web.Framework.Extensions.Mapper;
+using Wp.Web.Framework.Models;
+using Wp.Web.Framework.Models.Admin;
 
 namespace Wp.Web.Api.Admin.Controllers
 {

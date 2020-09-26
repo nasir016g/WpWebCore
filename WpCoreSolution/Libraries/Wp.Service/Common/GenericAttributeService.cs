@@ -9,6 +9,7 @@ using Wp.Core.Common;
 using Wp.Core.Domain.Common;
 using Wp.Data;
 using Wp.Data.Extensions;
+using Wp.Services.Events;
 
 namespace Wp.Services.Common
 {
@@ -47,7 +48,7 @@ namespace Wp.Services.Common
         /// <param name="genericAttributeRepository">Generic attribute repository</param>
         /// <param name="eventPublisher">Event published</param>
         public GenericAttributeService(IUnitOfWork unitOfWork, ICacheManager cacheManager,
-            IBaseRepository<GenericAttribute> genericAttributeRepository) : base(unitOfWork, genericAttributeRepository)           
+            IBaseRepository<GenericAttribute> genericAttributeRepository, IEventPublisher eventPublisher) : base(unitOfWork, genericAttributeRepository, eventPublisher)           
         {
             _cacheManager = cacheManager;
             _genericAttributeRepository = genericAttributeRepository;

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Wp.Web.Framework.Models.Admin.WebPageModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.VirtualPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NavigationName)
+            </th>
+
+            <td>
+                @Html.ActionLink("New Page", "Create", null, new { @class = "btn btn-default pull-right" })
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.VirtualPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NavigationName)
+            </td>       
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

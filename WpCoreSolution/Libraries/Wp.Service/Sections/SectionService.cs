@@ -7,6 +7,7 @@ using Wp.Core;
 using Wp.Core.Domain.Sections;
 using Wp.Data;
 using Wp.Services;
+using Wp.Services.Events;
 
 namespace Wp.Services.Sections
 {
@@ -15,7 +16,7 @@ namespace Wp.Services.Sections
       private readonly IBaseRepository<Section> _sectionRepo;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public SectionService(IUnitOfWork unitOfWork, IBaseRepository<Section> sectionRepository, IHostingEnvironment hostingEnvironment) : base(unitOfWork, sectionRepository)
+        public SectionService(IUnitOfWork unitOfWork, IBaseRepository<Section> sectionRepository, IHostingEnvironment hostingEnvironment, IEventPublisher eventPublisher) : base(unitOfWork, sectionRepository, eventPublisher)
     {
       this._sectionRepo = sectionRepository;
             _hostingEnvironment = hostingEnvironment;

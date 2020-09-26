@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Wp.Core.Security;
-using Wp.Web.Api.Admin.Models.AccountViewModels;
+using Wp.Web.Framework.Models.AccountViewModels;
 
 namespace Wp.Web.Api.Admin.Controllers
 {

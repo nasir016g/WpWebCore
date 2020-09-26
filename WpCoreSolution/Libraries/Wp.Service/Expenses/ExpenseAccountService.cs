@@ -3,6 +3,7 @@ using Wp.Core.Domain.Expenses;
 using System.Linq;
 using Wp.Data;
 using Wp.Core;
+using Wp.Services.Events;
 
 namespace Wp.Services.Expenses
 {
@@ -12,8 +13,8 @@ namespace Wp.Services.Expenses
         private IBaseRepository<ExpenseAccount> expenseAccountRepo;
 
         public ExpenseAccountService(IUnitOfWork unitOfWork,
-            IBaseRepository<ExpenseAccount> expenseAccountRepo)
-            : base(unitOfWork, expenseAccountRepo)
+            IBaseRepository<ExpenseAccount> expenseAccountRepo, IEventPublisher eventPublisher)
+            : base(unitOfWork, expenseAccountRepo, eventPublisher)
         {
             this.unitOfWork = unitOfWork;
             this.expenseAccountRepo = expenseAccountRepo;

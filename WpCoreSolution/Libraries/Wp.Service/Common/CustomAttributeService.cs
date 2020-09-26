@@ -5,6 +5,7 @@ using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Common
 {
@@ -66,8 +67,9 @@ namespace Wp.Services.Common
         /// <param name="eventPublisher">Event published</param>
         public CustomAttributeService(IUnitOfWork unitOfWork, ICacheManager cacheManager,
             IBaseRepository<CustomAttribute> customAttributeRepository,
-            IBaseRepository<CustomAttributeValue> customAttributeValueRepository
-           ) : base(unitOfWork, customAttributeRepository)
+            IBaseRepository<CustomAttributeValue> customAttributeValueRepository,
+            IEventPublisher eventPublisher
+           ) : base(unitOfWork, customAttributeRepository, eventPublisher)
         {
             this._cacheManager = cacheManager;
             this._customAttributeRepository = customAttributeRepository;

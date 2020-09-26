@@ -7,6 +7,9 @@ using System.Linq;
 using System;
 using System.Linq.Expressions;
 using Wp.Services.Models;
+using Wp.Services.Events;
+//using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Wp.Services.Expenses
 {
@@ -18,7 +21,7 @@ namespace Wp.Services.Expenses
 
         public ExpenseService(IUnitOfWork unitOfWork, 
             IExpenseRepository expenseRepo, 
-            IBaseRepository<ExpenseExpenseTagMapping> expenseExpenseTagRepository): base(unitOfWork, expenseRepo)
+            IBaseRepository<ExpenseExpenseTagMapping> expenseExpenseTagRepository, IEventPublisher eventPublisher): base(unitOfWork, expenseRepo, eventPublisher)
         {
             this.unitOfWork = unitOfWork;
             _expenseRepo = expenseRepo;
@@ -31,6 +34,7 @@ namespace Wp.Services.Expenses
         {
             search ??= new ExpenseSearchModel();
             var query = _expenseRepo.Table;
+
 
             if (!string.IsNullOrEmpty(search.Name))
             {
@@ -58,10 +62,12 @@ namespace Wp.Services.Expenses
             //  var ets = search.ExpenseTags.ParseExpenseTags();
             if (search.ExpenseTags != null && search.ExpenseTags.Count() > 0)
             {
-                query = from e in query
-                        join et in _expenseExpenseTagRepository.Table on e.Id equals et.ExpenseId
-                        where search.ExpenseTags.Contains(et.ExpenseTag.Name)
-                        select e;
+                query = query.Include(x => x.ExpenseExpenseTagMappings.Where(t => t.ExpenseTagId == 1)); // not working hier
+
+                //query = from e in query
+                //        join et in _expenseExpenseTagRepository.Table on e.Id equals et.ExpenseId
+                //        where search.ExpenseTags.Contains(et.ExpenseTag.Name)
+                //        select e;
             }
 
             if (search.ExpenseAccounts != null && search.ExpenseAccounts.Count() > 0)

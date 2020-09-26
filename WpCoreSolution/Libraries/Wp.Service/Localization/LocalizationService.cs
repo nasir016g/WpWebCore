@@ -10,6 +10,7 @@ using Wp.Core.Domain.Localization;
 using Wp.Data;
 
 using Wp.Services;
+using Wp.Services.Events;
 
 namespace Wp.Services.Localization
 {
@@ -46,8 +47,8 @@ namespace Wp.Services.Localization
         private readonly LocalizationSettings _localizationSettings;
         protected readonly IWorkContext _workContext;
         private readonly ICacheManager _cacheManager;
-        public LocalizationService(IUnitOfWork unitOfWork, IBaseRepository<LocaleStringResource> lsrRepo, ILanguageService languageService, LocalizationSettings localizationSettings, IWorkContext workContext, ICacheManager cacheManager)
-        : base(unitOfWork, lsrRepo)
+        public LocalizationService(IUnitOfWork unitOfWork, IBaseRepository<LocaleStringResource> lsrRepo, ILanguageService languageService, LocalizationSettings localizationSettings, IWorkContext workContext, ICacheManager cacheManager, IEventPublisher eventPublisher)
+        : base(unitOfWork, lsrRepo, eventPublisher)
         {
             this._lsrRepo = lsrRepo;
             this._languageService = languageService;

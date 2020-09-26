@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Wp.Core.Domain.Security;
 using Wp.Core.Security;
 using Wp.Service.Security;
-using Wp.Web.Api.Admin.Models.Admin;
+using Wp.Web.Framework.Models.Admin;
 
 namespace Wp.Web.Api.Admin.Controllers
 {

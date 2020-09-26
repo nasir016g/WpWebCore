@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Wp.Core.Domain.Expenses;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wp.Services.Expenses;
-using Wp.Web.Api.Admin.Extensions.Mapper;
+using Wp.Web.Framework.Extensions.Mapper;
 
 namespace Wp.Web.Api.Admin.Controllers
 {

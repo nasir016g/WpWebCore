@@ -15,7 +15,8 @@ namespace Wp.Web.Api.Admin.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var host = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            return new string[] { "value1", "value2", host };
         }
 
         // GET: api/Test/5

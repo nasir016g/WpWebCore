@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using Wp.Services.Expenses;
-using Wp.Web.Api.Admin.Extensions.Mapper;
+using Wp.Web.Framework.Extensions.Mapper;
 
 namespace Wp.Web.Api.Admin.Controllers
 {
@@ -27,9 +26,12 @@ namespace Wp.Web.Api.Admin.Controllers
 
         // GET: api/ExpenseCategory/5
         [HttpGet("{id}", Name = "GetExpenseCategory")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var entity = _expenseCategoryService.GetById(id);
+           var model = entity.ToModel();
+            return Ok(model);
+
         }
 
         // POST: api/ExpenseCategory

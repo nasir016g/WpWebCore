@@ -3,6 +3,7 @@ using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Career;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Career
 {
@@ -13,8 +14,8 @@ namespace Wp.Services.Career
         private IBaseRepository<Skill> _skillRepo;
         private IBaseRepository<SkillItem> _skillItemRepo;
 
-        public SkillService(IUnitOfWork unitOfWork, IBaseRepository<Skill> skillRepo, IBaseRepository<SkillItem> skillItemRepo)
-        :base(unitOfWork, skillRepo)
+        public SkillService(IUnitOfWork unitOfWork, IBaseRepository<Skill> skillRepo, IBaseRepository<SkillItem> skillItemRepo, IEventPublisher eventPublisher)
+        :base(unitOfWork, skillRepo, eventPublisher)
         {
             _unitOfWork = unitOfWork;
             this._skillRepo = skillRepo;

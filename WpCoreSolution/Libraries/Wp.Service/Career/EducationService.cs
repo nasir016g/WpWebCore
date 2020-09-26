@@ -3,6 +3,7 @@ using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Career;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Career
 {
@@ -10,20 +11,23 @@ namespace Wp.Services.Career
 
     public class EducationService : EntityService<Education>, IEducationService
     {
-        private IBaseRepository<Education> _educationRepo;
+        private IBaseRepository<Education> _repository;
         private IBaseRepository<EducationItem> _educationItemRepo;
 
-        public EducationService(IUnitOfWork unitOfWork, IBaseRepository<Education> educationRepo, IBaseRepository<EducationItem> educationItemRepo)
-        :base(unitOfWork, educationRepo)
+        public EducationService(IUnitOfWork unitOfWork, 
+            IBaseRepository<Education> repository,
+            IBaseRepository<EducationItem> educationItemRepo,
+            IEventPublisher eventPublisher) : base(unitOfWork, repository, eventPublisher)
         {
-            this._educationRepo = educationRepo;
-            this._educationItemRepo = educationItemRepo;
+            _repository = repository;
+            _educationItemRepo = educationItemRepo;
         }
+
 
         #region Edu
         public IList<Education> GetAll(int ResumeId)
         {
-            return _educationRepo.Table.Where(x => x.ResumeId == ResumeId).ToList();
+            return _repository.Table.Where(x => x.ResumeId == ResumeId).ToList();
         }
 
         #endregion

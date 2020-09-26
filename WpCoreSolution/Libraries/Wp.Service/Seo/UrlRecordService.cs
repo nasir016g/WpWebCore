@@ -4,6 +4,7 @@ using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Seo;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Seo
 {
@@ -11,7 +12,7 @@ namespace Wp.Services.Seo
     {
         private readonly IBaseRepository<UrlRecord> _urlRecordRepo;
 
-        public UrlRecordService(UnitOfWork unitOfWork, IBaseRepository<UrlRecord> urlRecordRepository) : base(unitOfWork, urlRecordRepository)
+        public UrlRecordService(IUnitOfWork unitOfWork, IBaseRepository<UrlRecord> urlRecordRepository, IEventPublisher eventPublisher) : base(unitOfWork, urlRecordRepository, eventPublisher)
         {
             this._urlRecordRepo = urlRecordRepository;
         }

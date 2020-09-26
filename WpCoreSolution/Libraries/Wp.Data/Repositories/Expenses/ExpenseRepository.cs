@@ -27,9 +27,11 @@ namespace Wp.Data.Repositories
         {
             get
             {
-                var query = Context.Set<Expense>()
-                    .Include(x => x.ExpenseAccount)
-                    .Include(x => x.ExpenseCategory);
+                var query = Context.Set<Expense>();
+                    //.Include(x => x.ExpenseExpenseTagMappings);
+                    //.Include(x => x.ExpenseAccount);
+                    //.Include(x => x.ExpenseCategory);
+                    //query = query.Include(x => x.ExpenseExpenseTagMappings);
                 return query;
             }
         }

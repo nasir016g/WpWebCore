@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Wp.Core;
+using Wp.Core.Domain.Career;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services
 {
@@ -10,12 +12,16 @@ namespace Wp.Services
     {
         protected IUnitOfWork _unitOfWork;
         IBaseRepository<T> _repository;
+        private readonly IEventPublisher _eventPublisher;
 
-        public EntityService(IUnitOfWork unitOfWork, IBaseRepository<T> repository)
+        public EntityService(IUnitOfWork unitOfWork, IBaseRepository<T> repository, IEventPublisher eventPublisher)
         {
             _unitOfWork = unitOfWork;
             _repository = repository;
+            _eventPublisher = eventPublisher;
         }
+
+       
 
         public virtual T GetById(int id)
         {
@@ -30,6 +36,8 @@ namespace Wp.Services
             }
             _repository.Add(entity);
             _unitOfWork.Complete();
+            _eventPublisher.EntityInserted(entity);
+
         }
 
 
@@ -38,6 +46,7 @@ namespace Wp.Services
             if (entity == null) throw new ArgumentNullException("entity");
             
             _unitOfWork.Complete();
+            _eventPublisher.EntityUpdated(entity);
         }
 
         public virtual void Delete(T entity)
@@ -45,6 +54,8 @@ namespace Wp.Services
             if (entity == null) throw new ArgumentNullException("entity");
             _repository.Remove(entity);
             _unitOfWork.Complete();
+            _eventPublisher.EntityDeleted(entity);
+
         }
 
         public virtual IList<T> GetAll()

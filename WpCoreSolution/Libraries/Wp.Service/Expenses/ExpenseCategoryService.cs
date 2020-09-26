@@ -4,6 +4,7 @@ using System.Linq;
 using Wp.Data;
 using Wp.Core;
 using Wp.Core.Interfaces.Repositories;
+using Wp.Services.Events;
 
 namespace Wp.Services.Expenses
 {
@@ -13,7 +14,7 @@ namespace Wp.Services.Expenses
         // IExpenseCategoryRepository expenseCategoryRepo; // with includes
 
         public ExpenseCategoryService(IUnitOfWork unitOfWork,
-            IBaseRepository<ExpenseCategory> expenseCategoryRepo) : base(unitOfWork, expenseCategoryRepo)
+            IBaseRepository<ExpenseCategory> expenseCategoryRepo, IEventPublisher eventPublisher) : base(unitOfWork, expenseCategoryRepo, eventPublisher)
         {
             this.expenseCategoryRepo = expenseCategoryRepo;
         }

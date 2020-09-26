@@ -41,14 +41,14 @@ namespace Wp.Data
             optionsBuilder.EnableSensitiveDataLogging();
             if (_tenant != null) // tenant
             {
-                // optionsBuilder.UseSqlServer(_tenant.ConnectionString);
+                 optionsBuilder.UseSqlServer(_tenant.ConnectionString);
 
-                optionsBuilder.UseSqlite(_tenant.ConnectionString);
+                //optionsBuilder.UseSqlite(_tenant.ConnectionString);
             }
             else if (_connectionString != null) //
             {
-                //optionsBuilder.UseSqlServer(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
-                optionsBuilder.UseSqlite(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
+                optionsBuilder.UseSqlServer(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
+                //optionsBuilder.UseSqlite(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
             }
             base.OnConfiguring(optionsBuilder);
         }

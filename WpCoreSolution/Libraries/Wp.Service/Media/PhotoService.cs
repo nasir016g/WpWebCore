@@ -3,6 +3,7 @@ using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Media;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Media
 {
@@ -13,7 +14,7 @@ namespace Wp.Services.Media
         
         private readonly IBaseRepository<Photo> _photoRepository;
 
-        public PhotoService(IUnitOfWork unitOfWork, IBaseRepository<Photo> photoRepo) : base(unitOfWork, photoRepo)
+        public PhotoService(IUnitOfWork unitOfWork, IBaseRepository<Photo> photoRepo, IEventPublisher eventPublisher) : base(unitOfWork, photoRepo, eventPublisher)
         {
             _photoRepository = photoRepo;
         }

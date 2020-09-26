@@ -1,0 +1,183 @@
+﻿@model Wp.Web.Areas.Admin.Models.WebPageModel
+@using Wp.Core.Domain.WebPages
+@{
+    ViewBag.Title = "Edit";
+}
+
+@Html.ValidationSummary(true)
+
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+<ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+    <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+    <li><a href="#meta" data-toggle="tab">Meta's</a></li>
+    <li><a href="#security" data-toggle="tab">Securtiy</a></li>
+</ul>
+
+@using (Html.BeginForm("Edit", "WebPage", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="general">
+            <div class="form-group">
+                @Html.LabelFor(model => model.VirtualPath, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.VirtualPath, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VirtualPath)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.NavigationName, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.NavigationName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NavigationName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Visible, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.CheckBoxFor(model => model.Visible)
+                    @Html.ValidationMessageFor(model => model.Visible)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AllowAnonymousAccess, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.CheckBoxFor(model => model.AllowAnonymousAccess)
+                    @Html.ValidationMessageFor(model => model.AllowAnonymousAccess)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SidebarEnabled, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.CheckBoxFor(model => model.SidebarEnabled)
+                    @Html.ValidationMessageFor(model => model.SidebarEnabled)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DisplayOrder, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.DisplayOrder, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DisplayOrder)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    
+                </div>
+            </div>
+            <div class="form-group">                
+                @Html.LabelFor(model => model.IconCssClass, new { @class = "col-md-3 control-label" })
+                <div class="col-md-6">                   
+                    @Html.TextBoxFor(model => model.IconCssClass, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IconCssClass)
+                    <span class="help-block"><span class="label label-default">Glyphicon</span> glyphicon glyphicon-home glyphicon-white <br />
+                     <span class="label label-default">Font-awesome</span> fa fa-home</span>
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Theme", new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.DropDownList("SelectedTheme", Model.AvailableThemes, string.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SelectedTheme)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Parent Page</label>
+                <div class="col-md-3">
+                    @Html.DropDownList("SelectedParentWebPageId", Model.AvailableParentWebPages, "None", new { @class = "form-control" })
+                </div>
+            </div>
+
+            @if (Model.CustomAttributes.Count > 0)
+            {
+                @Html.Partial("_CustomAttributes", Model.CustomAttributes)
+            }
+        </div>
+        <div class="tab-pane" id="meta">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaTitle, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MetaTitle)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaDescription, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.MetaDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MetaDescription)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaKeywords, new { @class = "col-md-3 control-label" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.MetaKeywords, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MetaKeywords)
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane" id="security">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Roles:</label>
+                <div class="col-md-3">
+                    <table class="table" style="width: 100%">
+                        <tr>
+                            <th>
+                                RoleName
+                            </th>
+                            <th>
+                                None
+                            </th>
+                            <th>
+                                View
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                Create
+                            </th>
+                            <th></th>
+                        </tr>
+                        @{
+    int index = 0;
+    foreach (var role in Model.Roles)
+    {
+        <tr>
+            <td>
+                @role.Name @Html.Hidden("Roles[" + index + "].Name", role.Name)
+                @Html.Hidden("Roles[" + index + "].Id", role.Id)
+            </td>
+            <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.None, role.PermissionLevel == PermissionLevel.None)</td>
+            <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.View, role.PermissionLevel == PermissionLevel.View)</td>
+            <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.Edit, role.PermissionLevel == PermissionLevel.Edit)</td>
+            <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.Create, role.PermissionLevel == PermissionLevel.Create)</td>
+        </tr>
+        index++;
+    }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-3">
+          
+            <input class="btn btn-danger" type="submit" value="@T("Common.Save")" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+

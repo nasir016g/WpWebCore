@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Wp.Web.Mvc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Wp.Web.Mvc</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="WebPage" asp-action="Index">Pages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i> Security <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("RoleIndex", "Security", new { area = "Admin" })"><i class="fa fa-user"></i> Roles</a></li>
+                                    <li><a href="@Url.Action("UserIndex", "Security", new { area = "Admin" })"><i class="fa fa-users"></i> Users</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Configurations <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Index", "Language", new { area = "Admin" })"><i class="fa fa-globe"></i> Languages</a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation" class="dropdown-header">SETTINGS</li>
+                                    <li><a href="@Url.Action("Website", "Setting", new { area = "Admin" })">Website</a></li>
+                                    <li><a href="@Url.Action("Localization", "Setting", new { area = "Admin" })">Localization</a></li>
+                                    <li><a href="@Url.Action("Index", "CustomAttribute", new { area = "Admin" })">Custom attributes</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-asterisk"></i> Miscellaneous <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Index", "Resume", new { area = "Career" })"><i class="fa fa-briefcase"></i> Career</a></li>
+                                </ul>
+                            </li>*@
+
+                    </ul>
+
+                    @*<div class="col-md-2 pull-right" style="top:5px;"> @Html.Action("LanguageSelector", "Common", new { Area = "" })</div>*@
+                    @*@Html.Partial("_LoginPartial")*@
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Index", "Home", new { area = "" })"><i class="icon-home"></i> Website</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @*@Html.Partial("_Notifications")*@
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Wp.Web.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/public/libs/jquery-validation/jquery.validate.min.js"></script>*@
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
+

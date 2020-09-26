@@ -9,16 +9,15 @@ using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
-using Wp.Web.Api.Admin.Controllers;
-using Wp.Web.Api.Admin.Extensions.Mapper;
-using Wp.Web.Api.Admin.Models.Admin;
+using Wp.Web.Framework.Extensions.Mapper;
+using Wp.Web.Framework.Models.Admin;
 
 namespace Wp.Web.Api.Admin.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[ApiController]
-    [ValidateModel]
+    [ApiController]
+    //[ValidateModel]
     public class WebPageController : ControllerBase
     {
         private readonly IWebPageService _webPageService;
@@ -68,10 +67,10 @@ namespace Wp.Web.Api.Admin.Controllers
         #endregion
         // GET: api/Page
         [HttpGet]  
-        [Authorize]
-        public ObjectResult Get()
+        //[Authorize]
+        public IActionResult Get()
         {
-           var userClaims = User.Claims;
+           //var userClaims = User.Claims;
             var entities = _webPageService.GetAll();
             var models = entities.ToModels();
             return Ok(models);

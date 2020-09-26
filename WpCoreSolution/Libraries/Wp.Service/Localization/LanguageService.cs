@@ -4,6 +4,7 @@ using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Localization;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Localization
 {
@@ -19,7 +20,7 @@ namespace Wp.Services.Localization
         private readonly IBaseRepository<Language> _languageRepo;
         private readonly ICacheManager _cacheManager;
 
-        public LanguageService(IUnitOfWork unitOfWork, IBaseRepository<Language> languageRepo, ICacheManager cacheManager) : base(unitOfWork, languageRepo)
+        public LanguageService(IUnitOfWork unitOfWork, IBaseRepository<Language> languageRepo, ICacheManager cacheManager, IEventPublisher eventPublisher) : base(unitOfWork, languageRepo, eventPublisher)
         {
             this._languageRepo = languageRepo;
             this._cacheManager = cacheManager;

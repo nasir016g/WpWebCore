@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Wp.Web.Api.Admin.Models.Admin;
+using Wp.Web.Framework.Models.Admin;
 
 namespace Wp.Web.Api.Admin.Validators.Admin
 {

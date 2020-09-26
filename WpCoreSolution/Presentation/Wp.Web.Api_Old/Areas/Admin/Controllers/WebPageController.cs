@@ -55,13 +55,6 @@ namespace Wp.Web.Api.Areas.Admin.Controllers
 
         private void PrepareModels(WebPage entity, WebPageModel model)
         {
-            //var roles = _webPageService.GetRolesByPageId(entity.Id).ToList();
-            //var roleModelList = new List<WebPageModel.WebPageRoleModel>();
-            //roles.ForEach(x =>
-            //{
-            //    roleModelList.Add(new WebPageModel.WebPageRoleModel { Id = x.Id, Name = x.Name });
-            //});
-            //model.Roles = roleModelList;
             model.Roles = GetAllRoles(entity);
         }
 

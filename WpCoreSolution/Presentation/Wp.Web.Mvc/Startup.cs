@@ -10,9 +10,11 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using Wp.Core;
 using Wp.Core.Security;
 using Wp.Data;
 using Wp.Web.Framework.Extensions;
+using Wp.Web.Framework.Infrastructure.Mapper;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
 
@@ -65,7 +67,7 @@ namespace Wp.Web.Mvc
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
             services.AddAutoMapper(typeof(Startup));
-            //ToDo: AutoMapperConfiguration.Init();
+            AutoMapperConfiguration.Init();
             services.AddControllersWithViews()
                 .AddFluentValidation(opt =>
                 {
@@ -88,6 +90,8 @@ namespace Wp.Web.Mvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            ServiceLocator.Instance = app.ApplicationServices;
+
             ServiceCollectionExtensions.Migrate(app);
             ServiceCollectionExtensions.AddLogger();
             if (env.IsDevelopment())
@@ -112,9 +116,9 @@ namespace Wp.Web.Mvc
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "areas",  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

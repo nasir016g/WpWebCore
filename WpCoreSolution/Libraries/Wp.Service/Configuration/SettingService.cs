@@ -11,6 +11,7 @@ using Wp.Core.Configuration;
 
 using Wp.Core.Domain.Configuration;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Configuration
 { 
@@ -34,7 +35,7 @@ namespace Wp.Services.Configuration
 
         #region Ctor
       
-        public SettingService(IUnitOfWork unitOfWork, IBaseRepository<Setting> settingRepository, ICacheManager cacheManager) : base(unitOfWork, settingRepository)
+        public SettingService(IUnitOfWork unitOfWork, IBaseRepository<Setting> settingRepository, ICacheManager cacheManager, IEventPublisher eventPublisher) : base(unitOfWork, settingRepository, eventPublisher)
         {           
             this._settingRepository = settingRepository;
             this._cacheManager = cacheManager;

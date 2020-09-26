@@ -4,6 +4,7 @@ using System.Text;
 using Wp.Core;
 using Wp.Core.Domain.Expenses;
 using System.Linq;
+using Wp.Services.Events;
 
 namespace Wp.Services.Expenses
 {
@@ -13,7 +14,7 @@ namespace Wp.Services.Expenses
         private readonly IBaseRepository<ExpenseExpenseTagMapping> _expenseExpenseTagRepository;
         private readonly IExpenseService _expenseService;
 
-        public ExpenseTagService(IUnitOfWork unitOfWork, IBaseRepository<ExpenseTag> repository, IBaseRepository<ExpenseExpenseTagMapping> _expenseExpenseTagRepository, IExpenseService expenseService) : base(unitOfWork, repository)
+        public ExpenseTagService(IUnitOfWork unitOfWork, IBaseRepository<ExpenseTag> repository, IBaseRepository<ExpenseExpenseTagMapping> _expenseExpenseTagRepository, IExpenseService expenseService, IEventPublisher eventPublisher ) : base(unitOfWork, repository, eventPublisher)
         {
             _ExpenseTagRepository = repository;
             this._expenseExpenseTagRepository = _expenseExpenseTagRepository;

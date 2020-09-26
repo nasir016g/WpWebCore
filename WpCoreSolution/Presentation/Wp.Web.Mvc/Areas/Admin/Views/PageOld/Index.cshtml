@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Wp.Core.Domain.WebPages.WebPage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Navigation Name</th>
+                    <th>Virtual Path</th>
+                    <td>
+                        @Html.ActionLink("New Page", "Create", null, new { @class = "btn btn-default pull-right" })
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NavigationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VirtualPath)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { pageId = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

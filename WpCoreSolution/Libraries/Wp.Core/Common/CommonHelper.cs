@@ -44,32 +44,7 @@ namespace Wp.Core.Common
             return result;
         }
 
-        /// <summary>
-        /// Generate random digit code
-        /// </summary>
-        /// <param name="length">Length</param>
-        /// <returns>Result string</returns>
-        public static string GenerateRandomDigitCode(int length)
-        {
-            var random = new Random();
-            string str = string.Empty;
-            for (int i = 0; i < length; i++)
-                str = String.Concat(str, random.Next(10).ToString());
-            return str;
-        }
-
-        /// <summary>
-        /// Returns an random interger number within a specified rage
-        /// </summary>
-        /// <param name="min">Minimum number</param>
-        /// <param name="max">Maximum number</param>
-        /// <returns>Result</returns>
-        public static int GenerateRandomInteger(int min = 0, int max = 2147483647)
-        {
-            var randomNumberBuffer = new byte[10];
-            new RNGCryptoServiceProvider().GetBytes(randomNumberBuffer);
-            return new Random(BitConverter.ToInt32(randomNumberBuffer, 0)).Next(min, max);
-        }
+        
 
         /// <summary>
         /// Ensure that a string doesn't exceed maximum allowed length
@@ -241,34 +216,6 @@ namespace Wp.Core.Common
             return result;
         }
 
-        //public static Bitmap ImageResize(Stream SourceImage, int MaxWidth, int MaxHeight)
-        //{
-        //    Bitmap b = null;
-
-        //    using (Image i = Image.FromStream(SourceImage))
-        //    {
-        //        int _maxWidth = (MaxWidth > 0) ? MaxWidth : i.Width;
-        //        int _maxHeight = (MaxHeight > 0) ? MaxHeight : i.Height;
-        //        double _scaleWidth = (double)_maxWidth / (double)i.Width;
-        //        double _scaleHeight = (double)_maxHeight / (double)i.Height;
-        //        double _scale = (_scaleHeight < _scaleWidth) ? _scaleHeight : _scaleWidth;
-        //        _scale = (_scale > 1) ? 1 : _scale;
-
-        //        int _newWidth = (int)(_scale * i.Width);
-        //        int _newHeight = (int)(_scale * i.Height);
-
-        //        b = new Bitmap(_newWidth, _newHeight);
-
-        //        using (Graphics g = Graphics.FromImage(b))
-        //        {
-        //            g.CompositingQuality = CompositingQuality.HighQuality;
-        //            g.SmoothingMode = SmoothingMode.HighQuality;
-        //            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        //            g.DrawImage(i, new Rectangle(0, 0, _newWidth, _newHeight));
-        //            g.Save();
-        //        }
-        //    }
-        //    return b;
-        //}
+       
     }
 }

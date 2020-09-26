@@ -3,6 +3,7 @@ using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Career;
 using Wp.Data;
+using Wp.Services.Events;
 
 namespace Wp.Services.Career
 {
@@ -11,8 +12,8 @@ namespace Wp.Services.Career
         private IBaseRepository<Experience> _workExperienceRepo;
         private IBaseRepository<Project> _projectRepo;
 
-        public ExperienceService(IUnitOfWork unitOfWork, IBaseRepository<Experience> workExperienceRepo, IBaseRepository<Project> projectRepo)
-        : base(unitOfWork, workExperienceRepo)
+        public ExperienceService(IUnitOfWork unitOfWork, IBaseRepository<Experience> workExperienceRepo, IBaseRepository<Project> projectRepo, IEventPublisher eventPublisher)
+        : base(unitOfWork, workExperienceRepo, eventPublisher)
         {
             this._workExperienceRepo = workExperienceRepo;
             this._projectRepo = projectRepo;

@@ -7,7 +7,9 @@ using Wp.Core.Caching;
 using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;
-using Wp.Core.Interfaces.Repositories;
+using Wp.Core.Events;
+using Wp.Services.Events;
+using Wp.Services.Frontend;
 
 namespace Wp.Services.WebPages
 {
@@ -21,12 +23,13 @@ namespace Wp.Services.WebPages
         private readonly IBaseRepository<Section> _sectionRepo;
 
         public WebPageService(IHttpContextAccessor httpContext,
+            IEventPublisher eventPublisher,
             ICacheManager cacheManager,
                               IUnitOfWork unitOfWork,
                               IBaseRepository<WebPage> webPageRepo,
                               IBaseRepository<WebPageRole> webPageRoleRepo,
                               IBaseRepository<Section> sectionRepo)
-        : base(unitOfWork, webPageRepo)
+        : base(unitOfWork, webPageRepo, eventPublisher)
         {
             _httpContext = httpContext;
             _cacheManager = cacheManager;
@@ -37,10 +40,10 @@ namespace Wp.Services.WebPages
 
         public override IList<WebPage> GetAll()
         {
-           return _cacheManager.Get("allpages", () =>
-            {
-                return base.GetAll();
-            });
+            return _cacheManager.Get("allpages", () =>
+             {
+                 return base.GetAll();
+             });
         }
 
         public IList<WebPage> GetPagesByParentId(int parentId)
@@ -48,11 +51,6 @@ namespace Wp.Services.WebPages
             return _webPageRepo.Table.Where(x => x.ParentId == parentId).OrderBy(x => x.DisplayOrder).ToList();
         }
 
-        //public WebPage GetById(int id)
-        //{
-        //  var page = _webPageRepo.GetById(id);
-        //  return page;      
-        //}
 
         public WebPage GetBySectionId(int sectionId)
         {
@@ -67,15 +65,6 @@ namespace Wp.Services.WebPages
             return _webPageRepo.Table.SingleOrDefault(x => x.VirtualPath.ToLower() == virtualPath.ToLower());
         }
 
-        public override void Insert(WebPage webPage)
-        {
-            var p = GetByVirtualPath(webPage.VirtualPath);
-            if (p == null)
-            {
-                _webPageRepo.Add(webPage);
-                _unitOfWork.Complete();
-            }
-        }
 
         public IList<Section> GetSectionsByPageId(int webPageId)
         {
