@@ -48,6 +48,7 @@ namespace Wp.Services.Installation
         public IHostingEnvironment _hostingEnvironment;
         private readonly ITenantService _tenantService;
         private readonly IClaimProvider _claimProvider;
+        private readonly ILocalizationService _localizationService;
 
 
         #endregion
@@ -68,7 +69,8 @@ namespace Wp.Services.Installation
             RoleManager<IdentityRole> roleManager,
             IHostingEnvironment hostingEnvironment,
             ITenantService tenantService,
-            IClaimProvider claimProvider)
+            IClaimProvider claimProvider,
+            ILocalizationService localizationService)
         {
             _unitOfWork = unitOfWork;
             this._webPageRepo = webPageRepo;
@@ -86,7 +88,7 @@ namespace Wp.Services.Installation
 
             _tenantService = tenantService;
             _claimProvider = claimProvider;
-
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -141,10 +143,12 @@ namespace Wp.Services.Installation
                 };
 
                 languages.ForEach(l => _languageRepo.Add(l));
-                //_unitOfWork.Complete();
+                _unitOfWork.Complete();
 
                 //InstallLocaleResources();
             }
+
+            InstallLocaleResources();
         }
 
         private void InstallLocaleResources()
@@ -153,12 +157,12 @@ namespace Wp.Services.Installation
             //var file = System.IO.Path.Combine(webRoot, "test.txt");
             foreach (var language in _languageRepo.Table.ToList())
             {
-                foreach (var filePath in System.IO.Directory.EnumerateFiles(Path.Combine(webRoot, "App_Data/Localization/"), string.Format("*.{0}.res.xml", language.UniqueSeoCode), SearchOption.TopDirectoryOnly))
+                foreach (var filePath in System.IO.Directory.EnumerateFiles(Path.Combine(webRoot, "Localization/"), string.Format("*.{0}.res.xml", language.UniqueSeoCode), SearchOption.TopDirectoryOnly))
                 {
                     // 
                     string xmlText = File.ReadAllText(filePath);
-                    var localizationService = ServiceLocator.Instance.GetService<ILocalizationService>();
-                    localizationService.ImportResourcesFromXml(language, xmlText);
+                    //var localizationService = ServiceLocator.Instance.GetService<ILocalizationService>();
+                    _localizationService.ImportResourcesFromXml(language, xmlText);
                 }
             }
         }
@@ -240,7 +244,7 @@ namespace Wp.Services.Installation
                 _settingService.SaveSetting(new WebsiteSettings()
                 {
                     WebsiteName = "Default",
-                    Theme = "Grey",
+                    Theme = "Darkly",
                 });
 
                 _settingService.SaveSetting(new LocalizationSettings()
@@ -264,7 +268,7 @@ namespace Wp.Services.Installation
             InstallLanguages();
             await InstallUsersAndRoles();
             InstallRolesAtAPage();
-            //InstallSettings();
+            InstallSettings();
             InstallExpenses();
         }
 

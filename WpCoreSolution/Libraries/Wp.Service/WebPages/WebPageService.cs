@@ -7,9 +7,7 @@ using Wp.Core.Caching;
 using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;
-using Wp.Core.Events;
 using Wp.Services.Events;
-using Wp.Services.Frontend;
 
 namespace Wp.Services.WebPages
 {

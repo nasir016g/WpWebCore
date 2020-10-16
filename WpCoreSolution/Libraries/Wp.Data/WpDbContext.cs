@@ -55,9 +55,7 @@ namespace Wp.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-
-            // new SettingMap(builder.Entity<Setting>()); // digivers style (not recommanded)
+            base.OnModelCreating(builder);            
 
             // dynamically 
             System.Type configType = typeof(WebPageMap);

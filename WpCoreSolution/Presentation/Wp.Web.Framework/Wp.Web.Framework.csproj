@@ -19,4 +19,8 @@
     <ProjectReference Include="..\..\Libraries\Wp.Service\Wp.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Seo\" />
+  </ItemGroup>
+
 </Project>

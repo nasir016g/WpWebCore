@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language Name="English">
+  <LocaleResource Name="Admin.Configuration.Settings.Localization.UseImagesForLanguageSelection">
+    <Value>Gebruik afbeelding voor taal keuzes</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.Localization.SeoFriendlyUrlsForLanguagesEnabled">
+    <Value>SEO vriendelijke URL's met meerdere talen is ingeschakeld</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.Localization.LoadAllLocaleRecordsOnStartup">
+    <Value>Load all locales on startup</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.ViewMode">
+    <Value>Terug Naar Wijzig Weergave</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Name">
+    <Value>Naam</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Description">
+    <Value>Omschrijving</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Value">
+    <Value>Waarde</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.AddNew">
+    <Value>Nieuw toevoegen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.All">
+    <Value>Alles</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.AreYouSure">
+    <Value>Weet je het zeker?</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Back">
+    <Value>Terug</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Cancel">
+    <Value>Annuleren</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Close">
+    <Value>Sluiten</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Config">
+    <Value>Config</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Confirm">
+    <Value>Bevestigen</Value>
+  </LocaleResource>
+  <LocaleResource Name=" Common.DateOfBirth">
+    <Value>Geboortedatum:</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.DeleteConfirmationParam">
+    <Value>Weet je zeker dat je wilt verwijderen "{0}"?</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.DeleteConfirmation">
+    <Value>Weet je zeker dat je dit item wilt wissen?</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Delete">
+    <Value>Verwijderen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Edit">
+    <Value>Wijzigen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Error">
+    <Value>Fout</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Upload">
+    <Value>Upload a file</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.DropFiles">
+    <Value>Drop files here to upload</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Cancel">
+    <Value>Annuleren</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Failed">
+    <Value>Is mislukt</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Hide">
+    <Value>Verbergen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Home">
+    <Value>Home</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.No">
+    <Value>Nee</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.NoCancel">
+    <Value>Nee, annuleren</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Notification">
+    <Value>Notification</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Remove">
+    <Value>Verwijderen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Save">
+    <Value>Opslaan</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Search">
+    <Value>Zoeken</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Show">
+    <Value>Tonen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Upload">
+    <Value>Uploaden</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.View">
+    <Value>View</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Wait...">
+    <Value>Wacht...</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Warning">
+    <Value>Waarschuwing</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.WrongCaptcha">
+    <Value>The characters didn't match the picture. Please try again.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.WrongEmail">
+    <Value>Wrong email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Description">
+    <Value>Omschrijving</Value>
+  </LocaleResource>
+  <LocaleResource Name="Common.Submit">
+    <Value>Verstuur</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Summary">
+    <Value>Samenvatting</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Telephone">
+    <Value>Telefoon:</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Mobile">
+    <Value>Mobiel:</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Educations">
+    <Value>Opleidingen</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Skills">
+    <Value>Technische vaardigheden</Value>
+  </LocaleResource> 
+  <LocaleResource Name="Resume.Fields.Experiences">
+    <Value>Werkervaring</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Experiences.Name">
+    <Value>Firma</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Experiences.Period">
+    <Value>Periode</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Experiences.Function">
+    <Value>Functie</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Experiences.City">
+    <Value>Plaats</Value>
+  </LocaleResource>
+  <LocaleResource Name="Resume.Fields.Experiences.Tasks">
+    <Value>Taken</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailFrom">
+    <Value>Uw email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailTo">
+    <Value>Email naar</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailCc">
+    <Value>Cc</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailBcc">
+    <Value>Bcc</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Name">
+    <Value>Uw naam</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Message">
+    <Value>Uw bericht</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Address">
+    <Value>Adres</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Postcode">
+    <Value>Postcode</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.City">
+    <Value>Plaats</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Telephone">
+    <Value>Telefoon</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Mobile">
+    <Value>Mobiel</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Subject">
+    <Value>Onderwerp</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.IntroText">
+    <Value>Intro tekst</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.ThankYouText">
+    <Value>Dank je tekst</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.NameEnabled">
+    <Value>Naam zichtbaar</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.ExtendedEnabled">
+    <Value>Uitgebreid zichtbaar</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailTo.Required">
+    <Value>Email adres is verplicht.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.EmailFrom.Required">
+    <Value>Email is verplicht.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Subject.Required">
+    <Value>Onderwerp is verplicht.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Name.Required">
+    <Value>Uw naam is verplicht.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Section.ContactForm.Message.Required">
+    <Value>Bericht is verplicht.</Value>
+  </LocaleResource>
+</Language>
+

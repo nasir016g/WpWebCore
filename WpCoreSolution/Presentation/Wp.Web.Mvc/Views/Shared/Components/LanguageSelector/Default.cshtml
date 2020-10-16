@@ -1,0 +1,36 @@
+﻿@model Wp.Web.Mvc.Models.LanguageSelectorModel
+@inject Wp.Core.IWebHelper webHelper
+@if (Model.AvailableLanguages.Count > 1)
+{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+    if (Model.UseImages)
+    {
+        <ul class="nav navbar-nav navbar-right pull-right">
+            @foreach (var lang in Model.AvailableLanguages)
+            {
+                <li>
+                    <a style="padding-left:3px; padding-right:3px;" href="@Url.Action("SetLanguage", "Common", new{langid = lang.Id, returnUrl =  returnUrl})">
+                        <img src="~/Content/images/flags/@lang.FlagImageFileName" alt="" />
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        using (Html.BeginForm("SetLanguage", "Common", FormMethod.Post, new { id = "frmLanguage" }))
+        {
+
+            @Html.Hidden("returnUrl", returnUrl)
+            var languages = Model.AvailableLanguages.Select(lang => new SelectListItem
+            {
+                Text = lang.Name,
+                Value = lang.Id.ToString(),
+                Selected = lang.Id.Equals(Model.CurrentLanguageId)
+            });
+
+            @Html.DropDownList("langid", languages, new { onchange = "document.getElementById('frmLanguage').submit();", @class = "form-control" })
+
+        }
+    }
+}

@@ -12,7 +12,22 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#nullable restore
+#line 1 "C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\Areas\Admin\Views\_ViewImports.cshtml"
+using Wp.Web.Mvc;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\Areas\Admin\Views\_ViewImports.cshtml"
+using Wp.Web.Mvc.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1f99d5c756d4c1175aad8894e8f8272e335dfadb", @"/Areas/Admin/Views/_ViewStart.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ee4124c001d919046ef0298d0b02b132d6977151", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

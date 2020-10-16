@@ -7,7 +7,7 @@ using Wp.Services.WebPages;
 
 namespace Wp.Service.Navigation
 {
-    public class NavigationService
+    public class NavigationService : INavigationService
     {
         private readonly IWebPageService _webPageService;
 
@@ -37,7 +37,7 @@ namespace Wp.Service.Navigation
                     item.Text = page.NavigationName;
                     item.Value = page.Id.ToString();
                     item.Url = page.VirtualPath;
-                   // item.IconCssClass = page.IconCssClass;
+                    // item.IconCssClass = page.IconCssClass;
                     item.HasChildren = PageHasChildren(allPages, page.Id); //false; // default
                     item.ChildLinks = GetLinksByParentId(page.Id).ToList();
                     list.Add(item);

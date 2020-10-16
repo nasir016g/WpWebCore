@@ -1,0 +1,4 @@
+﻿@inject Wp.Core.IWorkContext workContext;
+@{
+    string theme = workContext.Current.WebSite.Theme;
+}

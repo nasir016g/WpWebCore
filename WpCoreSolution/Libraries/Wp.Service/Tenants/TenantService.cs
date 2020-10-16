@@ -58,7 +58,7 @@ namespace Wp.Service.Tenants
                 {
                     tenantName = _httpContextAccessor.HttpContext.Request.Query["Name"];
                     if (tenantName == null)
-                        tenantName = "WpCore1"; // default
+                        tenantName = "WpCore2"; // default
                 }
             }
 

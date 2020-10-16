@@ -4,17 +4,24 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Linq;
 using System.Reflection;
 using Wp.Core;
+using Wp.Core.Domain.Localization;
 using Wp.Core.Security;
 using Wp.Data;
+using Wp.Services.Localization;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
+using Wp.Web.Framework.ViewEngines.Razor;
+using Wp.Web.Mvc.Infrastructure.Routing;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
 
@@ -32,6 +39,14 @@ namespace Wp.Web.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(100);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddCors();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -66,6 +81,15 @@ namespace Wp.Web.Mvc
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
+            services.AddScoped<SlugRouteTransformer>();
+
+            //add routing
+            services.AddRouting(options =>
+            {
+                //add constraint key for language
+                options.ConstraintMap["lang"] = typeof(LanguageParameterTransformer);
+            });
+
             services.AddAutoMapper(typeof(Startup));
             AutoMapperConfiguration.Init();
             services.AddControllersWithViews()
@@ -78,6 +102,16 @@ namespace Wp.Web.Mvc
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+
+            
+            services.Configure<RazorViewEngineOptions>(o =>
+            {
+                o.ViewLocationExpanders.Add(new ThemeableViewLocationExpander());
+                //o.ViewLocationFormats.Clear();
+                //o.ViewLocationFormats.Add("/MyViewsFolder/{1}/{0}" + RazorViewEngine.ViewExtension);
+                //o.ViewLocationFormats.Add("/MyViewsFolder/Shared/{0}" + RazorViewEngine.ViewExtension);
+            });
+
             services.AddRazorPages();
 
             services.AddEasyCaching(option =>
@@ -91,6 +125,7 @@ namespace Wp.Web.Mvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             ServiceLocator.Instance = app.ApplicationServices;
+            app.UseSession();
 
             ServiceCollectionExtensions.Migrate(app);
             ServiceCollectionExtensions.AddLogger();
@@ -116,8 +151,23 @@ namespace Wp.Web.Mvc
 
             app.UseEndpoints(endpoints =>
             {
+                var pattern = "{SeName}";
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var localizationSettings = serviceScope.ServiceProvider.GetRequiredService<LocalizationSettings>();
+                    if (localizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
+                    {
+                        var langservice = serviceScope.ServiceProvider.GetRequiredService<ILanguageService>();
+                        var languages = langservice.GetAll().ToList();
+                        pattern = "{language:lang=" + languages.First().UniqueSeoCode + "}/{SeName}";
+                        //}
+                    }
+                }
+
+
                 //endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(name: "areas",  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDynamicControllerRoute<SlugRouteTransformer>(pattern);
+                endpoints.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });

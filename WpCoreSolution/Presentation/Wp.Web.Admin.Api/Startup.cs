@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 using System.Reflection;
 using Wp.Core;
 using Wp.Core.Security;
@@ -32,6 +33,14 @@ namespace Wp.Web.Api.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(100);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddCors();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -68,7 +77,6 @@ namespace Wp.Web.Api.Admin
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
-            services.AddFrontend();
             services.AddAutoMapper(typeof(Startup));
             AutoMapperConfiguration.Init();
             services.AddControllersWithViews()
@@ -94,6 +102,8 @@ namespace Wp.Web.Api.Admin
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
+
             ServiceCollectionExtensions.AddLogger();
             ServiceCollectionExtensions.Migrate(app);
             ServiceLocator.Instance = app.ApplicationServices;

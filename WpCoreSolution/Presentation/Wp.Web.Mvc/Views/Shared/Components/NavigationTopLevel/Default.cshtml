@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Wp.Service.Navigation.NavigationModel>
+@using Wp.Core;
+
+@{
+    void DisplayIcon(string iconCssClass)
+    {
+        if (!String.IsNullOrWhiteSpace(iconCssClass))
+        {
+            <i class="@iconCssClass"></i>
+        }
+        else
+        {
+            @String.Empty;
+        }
+    }
+}
+
+<div class="navbar-collapse collapse">
+
+
+
+    <ul class="navbar-nav flex-grow-1">
+        @foreach (var link in Model)
+        {
+            if (link.HasChildren)
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @{ DisplayIcon(@link.IconCssClass);}
+                        @link.Text
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var subLink in link.ChildLinks)
+                        {
+                            //var path = applicationPath + subLink.Url;
+                            <a class="dropdown-item" href="@subLink.Url">
+                                @{ DisplayIcon(@link.IconCssClass);}
+                                @subLink.Text
+                            </a>
+                        }
+                    </div>
+                </li>
+            }
+            else
+            {
+                //var path = applicationPath + link.Url;
+                <li class="nav-item">
+                    <a href="@link.Url" class="nav-link text-dark">
+                        @{ DisplayIcon(@link.IconCssClass);}
+                        @link.Text
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+    @if (Context.User.IsInRole(Wp.Core.Domain.Security.SystemRoleNames.Administrators.ToString()))
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="@Url.Action("Website", "Setting", new { area = "Admin" })">Admin</a></li>
+        </ul>
+    }
+    <div class="col-md-2 pull-right" style="top:5px;"> @await Component.InvokeAsync("LanguageSelector")</div>
+    <partial name="_LoginPartial" />
+</div>
+
