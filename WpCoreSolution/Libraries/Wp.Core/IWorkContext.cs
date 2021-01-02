@@ -5,5 +5,7 @@ namespace Wp.Core
     public interface IWorkContext
     {
         WorkContextModel Current { get; }
+        void ClearCurrentSession();
+
     }
 }

@@ -17,7 +17,7 @@ namespace Wp.Services.Common
         public string[] GetThemes()
         {
             //var themeFolder = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Themes"));
-            var path = Path.Combine(_hostingEnvironment.WebRootPath, "Themes");
+            var path = Path.Combine(_hostingEnvironment.ContentRootPath, "Themes");
             var themeFolder = new DirectoryInfo(path);
             var themes = themeFolder.GetDirectories().Select(x => x.Name).OrderBy(x => x).ToArray();
 

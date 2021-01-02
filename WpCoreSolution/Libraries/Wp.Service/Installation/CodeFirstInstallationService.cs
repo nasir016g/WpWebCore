@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Wp.Core;
 using Wp.Core.Domain.Common;
-using Wp.Core.Domain.Expenses;
 using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
@@ -17,7 +15,6 @@ using Wp.Core.Domain.WebPages;
 using Wp.Core.Security;
 using Wp.Service.Security;
 using Wp.Services.Configuration;
-using Wp.Services.Expenses;
 using Wp.Services.Localization;
 
 namespace Wp.Services.Installation
@@ -26,7 +23,6 @@ namespace Wp.Services.Installation
     {
         void InstallTenants();
         Task InstallData();
-        void InstallExpenses();
     }
 
     public class CodeFirstInstallationService : IInstallationService
@@ -34,9 +30,6 @@ namespace Wp.Services.Installation
         #region Fields
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISettingService _settingService;
-        private readonly IExpenseService _expenseService;
-        private readonly IExpenseCategoryService _expenseCategoryService;
-        private readonly IExpenseAccountService _expenseAccountService;
         private readonly IBaseRepository<WebPage> _webPageRepo;
         private readonly IBaseRepository<WebPageRole> _webPageRoleRepo;
         private readonly IBaseRepository<UrlRecord> _urlRecordRepo;
@@ -57,9 +50,6 @@ namespace Wp.Services.Installation
 
         public CodeFirstInstallationService(IUnitOfWork unitOfWork,
             ISettingService settingService,
-            IExpenseService expenseService,
-            IExpenseCategoryService expenseCategoryService,
-            IExpenseAccountService expenseAccountService,
             IBaseRepository<WebPage> webPageRepo,
             IBaseRepository<WebPageRole> webPageRoleRepo,
             IBaseRepository<UrlRecord> urlRecordRepo,
@@ -79,9 +69,6 @@ namespace Wp.Services.Installation
             this._languageRepo = languageRepo;
             this._sectionRepo = sectionRepo;
             _settingService = settingService;
-            this._expenseService = expenseService;
-            this._expenseCategoryService = expenseCategoryService;
-            this._expenseAccountService = expenseAccountService;
             _userManager = userManager;
             _roleManager = roleManager;
             _hostingEnvironment = hostingEnvironment;
@@ -184,7 +171,7 @@ namespace Wp.Services.Installation
             //Create User=test with password=test
             if (_userManager.FindByNameAsync("test").Result == null)
             {
-                var user = new ApplicationUser { UserName = "test", Email = "test@test.nl" };
+                var user = new ApplicationUser { UserName = "test@test.nl", Email = "test@test.nl" };
                 var userResult = await _userManager.CreateAsync(user, "test12");
 
                 // Add User test to Role Administrators
@@ -269,103 +256,6 @@ namespace Wp.Services.Installation
             await InstallUsersAndRoles();
             InstallRolesAtAPage();
             InstallSettings();
-            InstallExpenses();
-        }
-
-        public void InstallExpenses()
-        {
-            // create categories
-            if (_expenseCategoryService.GetAll().Count() == 0)
-            {
-                var categories = new List<ExpenseCategory>()
-                {
-                    new ExpenseCategory { Name = "BEA", Category = "ATM", Description = "ATM" },
-                    new ExpenseCategory { Name = "Cash", Category = "ATM", Description = "ATM" },
-
-                    new ExpenseCategory { Name = "Bank Costs", Category = "Bank" , Description = "Bank costs" },
-
-                    new ExpenseCategory { Name = "Tax", Category = "Transportation", Description = "Cars gas, tax and etc." },
-                    new ExpenseCategory { Name = "Gas", Category = "Transportation", Description = "" },
-                    new ExpenseCategory { Name = "ANWB", Category = "Transportation", Description = "" },
-                    new ExpenseCategory { Name = "Car Maintenance", Category = "Transportation", Description = "" },
-                    new ExpenseCategory { Name = "Public Transport", Category = "Transportation" , Description = "Public Transport" },
-                    new ExpenseCategory { Name = "Travel Expenses Reimbursement", Category = "Transportation", Description = "reiskostenvergoeding" },
-
-                    new ExpenseCategory { Name = "Zalando", Category = "Clothing", Description = "Clothes" },
-                    new ExpenseCategory { Name = "Primark", Category = "Clothing", Description = "Clothes" },
-
-                    new ExpenseCategory { Name = "ICS (Nasir)", Category = "Credit Account", Description = "Credit Account" },
-
-                    new ExpenseCategory { Name = "Education", Category = "Education", Description = "Education" },
-                    
-                    new ExpenseCategory { Name = "Electronics", Category = "Electronics", Description = "Cell phones, computers, tv and etc." },
-                    //new ExpenseCategory { Name = "Go out", Color = "#5e94ff", Description = "Go out" },
-                    
-                    new ExpenseCategory { Name = "AH", Category = "Groceries", Description = "Includes super markets, kruidvat and etc." },
-                    new ExpenseCategory { Name = "Kruidvat", Category = "Groceries", Description = "" },
-                    new ExpenseCategory { Name = "HEMA", Category = "Groceries", Description = "" },
-
-                    new ExpenseCategory { Name = "Medical Insurance", Category = "Health Care", Description = "Insurance, deductible etc." },
-                    new ExpenseCategory { Name = "Medication", Category = "Health Care", Description = "" },
-
-                    new ExpenseCategory { Name = "Intratuin", Category = "Household Items", Description = "Household Goods" },
-                    new ExpenseCategory { Name = "Coolblue", Category = "Household Items", Description = "Household Goods" },
-                    new ExpenseCategory { Name = "Bol.com", Category = "Household Items", Description = "Household Goods" },
-                    new ExpenseCategory { Name = "Alipay", Category = "Household Items", Description = "Household Goods" },
-                    new ExpenseCategory { Name = "Ikea", Category = "Household Items", Description = "Household Goods" },
-                    
-                    new ExpenseCategory { Name = "Income", Category = "Income", Description = "Income" },                    
-
-                    new ExpenseCategory { Name = "UNIVE", Category = "Non-Medical Insurance", Description = "Car, house, legal, insurances" },
-
-                    new ExpenseCategory { Name = "Mortgage", Category = "Housing", Description = "hypotheek" },
-                    new ExpenseCategory { Name = "Home insurance", Category = "Housing", Description = "opstalverzekering" },
-                    new ExpenseCategory { Name = "Vereniging Eigen Huis", Category = "Housing", Description = "" },
-                    new ExpenseCategory { Name = "Municipal Taxes", Category = "Housing", Description = "Gemeentebelasting" },
-                    
-                    new ExpenseCategory { Name = "Schiphol Parking", Category = "Vacation", Description = "Vacation" },
-
-                    new ExpenseCategory { Name = "Mobile", Category = "Utilities", Description = "Utilities includes gas, electricity, water, cellphone, internet and tv, netflix, spotify and etc." },
-                    new ExpenseCategory { Name = "Gas/Electricity", Category = "Utilities", Description = "ESSENT" },
-                    new ExpenseCategory { Name = "Water", Category = "Utilities", Description = "VITENS" },
-                    new ExpenseCategory { Name = "Water Tax", Category = "Utilities", Description = "GBLT" },
-                    new ExpenseCategory { Name = "NETFLIX", Category = "Utilities", Description = "" },
-                    new ExpenseCategory { Name = "Internet/Tv/Phone", Category = "Utilities", Description = "Telfort Thuis" },
-
-                    new ExpenseCategory { Name = "Others", Category = "Others", Description = "Others" }
-                  };
-
-                categories.ForEach(category => _expenseCategoryService.Insert(category));
-            }
-
-            // create accounts
-            if (_expenseAccountService.GetAll().Count() == 0)
-            {
-                var accounts = new List<ExpenseAccount>()
-                {
-                    new ExpenseAccount { Name = "Bank (Nasir Ing private)", Account = "NL13INGB0007076421" },
-                     new ExpenseAccount { Name = "Bank (Nasir Abn amro private)", Account = "410656062" },
-                    new ExpenseAccount { Name = "Bank (Zarghona private)" },
-                };
-
-                accounts.ForEach(account => _expenseAccountService.Insert(account));
-            }
-
-            //var nasirAccount = _expenseAccountService.GetByName("Bank (Nasir private)");
-
-            //Random r = new Random();
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    Expense expense = new Expense
-            //    {
-            //        Name = "expense " + i.ToString(),
-            //        Amount = r.Next(5, 20),
-            //        Date = DateTime.Now,
-            //        ExpenseCategory = _expenseCategoryService.GetAll()[i],
-            //        ExpenseAccount = nasirAccount
-            //    };
-            //    _expenseService.Insert(expense);
-            //}
-        }
+        }       
     }
 }

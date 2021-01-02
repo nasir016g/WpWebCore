@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using Wp.Core;
 using Wp.Core.Domain.Localization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Wp.Services.Localization
 {
@@ -38,12 +39,16 @@ namespace Wp.Services.Localization
                 return false;
 
             //suppose that the first segment is the language code and try to get language
-            var languageService = (ILanguageService)ServiceLocator.Instance.GetService(typeof(ILanguageService));
-            language = languageService.GetAll()
-                .FirstOrDefault(urlLanguage => urlLanguage.UniqueSeoCode.Equals(firstSegment, StringComparison.InvariantCultureIgnoreCase));
+            using (var serviceScope = ServiceLocator.GetScope())
+            {
+                var languageService = serviceScope.ServiceProvider.GetService<ILanguageService>();
+                language = languageService.GetAll()
+                    .FirstOrDefault(urlLanguage => urlLanguage.UniqueSeoCode.Equals(firstSegment, StringComparison.InvariantCultureIgnoreCase));
 
-            //if language exists and published passed URL is localized
-            return language?.Published ?? false;
+                //if language exists and published passed URL is localized
+                return language?.Published ?? false;
+            }
+               
         }
 
         /// <summary>

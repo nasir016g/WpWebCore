@@ -22,53 +22,6 @@ namespace Wp.Data.Migrations.WpContext
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExpenseAccount",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    UpdatedOn = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Account = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExpenseAccount", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExpenseCategory",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    UpdatedOn = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Category = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExpenseCategory", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExpenseTag",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 400, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExpenseTag", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Language",
                 columns: table => new
                 {
@@ -225,38 +178,6 @@ namespace Wp.Data.Migrations.WpContext
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Expense",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    UpdatedOn = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(maxLength: 200, nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    Amount = table.Column<decimal>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    ExpenseCategoryId = table.Column<int>(nullable: false),
-                    ExpenseAccountId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Expense", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Expense_ExpenseAccount_ExpenseAccountId",
-                        column: x => x.ExpenseAccountId,
-                        principalTable: "ExpenseAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Expense_ExpenseCategory_ExpenseCategoryId",
-                        column: x => x.ExpenseCategoryId,
-                        principalTable: "ExpenseCategory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -461,30 +382,6 @@ namespace Wp.Data.Migrations.WpContext
                         name: "FK_WebPage_Role_Mapping_WebPage_WebPageId",
                         column: x => x.WebPageId,
                         principalTable: "WebPage",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Expense_ExpenseTag_Mapping",
-                columns: table => new
-                {
-                    Expense_Id = table.Column<int>(nullable: false),
-                    ExpenseTag_Id = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Expense_ExpenseTag_Mapping", x => new { x.Expense_Id, x.ExpenseTag_Id });
-                    table.ForeignKey(
-                        name: "FK_Expense_ExpenseTag_Mapping_Expense_Expense_Id",
-                        column: x => x.Expense_Id,
-                        principalTable: "Expense",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Expense_ExpenseTag_Mapping_ExpenseTag_ExpenseTag_Id",
-                        column: x => x.ExpenseTag_Id,
-                        principalTable: "ExpenseTag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -702,21 +599,6 @@ namespace Wp.Data.Migrations.WpContext
                 column: "EducationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expense_ExpenseAccountId",
-                table: "Expense",
-                column: "ExpenseAccountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Expense_ExpenseCategoryId",
-                table: "Expense",
-                column: "ExpenseCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Expense_ExpenseTag_Mapping_ExpenseTag_Id",
-                table: "Expense_ExpenseTag_Mapping",
-                column: "ExpenseTag_Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Experience_ResumeId",
                 table: "Experience",
                 column: "ResumeId");
@@ -778,9 +660,6 @@ namespace Wp.Data.Migrations.WpContext
                 name: "EducationItem");
 
             migrationBuilder.DropTable(
-                name: "Expense_ExpenseTag_Mapping");
-
-            migrationBuilder.DropTable(
                 name: "LocaleStringResource");
 
             migrationBuilder.DropTable(
@@ -820,12 +699,6 @@ namespace Wp.Data.Migrations.WpContext
                 name: "Education");
 
             migrationBuilder.DropTable(
-                name: "Expense");
-
-            migrationBuilder.DropTable(
-                name: "ExpenseTag");
-
-            migrationBuilder.DropTable(
                 name: "Language");
 
             migrationBuilder.DropTable(
@@ -836,12 +709,6 @@ namespace Wp.Data.Migrations.WpContext
 
             migrationBuilder.DropTable(
                 name: "WebPage");
-
-            migrationBuilder.DropTable(
-                name: "ExpenseAccount");
-
-            migrationBuilder.DropTable(
-                name: "ExpenseCategory");
 
             migrationBuilder.DropTable(
                 name: "Resume");

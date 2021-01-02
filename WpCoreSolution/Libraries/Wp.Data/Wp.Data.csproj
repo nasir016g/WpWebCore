@@ -8,24 +8,15 @@
     <Compile Remove="Mappings\Albums\**" />
     <Compile Remove="Mappings\Career\**" />
     <Compile Remove="Mappings\Common\**" />
-    <Compile Remove="Mappings\Expenses\**" />
     <Compile Remove="Migrations\WpDb\**" />
     <EmbeddedResource Remove="Mappings\Albums\**" />
     <EmbeddedResource Remove="Mappings\Career\**" />
     <EmbeddedResource Remove="Mappings\Common\**" />
-    <EmbeddedResource Remove="Mappings\Expenses\**" />
     <EmbeddedResource Remove="Migrations\WpDb\**" />
     <None Remove="Mappings\Albums\**" />
     <None Remove="Mappings\Career\**" />
     <None Remove="Mappings\Common\**" />
-    <None Remove="Mappings\Expenses\**" />
     <None Remove="Migrations\WpDb\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Mappings\Expenses\ExpenseExpenseTagMap.cs" />
-    <Compile Include="Mappings\Expenses\ExpenseMap.cs" />
-    <Compile Include="Mappings\Expenses\ExpenseTagMap.cs" />
   </ItemGroup>
 
   <ItemGroup>

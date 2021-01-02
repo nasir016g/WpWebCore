@@ -1,0 +1,49 @@
+﻿@model Wp.Web.Framework.Models.Admin.LocalizationSettingsModel
+
+@{
+    ViewData["Title"] = "Localization";
+}
+
+<h1>Localization</h1>
+
+<h4>LocalizationSettingsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Localization">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-sm-3 text-sm-right font-weight-bold">@Html.DisplayNameFor(model => model.UseImagesForLanguageSelection)</div>
+                <div class="col-sm-3">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="UseImagesForLanguageSelection" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 text-sm-right font-weight-bold">@Html.DisplayNameFor(model => model.SeoFriendlyUrlsForLanguagesEnabled)</div>
+                <div class="col-sm-3">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="SeoFriendlyUrlsForLanguagesEnabled" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 text-sm-right font-weight-bold">@Html.DisplayNameFor(model => model.LoadAllLocaleRecordsOnStartup)</div>
+                <div class="col-sm-3">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="LoadAllLocaleRecordsOnStartup" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-3 col-sm-3 text-right">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

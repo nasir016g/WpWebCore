@@ -254,3 +254,6 @@ C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\bin\Debug\netcoreapp3.1\
 C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\NavigationTopLevel\Default.cshtml.g.cs
 C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\LanguageSelector\Default.cshtml.g.cs
+C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Notifications.cshtml.g.cs
+C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Setting\Website.cshtml.g.cs
+C:\Git\WpWebCore\WpCoreSolution\Presentation\Wp.Web.Mvc\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Setting\Localization.cshtml.g.cs

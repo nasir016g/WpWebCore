@@ -38,4 +38,8 @@
     <ProjectReference Include="..\Wp.Web.Framework\Wp.Web.Framework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>

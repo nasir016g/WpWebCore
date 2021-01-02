@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Wp.Core.Domain.Expenses;
+using Wp.Core.Domain.Common;
+using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
 using Wp.Web.Framework.Infrastructure.Mapper;
@@ -17,9 +18,45 @@ namespace Wp.Web.Framework.Extensions.Mapper
         public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
         {
             return AutoMapperConfiguration.Mapper.Map(source, destination);
-        }   
+        }
 
         #region Admin
+
+        #region Admin-Settings
+
+        //Website
+        public static WebsiteSettingsModel ToModel(this WebsiteSettings entity)
+        {
+            return entity.MapTo<WebsiteSettings, WebsiteSettingsModel>();
+        }
+
+        public static WebsiteSettings ToEntity(this WebsiteSettingsModel model)
+        {
+            return model.MapTo<WebsiteSettingsModel, WebsiteSettings>();
+        }
+
+        public static WebsiteSettings ToEntity(this WebsiteSettingsModel model, WebsiteSettings destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        //Localization
+        public static LocalizationSettingsModel ToModel(this LocalizationSettings entity)
+        {
+            return entity.MapTo<LocalizationSettings, LocalizationSettingsModel>();
+        }
+
+        public static LocalizationSettings ToEntity(this LocalizationSettingsModel model)
+        {
+            return model.MapTo<LocalizationSettingsModel, LocalizationSettings>();
+        }
+
+        public static LocalizationSettings ToEntity(this LocalizationSettingsModel model, LocalizationSettings destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        #endregion
 
         #region Admin - Webpage
 
@@ -45,101 +82,7 @@ namespace Wp.Web.Framework.Extensions.Mapper
 
         #endregion
 
-        #region Admin - Expense
-
-        public static IEnumerable<ExpenseModel> ToModels(this IEnumerable<Expense> entities)
-        {
-            return entities.MapTo<IEnumerable<Expense>, IEnumerable<ExpenseModel>>();
-        }
-
-        public static ExpenseModel ToModel(this Expense entity)
-        {
-            return entity.MapTo<Expense, ExpenseModel>();
-        }
-
-        public static Expense ToEntity(this ExpenseModel model)
-        {
-            return model.MapTo<ExpenseModel, Expense>();
-        }
-
-        public static Expense ToEntity(this ExpenseModel model, Expense destination)
-        {
-            return model.MapTo(destination);
-        }
-
-        #endregion
-
-        #region Admin - ExpenseAccount
-
-        public static IEnumerable<ExpenseAccountModel> ToModels(this IEnumerable<ExpenseAccount> entities)
-        {
-            return entities.MapTo<IEnumerable<ExpenseAccount>, IEnumerable<ExpenseAccountModel>>();
-        }
-
-        public static ExpenseAccountModel ToModel(this ExpenseAccount entity)
-        {
-            return entity.MapTo<ExpenseAccount, ExpenseAccountModel>();
-        }
-
-        public static ExpenseAccount ToEntity(this ExpenseAccountModel model)
-        {
-            return model.MapTo<ExpenseAccountModel, ExpenseAccount>();
-        }
-
-        public static ExpenseAccount ToEntity(this ExpenseAccountModel model, ExpenseAccount destination)
-        {
-            return model.MapTo(destination);
-        }
-
-        #endregion
-
-        #region Admin - ExpenseCategory
-
-        public static IEnumerable<ExpenseCategoryModel> ToModels(this IEnumerable<ExpenseCategory> entities)
-        {
-            return entities.MapTo<IEnumerable<ExpenseCategory>, IEnumerable<ExpenseCategoryModel>>();
-        }
-
-        public static ExpenseCategoryModel ToModel(this ExpenseCategory entity)
-        {
-            return entity.MapTo<ExpenseCategory, ExpenseCategoryModel>();
-        }
-
-        public static ExpenseCategory ToEntity(this ExpenseCategoryModel model)
-        {
-            return model.MapTo<ExpenseCategoryModel, ExpenseCategory>();
-        }
-
-        public static ExpenseCategory ToEntity(this ExpenseCategoryModel model, ExpenseCategory destination)
-        {
-            return model.MapTo(destination);
-        }
-
-        #endregion
-
-        #region Admin - ExpenseTag
-
-        public static IEnumerable<ExpenseTagModel> ToModels(this IEnumerable<ExpenseTag> entities)
-        {
-            return entities.MapTo<IEnumerable<ExpenseTag>, IEnumerable<ExpenseTagModel>>();
-        }
-
-        public static ExpenseTagModel ToModel(this ExpenseTag entity)
-        {
-            return entity.MapTo<ExpenseTag, ExpenseTagModel>();
-        }
-
-        public static ExpenseTag ToEntity(this ExpenseTagModel model)
-        {
-            return model.MapTo<ExpenseTagModel, ExpenseTag>();
-        }
-
-        public static ExpenseTag ToEntity(this ExpenseTagModel model, ExpenseTag destination)
-        {
-            return model.MapTo(destination);
-        }
-
-        #endregion
+       
 
         #region Admin - Tenant
 

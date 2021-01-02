@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Wp.Core.Domain.Expenses;
+using Wp.Core.Domain.Common;
+using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
 using Wp.Web.Framework.Models.Admin;
@@ -20,15 +21,18 @@ namespace Wp.Web.Framework.Infrastructure
             CreateMap<Tenant, TenantModel>()
                 .ReverseMap();
 
-            CreateMap<Expense, ExpenseModel>()
-                .ForMember(dest => dest.Date, mo => mo.MapFrom(src => src.Date.ToShortDateString()))
-                .ReverseMap()
-                .ForMember(dest => dest.ExpenseAccount, options => options.Ignore())
-                .ForMember(dest => dest.ExpenseCategory, options => options.Ignore());
-            CreateMap<ExpenseAccount, ExpenseAccountModel>().ReverseMap();
-            CreateMap<ExpenseCategory, ExpenseCategoryModel>().ReverseMap();
-            CreateMap<ExpenseTag, ExpenseTagModel>().ReverseMap();
-               
+
+            #region Settings
+            CreateMap<LocalizationSettingsModel, LocalizationSettings>()
+                .ForMember(dest => dest.DefaultAdminLanguageId, mo => mo.Ignore());
+            CreateMap<LocalizationSettings, LocalizationSettingsModel>();
+
+            CreateMap<WebsiteSettingsModel, WebsiteSettings>()
+                .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.SelectedTheme));
+            CreateMap<WebsiteSettings, WebsiteSettingsModel>()
+                .ForMember(dest => dest.SelectedTheme, mo => mo.MapFrom(src => src.Theme))
+                .ForMember(dest => dest.AvailableThemes, mo => mo.Ignore());
+            #endregion
 
         }
 

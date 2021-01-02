@@ -48,5 +48,10 @@ namespace Wp.Web.Framework
                 return model;
             }
         }
+
+        public void ClearCurrentSession()
+        {
+            _httpContextAccessor.HttpContext.Session.Remove("__SessionManager__");
+        }
     }
 }

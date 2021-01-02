@@ -21,13 +21,18 @@ namespace Wp.Web.Framework
         {
             get
             {
-                var langId = ServiceLocator.Instance.GetService<IWorkContext>().Current.WorkingLanguage.Id;
-                _resourceValue = ServiceLocator.Instance.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
-                if (string.IsNullOrEmpty(_resourceValue))
+                using(var serviceScope = ServiceLocator.GetScope())
                 {
-                    return ResourceKey;
+                    var langId = serviceScope.ServiceProvider.GetService<IWorkContext>().Current.WorkingLanguage.Id;
+                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
+                    if (string.IsNullOrEmpty(_resourceValue))
+                    {
+                        return ResourceKey;
+                    }
+                    return _resourceValue;
                 }
-                return _resourceValue;
+
+               
             }
         }
         /// <summary>

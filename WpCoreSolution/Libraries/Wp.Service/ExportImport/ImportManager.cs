@@ -19,7 +19,6 @@ namespace Wp.Services.ExportImport
         private readonly IEducationService _educationService;
         private readonly ISkillService _skillService;
         private readonly IExperienceService _workExperienceService;
-        private readonly IImportExcelService _importExpenseExcelService;
         private readonly ILanguageService _languageService;
         //private readonly IIdentityService _identityService;
         private readonly ILocalizedEntityService _localizedEntityService;
@@ -28,7 +27,6 @@ namespace Wp.Services.ExportImport
             IEducationService educationService,
             ISkillService skillService,
             IExperienceService werkExperienceService,
-            IImportExcelService importExpenseExcelService,
             ILanguageService languageService,
             //IIdentityService identityService,
             ILocalizedEntityService localizedEntityService)
@@ -37,7 +35,6 @@ namespace Wp.Services.ExportImport
             _educationService = educationService;
             _skillService = skillService;
             _workExperienceService = werkExperienceService;
-            _importExpenseExcelService = importExpenseExcelService;
             _languageService = languageService;
             //_identityService = identityService;
             _localizedEntityService = localizedEntityService;
@@ -414,9 +411,5 @@ namespace Wp.Services.ExportImport
             return resume;
         }
 
-        public void ImportExpensesFromXlsx(Stream stream)
-        {
-            _importExpenseExcelService.ImportExpensesFromXlsx(stream);
-        }
     }
 }

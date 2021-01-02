@@ -71,15 +71,11 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            @*@Html.Partial("_Notifications")*@
+            <partial name="_Notifications" />
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Wp.Web.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <partial name="_Footer" />
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery-validation/jquery.validate.min.js"></script>

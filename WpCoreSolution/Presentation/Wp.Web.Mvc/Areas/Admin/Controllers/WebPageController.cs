@@ -16,7 +16,7 @@ using Wp.Web.Framework.Models.Admin;
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class WebPageController : Controller
+    public class WebPageController : BaseAdminController
     {
 
         private readonly IWebPageService _webPageService;

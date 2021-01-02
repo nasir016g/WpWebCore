@@ -11,16 +11,15 @@ using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Localization;
-using Wp.Core.Interfaces.Repositories;
 using Wp.Data;
 using Wp.Data.Repositories;
 using Wp.Service.Navigation;
 using Wp.Service.Security;
 using Wp.Service.Tenants;
 using Wp.Services.Career;
+using Wp.Services.Common;
 using Wp.Services.Configuration;
 using Wp.Services.Events;
-using Wp.Services.Expenses;
 using Wp.Services.ExportImport;
 using Wp.Services.Installation;
 using Wp.Services.Localization;
@@ -107,8 +106,6 @@ namespace Wp.Web.Framework.Extensions
             // repositories
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(ITenantsBaseRepository), typeof(TenantsBaseRepository));
-            services.AddScoped(typeof(IExpenseRepository), typeof(ExpenseRepository));
-            services.AddScoped(typeof(IExpenseCategoryRepository), typeof(ExpenseCategoryRepository));
             //services.AddScoped<IWebPageRepository, WebPageRepository>();
             //services.AddScoped<IWebPageRoleRepository, WebPageRoleRepository>();
             //services.AddScoped<ISectionRepository, SectionRepository>();
@@ -123,6 +120,7 @@ namespace Wp.Web.Framework.Extensions
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<ISettingService, SettingService>();
             services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IThemeService, ThemeService>();
             //services.AddScoped<IIdentityService, IIdentityService>();
 
             // career
@@ -131,15 +129,9 @@ namespace Wp.Web.Framework.Extensions
             services.AddScoped<IExperienceService, ExperienceService>();
             services.AddScoped<ISkillService, SkillService>();
 
-            // expense services
-            services.AddScoped<IExpenseService, ExpenseService>();
-            services.AddScoped<IExpenseAccountService, ExpenseAccountService>();
-            services.AddScoped<IExpenseCategoryService, ExpenseCategoryService>();
-            services.AddScoped<IExpenseTagService, ExpenseTagService>();
 
             // export/import services
             services.AddScoped<IImportManager, ImportManager>();
-            services.AddScoped<IImportExcelService, ImportExcelService>();
 
             services.AddScoped<INavigationService, NavigationService>();
             services.AddScoped<IUrlRecordService, UrlRecordService>();
