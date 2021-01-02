@@ -34,3 +34,7 @@ WpCoreSolution/Presentation/Wp.Web.Api_Old/Wp.Web.Api_Old.csproj.user
 WpCoreSolution/Presentation/Wp.Web.Api_Old/bin/
 
 WpCoreSolution/Presentation/Wp.Web.Admin.Api/bin/
+
+WpCoreSolution/Presentation/Wp.Web.Mvc/bin/
+
+WpCoreSolution/Presentation/Wp.Web.Mvc/obj/

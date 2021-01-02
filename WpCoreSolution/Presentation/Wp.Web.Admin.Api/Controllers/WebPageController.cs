@@ -127,7 +127,7 @@ namespace Wp.Web.Api.Admin.Controllers
         #region import / export
 
         [HttpGet("download")]
-        public async Task<IActionResult> DownloadFile()
+        public  IActionResult DownloadFile()
         {
             string fileName = "demo.xlsx";
             var currentDirectory = System.IO.Directory.GetCurrentDirectory();

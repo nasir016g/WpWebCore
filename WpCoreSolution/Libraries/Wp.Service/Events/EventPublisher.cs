@@ -18,9 +18,9 @@ namespace Wp.Services.Events
                 {
                     consumer.HandleEvent(@event);
                 }
-                catch (Exception exception)
+                catch (Exception )
                 {
-                    throw exception;
+                    throw;
                     ////log error, we put in to nested try-catch to prevent possible cyclic (if some error occurs)
                     //try
                     //{

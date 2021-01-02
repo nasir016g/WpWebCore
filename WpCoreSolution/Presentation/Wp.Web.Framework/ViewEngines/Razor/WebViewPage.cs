@@ -9,7 +9,7 @@ namespace Wp.Web.Framework.ViewEngines.Razor
     {
         private ILocalizationService _localizationService;
         private Localizer _localizer;
-        private IWorkContext _workContext;
+       // private IWorkContext _workContext;
 
         /// <summary>
         /// Get a localized resources
