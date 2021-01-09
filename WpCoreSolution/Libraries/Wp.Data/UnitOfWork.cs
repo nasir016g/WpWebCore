@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Wp.Common;
 using Wp.Core;
 
 namespace Wp.Data

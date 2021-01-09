@@ -7,6 +7,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;

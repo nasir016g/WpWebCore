@@ -1,4 +1,6 @@
 ﻿
+using Wp.Common;
+
 namespace Wp.Core.Domain.Configuration
 {
     public class Setting : Entity

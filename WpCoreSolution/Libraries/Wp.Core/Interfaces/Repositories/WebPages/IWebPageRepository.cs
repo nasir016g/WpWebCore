@@ -1,4 +1,5 @@
-﻿using Wp.Core.Domain.WebPages;
+﻿using Wp.Common;
+using Wp.Core.Domain.WebPages;
 
 namespace Wp.Core.Interfaces.Repositories
 {

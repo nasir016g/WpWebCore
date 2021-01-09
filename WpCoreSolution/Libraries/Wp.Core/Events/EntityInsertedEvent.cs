@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Wp.Common;
 
 namespace Wp.Core.Events
 {

@@ -32,14 +32,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+    <PackageReference Include="Polly" Version="7.2.1" />
+    <PackageReference Include="Refit" Version="5.2.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Wp.Web.Framework\Wp.Web.Framework.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>

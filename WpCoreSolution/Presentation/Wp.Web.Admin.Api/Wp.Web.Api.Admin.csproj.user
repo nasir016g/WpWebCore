@@ -7,7 +7,7 @@
     <ActiveDebugProfile>Wp.Web.Api.Admin</ActiveDebugProfile>
     <ShowAllFiles>true</ShowAllFiles>
     <WebStackScaffolding_DependencyDialogWidth>600</WebStackScaffolding_DependencyDialogWidth>
-    <Controller_SelectedScaffolderID>MvcControllerWithActionsScaffolder</Controller_SelectedScaffolderID>
-    <Controller_SelectedScaffolderCategoryPath>root/Controller</Controller_SelectedScaffolderCategoryPath>
+    <Controller_SelectedScaffolderID>ApiControllerEmptyScaffolder</Controller_SelectedScaffolderID>
+    <Controller_SelectedScaffolderCategoryPath>root/Common/Api</Controller_SelectedScaffolderCategoryPath>
   </PropertyGroup>
 </Project>

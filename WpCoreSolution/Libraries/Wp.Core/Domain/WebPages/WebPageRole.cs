@@ -1,4 +1,6 @@
-﻿namespace Wp.Core.Domain.WebPages
+﻿using Wp.Common;
+
+namespace Wp.Core.Domain.WebPages
 {
     public class WebPageRole : EntityAuditable
   {

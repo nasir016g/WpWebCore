@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Configuration;
 using Wp.Core.Domain.Configuration;

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Domain.Common;
 
 namespace Wp.Services.Common
 {
-    public partial interface ICustomAttributeService : IEntityService<CustomAttribute>
+    public partial interface ICustomAttributeService : 
+        IEntityService<CustomAttribute>
     {
       
       

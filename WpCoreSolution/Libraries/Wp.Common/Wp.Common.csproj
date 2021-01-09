@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Common classes, interfaces and etc.</Description>
+    <Copyright></Copyright>
+    <Authors>Nasir Mohammad</Authors>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+</Project>

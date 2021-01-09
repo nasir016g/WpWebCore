@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Xml;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Domain.Localization;
 using Wp.Services.Localization;

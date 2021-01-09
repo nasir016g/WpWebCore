@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wp.Common;
 
 namespace Wp.Core.Domain.Albums
 {

@@ -2,6 +2,7 @@
 using Wp.Core.Domain.Sections;
 using System.ComponentModel.DataAnnotations;
 using Wp.Core.Domain.Seo;
+using Wp.Common;
 
 namespace Wp.Core.Domain.WebPages
 {

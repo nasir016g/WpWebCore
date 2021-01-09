@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Localization;

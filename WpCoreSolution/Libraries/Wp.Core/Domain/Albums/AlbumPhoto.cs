@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wp.Common;
 using Wp.Core.Domain.Media;
 
 namespace Wp.Core.Domain.Albums

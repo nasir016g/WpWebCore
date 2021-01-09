@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Domain.Career;
 using Wp.Data;

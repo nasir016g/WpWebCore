@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  wp.resume.managementapi:
+    image: ${DOCKER_REGISTRY-}wpresumemanagementapi
+    build:
+      context: .
+      dockerfile: ResumeManagement/Wp.Resume.ManagementApi/Dockerfile
+    ports:
+        - "5500:5500"

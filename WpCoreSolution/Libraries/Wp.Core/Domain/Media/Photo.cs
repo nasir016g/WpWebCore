@@ -1,4 +1,6 @@
-﻿namespace Wp.Core.Domain.Media
+﻿using Wp.Common;
+
+namespace Wp.Core.Domain.Media
 {
     public class Photo : EntityAuditable
   {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Wp.Common;
 using Wp.Core.Domain.Tenants;
 
 namespace Wp.Core

@@ -21,6 +21,7 @@ using Wp.Services.Localization;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
+using Wp.Web.Mvc.Areas.Admin.RESTClients;
 using Wp.Web.Mvc.Infrastructure.Routing;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
@@ -83,6 +84,7 @@ namespace Wp.Web.Mvc
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
             services.AddScoped<SlugRouteTransformer>();
+            services.AddHttpClient<IResumeManagementApi, ResumeManagementApi>();
 
             //add routing
             services.AddRouting(options =>

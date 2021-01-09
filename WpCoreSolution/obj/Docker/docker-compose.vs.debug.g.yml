@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  wp.resume.managementapi:
+    image: wpresumemanagementapi:dev
+    container_name: Wp.Resume.ManagementApi
+    build:
+      target: base
+      labels:
+        com.microsoft.created-by: "visual-studio"
+        com.microsoft.visual-studio.project-name: "Wp.Resume.ManagementApi"
+    environment:
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+      - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
+      - NUGET_FALLBACK_PACKAGES=
+    volumes:
+      - C:\Git\WpWebCore\WpCoreSolution\ResumeManagement\Wp.Resume.ManagementApi:/app
+      - C:\Git\WpWebCore\WpCoreSolution:/src
+      - C:\Users\nasir\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\nasir\.nuget\packages\:/root/.nuget/packages:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+    entrypoint: tail -f /dev/null
+    labels:
+      com.microsoft.visualstudio.debuggee.program: "dotnet"
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages  \"/app/bin/Debug/net5.0/Wp.Resume.ManagementApi.dll\""
+      com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
+      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true

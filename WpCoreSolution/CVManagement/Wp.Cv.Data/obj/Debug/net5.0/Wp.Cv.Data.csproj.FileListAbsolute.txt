@@ -1,0 +1,17 @@
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.csprojAssemblyReference.cache
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.AssemblyInfoInputs.cache
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.AssemblyInfo.cs
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.csproj.CoreCompileInputs.cache
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Data.deps.json
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\ref\Wp.Cv.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Data.pdb
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.csproj.CopyComplete
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\ref\Wp.Cv.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.pdb

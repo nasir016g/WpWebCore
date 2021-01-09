@@ -1,0 +1,12 @@
+services:
+  wp.resume.managementapi:
+    build:
+      context: C:\Git\WpWebCore\WpCoreSolution
+      dockerfile: ResumeManagement/Wp.Resume.ManagementApi/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: wpresumemanagementapi
+    ports:
+    - published: 5500
+      target: 5500
+version: '3.4'

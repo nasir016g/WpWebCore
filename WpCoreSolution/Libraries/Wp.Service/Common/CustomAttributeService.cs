@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Wp.Common;
 using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;

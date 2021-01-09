@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Mappings\Albums\**" />
+    <Compile Remove="Mappings\Career\**" />
+    <Compile Remove="Mappings\Common\**" />
+    <EmbeddedResource Remove="Mappings\Albums\**" />
+    <EmbeddedResource Remove="Mappings\Career\**" />
+    <EmbeddedResource Remove="Mappings\Common\**" />
+    <None Remove="Mappings\Albums\**" />
+    <None Remove="Mappings\Career\**" />
+    <None Remove="Mappings\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Wp.Common" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wp.Cv.Core\Wp.Cv.Core.csproj" />
+  </ItemGroup>
+
+</Project>
