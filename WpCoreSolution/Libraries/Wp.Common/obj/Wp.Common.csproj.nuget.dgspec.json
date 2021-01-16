@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Git\\WpWebCore\\WpCoreSolution\\Libraries\\Wp.Common\\Wp.Common.csproj": {
-      "version": "1.0.1",
+      "version": "1.0.4",
       "restore": {
         "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Libraries\\Wp.Common\\Wp.Common.csproj",
         "projectName": "Wp.Common",
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

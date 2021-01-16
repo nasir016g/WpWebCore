@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Wp.Core.Domain.Common;
-using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
 using Wp.Web.Framework.Infrastructure.Mapper;
@@ -40,21 +39,21 @@ namespace Wp.Web.Framework.Extensions.Mapper
             return model.MapTo(destination);
         }
 
-        //Localization
-        public static LocalizationSettingsModel ToModel(this LocalizationSettings entity)
-        {
-            return entity.MapTo<LocalizationSettings, LocalizationSettingsModel>();
-        }
+        ////Localization
+        //public static LocalizationSettingsModel ToModel(this LocalizationSettings entity)
+        //{
+        //    return entity.MapTo<LocalizationSettings, LocalizationSettingsModel>();
+        //}
 
-        public static LocalizationSettings ToEntity(this LocalizationSettingsModel model)
-        {
-            return model.MapTo<LocalizationSettingsModel, LocalizationSettings>();
-        }
+        //public static LocalizationSettings ToEntity(this LocalizationSettingsModel model)
+        //{
+        //    return model.MapTo<LocalizationSettingsModel, LocalizationSettings>();
+        //}
 
-        public static LocalizationSettings ToEntity(this LocalizationSettingsModel model, LocalizationSettings destination)
-        {
-            return model.MapTo(destination);
-        }
+        //public static LocalizationSettings ToEntity(this LocalizationSettingsModel model, LocalizationSettings destination)
+        //{
+        //    return model.MapTo(destination);
+        //}
 
         #endregion
 

@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Wp.Common" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Wp.Core\Wp.Core.csproj" />
+    <PackageReference Include="Wp.Common" Version="1.0.4" />
   </ItemGroup>
 
 </Project>

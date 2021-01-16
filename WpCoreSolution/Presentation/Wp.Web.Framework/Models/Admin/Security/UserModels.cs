@@ -12,6 +12,6 @@ namespace Wp.Web.Framework.Models.Admin
         public string Password { get; set; }
 
         public IList<RoleModel> Roles { get; set; }
-        //public IEnumerable<string> SelectedRoles { get; set; } //
+        public IEnumerable<string> SelectedRoles { get; set; } //
     }
 }

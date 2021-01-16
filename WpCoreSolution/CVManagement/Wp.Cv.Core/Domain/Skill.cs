@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Wp.Core;
-using Wp.Core.Domain.Localization;
+﻿using System.Collections.Generic;
 using Wp.Common;
 
 namespace Wp.Cv.Core.Domain

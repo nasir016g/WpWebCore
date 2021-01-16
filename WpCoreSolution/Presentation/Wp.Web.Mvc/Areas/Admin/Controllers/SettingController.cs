@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Common;
-using Wp.Core.Domain.Localization;
 using Wp.Services.Common;
 using Wp.Services.Configuration;
 using Wp.Web.Framework.Extensions.Mapper;
@@ -62,28 +61,28 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
         #region Localization
 
-        public ActionResult Localization()
-        {
-            var entity = _settingService.LoadSetting<LocalizationSettings>();
-            var model = entity.ToModel();
-            return View(model);
-        }
+        //public ActionResult Localization()
+        //{
+        //    var entity = _settingService.LoadSetting<LocalizationSettings>();
+        //    var model = entity.ToModel();
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public ActionResult Localization(LocalizationSettingsModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                ErrorNotification("An error occured during updating localization settings.", false);
-                return View(model);
-            }
+        //[HttpPost]
+        //public ActionResult Localization(LocalizationSettingsModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ErrorNotification("An error occured during updating localization settings.", false);
+        //        return View(model);
+        //    }
 
-            var entity = model.ToEntity();
-            _settingService.SaveSetting(entity);
+        //    var entity = model.ToEntity();
+        //    _settingService.SaveSetting(entity);
 
-            SuccessNotification("Localization settings updated successfully.", true);
-            return RedirectToAction("Localization");
-        }
+        //    SuccessNotification("Localization settings updated successfully.", true);
+        //    return RedirectToAction("Localization");
+        //}
 
         #endregion       
     }

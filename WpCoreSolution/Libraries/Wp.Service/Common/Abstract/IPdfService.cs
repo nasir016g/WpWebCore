@@ -1,10 +1,7 @@
-﻿using System.IO;
-using Wp.Core.Domain.Career;
-
-namespace Wp.Services.Common
+﻿namespace Wp.Services.Common
 {
     public interface IPdfService
     {
-        void PrintResume(Stream stream, Resume r);
+        //void PrintResume(Stream stream, Resume r);
     }
 }

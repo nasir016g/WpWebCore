@@ -5,17 +5,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Wp.Common;
-using Wp.Core;
 using Wp.Core.Caching;
-using Wp.Core.Common;
-using Wp.Core.Configuration;
 
 using Wp.Core.Domain.Configuration;
-using Wp.Data;
 using Wp.Services.Events;
 
 namespace Wp.Services.Configuration
-{ 
+{
     public partial class SettingService : EntityService<Setting>, ISettingService
     {
         #region

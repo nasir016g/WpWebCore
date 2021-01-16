@@ -1,4 +1,5 @@
 ﻿@model Wp.Web.Framework.Models.Admin.WebPageModel
+@using Wp.Core.Domain.WebPages
 
 <script type="text/javascript">
     $(function () {
@@ -28,6 +29,7 @@
 
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.HiddenFor(model => model.Id)
     <div class="tab-content">
         <div class="tab-pane active" id="general">
             <div class="form-group row mt-sm-2">
@@ -92,7 +94,49 @@
             </div>
         </div>
         <div class="tab-pane" id="security">
-            sec
+            <div class="form-group">
+                <label class="col-md-3 control-label">Roles:</label>
+                <div class="col-md-3">
+                    <table class="table" style="width: 100%">
+                        <tr>
+                            <th>
+                                RoleName
+                            </th>
+                            <th>
+                                None
+                            </th>
+                            <th>
+                                View
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                Create
+                            </th>
+                            <th></th>
+                        </tr>
+                        @{
+                            int index = 0;
+                            foreach (var role in Model.Roles)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @role.Name @Html.Hidden("Roles[" + index + "].Name", role.Name)
+                                        @Html.Hidden("Roles[" + index + "].Id", role.Id)
+                                    </td>
+                                    <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.None, role.PermissionLevel == PermissionLevel.None)</td>
+                                    <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.View, role.PermissionLevel == PermissionLevel.View)</td>
+                                    <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.Edit, role.PermissionLevel == PermissionLevel.Edit)</td>
+                                    <td>@Html.RadioButton("Roles[" + index + "].PermissionLevel", PermissionLevel.Create, role.PermissionLevel == PermissionLevel.Create)</td>
+                                </tr>
+                                index++;
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -1,5 +1,4 @@
 ﻿using Wp.Common;
-using Wp.Core.Domain.Localization;
 using Wp.Core.Domain.WebPages;
 
 namespace Wp.Core.Domain.Sections

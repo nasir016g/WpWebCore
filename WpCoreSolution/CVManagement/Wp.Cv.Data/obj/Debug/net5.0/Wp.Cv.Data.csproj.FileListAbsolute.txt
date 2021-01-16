@@ -7,9 +7,7 @@ C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.D
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Data.dll
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\ref\Wp.Cv.Data.dll
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Data.pdb
-C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Core.dll
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Core.dll
-C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Core.pdb
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\bin\Debug\net5.0\Wp.Cv.Core.pdb
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.csproj.CopyComplete
 C:\Git\WpWebCore\WpCoreSolution\CVManagement\Wp.Cv.Data\obj\Debug\net5.0\Wp.Cv.Data.dll

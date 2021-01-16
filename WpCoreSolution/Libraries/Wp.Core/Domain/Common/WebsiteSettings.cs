@@ -1,4 +1,4 @@
-﻿using Wp.Core.Configuration;
+﻿using Wp.Common;
 
 namespace Wp.Core.Domain.Common
 {

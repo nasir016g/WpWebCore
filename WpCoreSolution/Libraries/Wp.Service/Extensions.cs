@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Wp.Common;
 using Wp.Core;
-using Wp.Core.Common;
-using Wp.Services.Localization;
 
 namespace Wp.Services
 {
     public static class Extensions
     {
-        public static SelectList ToSelectList<TEnum>(this TEnum enumObj, ILocalizationService localizationService, IWorkContext workContext,
+        public static SelectList ToSelectList<TEnum>(this TEnum enumObj, IWorkContext workContext,
            bool markCurrentAsSelected = true, int[] valuesToExclude = null, bool useLocalization = true) where TEnum : struct
         {
             if (!typeof(TEnum).IsEnum) throw new ArgumentException("An Enumeration type is required.", "enumObj");

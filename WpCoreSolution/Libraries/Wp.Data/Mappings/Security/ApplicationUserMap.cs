@@ -7,7 +7,7 @@ namespace Wp.Data.Mappings.Security
     {
         public ApplicationUserMap(EntityTypeBuilder<ApplicationUser> entityBuilder)
         {
-            entityBuilder.HasOne(x => x.Resume);
+            //entityBuilder.HasOne(x => x.Resume);
              
         }
     }

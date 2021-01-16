@@ -37,6 +37,12 @@ namespace Wp.Services.WebPages
             _sectionRepo = sectionRepo;
         }
 
+        public override WebPage GetById(int id)
+        {
+            return _webPageRepo.Table.Where(x => x.Id == id).Include(x => x.Roles).FirstOrDefault();
+            //return base.GetById(id);
+        }
+
         public override IList<WebPage> GetAll()
         {
             return _cacheManager.Get("allpages", () =>

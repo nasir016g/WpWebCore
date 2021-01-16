@@ -112,7 +112,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         // POST: WebPageController/Edit/5
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit(WebPageModel model, FormCollection form)
+        public ActionResult Edit(WebPageModel model, IFormCollection form)
         {
             var page = _webPageService.GetById(model.Id);
 

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Wp.Web.Framework.Models.Admin.RoleModel>
+@using Wp.Core.Domain.Security
+
+@{
+    ViewData["Title"] = "RoleIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h1>Roles</h1>
+
+<form asp-controller="Security" asp-action="CreateRole" method="post" class="well form-inline">
+    <label class="control-label" for="Name">Create new role</label>
+    <div class="form-group">
+        <label class="sr-only" for="Name">Name</label>
+        <input id="Name" name="Name" type="text" class="form-control" placeholder="Role name">
+    </div>
+
+    <button type="submit" class="btn btn-default">Add Role</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (!(item.Name == SystemRoleNames.Administrators.ToString() || item.Name == SystemRoleNames.Users.ToString()))
+                    {
+                        @Html.ActionLink("Delete", "DeleteRole", "Security", new { roleName = item.Name }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

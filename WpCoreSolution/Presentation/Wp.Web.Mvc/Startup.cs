@@ -14,10 +14,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Wp.Core;
-using Wp.Core.Domain.Localization;
 using Wp.Core.Security;
 using Wp.Data;
-using Wp.Services.Localization;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
@@ -83,7 +81,7 @@ namespace Wp.Web.Mvc
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
-            services.AddScoped<SlugRouteTransformer>();
+            //services.AddScoped<SlugRouteTransformer>();
             services.AddHttpClient<IResumeManagementApi, ResumeManagementApi>();
 
             //add routing
@@ -157,19 +155,18 @@ namespace Wp.Web.Mvc
                 var pattern = "{SeName}";
                 using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    var localizationSettings = serviceScope.ServiceProvider.GetRequiredService<LocalizationSettings>();
-                    if (localizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
-                    {
-                        var langservice = serviceScope.ServiceProvider.GetRequiredService<ILanguageService>();
-                        var languages = langservice.GetAll().ToList();
-                        pattern = "{language:lang=" + languages.First().UniqueSeoCode + "}/{SeName}";
-                        //}
-                    }
+                    //var localizationSettings = serviceScope.ServiceProvider.GetRequiredService<LocalizationSettings>();
+                    //if (localizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
+                    //{
+                    //    var langservice = serviceScope.ServiceProvider.GetRequiredService<ILanguageService>();
+                    //    var languages = langservice.GetAll().ToList();
+                    //    pattern = "{language:lang=" + languages.First().UniqueSeoCode + "}/{SeName}";
+                    //    //}
+                    //}
                 }
 
 
-                //endpoints.MapAreaControllerRoute(name: "areas", "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapDynamicControllerRoute<SlugRouteTransformer>(pattern);
+                //endpoints.MapDynamicControllerRoute<SlugRouteTransformer>(pattern);
                 endpoints.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();

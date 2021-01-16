@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Wp.Web.Framework.Models.Admin.UserModel>
+
+@{
+    ViewData["Title"] = "UserIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h1>Users</h1>
+
+<form asp-controller="Security" asp-action="CreateUrser" method="post" class="well form-inline">
+    <label class="control-label" for="Name">Creat new account: </label>
+    <div class="form-group">
+        <label class="sr-only" for="Name">User Name</label>
+        <input id="Name" name="Name" type="text" class="form-control" placeholder="User Name">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="Name">Password</label>
+        <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
+    </div>
+    <button type="submit" class="btn btn-default">Add Account</button>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td class="text-right">
+                    @Html.ActionLink("Edit", "EditUser", "Security", new { userName = item.Name }, null) |
+                    @Html.ActionLink("Delete", "DeleteUser", "Security", new { userName = item.Name }, null)
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>

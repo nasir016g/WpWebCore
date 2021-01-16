@@ -11,19 +11,15 @@ using Wp.Common;
 using Wp.Core;
 using Wp.Core.Caching;
 using Wp.Core.Domain.Common;
-using Wp.Core.Domain.Localization;
 using Wp.Data;
 using Wp.Data.Repositories;
 using Wp.Service.Navigation;
 using Wp.Service.Security;
 using Wp.Service.Tenants;
-using Wp.Services.Career;
 using Wp.Services.Common;
 using Wp.Services.Configuration;
 using Wp.Services.Events;
-using Wp.Services.ExportImport;
 using Wp.Services.Installation;
-using Wp.Services.Localization;
 using Wp.Services.Sections;
 using Wp.Services.Seo;
 using Wp.Services.WebPages;
@@ -120,24 +116,24 @@ namespace Wp.Web.Framework.Extensions
             services.AddScoped<IWebPageService, WebPageService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<ISettingService, SettingService>();
-            services.AddScoped<ILanguageService, LanguageService>();
+            //services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IThemeService, ThemeService>();
             //services.AddScoped<IIdentityService, IIdentityService>();
 
-            // career
-            services.AddScoped<IResumeService, ResumeService>();
-            services.AddScoped<IEducationService, EducationService>();
-            services.AddScoped<IExperienceService, ExperienceService>();
-            services.AddScoped<ISkillService, SkillService>();
+            //// career
+            //services.AddScoped<IResumeService, ResumeService>();
+            //services.AddScoped<IEducationService, EducationService>();
+            //services.AddScoped<IExperienceService, ExperienceService>();
+            //services.AddScoped<ISkillService, SkillService>();
 
 
-            // export/import services
-            services.AddScoped<IImportManager, ImportManager>();
+            //// export/import services
+            //services.AddScoped<IImportManager, ImportManager>();
 
             services.AddScoped<INavigationService, NavigationService>();
             services.AddScoped<IUrlRecordService, UrlRecordService>();
-            services.AddScoped<ILocalizationService, LocalizationService>();
-            services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
+            //services.AddScoped<ILocalizationService, LocalizationService>();
+            //services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
             services.AddScoped<ICacheManager, PerRequestCacheManager>();
             services.AddScoped<IStaticCacheManager, EasyMemoryCacheManager>();
             services.AddScoped<IInstallationService, CodeFirstInstallationService>();
@@ -146,10 +142,10 @@ namespace Wp.Web.Framework.Extensions
             {
                 return x.GetService<ISettingService>().LoadSetting<WebsiteSettings>(); 
             });
-            services.AddScoped(x =>
-            {
-                return x.GetService<ISettingService>().LoadSetting<LocalizationSettings>(); 
-            });
+            //services.AddScoped(x =>
+            //{
+            //    return x.GetService<ISettingService>().LoadSetting<LocalizationSettings>(); 
+            //});
 
 
             services.AddScoped<IEventPublisher, EventPublisher>();

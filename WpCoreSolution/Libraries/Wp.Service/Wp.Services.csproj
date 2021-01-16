@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <Compile Remove="Albums\**" />
+    <Compile Remove="ExportImport\**" />
     <EmbeddedResource Remove="Albums\**" />
+    <EmbeddedResource Remove="ExportImport\**" />
     <None Remove="Albums\**" />
+    <None Remove="ExportImport\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.1" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
-    <PackageReference Include="Wp.Common" Version="1.0.1" />
+    <PackageReference Include="Wp.Common" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>

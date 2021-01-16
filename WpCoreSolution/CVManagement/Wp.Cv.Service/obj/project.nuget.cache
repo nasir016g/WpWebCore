@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nSGlawRgmQZusDFpe9xprNPObPrtCq1fHp3tlL0HAyMqqoF/RP/t5K6wagyUmDwsZm/IcNmHit4lxaXS0Pmlww==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\CVManagement\\Wp.Cv.Service\\Wp.Cv.Service.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nasir\\.nuget\\packages\\wp.common\\1.0.4\\wp.common.1.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

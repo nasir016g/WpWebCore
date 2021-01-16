@@ -1,0 +1,12 @@
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\bin\Debug\net5.0\Wp.Localization.Core.deps.json
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\bin\Debug\net5.0\Wp.Localization.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\bin\Debug\net5.0\ref\Wp.Localization.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\bin\Debug\net5.0\Wp.Localization.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.AssemblyInfoInputs.cache
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.AssemblyInfo.cs
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.csproj.CoreCompileInputs.cache
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\ref\Wp.Localization.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\Localization\Wp.Localization.Core\obj\Debug\net5.0\Wp.Localization.Core.csprojAssemblyReference.cache

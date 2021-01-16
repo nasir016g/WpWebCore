@@ -4,22 +4,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using Wp.Core.Domain.Common;
-using Wp.Services.Localization;
 
 namespace Wp.Services.Common
 {
     public partial class CustomAttributeParser : ICustomAttributeParser
     {
         private readonly ICustomAttributeService _customAttributeService;
-        private readonly ILocalizationService _localizationService;
 
         public ICustomAttributeService CustomAttributeService => _customAttributeService;
 
-        public CustomAttributeParser(ICustomAttributeService customAttributeService,
-            ILocalizationService localizationService)
+        public CustomAttributeParser(ICustomAttributeService customAttributeService)
         {
             this._customAttributeService = customAttributeService;
-            this._localizationService = localizationService;
         }
 
         protected virtual IList<int> ParseCustomAttributeIds(string attributesXml)
