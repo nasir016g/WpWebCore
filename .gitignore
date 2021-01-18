@@ -38,3 +38,23 @@ WpCoreSolution/Presentation/Wp.Web.Admin.Api/bin/
 WpCoreSolution/Presentation/Wp.Web.Mvc/bin/
 
 WpCoreSolution/Presentation/Wp.Web.Mvc/obj/
+
+WpCoreSolution/Localization/Wp.Localization.Service/obj/Debug/net5.0/Wp.Localization.Service.GeneratedMSBuildEditorConfig.editorconfig
+
+WpCoreSolution/CVManagement/Wp.Cv.Core/obj/
+
+WpCoreSolution/CVManagement/Wp.Cv.Data/obj/
+
+WpCoreSolution/CVManagement/Wp.Cv.Service/obj/
+
+WpCoreSolution/Libraries/Wp.Common/obj/
+
+WpCoreSolution/Localization/Wp.Localization.Core/obj/
+
+WpCoreSolution/Localization/Wp.Localization.Data/obj/
+
+WpCoreSolution/Localization/Wp.Localization.ManagementApi/obj/
+
+WpCoreSolution/Localization/Wp.Localization.Service/obj/
+
+WpCoreSolution/ResumeManagement/Wp.Resume.ManagementApi/obj/
