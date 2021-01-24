@@ -1,0 +1,51 @@
+﻿@model Wp.Localization.Core.LocaleStringResource
+
+@{
+    ViewData["Title"] = "ResourceEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h1>ResourceEdit</h1>
+
+<h4>LanguageResourceModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ResourceEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LanguageId" class="control-label"></label>
+                <input asp-for="LanguageId" class="form-control" />
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceName" class="control-label"></label>
+                <input asp-for="ResourceName" class="form-control" />
+                <span asp-validation-for="ResourceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceValue" class="control-label"></label>
+                <input asp-for="ResourceValue" class="form-control" />
+                <span asp-validation-for="ResourceValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Language.Name" class="control-label"></label>
+                <input asp-for="Language.Name" class="form-control" />
+                <span asp-validation-for="Language.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -11,16 +11,16 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Linq;
 using System.Reflection;
 using Wp.Core;
 using Wp.Core.Security;
 using Wp.Data;
+using Wp.Localization.Extensions;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
-using Wp.Web.Mvc.Areas.Admin.RESTClients;
 using Wp.Web.Mvc.Infrastructure.Routing;
+using Wp.Web.Mvc.RestClients;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
 
@@ -40,6 +40,8 @@ namespace Wp.Web.Mvc
         {
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDistributedMemoryCache();
+
+            services.AddLocalization(Configuration);
 
             services.AddSession(options =>
             {
@@ -82,7 +84,7 @@ namespace Wp.Web.Mvc
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
             //services.AddScoped<SlugRouteTransformer>();
-            services.AddHttpClient<IResumeManagementApi, ResumeManagementApi>();
+            services.AddHttpClient<IResumesWebApi, ResumesWebApi>();
 
             //add routing
             services.AddRouting(options =>
@@ -126,6 +128,7 @@ namespace Wp.Web.Mvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             ServiceLocator.Instance = app.ApplicationServices;
+            Wp.Localization.Extensions.ServiceCollectionExtensions.UseLocalization(app);
             app.UseSession();
 
             ServiceCollectionExtensions.Migrate(app);

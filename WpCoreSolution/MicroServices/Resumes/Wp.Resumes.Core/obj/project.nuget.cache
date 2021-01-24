@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pX15eO+nYu6nrZQDAfcMbO2ZHjLjMD45Mf/jKAmPTtC//hq9md+VLf+ExozILP0G5qfTw+RAEQ6fStG9mWYG6w==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nasir\\.nuget\\packages\\wp.common\\1.0.4\\wp.common.1.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

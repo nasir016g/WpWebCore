@@ -1,0 +1,61 @@
+﻿@model Wp.Localization.Core.Language
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LanguageModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LanguageCulture)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LanguageCulture)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UniqueSeoCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UniqueSeoCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FlagImageFileName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FlagImageFileName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisplayOrder)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -17,7 +17,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> ExecuteResilient(Func<Task<IActionResult>> action, IActionResult fallbackResult)
+        public async Task<T> ExecuteResilient<T>(Func<Task<T>> action, T fallbackResult)
         {
             var retryPolicy = Policy
                 .Handle<Exception>((ex) =>
@@ -27,7 +27,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
                 })
                 .RetryAsync(5);
 
-            var fallbackPolicy = Policy<IActionResult>
+            var fallbackPolicy = Policy<T>
                 .Handle<Exception>()
                 .FallbackAsync(
                     fallbackResult,

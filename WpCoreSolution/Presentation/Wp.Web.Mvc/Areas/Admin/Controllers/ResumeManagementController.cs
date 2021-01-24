@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.Areas.Admin.RESTClients;
+using Wp.Web.Mvc.RestClients;
 
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ResumeManagementController : Controller
     {
-        private readonly IResumeManagementApi _resumeManagementApi;
+        private readonly IResumesWebApi _resumeManagementApi;
         private readonly ILogger _logger;
         private ResiliencyHelper _resiliencyHelper;
 
-        public ResumeManagementController(IResumeManagementApi resumeManagementApi, ILogger<ResumeManagementController> logger)
+        public ResumeManagementController(IResumesWebApi resumeManagementApi, ILogger<ResumeManagementController> logger)
         {
             _resumeManagementApi = resumeManagementApi;
             _logger = logger;
@@ -28,5 +28,6 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
                 return View(model);
             }, View("Offline"));
         }
+
     }
 }

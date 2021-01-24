@@ -17,5 +17,16 @@ namespace Wp.Web.Mvc.Models
         public int CurrentLanguageId { get; set; }
 
         public bool UseImages { get; set; }
+
+        // nested classes
+        public partial class LanguageModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+            public string FlagImageFileName { get; set; }
+
+        }
     }
+    
 }
