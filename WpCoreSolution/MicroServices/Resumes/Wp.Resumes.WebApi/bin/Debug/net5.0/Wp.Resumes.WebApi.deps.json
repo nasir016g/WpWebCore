@@ -25,13 +25,11 @@
     ".NETCoreApp,Version=v5.0": {
       "Wp.Resumes.WebApi/1.0.0": {
         "dependencies": {
-          "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.Design": "5.0.2",
+          "Nsr.Common.Service": "1.0.0",
           "Swashbuckle.AspNetCore": "5.6.3",
-          "Wp.Common": "1.0.4",
-          "Wp.Localization.Service": "1.0.9",
           "Wp.Resumes.Data": "1.0.0",
           "Wp.Resumes.Service": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
@@ -323,7 +321,7 @@
           "Wp.Resumes.WebApi.dll": {}
         }
       },
-      "AutoMapper/10.1.1": {
+      "AutoMapper/10.1.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "System.Reflection.Emit": "4.7.0"
@@ -331,7 +329,7 @@
         "runtime": {
           "lib/netstandard2.0/AutoMapper.dll": {
             "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.1.1.0"
+            "fileVersion": "10.1.0.0"
           }
         },
         "compile": {
@@ -340,7 +338,7 @@
       },
       "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.0": {
         "dependencies": {
-          "AutoMapper": "10.1.1",
+          "AutoMapper": "10.1.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.Options": "5.0.0"
         },
@@ -797,6 +795,27 @@
         },
         "compile": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Nsr.Common.Service/1.0.0": {
+        "runtime": {
+          "lib/net5.0/Nsr.Common.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Service.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Nsr.Common.Core.dll": {},
+          "lib/net5.0/Nsr.Common.Data.dll": {},
+          "lib/net5.0/Nsr.Common.Service.dll": {}
         }
       },
       "Polly/7.2.1": {
@@ -1715,41 +1734,9 @@
           "ref/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "Wp.Common/1.0.4": {
-        "runtime": {
-          "lib/net5.0/Wp.Common.dll": {
-            "assemblyVersion": "1.0.4.0",
-            "fileVersion": "1.0.4.0"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Wp.Common.dll": {}
-        }
-      },
-      "Wp.Localization.Service/1.0.9": {
-        "runtime": {
-          "lib/net5.0/Wp.Localization.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          },
-          "lib/net5.0/Wp.Localization.Data.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          },
-          "lib/net5.0/Wp.Localization.Service.dll": {
-            "assemblyVersion": "1.0.9.0",
-            "fileVersion": "1.0.9.0"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Wp.Localization.Core.dll": {},
-          "lib/net5.0/Wp.Localization.Data.dll": {},
-          "lib/net5.0/Wp.Localization.Service.dll": {}
-        }
-      },
       "Wp.Resumes.Core/1.0.0": {
         "dependencies": {
-          "Wp.Common": "1.0.4"
+          "Nsr.Common.Service": "1.0.0"
         },
         "runtime": {
           "Wp.Resumes.Core.dll": {}
@@ -1775,10 +1762,9 @@
         "dependencies": {
           "EPPlus": "5.5.2",
           "Microsoft.Extensions.Logging": "5.0.0",
+          "Nsr.Common.Service": "1.0.0",
           "Polly": "7.2.1",
           "Serilog": "2.10.0",
-          "Wp.Common": "1.0.4",
-          "Wp.Localization.Service": "1.0.9",
           "Wp.Resumes.Core": "1.0.0"
         },
         "runtime": {
@@ -3482,12 +3468,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AutoMapper/10.1.1": {
+    "AutoMapper/10.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
-      "path": "automapper/10.1.1",
-      "hashPath": "automapper.10.1.1.nupkg.sha512"
+      "sha512": "sha512-qxn9+PpQJD53PAUHGXW3HTcq6Rxbv3Pyq/jTcc60ZYwOygyqUfHIY3HBChKbDwtTHdlwlQqJeJ1ckVcaoytxxw==",
+      "path": "automapper/10.1.0",
+      "hashPath": "automapper.10.1.0.nupkg.sha512"
     },
     "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.0": {
       "type": "package",
@@ -3775,6 +3761,13 @@
       "sha512": "sha512-ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
+    },
+    "Nsr.Common.Service/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+      "path": "nsr.common.service/1.0.0",
+      "hashPath": "nsr.common.service.1.0.0.nupkg.sha512"
     },
     "Polly/7.2.1": {
       "type": "package",
@@ -4468,20 +4461,6 @@
       "sha512": "sha512-A/uxsWi/Ifzkmd4ArTLISMbfFs6XpRPsXZonrIqyTY70xi8t+mDtvSM5Os0RqyRDobjMBwIDHDL4NOIbkDwf7A==",
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
-    },
-    "Wp.Common/1.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LC2dRfyz5fQPscocpdzprD8MfWWDealCyl+VjhnxXJE1Gf4UI+ofn6/Ae05UL3A3BDT9FkknuqPB3XSYBFgNjA==",
-      "path": "wp.common/1.0.4",
-      "hashPath": "wp.common.1.0.4.nupkg.sha512"
-    },
-    "Wp.Localization.Service/1.0.9": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ESOyw21Ye0Z7L8QpuCUYkViMwnYkD5OeQj2xSevm2S+03WtZWnRTIGaSYQ96hbhmq1opfCtQsnI5/beXumR65g==",
-      "path": "wp.localization.service/1.0.9",
-      "hashPath": "wp.localization.service.1.0.9.nupkg.sha512"
     },
     "Wp.Resumes.Core/1.0.0": {
       "type": "project",

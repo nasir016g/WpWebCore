@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Wp.Core;
 
 namespace Wp.Web.Framework.ViewEngines.Razor

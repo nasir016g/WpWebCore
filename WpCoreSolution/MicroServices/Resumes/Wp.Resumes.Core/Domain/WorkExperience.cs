@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Wp.Common;
+using Nsr.Common.Core;
 
 
 namespace Wp.Resumes.Core.Domain

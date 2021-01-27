@@ -40,9 +40,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Wp.Common": {
+            "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.4, )"
+              "version": "[1.0.0, )"
             }
           },
           "imports": [

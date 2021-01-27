@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Wp.Localization.Core.Models;
+﻿using Nsr.Common.Core.Localization.Models;
+using System.Collections.Generic;
 
 namespace Wp.Resumes.WebApi.Models
 {

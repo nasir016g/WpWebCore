@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Wp.Common" Version="1.0.4" />
+    <PackageReference Include="Nsr.Common.Service" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

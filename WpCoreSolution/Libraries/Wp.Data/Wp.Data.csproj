@@ -8,14 +8,17 @@
     <Compile Remove="Mappings\Albums\**" />
     <Compile Remove="Mappings\Career\**" />
     <Compile Remove="Mappings\Common\**" />
+    <Compile Remove="Mappings\Localization\**" />
     <Compile Remove="Migrations\WpDb\**" />
     <EmbeddedResource Remove="Mappings\Albums\**" />
     <EmbeddedResource Remove="Mappings\Career\**" />
     <EmbeddedResource Remove="Mappings\Common\**" />
+    <EmbeddedResource Remove="Mappings\Localization\**" />
     <EmbeddedResource Remove="Migrations\WpDb\**" />
     <None Remove="Mappings\Albums\**" />
     <None Remove="Mappings\Career\**" />
     <None Remove="Mappings\Common\**" />
+    <None Remove="Mappings\Localization\**" />
     <None Remove="Migrations\WpDb\**" />
   </ItemGroup>
 
@@ -30,10 +33,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Wp.Core\Wp.Core.csproj" />
+    <PackageReference Include="Nsr.Common.Service" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\Localization\" />
+    <ProjectReference Include="..\Wp.Core\Wp.Core.csproj" />
   </ItemGroup>
 
 </Project>

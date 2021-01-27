@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Wp.Core\Wp.Core.csproj" />
     <ProjectReference Include="..\..\Libraries\Wp.Data\Wp.Data.csproj" />
     <ProjectReference Include="..\..\Libraries\Wp.Service\Wp.Services.csproj" />
     <ProjectReference Include="..\Wp.Web.Framework\Wp.Web.Framework.csproj" />

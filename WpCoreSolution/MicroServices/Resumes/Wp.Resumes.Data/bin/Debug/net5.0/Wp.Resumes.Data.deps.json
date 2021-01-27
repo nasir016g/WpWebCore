@@ -384,6 +384,22 @@
           }
         }
       },
+      "Nsr.Common.Service/1.0.0": {
+        "runtime": {
+          "lib/net5.0/Nsr.Common.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Service.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "runtime.native.System/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1041,17 +1057,9 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "Wp.Common/1.0.4": {
-        "runtime": {
-          "lib/net5.0/Wp.Common.dll": {
-            "assemblyVersion": "1.0.4.0",
-            "fileVersion": "1.0.4.0"
-          }
-        }
-      },
       "Wp.Resumes.Core/1.0.0": {
         "dependencies": {
-          "Wp.Common": "1.0.4"
+          "Nsr.Common.Service": "1.0.0"
         },
         "runtime": {
           "Wp.Resumes.Core.dll": {}
@@ -1260,6 +1268,13 @@
       "sha512": "sha512-ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
+    },
+    "Nsr.Common.Service/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+      "path": "nsr.common.service/1.0.0",
+      "hashPath": "nsr.common.service.1.0.0.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
@@ -1722,13 +1737,6 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
-    },
-    "Wp.Common/1.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LC2dRfyz5fQPscocpdzprD8MfWWDealCyl+VjhnxXJE1Gf4UI+ofn6/Ae05UL3A3BDT9FkknuqPB3XSYBFgNjA==",
-      "path": "wp.common/1.0.4",
-      "hashPath": "wp.common.1.0.4.nupkg.sha512"
     },
     "Wp.Resumes.Core/1.0.0": {
       "type": "project",

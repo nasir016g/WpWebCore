@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Wp.Localization.Core.LocaleStringResource>
+﻿@model IEnumerable<Nsr.Common.Core.Localization.LocaleStringResource>
 
 @{
     ViewData["Title"] = "Resources";
@@ -6,6 +6,15 @@
 }
 
 <h1>Resources</h1>
+
+
+<form asp-controller="Localization" asp-action="ImportXml" method="post"  enctype="multipart/form-data" class="form-inline bg-light">
+    
+    <input type="hidden" name="languageId" value="@ViewBag.LanguageId" />
+    <input type="file" name="file" />
+    <button type="submit" class="btn btn-dark">Upload File</button>
+</form>
+
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -26,22 +35,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResourceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResourceValue)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "ResourceEdit", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResourceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResourceValue)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "ResourceEdit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

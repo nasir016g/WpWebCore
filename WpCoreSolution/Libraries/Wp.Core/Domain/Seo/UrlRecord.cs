@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wp.Common;
+using Nsr.Common.Core;
 
 namespace Wp.Core.Domain.Seo
 {

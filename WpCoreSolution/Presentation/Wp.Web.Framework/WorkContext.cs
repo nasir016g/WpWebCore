@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nsr.Common.Services;
+using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Common;
 using Wp.Web.Framework.Extensions;
@@ -7,16 +9,16 @@ namespace Wp.Web.Framework
 {
     public class WorkContext : IWorkContext
     {
-        //private readonly ILanguageService _languageService;
+        private readonly ILanguageService _languageService;
         private readonly WebsiteSettings _websiteSettings;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        //public WorkContext(ILanguageService languageService, WebsiteSettings websiteSettings, IHttpContextAccessor httpContextAccessor)
-        //{
-        //    _languageService = languageService;
-        //    _websiteSettings = websiteSettings;
-        //    _httpContextAccessor = httpContextAccessor;
-        //}
+        public WorkContext(ILanguageService languageService, WebsiteSettings websiteSettings, IHttpContextAccessor httpContextAccessor)
+        {
+            _languageService = languageService;
+            _websiteSettings = websiteSettings;
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public WorkContext(WebsiteSettings websiteSettings, IHttpContextAccessor httpContextAccessor)
         {
@@ -40,7 +42,10 @@ namespace Wp.Web.Framework
                 {
                     model = new WorkContextModel();
                     model.WebSite = _websiteSettings;
-                    //model.WorkingLanguage = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault();
+
+                    model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
+
+                    //  model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
 
                     if (_httpContextAccessor.HttpContext.Session != null)
                     {
@@ -48,6 +53,11 @@ namespace Wp.Web.Framework
                     }
                 }
                 return model;
+            }
+
+            set
+            {
+                _httpContextAccessor.HttpContext.Session.SetObject("__SessionManager__", value);
             }
         }
 

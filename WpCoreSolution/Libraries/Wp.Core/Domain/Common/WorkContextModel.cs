@@ -3,6 +3,7 @@
     public class WorkContextModel
     {        
         public WebsiteSettings WebSite { get; set; }
-        //public Language WorkingLanguage { get; set; }
+        public int WorkingLanguageId { get; set; }
     }
+
 }

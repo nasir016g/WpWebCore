@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Net;
+using Nsr.Common.Core;
 using Wp.Core;
 
 namespace Wp.Web.Framework.Mvc.Filters

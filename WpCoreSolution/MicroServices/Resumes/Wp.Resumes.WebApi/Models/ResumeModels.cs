@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Nsr.Common.Core.Localization.Models;
 using System.Collections.Generic;
-using Wp.Localization.Core.Models;
 
 namespace Wp.Resumes.WebApi.Models
 {

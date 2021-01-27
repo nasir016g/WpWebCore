@@ -40,9 +40,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Wp.Common": {
+            "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.4, )"
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
@@ -180,6 +180,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "Nsr.Common.Service": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Polly": {
               "target": "Package",
               "version": "[7.2.1, )"
@@ -187,14 +191,6 @@
             "Serilog": {
               "target": "Package",
               "version": "[2.10.0, )"
-            },
-            "Wp.Common": {
-              "target": "Package",
-              "version": "[1.0.4, )"
-            },
-            "Wp.Localization.Service": {
-              "target": "Package",
-              "version": "[1.0.9, )"
             }
           },
           "imports": [
@@ -259,10 +255,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[10.1.1, )"
-            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.0, )"
@@ -277,17 +269,13 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Nsr.Common.Service": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
-            },
-            "Wp.Common": {
-              "target": "Package",
-              "version": "[1.0.4, )"
-            },
-            "Wp.Localization.Service": {
-              "target": "Package",
-              "version": "[1.0.9, )"
             }
           },
           "imports": [

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Wp.Common;
+using Nsr.Common.Core;
 
 
 namespace Wp.Resumes.Data

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Nsr.Common.Core;
+using System;
 using System.Data.Entity.Core.Objects;
-using System.Text;
-using Wp.Common;
-using Wp.Core;
 
 namespace Wp.Data.Extensions
 {

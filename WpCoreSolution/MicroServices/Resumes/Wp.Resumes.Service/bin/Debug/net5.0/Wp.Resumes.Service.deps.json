@@ -10,10 +10,9 @@
         "dependencies": {
           "EPPlus": "5.5.2",
           "Microsoft.Extensions.Logging": "5.0.0",
+          "Nsr.Common.Service": "1.0.0",
           "Polly": "7.2.1",
           "Serilog": "2.10.0",
-          "Wp.Common": "1.0.4",
-          "Wp.Localization.Service": "1.0.9",
           "Wp.Resumes.Core": "1.0.0"
         },
         "runtime": {
@@ -214,6 +213,22 @@
             "assetType": "runtime",
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "Nsr.Common.Service/1.0.0": {
+        "runtime": {
+          "lib/net5.0/Nsr.Common.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net5.0/Nsr.Common.Service.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -798,33 +813,9 @@
           }
         }
       },
-      "Wp.Common/1.0.4": {
-        "runtime": {
-          "lib/net5.0/Wp.Common.dll": {
-            "assemblyVersion": "1.0.4.0",
-            "fileVersion": "1.0.4.0"
-          }
-        }
-      },
-      "Wp.Localization.Service/1.0.9": {
-        "runtime": {
-          "lib/net5.0/Wp.Localization.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          },
-          "lib/net5.0/Wp.Localization.Data.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          },
-          "lib/net5.0/Wp.Localization.Service.dll": {
-            "assemblyVersion": "1.0.9.0",
-            "fileVersion": "1.0.9.0"
-          }
-        }
-      },
       "Wp.Resumes.Core/1.0.0": {
         "dependencies": {
-          "Wp.Common": "1.0.4"
+          "Nsr.Common.Service": "1.0.0"
         },
         "runtime": {
           "Wp.Resumes.Core.dll": {}
@@ -963,6 +954,13 @@
       "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
       "path": "microsoft.win32.systemevents/5.0.0",
       "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
+    },
+    "Nsr.Common.Service/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+      "path": "nsr.common.service/1.0.0",
+      "hashPath": "nsr.common.service.1.0.0.nupkg.sha512"
     },
     "Polly/7.2.1": {
       "type": "package",
@@ -1439,20 +1437,6 @@
       "sha512": "sha512-A/uxsWi/Ifzkmd4ArTLISMbfFs6XpRPsXZonrIqyTY70xi8t+mDtvSM5Os0RqyRDobjMBwIDHDL4NOIbkDwf7A==",
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
-    },
-    "Wp.Common/1.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LC2dRfyz5fQPscocpdzprD8MfWWDealCyl+VjhnxXJE1Gf4UI+ofn6/Ae05UL3A3BDT9FkknuqPB3XSYBFgNjA==",
-      "path": "wp.common/1.0.4",
-      "hashPath": "wp.common.1.0.4.nupkg.sha512"
-    },
-    "Wp.Localization.Service/1.0.9": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ESOyw21Ye0Z7L8QpuCUYkViMwnYkD5OeQj2xSevm2S+03WtZWnRTIGaSYQ96hbhmq1opfCtQsnI5/beXumR65g==",
-      "path": "wp.localization.service/1.0.9",
-      "hashPath": "wp.localization.service.1.0.9.nupkg.sha512"
     },
     "Wp.Resumes.Core/1.0.0": {
       "type": "project",

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Wp.Common;
+using Nsr.Common.Core;
 using Wp.Core.Domain.Configuration;
 
 namespace Wp.Services.Configuration

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Wp.Common;
+using Nsr.Common.Core;
 
 namespace Wp.Core.Domain.Tenants
 {

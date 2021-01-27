@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Wp.Common;
-using Wp.Core;
+﻿using Nsr.Common.Core;
+using System.Threading.Tasks;
 
 namespace Wp.Data
 {

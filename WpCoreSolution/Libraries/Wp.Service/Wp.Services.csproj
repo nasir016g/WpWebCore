@@ -21,13 +21,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.2" />
+    <PackageReference Include="Nsr.Common.Service" Version="1.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
-    <PackageReference Include="Wp.Common" Version="1.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Wp.Data\Wp.Data.csproj" />
-    <ProjectReference Include="..\Wp.Core\Wp.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

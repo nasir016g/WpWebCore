@@ -1,4 +1,4 @@
-﻿using Wp.Common;
+﻿using Nsr.Common.Core;
 using Wp.Core;
 using Wp.Core.Domain.Media;
 

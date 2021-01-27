@@ -36,33 +36,41 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Security" asp-action="UserIndex"><i class="fas fa-users"></i>Users</a>
                             </div>
                         </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ResumeManagement" asp-action="Index">CV</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fas fa-cogs"></i> Configurations <b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Localization" asp-action="Index"><i class="fa fa-globe"></i> Languages</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-header">SETTINGS</div>                             
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Website">Website</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Setting" asp-action="Localization">Localization</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CustomAttribute" asp-action="Index">Custom attributes</a>
+                            </div>
                         </li>
-                        @*
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Configurations <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index", "Language", new { area = "Admin" })"><i class="fa fa-globe"></i> Languages</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li role="presentation" class="dropdown-header">SETTINGS</li>
-                                    <li><a href="@Url.Action("Website", "Setting", new { area = "Admin" })">Website</a></li>
-                                    <li><a href="@Url.Action("Localization", "Setting", new { area = "Admin" })">Localization</a></li>
-                                    <li><a href="@Url.Action("Index", "CustomAttribute", new { area = "Admin" })">Custom attributes</a></li>
-                                </ul>
-                            </li>
 
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-asterisk"></i> Miscellaneous <b class="caret"></b></a>
-                                                <ul class="dropdown-menu">
-                                                </ul>
-                                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fas fa-lock"></i> Profile
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Resume" asp-action="Index"><i class="fas fa-users-cog"></i> Resumes</a>
+                            </div>
+                        </li>   
 
-                                        </ul>*@
+                        @*  <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-asterisk"></i> Miscellaneous <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                    </ul>
+                                </li>
+
+                            </ul>*@
 
                         @*<div class="col-md-2 pull-right" style="top:5px;"> @Html.Action("LanguageSelector", "Common", new { Area = "" })</div>*@
                         @*@Html.Partial("_LoginPartial")*@
-                       
+
                 </div>
             </div>
         </nav>
@@ -79,7 +87,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery-validation/jquery.validate.min.js"></script>
     <script src="~/lib/jqueryui/jquery-ui.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>   
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 

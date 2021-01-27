@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nsr.Common.Services;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Wp.Localization.Services;
 using Wp.Resumes.Core.Domain;
 using Wp.Resumes.Services;
 using Wp.Resumes.Services.ExportImport;

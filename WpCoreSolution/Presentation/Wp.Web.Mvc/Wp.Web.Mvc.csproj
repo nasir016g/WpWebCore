@@ -32,10 +32,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
-    <PackageReference Include="PagedList" Version="1.17.0" />
+    <PackageReference Include="Nsr.Common.Service" Version="1.0.0" />
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="Refit" Version="5.2.4" />
-    <PackageReference Include="Wp.Localization.Service" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>

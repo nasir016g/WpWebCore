@@ -14,7 +14,6 @@ namespace Wp.Resumes.Data.Mappings
             builder.HasOne(ei => ei.Education)
                 .WithMany(e => e.EducationItems)
                 .HasForeignKey(ei => ei.EducationId);
-        }
-       
+        }       
     }
 }

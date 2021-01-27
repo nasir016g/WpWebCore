@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jO2aFoAmvS+7Ag0i00wH1a7kdB4geCRZa+2jeeOmIcrG+HWI85+UKvXX12ECgJl7gMIrIf4lRo+4k+XkIR/n7Q==",
+  "dgSpecHash": "DepImOqKRszHHibGbgzgbmLUtuL+bTi8SRVwBGs7APesoBrQIEmvCyjcimf4PI7BnKE5WjmINooKBA2WewnISg==",
   "success": true,
   "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Service\\Wp.Resumes.Service.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.0\\nsr.common.service.1.0.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\polly\\7.2.1\\polly.7.2.1.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -89,9 +90,7 @@
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\wp.common\\1.0.4\\wp.common.1.0.4.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\wp.localization.service\\1.0.9\\wp.localization.service.1.0.9.nupkg.sha512"
+    "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

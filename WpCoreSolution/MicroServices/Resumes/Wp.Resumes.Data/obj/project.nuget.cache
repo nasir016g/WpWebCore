@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Pk2TwBScrHw9/p+8b7dDegjrE96iM/eXBJTmNDJ6P6aBfa1sahG0gshp3+5pz4muq5+4dJ+/F4Z3Tuv+lBwVLQ==",
+  "dgSpecHash": "NHY9zctOAkc4L9PCjJ1sqKCywidLFX3nW62JvI5crpL3015W+xjDJx/rwL6gcP49StE3dlr1qUzX/3dsUDu6nA==",
   "success": true,
   "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Data\\Wp.Resumes.Data.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.0\\nsr.common.service.1.0.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
@@ -97,8 +98,7 @@
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\wp.common\\1.0.4\\wp.common.1.0.4.nupkg.sha512"
+    "C:\\Users\\nasir\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

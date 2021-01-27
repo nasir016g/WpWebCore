@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Services;
 using System.ComponentModel;
 using Wp.Core;
 
@@ -22,13 +23,13 @@ namespace Wp.Web.Framework
             {
                 using(var serviceScope = ServiceLocator.GetScope())
                 {
-                    //var langId = serviceScope.ServiceProvider.GetService<IWorkContext>().Current.WorkingLanguage.Id;
-                    //_resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
-                    //if (string.IsNullOrEmpty(_resourceValue))
-                    //{
+                    var langId = serviceScope.ServiceProvider.GetService<IWorkContext>().Current.WorkingLanguageId;
+                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
+                    if (string.IsNullOrEmpty(_resourceValue))
+                    {
                         return ResourceKey;
-                    //}
-                    //return _resourceValue;
+                    }
+                    return _resourceValue;
                 }
 
                

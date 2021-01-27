@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Wp.Common;
+using Nsr.Common.Core;
 using Wp.Core;
 using Wp.Core.Domain.Tenants;
 using Wp.Data;

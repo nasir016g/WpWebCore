@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Wp.Common;
+using Nsr.Common.Core;
 using Wp.Resumes.Core.Domain;
 
 namespace Wp.Resumes.Services

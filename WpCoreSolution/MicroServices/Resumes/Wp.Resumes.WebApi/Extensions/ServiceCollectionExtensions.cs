@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
 using System;
-using Wp.Common;
 using Wp.Resumes.Data;
 using Wp.Resumes.Data.Repositories;
 using Wp.Resumes.Services;

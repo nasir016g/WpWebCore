@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Wp.Common;
+using Nsr.Common.Core;
 using Wp.Core.Caching;
 
 using Wp.Core.Domain.Configuration;

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Nsr.Common.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Wp.Localization.Services;
 using Wp.Resumes.Core.Domain;
 
 namespace Wp.Resumes.Services.ExportImport

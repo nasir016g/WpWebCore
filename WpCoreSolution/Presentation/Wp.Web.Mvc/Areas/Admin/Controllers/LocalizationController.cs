@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PagedList;
+using Nsr.Common.Core.Localization;
+using Nsr.Common.Services;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using Wp.Localization.Core;
-using Wp.Localization.Services;
-using Wp.Web.Mvc.Models;
-using Wp.Web.Mvc.RestClients;
 
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
@@ -32,31 +29,19 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             _resiliencyHelper = new ResiliencyHelper(_logger);
         }
 
+        #region Language
+
         [HttpGet]
         public IActionResult Index()
         {
-           var model = _languageService.GetAll();
-
-            //return await _resiliencyHelper.ExecuteResilient(async () =>
-            //{
-            //    var model = await _localizationManagementApi.GetLanguages();
-
-            //    return View(model);
-            //}, View("Offline"));
+           var model = _languageService.GetAll();           
 
             return View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            //return await _resiliencyHelper.ExecuteResilient(async () =>
-            //{
-
-            //    var model = await _localizationManagementApi.GetLanguageById(id);
-
-            //    return View(model);
-            //}, View("Offline"));
+        public IActionResult Details(int id)
+        {           
            var model = _languageService.GetById(id);
            return View(model);
         }
@@ -83,14 +68,13 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             {
                 return View(model);
             }
-
-            _languageService.Update(model);
-
-            //return await _resiliencyHelper.ExecuteResilient<IActionResult>(async () =>
-            //{
-            //    await _localizationManagementApi.Update(model.Id, model);
-            //    return RedirectToAction("Index");
-            //}, View("Offline"));
+            var entity = _languageService.GetById(model.Id);
+            entity.FlagImageFileName = model.FlagImageFileName;
+            entity.DisplayOrder = model.DisplayOrder;
+            entity.LanguageCulture = model.LanguageCulture;
+            entity.Name = model.Name;
+            entity.Published = model.Published;
+            _languageService.Update(entity);
 
             return RedirectToAction("Index");
         }
@@ -108,32 +92,21 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             _languageService.Delete(entity);
             return RedirectToAction("Index");
         }
+        
+        #endregion
 
         #region Resources
 
         public IActionResult Resources(int languageId)
         {
-            //return await _resiliencyHelper.ExecuteResilient(async () =>
-            //{
-            //    var model = await _localizationManagementApi.GetResources(languageId);
-
-            //    return View(model);
-            //}, View("Offline"));
-
+            ViewBag.LanguageId = languageId;
             var model = _localizationService.GetAll().Where(x => x.LanguageId == languageId).ToList();
             return View(model);
         }        
        
 
         public IActionResult ResourceEdit(int id)
-        {
-            //return await _resiliencyHelper.ExecuteResilient(async () =>
-            //{
-
-            //    var model = await _localizationManagementApi.GetResourceById(id);
-
-            //    return View(model);
-            //}, View("Offline"));
+        {            
             var model = _localizationService.GetById(id);
             return View(model);
         }
@@ -144,13 +117,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
-
-            //return await _resiliencyHelper.ExecuteResilient<IActionResult>(async () =>
-            //{
-            //    await _localizationManagementApi.UpdateResource(model.Id, model);
-            //    return RedirectToAction("Resources");
-            //}, View("Offline"));
+            }           
 
             _localizationService.Update(model);
             return RedirectToAction("Resources");
@@ -160,19 +127,43 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
         [HttpPost]
         public IActionResult ResourceDelete(int id)
-        {
-            //return await _resiliencyHelper.ExecuteResilient<IActionResult>(async () =>
-            //{
-            //    await _localizationManagementApi.Delete(id);
-            //    return RedirectToAction("Resources");
-            //}, View("Offline"));
-
+        {            
            var entity = _localizationService.GetById(id);
             _localizationService.Delete(entity);
 
             return RedirectToAction("Resources");
         }
 
+        #endregion
+
+        #region Export / Import
+
+        [HttpPost("ImportXml")]
+        public IActionResult ImportXml(int languageId, IFormFile file)
+        {
+            var language = _languageService.GetById(languageId);
+            if (language == null)
+                //No language found with the specified id
+                return BadRequest("Language is not found");
+
+            if (file == null || file.Length == 0) return null;
+
+            try
+            {
+                using (var sr = new StreamReader(file.OpenReadStream()))
+                {
+                    string content = sr.ReadToEnd();
+                    _localizationService.ImportResourcesFromXml(language, content);
+                }
+            }
+            catch (Exception exc)
+            {
+                throw new InvalidOperationException(exc.Message);
+            }
+
+            return NoContent();
+        }
+        
         #endregion
     }
 }

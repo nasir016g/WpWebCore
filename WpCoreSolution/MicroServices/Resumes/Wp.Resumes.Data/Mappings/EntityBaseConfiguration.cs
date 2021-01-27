@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Wp.Common;
+using Nsr.Common.Core;
 
 namespace Wp.Resumes.Data.Mappings
 {

@@ -229,6 +229,19 @@
           }
         }
       },
+      "Nsr.Common.Service/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Nsr.Common.Core.dll": {},
+          "lib/net5.0/Nsr.Common.Data.dll": {},
+          "lib/net5.0/Nsr.Common.Service.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Nsr.Common.Core.dll": {},
+          "lib/net5.0/Nsr.Common.Data.dll": {},
+          "lib/net5.0/Nsr.Common.Service.dll": {}
+        }
+      },
       "Polly/7.2.1": {
         "type": "package",
         "compile": {
@@ -1266,33 +1279,11 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "Wp.Common/1.0.4": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/Wp.Common.dll": {}
-        },
-        "runtime": {
-          "lib/net5.0/Wp.Common.dll": {}
-        }
-      },
-      "Wp.Localization.Service/1.0.9": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/Wp.Localization.Core.dll": {},
-          "lib/net5.0/Wp.Localization.Data.dll": {},
-          "lib/net5.0/Wp.Localization.Service.dll": {}
-        },
-        "runtime": {
-          "lib/net5.0/Wp.Localization.Core.dll": {},
-          "lib/net5.0/Wp.Localization.Data.dll": {},
-          "lib/net5.0/Wp.Localization.Service.dll": {}
-        }
-      },
       "Wp.Resumes.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Wp.Common": "1.0.4"
+          "Nsr.Common.Service": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Wp.Resumes.Core.dll": {}
@@ -1684,6 +1675,20 @@
         "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Nsr.Common.Service/1.0.0": {
+      "sha512": "yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+      "type": "package",
+      "path": "nsr.common.service/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Nsr.Common.Core.dll",
+        "lib/net5.0/Nsr.Common.Data.dll",
+        "lib/net5.0/Nsr.Common.Service.dll",
+        "nsr.common.service.1.0.0.nupkg.sha512",
+        "nsr.common.service.nuspec"
       ]
     },
     "Polly/7.2.1": {
@@ -4742,32 +4747,6 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "Wp.Common/1.0.4": {
-      "sha512": "LC2dRfyz5fQPscocpdzprD8MfWWDealCyl+VjhnxXJE1Gf4UI+ofn6/Ae05UL3A3BDT9FkknuqPB3XSYBFgNjA==",
-      "type": "package",
-      "path": "wp.common/1.0.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net5.0/Wp.Common.dll",
-        "wp.common.1.0.4.nupkg.sha512",
-        "wp.common.nuspec"
-      ]
-    },
-    "Wp.Localization.Service/1.0.9": {
-      "sha512": "ESOyw21Ye0Z7L8QpuCUYkViMwnYkD5OeQj2xSevm2S+03WtZWnRTIGaSYQ96hbhmq1opfCtQsnI5/beXumR65g==",
-      "type": "package",
-      "path": "wp.localization.service/1.0.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net5.0/Wp.Localization.Core.dll",
-        "lib/net5.0/Wp.Localization.Data.dll",
-        "lib/net5.0/Wp.Localization.Service.dll",
-        "wp.localization.service.1.0.9.nupkg.sha512",
-        "wp.localization.service.nuspec"
-      ]
-    },
     "Wp.Resumes.Core/1.0.0": {
       "type": "project",
       "path": "../Wp.Resumes.Core/Wp.Resumes.Core.csproj",
@@ -4778,10 +4757,9 @@
     "net5.0": [
       "EPPlus >= 5.5.2",
       "Microsoft.Extensions.Logging >= 5.0.0",
+      "Nsr.Common.Service >= 1.0.0",
       "Polly >= 7.2.1",
       "Serilog >= 2.10.0",
-      "Wp.Common >= 1.0.4",
-      "Wp.Localization.Service >= 1.0.9",
       "Wp.Resumes.Core >= 1.0.0"
     ]
   },
@@ -4836,6 +4814,10 @@
             "target": "Package",
             "version": "[5.0.0, )"
           },
+          "Nsr.Common.Service": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "Polly": {
             "target": "Package",
             "version": "[7.2.1, )"
@@ -4843,14 +4825,6 @@
           "Serilog": {
             "target": "Package",
             "version": "[2.10.0, )"
-          },
-          "Wp.Common": {
-            "target": "Package",
-            "version": "[1.0.4, )"
-          },
-          "Wp.Localization.Service": {
-            "target": "Package",
-            "version": "[1.0.9, )"
           }
         },
         "imports": [

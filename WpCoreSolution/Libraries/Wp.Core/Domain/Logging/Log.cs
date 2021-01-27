@@ -1,5 +1,5 @@
 ﻿using System;
-using Wp.Common;
+using Nsr.Common.Core;
 
 namespace Wp.Core.Domain.Logging
 {

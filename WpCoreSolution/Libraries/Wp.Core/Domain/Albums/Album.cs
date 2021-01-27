@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Wp.Common;
+﻿using Nsr.Common.Core;
+using System.Collections.Generic;
 
 namespace Wp.Core.Domain.Albums
 {
