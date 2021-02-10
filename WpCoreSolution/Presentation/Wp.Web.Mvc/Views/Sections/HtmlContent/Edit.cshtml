@@ -1,0 +1,73 @@
+﻿@model Wp.Web.Mvc.Models.Sections.HtmlContentSectionModel
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.WebPageId)       
+
+        @(Html.LocalizedEditor<HtmlContentSectionModel, HtmlContentLocalizedModel>("htmlcontent-info-localized",
+        @<div class="form-group">
+            @Html.HiddenFor(model => model.Locales[item].LanguageId)
+            @Html.LabelFor(model => model.Locales[item].Html, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="ckeditor_Html_@Model.Locales[item].LanguageId" class="ckeditor" rows="10" name="Locales[@item].Html">@Model.Locales[item].Html</textarea>
+                <script type="text/javascript">
+                    var editor = CKEDITOR.replace('ckeditor_Html_@Model.Locales[item].LanguageId',
+                {
+                    toolbar: 'Full',
+                    height: 450
+                });
+
+                    CKFinder.setupCKEditor(editor, '@Url.Content("~/ckfinder/")');
+                </script>
+
+            </div>
+        </div>
+        ,
+        @<div class="form-group">
+            @Html.LabelFor(model => model.Html, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="ckeditor1" class="ckeditor" rows="10" name="Html">@Model.Html</textarea>
+                <script type="text/javascript">
+                    var editor = CKEDITOR.replace('ckeditor1',
+                    {
+                        toolbar: 'Full',
+                        height: 450
+                    });
+
+                    CKFinder.setupCKEditor(editor, '@Url.Content("~/ckfinder/")');
+                </script>
+                @Html.ValidationMessageFor(model => model.Html)
+            </div>
+        </div>
+                          ))
+       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default" name="submitType" value="@SubmitType.Save">@T("Common.Save")</button>
+                <button type="submit" class="btn btn-default" name="submitType" value="@SubmitType.Cancel">@T("Common.Cancel")</button> 
+                <button type="submit" class="btn btn-default" name="submitType" value="@SubmitType.Cancel">@T("Common.ViewMode")</button>                       
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+<script src="//cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script>
+}

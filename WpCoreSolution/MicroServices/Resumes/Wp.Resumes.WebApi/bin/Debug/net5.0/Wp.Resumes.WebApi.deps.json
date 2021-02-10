@@ -28,7 +28,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.Design": "5.0.2",
-          "Nsr.Common.Service": "1.0.0",
+          "Nsr.Common.Service": "1.0.6",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Wp.Resumes.Data": "1.0.0",
           "Wp.Resumes.Service": "1.0.0",
@@ -352,6 +352,33 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "BouncyCastle/1.8.6.1": {
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.6.0",
+            "fileVersion": "1.8.20052.1"
+          }
+        },
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "DocX/1.7.1": {
+        "runtime": {
+          "lib/net40/Xceed.Document.NET.dll": {
+            "assemblyVersion": "1.7.0.0",
+            "fileVersion": "1.7.0.0"
+          },
+          "lib/net40/Xceed.Words.NET.dll": {
+            "assemblyVersion": "1.7.0.0",
+            "fileVersion": "1.7.0.0"
+          }
+        },
+        "compile": {
+          "lib/net40/Xceed.Document.NET.dll": {},
+          "lib/net40/Xceed.Words.NET.dll": {}
+        }
+      },
       "EPPlus/5.5.2": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Json": "5.0.0",
@@ -384,6 +411,20 @@
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
           }
+        }
+      },
+      "iTextSharp/5.5.13.2": {
+        "dependencies": {
+          "BouncyCastle": "1.8.6.1"
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {
+            "assemblyVersion": "5.5.13.2",
+            "fileVersion": "5.5.13.2"
+          }
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.7.0": {},
@@ -797,7 +838,7 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Nsr.Common.Service/1.0.0": {
+      "Nsr.Common.Service/1.0.6": {
         "runtime": {
           "lib/net5.0/Nsr.Common.Core.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -808,8 +849,8 @@
             "fileVersion": "1.0.0.0"
           },
           "lib/net5.0/Nsr.Common.Service.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
           }
         },
         "compile": {
@@ -1736,7 +1777,7 @@
       },
       "Wp.Resumes.Core/1.0.0": {
         "dependencies": {
-          "Nsr.Common.Service": "1.0.0"
+          "Nsr.Common.Service": "1.0.6"
         },
         "runtime": {
           "Wp.Resumes.Core.dll": {}
@@ -1760,12 +1801,14 @@
       },
       "Wp.Resumes.Service/1.0.0": {
         "dependencies": {
+          "DocX": "1.7.1",
           "EPPlus": "5.5.2",
           "Microsoft.Extensions.Logging": "5.0.0",
-          "Nsr.Common.Service": "1.0.0",
+          "Nsr.Common.Service": "1.0.6",
           "Polly": "7.2.1",
           "Serilog": "2.10.0",
-          "Wp.Resumes.Core": "1.0.0"
+          "Wp.Resumes.Core": "1.0.0",
+          "iTextSharp": "5.5.13.2"
         },
         "runtime": {
           "Wp.Resumes.Service.dll": {}
@@ -3482,6 +3525,20 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512"
     },
+    "BouncyCastle/1.8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rkqpuKmJkdcfTMBkIj1b5nMdBAWKwAyh+I/BQYeqqSD2jkIlhwc9qBNKmSbnpmmm5c29qHZGLpvBSTNWvDLtQA==",
+      "path": "bouncycastle/1.8.6.1",
+      "hashPath": "bouncycastle.1.8.6.1.nupkg.sha512"
+    },
+    "DocX/1.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WsbpQ238RrvZ/T/MT2UGt7GQg1CjVzntImtlKuV0Fiq37rieGPuU5wWorwZ2fKFBE78e9kx0msYqhlaIt40vLQ==",
+      "path": "docx/1.7.1",
+      "hashPath": "docx.1.7.1.nupkg.sha512"
+    },
     "EPPlus/5.5.2": {
       "type": "package",
       "serviceable": true,
@@ -3495,6 +3552,13 @@
       "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
+    "iTextSharp/5.5.13.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8m9oT1nh9F4Z1tzWUey/8lEzZtMGFCDXQY5+8/SSmPgUWAAAWniRo8pimKUZyteNqJr5vtFBxjAhRwLxG7Q0zQ==",
+      "path": "itextsharp/5.5.13.2",
+      "hashPath": "itextsharp.5.5.13.2.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -3762,12 +3826,12 @@
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
     },
-    "Nsr.Common.Service/1.0.0": {
+    "Nsr.Common.Service/1.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
-      "path": "nsr.common.service/1.0.0",
-      "hashPath": "nsr.common.service.1.0.0.nupkg.sha512"
+      "sha512": "sha512-GGyWnre+TCozqpEMXhIEQX/5klw0Vh2qL4kA3+s8gkuqAxTsyHmtg+YEWAvB5dJrKlYDYaGGC5OZlNGjl3ND7w==",
+      "path": "nsr.common.service/1.0.6",
+      "hashPath": "nsr.common.service.1.0.6.nupkg.sha512"
     },
     "Polly/7.2.1": {
       "type": "package",

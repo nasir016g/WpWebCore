@@ -1,1 +1,0 @@
-C:\Git\WpWebCore\WpCoreSolution\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

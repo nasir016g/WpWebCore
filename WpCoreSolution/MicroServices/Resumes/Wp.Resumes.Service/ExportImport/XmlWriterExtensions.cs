@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Nsr.Common.Core;
+using Nsr.Common.Core.Localization;
+using Nsr.Common.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Xml;
-using Wp.Common;
-using Wp.Core;
-using Wp.Core.Domain.Localization;
-using Wp.Services.Localization;
 
 namespace Wp.Resumes.Services.ExportImport
 {

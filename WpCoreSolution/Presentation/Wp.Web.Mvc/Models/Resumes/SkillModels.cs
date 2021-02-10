@@ -1,53 +1,27 @@
-﻿using Nsr.Common.Core.Localization.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Wp.Web.Mvc.Models
+namespace Wp.Web.Mvc.Models.Resumes
 {
-    #region group
-
-    public class SkillModel : ILocalizedModel<SkillLocalizedModel>
+    public class SkillModel
     {
         public SkillModel()
         {
-            Locales = new List<SkillLocalizedModel>();
+            Items = new List<SkillItemModel>();
         }
+
         public int Id { get; set; }
-        public int ResumeId { get; set; }
         public string Name { get; set; }
-        public int DisplayOrder { get; set; }
-        public IList<SkillLocalizedModel> Locales { get; set; }
+        public IList<SkillItemModel> Items { get; set; }
     }
 
-    public class SkillLocalizedModel : ILocalizedModelLocal
+    public class SkillItemModel
     {
-        public int LanguageId { get; set; }
-        public string Name { get; set; }
-    }
-
-    #endregion
-
-    #region items
-
-    public class SkillItemModel : ILocalizedModel<SkillItemLocalizedModel>
-    {
-        public SkillItemModel()
-        {
-            Locales = new List<SkillItemLocalizedModel>();
-        }
         public int Id { get; set; }
-        public int SkillId { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
         public string LevelDescription { get; set; }
-        public IList<SkillItemLocalizedModel> Locales { get; set; }
     }
-
-    public class SkillItemLocalizedModel : ILocalizedModelLocal
-    {
-        public int LanguageId { get; set; }
-        public string Name { get; set; }
-        public string LevelDescription { get; set; }
-    }
-
-    #endregion
 }

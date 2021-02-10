@@ -6,10 +6,10 @@ using Wp.Data.Mappings;
 namespace Wp.Core.Mappings.Sections
 {
     public class ResumeMap : EntityBaseConfiguration<ResumeSection>
-  {
-      public override void Configure(EntityTypeBuilder<ResumeSection> entityBuilder) 
+    {
+        public override void Configure(EntityTypeBuilder<ResumeSection> entityBuilder)
         {
-            //entityBuilder.ToTable("Section_Resume"); 
+            entityBuilder.ToTable("Section_Resume"); 
+        }
     }
-  } 
 }

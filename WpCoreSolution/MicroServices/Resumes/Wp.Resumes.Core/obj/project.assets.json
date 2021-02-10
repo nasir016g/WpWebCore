@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "Nsr.Common.Service/1.0.0": {
+      "Nsr.Common.Service/1.0.6": {
         "type": "package",
         "compile": {
           "lib/net5.0/Nsr.Common.Core.dll": {},
@@ -18,28 +18,29 @@
     }
   },
   "libraries": {
-    "Nsr.Common.Service/1.0.0": {
-      "sha512": "yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+    "Nsr.Common.Service/1.0.6": {
+      "sha512": "GGyWnre+TCozqpEMXhIEQX/5klw0Vh2qL4kA3+s8gkuqAxTsyHmtg+YEWAvB5dJrKlYDYaGGC5OZlNGjl3ND7w==",
       "type": "package",
-      "path": "nsr.common.service/1.0.0",
+      "path": "nsr.common.service/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net5.0/Nsr.Common.Core.dll",
         "lib/net5.0/Nsr.Common.Data.dll",
         "lib/net5.0/Nsr.Common.Service.dll",
-        "nsr.common.service.1.0.0.nupkg.sha512",
+        "nsr.common.service.1.0.6.nupkg.sha512",
         "nsr.common.service.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Nsr.Common.Service >= 1.0.0"
+      "Nsr.Common.Service >= 1.0.6"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nasir\\.nuget\\packages\\": {}
+    "C:\\Users\\nasir\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -50,6 +51,9 @@
       "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
       "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -79,7 +83,7 @@
         "dependencies": {
           "Nsr.Common.Service": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.0.6, )"
           }
         },
         "imports": [

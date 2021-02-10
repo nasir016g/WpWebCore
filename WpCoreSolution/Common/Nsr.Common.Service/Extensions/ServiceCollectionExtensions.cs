@@ -2,24 +2,27 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
+using Nsr.Common.Core.Caching;
 using Nsr.Common.Core.Localization;
 using Nsr.Common.Data;
 using Nsr.Common.Data.Repositories;
+using Nsr.Common.Service.Configuration;
 using Nsr.Common.Services;
 using System;
 
-namespace Wp.Localization.Extensions
+namespace Nsr.Common.Extensions
 {
     public static class ServiceCollectionExtensions
     {
         private static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<WpCommonDbContext>(options =>
+            services.AddDbContext<NsrCommonDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("LocalizationConnection"),
+                options.UseSqlServer(configuration.GetConnectionString("CommonConnection"),
                 sqlServerOptionsAction: x =>
                 {
-                    x.MigrationsAssembly("Wp.Localization.Data");
+                    x.MigrationsAssembly("Nsr.Common.Data");
                     x.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                 });
                 //options
@@ -40,13 +43,11 @@ namespace Wp.Localization.Extensions
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                using (WpCommonDbContext context = serviceScope.ServiceProvider.GetService<WpCommonDbContext>())
+                using (NsrCommonDbContext context = serviceScope.ServiceProvider.GetService<NsrCommonDbContext>())
                 {
                     context.Database.Migrate();
 
                 }
-
-
             }
         }     
 
@@ -58,26 +59,38 @@ namespace Wp.Localization.Extensions
 
             // services
             services.AddScoped<ICommonUnitOfWork, CommonUnitOfWork>();
+            services.AddScoped<ICacheManager, PerRequestCacheManager>();
+            
 
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
 
+            services.AddScoped<ISettingService, SettingService>();
+            //services.AddScoped<ISettings>( sp =>
+            //{
+            //    var see = sp.GetService<ISettingService>().LoadSetting<LocalizationSettings>();
+            //    return see;
+            //});
+           
+
+
+
             return services;
         }
    
-        public static IServiceCollection AddLocalization(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddNsrCommon(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContexts(configuration);
             services.AddServices();
             return services;             
         }
 
-        public static void UseLocalization(IApplicationBuilder app)
+        public static void UseNsrCommon(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                using (WpCommonDbContext context = serviceScope.ServiceProvider.GetService<WpCommonDbContext>())
+                using (NsrCommonDbContext context = serviceScope.ServiceProvider.GetService<NsrCommonDbContext>())
                 {
                     context.Database.Migrate();
 

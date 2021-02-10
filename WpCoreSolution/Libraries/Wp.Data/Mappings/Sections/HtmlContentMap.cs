@@ -9,6 +9,7 @@ namespace Wp.Core.Mappings.Sections
   {
     public override void Configure(EntityTypeBuilder<HtmlContentSection> entityBuilder) 
         {
+            entityBuilder.ToTable("Section_HtmlContent");
             entityBuilder.Property(c => c.Html).HasMaxLength(4000);
             //entityBuilder.ToTable("Section_HtmlContent"); 
     }

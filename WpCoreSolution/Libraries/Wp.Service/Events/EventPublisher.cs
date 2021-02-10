@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Nsr.Common.Core.Localization;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Wp.Core;
 namespace Wp.Services.Events
 {
     public partial class EventPublisher : IEventPublisher

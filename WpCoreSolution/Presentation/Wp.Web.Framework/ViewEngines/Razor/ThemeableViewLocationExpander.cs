@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
 using System.Collections.Generic;
 using System.Linq;
 using Wp.Core;
@@ -17,10 +18,10 @@ namespace Wp.Web.Framework.ViewEngines.Razor
                     {
                         "/Themes/" + theme + "/Views/{1}/{0}.cshtml",
                         "/Themes/" + theme + "/Views/Shared/{0}.cshtml",
-                        //"~/Themes/" + theme + "/Views/Shared/{1}/{0}.cshtml",
-                        //"~/Themes/" + theme + "/Views/Extensions/{1}/{0}.cshtml",
-                        //"~/Views/Extensions/{1}/{0}.cshtml",
-                        //"~/Views/Sections/{1}/{0}.cshtml",
+                        "/Themes/" + theme + "/Views/Shared/{1}/{0}.cshtml",
+                        "/Themes/" + theme + "/Views/Extensions/{1}/{0}.cshtml",
+                        "/Views/Extensions/{1}/{0}.cshtml",
+                        "/Views/Sections/{1}/{0}.cshtml",
                     }.Union(viewLocations).ToArray();
 
 
@@ -33,7 +34,9 @@ namespace Wp.Web.Framework.ViewEngines.Razor
         public void PopulateValues(ViewLocationExpanderContext context)
         {
             var workContext = context.ActionContext.HttpContext.RequestServices.GetRequiredService<IWorkContext>();
-            string theme = workContext.Current.WebSite.Theme;
+            string theme = workContext.Current?.WebSite?.Theme;
+            //theme ??= "Default";
+            
             context.Values["Theme"] = theme;
         }
     }

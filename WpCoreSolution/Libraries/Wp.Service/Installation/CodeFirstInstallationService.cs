@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Nsr.Common.Core;
+using Nsr.Common.Core.Localization;
+using Nsr.Common.Data;
+using Nsr.Common.Data.Repositories;
+using Nsr.Common.Service.Configuration;
+using Nsr.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Nsr.Common.Core;
 using Wp.Core;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Sections;
@@ -14,7 +19,6 @@ using Wp.Core.Domain.Seo;
 using Wp.Core.Domain.WebPages;
 using Wp.Core.Security;
 using Wp.Service.Security;
-using Wp.Services.Configuration;
 
 namespace Wp.Services.Installation
 {
@@ -28,11 +32,12 @@ namespace Wp.Services.Installation
     {
         #region Fields
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICommonUnitOfWork _commonUnitOfWork;
         private readonly ISettingService _settingService;
         private readonly IBaseRepository<WebPage> _webPageRepo;
         private readonly IBaseRepository<WebPageRole> _webPageRoleRepo;
         private readonly IBaseRepository<UrlRecord> _urlRecordRepo;
-        //private readonly IBaseRepository<Language> _languageRepo;
+        private readonly ICommonBaseRepository<Language> _languageRepo;
         private readonly IBaseRepository<Section> _sectionRepo;
 
         public UserManager<ApplicationUser> _userManager;
@@ -40,7 +45,7 @@ namespace Wp.Services.Installation
         public IHostingEnvironment _hostingEnvironment;
         private readonly ITenantService _tenantService;
         private readonly IClaimProvider _claimProvider;
-        //private readonly ILocalizationService _localizationService;
+        private readonly ILocalizationService _localizationService;
 
 
         #endregion
@@ -48,25 +53,27 @@ namespace Wp.Services.Installation
         #region Ctor
 
         public CodeFirstInstallationService(IUnitOfWork unitOfWork,
+            ICommonUnitOfWork commonUnitOfWork,
             ISettingService settingService,
             IBaseRepository<WebPage> webPageRepo,
             IBaseRepository<WebPageRole> webPageRoleRepo,
             IBaseRepository<UrlRecord> urlRecordRepo,
-            //IBaseRepository<Language> languageRepo,
+            ICommonBaseRepository<Language> languageRepo,
             IBaseRepository<Section> sectionRepo,
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IHostingEnvironment hostingEnvironment,
             ITenantService tenantService,
-            IClaimProvider claimProvider
-            //ILocalizationService localizationService
+            IClaimProvider claimProvider,
+            ILocalizationService localizationService
             )
         {
             _unitOfWork = unitOfWork;
+            _commonUnitOfWork = commonUnitOfWork;
             this._webPageRepo = webPageRepo;
             this._webPageRoleRepo = webPageRoleRepo;
             this._urlRecordRepo = urlRecordRepo;
-            //this._languageRepo = languageRepo;
+            _languageRepo = languageRepo;
             this._sectionRepo = sectionRepo;
             _settingService = settingService;
             _userManager = userManager;
@@ -75,7 +82,7 @@ namespace Wp.Services.Installation
 
             _tenantService = tenantService;
             _claimProvider = claimProvider;
-            //_localizationService = localizationService;
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -104,6 +111,7 @@ namespace Wp.Services.Installation
                     page.CreatedOn = DateTime.Now;
                     page.UpdatedOn = DateTime.Now;
                     _webPageRepo.Add(page);
+                    _unitOfWork.Complete();
                     var urlRecord = new UrlRecord()
                     {
                         EntityId = page.Id,
@@ -119,40 +127,41 @@ namespace Wp.Services.Installation
 
         }
 
-        //private void InstallLanguages()
-        //{
-        //    if (_languageRepo.Table.Count() == 0)
-        //    {
-        //        var languages = new List<Language>()
-        //        {
-        //            new Language { Name = "English", LanguageCulture = "en-Us", UniqueSeoCode = "en", FlagImageFileName = "us.png", Published = true },
-        //            new Language { Name = "Nederlands", LanguageCulture = "nl-NL", UniqueSeoCode = "nl", FlagImageFileName = "nl.png", Published = true }
-        //        };
+        private void InstallLanguages()
+        {
+            if (_languageRepo.Table.Count() == 0)
+            {
+                var languages = new List<Language>()
+                {
+                    new Language { Name = "English", LanguageCulture = "en-Us", UniqueSeoCode = "en", FlagImageFileName = "us.png", Published = true },
+                    new Language { Name = "Nederlands", LanguageCulture = "nl-NL", UniqueSeoCode = "nl", FlagImageFileName = "nl.png", Published = true }
+                };
 
-        //        languages.ForEach(l => _languageRepo.Add(l));
-        //        _unitOfWork.Complete();
+                languages.ForEach(l => _languageRepo.Add(l));
+                _commonUnitOfWork.Complete();
 
-        //        //InstallLocaleResources();
-        //    }
+                //InstallLocaleResources();
+            }
 
-        //    InstallLocaleResources();
-        //}
+            InstallLocaleResources();
+        }
 
-        //private void InstallLocaleResources()
-        //{
-        //    var webRoot = _hostingEnvironment.WebRootPath;
-        //    //var file = System.IO.Path.Combine(webRoot, "test.txt");
-        //    foreach (var language in _languageRepo.Table.ToList())
-        //    {
-        //        foreach (var filePath in System.IO.Directory.EnumerateFiles(Path.Combine(webRoot, "Localization/"), string.Format("*.{0}.res.xml", language.UniqueSeoCode), SearchOption.TopDirectoryOnly))
-        //        {
-        //            // 
-        //            string xmlText = File.ReadAllText(filePath);
-        //            //var localizationService = ServiceLocator.Instance.GetService<ILocalizationService>();
-        //            _localizationService.ImportResourcesFromXml(language, xmlText);
-        //        }
-        //    }
-        //}
+        private void InstallLocaleResources()
+        {
+            var webRoot = _hostingEnvironment.WebRootPath;
+            foreach (var language in _languageRepo.Table.ToList())
+            {
+                foreach (var filePath in System.IO.Directory.EnumerateFiles(Path.Combine(webRoot, "Localization/"), string.Format("*.{0}.res.xml", language.UniqueSeoCode), SearchOption.TopDirectoryOnly))
+                {
+                    // 
+                    string xmlText = File.ReadAllText(filePath);
+                    //var localizationService = ServiceLocator.Instance.GetService<ILocalizationService>();
+                    _localizationService.ImportResourcesFromXml(language, xmlText);
+                }
+            }
+
+            _commonUnitOfWork.Complete();
+        }
 
         private async Task InstallUsersAndRoles()
         {
@@ -224,23 +233,23 @@ namespace Wp.Services.Installation
             _unitOfWork.Complete();
         }
 
-        //private void InstallSettings()
-        //{
-        //    if (_settingService.GetAll().Count() == 0)
-        //    {
-        //        _settingService.SaveSetting(new WebsiteSettings()
-        //        {
-        //            WebsiteName = "Default",
-        //            Theme = "Darkly",
-        //        });
+        private void InstallSettings()
+        {
+            if (_settingService.GetAll().Count() == 0)
+            {
+                _settingService.SaveSetting(new WebsiteSettings()
+                {
+                    WebsiteName = "Default",
+                    Theme = "Darkly",
+                });
 
-        //        _settingService.SaveSetting(new LocalizationSettings()
-        //        {
-        //            DefaultAdminLanguageId = _languageRepo.Table.Single(x => x.Name == "English").Id,
-        //            UseImagesForLanguageSelection = false,
-        //        });
-        //    }
-        //}
+                _settingService.SaveSetting(new LocalizationSettings()
+                {
+                    DefaultAdminLanguageId = _languageRepo.Table.Single(x => x.Name == "English").Id,
+                    UseImagesForLanguageSelection = false,
+                });
+            }
+        }
 
         #endregion
 
@@ -252,10 +261,10 @@ namespace Wp.Services.Installation
         public async Task InstallData()
         {
             InstallWebPages();
-            //InstallLanguages();
+            InstallLanguages();
             await InstallUsersAndRoles();
             InstallRolesAtAPage();
-           // InstallSettings();
+            InstallSettings();
         }       
     }
 }

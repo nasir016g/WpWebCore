@@ -39,7 +39,7 @@ namespace Wp.Services.WebPages
 
         public override WebPage GetById(int id)
         {
-            return _webPageRepo.Table.Where(x => x.Id == id).Include(x => x.Roles).FirstOrDefault();
+            return _webPageRepo.Table.Where(x => x.Id == id).Include(x => x.Roles).Include(x => x.Sections).FirstOrDefault();
             //return base.GetById(id);
         }
 

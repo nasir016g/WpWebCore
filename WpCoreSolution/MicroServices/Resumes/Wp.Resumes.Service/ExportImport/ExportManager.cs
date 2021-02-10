@@ -1,31 +1,27 @@
-﻿using System.IO;
+﻿using Nsr.Common.Services;
+using System.IO;
 using System.Text;
 using System.Xml;
-using Wp.Core;
-using Wp.Core.Common;
-using Wp.Core.Domain.Career;
-using Wp.Services.Localization;
+using Wp.Resumes.Core.Domain;
 
 namespace Wp.Resumes.Services.ExportImport
 {
-   
+
     public class ExportManager : IExportManager
     {
         #region Fields
 
         private readonly ILocalizationService _localizationService;
         private readonly ILanguageService _languageService;
-        private readonly IWorkContext _workContext;
 
         #endregion
 
         #region Ctor
 
-        public ExportManager(ILocalizationService localizationService, ILanguageService languageService, IWorkContext workContext)
+        public ExportManager(ILocalizationService localizationService, ILanguageService languageService)
         {
             this._localizationService = localizationService;
             this._languageService = languageService;
-            this._workContext = workContext;
         }
 
         #endregion
@@ -47,7 +43,7 @@ namespace Wp.Resumes.Services.ExportImport
             xmlWriter.WriteElementString("Town", null, Resume.Town);
             xmlWriter.WriteElementString("Email", null, Resume.Email);
             xmlWriter.WriteElementString("Website", null, Resume.Website);
-            xmlWriter.WriteElementString("LinkedIn", null, Resume.LinkedIn);
+            xmlWriter.WriteElementString("LinkedIn", null, Resume.LinkedIn);            
             xmlWriter.WriteElement(languages, Resume, x => Resume.Summary);  
 
             #region Export Educations
@@ -139,10 +135,10 @@ namespace Wp.Resumes.Services.ExportImport
             return stringWriter.ToString();
         }       
 
-        public void ExportResumeToWord(Stream stream, Resume resume)
+        public void ExportResumeToWord(Stream stream, Resume resume, int languageId)
         {
-            var wordService = new ExportWordService(_localizationService, _languageService, _workContext);
-            wordService.ExportResumeToWord(stream, resume);            
+            var wordService = new ExportWordService(_localizationService, _languageService);
+            wordService.ExportResumeToWord(stream, resume, languageId);            
         } 
     }
 }

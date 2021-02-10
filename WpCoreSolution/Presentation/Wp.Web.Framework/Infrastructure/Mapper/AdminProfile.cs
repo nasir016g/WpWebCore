@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Nsr.Common.Core;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;

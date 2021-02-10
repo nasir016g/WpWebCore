@@ -11,9 +11,9 @@ namespace Nsr.Common.Data
     }
     public class CommonUnitOfWork : ICommonUnitOfWork
     {
-        private readonly WpCommonDbContext _context;
+        private readonly NsrCommonDbContext _context;
 
-        public CommonUnitOfWork(WpCommonDbContext context)
+        public CommonUnitOfWork(NsrCommonDbContext context)
         {
             _context = context;
         }

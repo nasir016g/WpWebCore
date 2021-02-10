@@ -1,9 +1,3 @@
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.csprojAssemblyReference.cache
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.AssemblyInfoInputs.cache
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.AssemblyInfo.cs
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.csproj.CoreCompileInputs.cache
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\appsettings.Development.json
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\appsettings.json
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Wp.Resumes.WebApi.exe
@@ -15,8 +9,12 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debu
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Wp.Resumes.WebApi.pdb
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\AutoMapper.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Xceed.Document.NET.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Xceed.Words.NET.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\EPPlus.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Humanizer.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\itextsharp.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -33,6 +31,9 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debu
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Service.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Polly.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Serilog.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -62,7 +63,13 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debu
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Wp.Resumes.Data.pdb
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Wp.Resumes.Service.pdb
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Wp.Resumes.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.csprojAssemblyReference.cache
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.AssemblyInfoInputs.cache
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.AssemblyInfo.cs
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.csproj.CoreCompileInputs.cache
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\staticwebassets\Wp.Resumes.WebApi.StaticWebAssets.Manifest.cache
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\staticwebassets\Wp.Resumes.WebApi.StaticWebAssets.xml
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\scopedcss\bundle\Wp.Resumes.WebApi.styles.css
@@ -72,6 +79,3 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debu
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\ref\Wp.Resumes.WebApi.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.pdb
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\obj\Debug\net5.0\Wp.Resumes.WebApi.genruntimeconfig.cache
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Core.dll
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Data.dll
-C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.WebApi\bin\Debug\net5.0\Nsr.Common.Service.dll

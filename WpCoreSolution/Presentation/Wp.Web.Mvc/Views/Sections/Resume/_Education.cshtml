@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Wp.Web.Mvc.Models.Resumes.EducationModel>
+
+
+@foreach (var education in Model)
+{
+    if(Model.First().Id != education.Id)
+    {
+        //don't display the name "Opleidingen" of first item, because the name of this section is the same. It doesn't look good twice the same name after each other." 
+        <div class="row" style="padding-top:20px;">
+            <div class="col-md-12">
+                <h4 class="text-muted"><strong>@Html.DisplayFor(e => education.Name)</strong></h4>
+            </div>
+        </div>
+    }
+    foreach (var item in education.Items)
+    {
+    <div class="row" style="padding-top:10px;">
+        <div class="col-md-8">          
+            
+            <h5><strong>@Html.DisplayFor(x => item.Name)</strong></h5>
+            <blockquote>
+                                  
+                    @if (!string.IsNullOrEmpty(item.Place))
+                    {
+                        <h6>@Html.DisplayFor(x => item.Place)</h6>
+                    }
+               
+               @foreach (var desc in item.Descriptions)
+               {
+                   if (!String.IsNullOrWhiteSpace(desc))
+                   {
+                    <small>
+                        @desc
+                    </small>
+                   }
+               }
+                    @*@Html.Raw(item.Description)*@
+                
+</blockquote>
+</div>
+        <div class="col-md-4 text-right">
+            @Html.DisplayFor(x => item.Period)
+        </div>
+    </div>    
+    }
+}
+
+
+
+

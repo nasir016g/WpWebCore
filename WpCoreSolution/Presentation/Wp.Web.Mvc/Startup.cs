@@ -10,17 +10,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Nsr.Common.Core.Localization;
+using Nsr.Common.Extensions;
 using System;
 using System.Reflection;
 using Wp.Core;
 using Wp.Core.Security;
 using Wp.Data;
-using Wp.Localization.Extensions;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
+using Wp.Web.Mvc.About.RestClients;
+using Wp.Web.Mvc.Infrastructure.Mapper;
 using Wp.Web.Mvc.Infrastructure.Routing;
-using Wp.Web.Mvc.RestClients;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
 
 
@@ -40,8 +42,8 @@ namespace Wp.Web.Mvc
         {
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDistributedMemoryCache();
+            services.AddNsrCommon(Configuration);
 
-            services.AddLocalization(Configuration);
 
             services.AddSession(options =>
             {
@@ -83,8 +85,12 @@ namespace Wp.Web.Mvc
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
-            //services.AddScoped<SlugRouteTransformer>();
+            services.AddScoped<SlugRouteTransformer>();
             services.AddHttpClient<IResumesWebApi, ResumesWebApi>();
+            services.AddHttpClient<IEducationWebApi, EducationWebApi>();
+            services.AddHttpClient<IExperienceWebApi, ExperienceWebApi>();
+            services.AddHttpClient<ISkillWebApi, SkillWebApi>();
+
 
             //add routing
             services.AddRouting(options =>
@@ -95,6 +101,7 @@ namespace Wp.Web.Mvc
 
             services.AddAutoMapper(typeof(Startup));
             AutoMapperConfiguration.Init();
+            AutoMapperMvcConfiguration.Init();
             services.AddControllersWithViews()
                 .AddFluentValidation(opt =>
                 {
@@ -128,7 +135,7 @@ namespace Wp.Web.Mvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             ServiceLocator.Instance = app.ApplicationServices;
-            Wp.Localization.Extensions.ServiceCollectionExtensions.UseLocalization(app);
+            Nsr.Common.Extensions.ServiceCollectionExtensions.UseNsrCommon(app);
             app.UseSession();
 
             ServiceCollectionExtensions.Migrate(app);
@@ -169,7 +176,7 @@ namespace Wp.Web.Mvc
                 }
 
 
-                //endpoints.MapDynamicControllerRoute<SlugRouteTransformer>(pattern);
+                endpoints.MapDynamicControllerRoute<SlugRouteTransformer>(pattern);
                 endpoints.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();

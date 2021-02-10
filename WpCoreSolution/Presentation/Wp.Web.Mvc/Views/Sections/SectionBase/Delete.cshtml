@@ -1,0 +1,10 @@
+﻿
+@using Wp.Web.Framework.UI;
+<h3>Are you sure you want to delete this?</h3>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" name="submitType" value="@SubmitType.Delete" /> 
+        <input type="submit" name="submitType" value="@SubmitType.Cancel" /> 
+    </p>
+}

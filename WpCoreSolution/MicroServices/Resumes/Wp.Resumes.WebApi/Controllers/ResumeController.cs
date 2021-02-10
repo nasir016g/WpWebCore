@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nsr.Common.Services;
 using System;
 using System.IO;
+using System.Text;
 using Wp.Resumes.Core.Domain;
 using Wp.Resumes.Services;
 using Wp.Resumes.Services.ExportImport;
@@ -18,26 +19,28 @@ namespace Wp.Resumes.WebApi.Controllers
     {
         private readonly IResumeService _resumeService;
         private readonly IImportManager _importManager;
-        //private readonly IExportManager _exportManager;
+        private readonly IExportManager _exportManager;
         private readonly ILanguageService _languageService;
         private readonly ILocalizedEntityService _localizedEntityService;
+        private readonly IPdfService _pdfService;
 
         public ResumeController(
             IResumeService resumeService,
             IImportManager importManager,
-           // IExportManager exportManager,
+            IExportManager exportManager,
             ILanguageService languageService,
-            ILocalizedEntityService localizedEntityService
-            //IPdfService pdfService
+            ILocalizedEntityService localizedEntityService,
+            IPdfService pdfService          
 
 
             )
         {
             _resumeService = resumeService;
             _importManager = importManager;
-            //_exportManager = exportManager;
+            _exportManager = exportManager;
             _languageService = languageService;
             _localizedEntityService = localizedEntityService;
+            _pdfService = pdfService;
         }
         #region Properties
 
@@ -108,12 +111,27 @@ namespace Wp.Resumes.WebApi.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] ResumeModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var entity = model.ToEntity();
+            _resumeService.Update(entity);
+
+            //locales
+            UpdateLocales(entity, model);
+            return NoContent();
+        }
+
         [HttpDelete]
         public ActionResult Delete(int id)
         {
             var entity = _resumeService.GetById(id);
             _resumeService.Delete(entity);
-            return RedirectToAction("Index");
+            return RedirectToAction("Get");
         }
 
         #endregion      
@@ -144,64 +162,68 @@ namespace Wp.Resumes.WebApi.Controllers
             return NoContent();
         }
 
-        //public ActionResult ExportToXml(int id)
-        //{
-        //    try
-        //    {
-        //        var entity = _ResumeService.GetById(id);
-        //        var xml = _exportManager.ExportResumeToXml(entity);
-        //        return new XmlDownloadResult(xml, entity.Name + ".xml");
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        ErrorNotification(exc, true);
-        //        ModelState.AddModelError("ExportXml", exc);
+        [HttpGet("ExportToXml/{id}")]
+        public ActionResult ExportToXml(int id)
+        {
+            try
+            {
+                var entity = _resumeService.GetById(id);
+                var xml = _exportManager.ExportResumeToXml(entity);
+                return File(Encoding.UTF8.GetBytes(xml), "application/xml", entity.Name + ".xml");
+            }
+            catch (Exception exc)
+            {
+                //ErrorNotification(exc, true);
+                ModelState.AddModelError("ExportXml", exc.ToString());
 
-        //        return RedirectToAction("Edit", new { id = id });
-        //    }
-        //}
+                return RedirectToAction("Edit", new { id = id });
+            }
+        }
 
-        //public ActionResult ExportToWord(int id)
-        //{
-        //    try
-        //    {
-        //        var entity = _ResumeService.GetById(id);
 
-        //        byte[] bytes = null;
-        //        using (var stream = new MemoryStream())
-        //        {
-        //            _exportManager.ExportResumeToWord(stream, entity);
-        //            bytes = stream.ToArray();
-        //        }
-        //        return File(bytes, "application/docx", string.Format("{0}_Resume.docx", entity.Name));
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        ErrorNotification(exc);
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+        [HttpGet("ExportToWord/{id}/{languageId}")]
+        public ActionResult ExportToWord(int id, int languageId)
+        {
+            try
+            {
+                var entity = _resumeService.GetById(id);
 
-        //public ActionResult PrintToPdf(int id)
-        //{
-        //    try
-        //    {
-        //        var entity = _ResumeService.GetById(id);
+                byte[] bytes = null;
+                using (var stream = new MemoryStream())
+                {
+                    _exportManager.ExportResumeToWord(stream, entity, languageId);
+                    bytes = stream.ToArray();
+                }
+                return File(bytes, "application/docx", string.Format("{0}_Resume.docx", entity.Name));
+            }
+            catch (Exception exc)
+            {
+                //ErrorNotification(exc);
+                return RedirectToAction("Index");
+            }
+        }
 
-        //        byte[] bytes = null;
-        //        using (var stream = new MemoryStream())
-        //        {
-        //            _pdfService.PrintResume(stream, entity);
-        //            bytes = stream.ToArray();
-        //        }
-        //        return File(bytes, "application/pdf", string.Format("{0}_Resume.pdf", entity.Name));
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        ErrorNotification(exc);
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+        [HttpGet("PrintToPdf/{id}")]
+        public ActionResult PrintToPdf(int id)
+        {
+            try
+            {
+                var entity = _resumeService.GetById(id);
+
+                byte[] bytes = null;
+                using (var stream = new MemoryStream())
+                {
+                    _pdfService.PrintResume(stream, entity);
+                    bytes = stream.ToArray();
+                }
+                return File(bytes, "application/pdf", string.Format("{0}_Resume.pdf", entity.Name));
+            }
+            catch (Exception exc)
+            {
+                //ErrorNotification(exc);
+                return RedirectToAction("Index");
+            }
+        }
 
         #endregion
     }

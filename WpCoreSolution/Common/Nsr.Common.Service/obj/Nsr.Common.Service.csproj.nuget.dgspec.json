@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
         "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -40,7 +43,19 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "System.Runtime.Caching": {
               "target": "Package",
               "version": "[5.0.0, )"
             }
@@ -73,6 +88,9 @@
         "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
         "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -135,7 +153,7 @@
       }
     },
     "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj": {
-      "version": "1.0.0",
+      "version": "1.0.6",
       "restore": {
         "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj",
         "projectName": "Nsr.Common.Service",
@@ -143,6 +161,9 @@
         "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
         "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

@@ -7,10 +7,10 @@ namespace Wp.Core.Mappings.Sections
 {
     public class ContactFormMap : EntityBaseConfiguration<ContactFormSection>
     {
-        public override void Configure(EntityTypeBuilder<ContactFormSection> entityBuilder) 
+        public override void Configure(EntityTypeBuilder<ContactFormSection> entityBuilder)
         {
-           
-            //entityBuilder.ToTable("Section_ContactForm");
+
+            entityBuilder.ToTable("Section_ContactForm");
 
         }
     }

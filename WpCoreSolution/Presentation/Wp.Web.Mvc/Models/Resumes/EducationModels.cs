@@ -1,54 +1,33 @@
-﻿using Nsr.Common.Core.Localization.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Wp.Web.Mvc.Models
+namespace Wp.Web.Mvc.Models.Resumes
 {
-    #region group
-    public class EducationModel : ILocalizedModel<EducationLocalizedModel>
+    public class EducationModel
     {
         public EducationModel()
         {
-            Locales = new List<EducationLocalizedModel>();
+            Items = new List<EducationItemModel>();
         }
+
         public int Id { get; set; }
-        public int ResumeId { get; set; }
         public string Name { get; set; }
-        public IList<EducationLocalizedModel> Locales { get; set; }
+        public IList<EducationItemModel> Items { get; set; }
     }
 
-    public class EducationLocalizedModel : ILocalizedModelLocal
-    {
-        public int LanguageId { get; set; }
-        public string Name { get; set; }
-    }
-
-    #endregion
-
-    #region items    
-
-    public class EducationItemModel : ILocalizedModel<EducationItemLocalizedModel>
+    public class EducationItemModel
     {
         public EducationItemModel()
         {
-            Locales = new List<EducationItemLocalizedModel>();
+            Descriptions = new List<string>();
         }
+
         public int Id { get; set; }
-        public int EducationId { get; set; }
         public string Name { get; set; }
         public string Place { get; set; }
         public string Period { get; set; }
-        public string Description { get; set; }
-        public IList<EducationItemLocalizedModel> Locales { get; set; }
+        public List<string> Descriptions { get; set; }
     }
-
-    public class EducationItemLocalizedModel : ILocalizedModelLocal
-    {
-        public int LanguageId { get; set; }
-        public string Name { get; set; }
-        public string Place { get; set; }
-        public string Period { get; set; }
-        public string Description { get; set; }
-    }
-
-    #endregion
 }

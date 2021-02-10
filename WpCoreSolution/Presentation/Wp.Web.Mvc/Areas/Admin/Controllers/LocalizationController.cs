@@ -7,6 +7,7 @@ using Nsr.Common.Services;
 using System;
 using System.IO;
 using System.Linq;
+using Wp.Web.Mvc.Helpers;
 
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
@@ -16,7 +17,6 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly ILanguageService _languageService;
         private readonly ILogger _logger;
-        private ResiliencyHelper _resiliencyHelper;
 
         public LocalizationController(
             ILocalizationService localizationService,
@@ -26,7 +26,6 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             _localizationService = localizationService;
             _languageService = languageService;
             _logger = logger;
-            _resiliencyHelper = new ResiliencyHelper(_logger);
         }
 
         #region Language

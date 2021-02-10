@@ -33,7 +33,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.2" />
-    <PackageReference Include="Nsr.Common.Service" Version="1.0.0" />
+    <PackageReference Include="Nsr.Common.Service" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>

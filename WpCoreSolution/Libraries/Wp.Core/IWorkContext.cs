@@ -2,10 +2,10 @@
 
 namespace Wp.Core
 {
-    public interface IWorkContext
-    {
-        WorkContextModel Current { get; set; }
-        void ClearCurrentSession();
+    //public interface IWorkContext
+    //{
+    //    WorkContextModel Current { get; set; }
+    //    void ClearCurrentSession();
 
-    }
+    //}
 }

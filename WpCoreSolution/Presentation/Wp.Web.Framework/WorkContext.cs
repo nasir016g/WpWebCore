@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nsr.Common.Core;
 using Nsr.Common.Services;
 using System.Linq;
 using Wp.Core;
@@ -43,9 +44,10 @@ namespace Wp.Web.Framework
                     model = new WorkContextModel();
                     model.WebSite = _websiteSettings;
 
-                    model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
-
-                    //  model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
+                    if (_languageService.GetAll().Count > 0)
+                    {
+                        model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
+                    }
 
                     if (_httpContextAccessor.HttpContext.Session != null)
                     {

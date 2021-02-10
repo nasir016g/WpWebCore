@@ -1,0 +1,50 @@
+﻿@model Wp.Web.Mvc.Models.WebPageModel
+
+<div class="container">
+
+
+    @if (Model.UserHasCreateRights)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="AddSection" asp-controller="Webpage" asp-route-pageId="@Model.Id" method="post" class="well form-inline">
+                    <div class="form-group">
+                        @Html.DropDownList("selectedSection", Model.AvailableSections, string.Empty, new { @class = "form-control" })
+                    </div>
+                    <input type="submit" value="Add Section" class="btn btn-default" />
+                </form>
+                @*@using (Html.BeginForm("AddSection", "WebPage", new { pageId = Model.Id }, FormMethod.Post, new { Class = "well form-inline" }))
+                {
+                    <div class="form-group">
+                        @Html.DropDownList("selectedSection", Model.AvailableSections, string.Empty, new { @class = "form-control" })
+                    </div>
+                    <input type="submit" value="Add Section" class="btn btn-default" />
+                }*@
+            </div>
+        </div>
+    }
+</div>
+
+
+    @foreach (var item in Model.Sections)
+    {
+<h4>
+    @if (item.UserHasEditRights)
+    {
+        @item.Controller @:&#160; &#160;
+        <a asp-action="Edit" asp-controller="@item.Controller" asp-route-id="@item.Id"> <i class="fas fa-edit fa-xs"></i></a>
+    }
+
+    @if (item.UserIsAdmin)
+    {
+        @:| <a href="@Url.Action("Delete", "SectionBase", new { id = item.Id })"> <i class="fas fa-trash-alt fa-xs"></i></a>
+    }
+</h4>
+
+<div id="section_@item.Id">
+    <partial name="~/Views/Sections/@item.Controller/_ReadOnly.cshtml" model="item"  />
+    
+    @*@Html.Partial(string.Format("~/Views/Sections/{0}/_ReadOnly.cshtml", item.Controller), item)*@
+
+</div>
+    }

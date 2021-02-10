@@ -62,6 +62,8 @@ namespace Wp.Resumes.WebApi.Extensions
             services.AddScoped<IResumeService, ResumeService>();
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IImportManager, ImportManager>();
+            services.AddScoped<IExportManager, ExportManager>();
+            services.AddScoped<IPdfService, PdfService>();
 
             return services;
         }

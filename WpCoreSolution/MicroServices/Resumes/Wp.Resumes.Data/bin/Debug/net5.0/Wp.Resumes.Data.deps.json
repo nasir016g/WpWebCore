@@ -384,7 +384,7 @@
           }
         }
       },
-      "Nsr.Common.Service/1.0.0": {
+      "Nsr.Common.Service/1.0.6": {
         "runtime": {
           "lib/net5.0/Nsr.Common.Core.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -395,8 +395,8 @@
             "fileVersion": "1.0.0.0"
           },
           "lib/net5.0/Nsr.Common.Service.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
           }
         }
       },
@@ -1059,7 +1059,7 @@
       },
       "Wp.Resumes.Core/1.0.0": {
         "dependencies": {
-          "Nsr.Common.Service": "1.0.0"
+          "Nsr.Common.Service": "1.0.6"
         },
         "runtime": {
           "Wp.Resumes.Core.dll": {}
@@ -1269,12 +1269,12 @@
       "path": "newtonsoft.json/10.0.1",
       "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
     },
-    "Nsr.Common.Service/1.0.0": {
+    "Nsr.Common.Service/1.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
-      "path": "nsr.common.service/1.0.0",
-      "hashPath": "nsr.common.service.1.0.0.nupkg.sha512"
+      "sha512": "sha512-GGyWnre+TCozqpEMXhIEQX/5klw0Vh2qL4kA3+s8gkuqAxTsyHmtg+YEWAvB5dJrKlYDYaGGC5OZlNGjl3ND7w==",
+      "path": "nsr.common.service/1.0.6",
+      "hashPath": "nsr.common.service.1.0.6.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

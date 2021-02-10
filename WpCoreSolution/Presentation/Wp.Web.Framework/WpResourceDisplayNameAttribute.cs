@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
+using Nsr.Common.Core.Localization;
 using Nsr.Common.Services;
 using System.ComponentModel;
 using Wp.Core;

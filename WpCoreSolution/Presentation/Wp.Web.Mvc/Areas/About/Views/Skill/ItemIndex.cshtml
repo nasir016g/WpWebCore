@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Wp.Web.Mvc.About.Models.SkillItemModel>
+
+@{
+    ViewBag.Title = "ItemIndex";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Back", "Index", new { ResumeId = @ViewBag.ResumeId }, new { @class = "btn btn-default pull-right" })
+        @Html.ActionLink("Create New", "ItemCreate", new{skillId = @ViewBag.SkillId}, new{@class = "btn btn-default pull-right"})
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Level)
+                    </th>
+                   
+                    <th></th>
+                </tr>
+                @foreach (var item in Model) {
+                    <tr>
+                         <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>                        
+                        <td>
+                            @Html.ActionLink("Edit", "ItemEdit", new { id=item.Id }) |
+                            @Html.ActionLink("Delete", "ItemDelete", new { id=item.Id })
+                        </td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+</div>

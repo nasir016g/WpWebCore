@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NHY9zctOAkc4L9PCjJ1sqKCywidLFX3nW62JvI5crpL3015W+xjDJx/rwL6gcP49StE3dlr1qUzX/3dsUDu6nA==",
+  "dgSpecHash": "knBsb1pZjuUNdQx9U+3nqQCh/If7E+FLtt1xx4IS3GI9Rcpt8DRD78uDZI4IAgJpTqYbkg9kPQanUAPMj/E/4A==",
   "success": true,
   "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Data\\Wp.Resumes.Data.csproj",
   "expectedPackageFiles": [
@@ -32,7 +32,7 @@
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
-    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.0\\nsr.common.service.1.0.0.nupkg.sha512",
+    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.6\\nsr.common.service.1.0.6.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\nasir\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",

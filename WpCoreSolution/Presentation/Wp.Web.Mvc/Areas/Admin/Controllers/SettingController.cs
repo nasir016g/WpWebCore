@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Nsr.Common.Core;
+using Nsr.Common.Service.Configuration;
 using System.Linq;
 using Wp.Core;
 using Wp.Core.Domain.Common;
 using Wp.Services.Common;
-using Wp.Services.Configuration;
 using Wp.Web.Framework.Extensions.Mapper;
 using Wp.Web.Framework.Models.Admin;
 

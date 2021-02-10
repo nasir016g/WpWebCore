@@ -1,10 +1,12 @@
-﻿using Nsr.Common.Core.Localization;
+﻿using Nsr.Common.Core;
+using Nsr.Common.Core.Localization;
 using Nsr.Common.Data;
 using Nsr.Common.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nsr.Common.Services
 {
@@ -38,7 +40,7 @@ namespace Nsr.Common.Services
 
         private readonly ICommonBaseRepository<LocaleStringResource> _lsrRepo;
         private readonly ILanguageService _languageService;
-       // private readonly LocalizationSettings _localizationSettings;
+        //private readonly LocalizationSettings _localizationSettings;
        
         public LocalizationService(ICommonUnitOfWork unitOfWork, ICommonBaseRepository<LocaleStringResource> lsrRepo, ILanguageService languageService)
         : base(unitOfWork, lsrRepo)
@@ -106,12 +108,14 @@ namespace Nsr.Common.Services
         //    return _lsrRepo.GetById(id);
         //}
 
-        //public LocaleStringResource GetByName(string resourceName)
-        //{
-        //    //int languageId = _workContext.Current.WorkingLanguage.Id;
-        //    int languageId = 1;
-        //    return GetByName(resourceName, languageId);
-        //}
+        public LocaleStringResource GetByName(string resourceName)
+        {
+            using (var serviceScope = ServiceLocator.GetScope())
+            {
+                var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
+                return GetByName(resourceName, workContext.Current.WorkingLanguageId);
+            }
+        }
 
         public LocaleStringResource GetByName(string resourceName, int languageId)
         {
@@ -174,12 +178,15 @@ namespace Nsr.Common.Services
                 //});
         }
 
-        //public string GetResource(string resourceKey)
-        //{
-        //    int languageId = _workContext.Current.WorkingLanguage.Id;
-        //    //int languageId = 1;
-        //    return GetResource(resourceKey, languageId);
-        //}
+        public string GetResource(string resourceKey)
+        {
+            using (var serviceScope = ServiceLocator.GetScope())
+            {
+                var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
+                return GetResource(resourceKey, workContext.Current.WorkingLanguageId);
+            }
+               
+        }
 
         public string GetResource(string resourceKey, int languageId, string defaultValue = "")
         {

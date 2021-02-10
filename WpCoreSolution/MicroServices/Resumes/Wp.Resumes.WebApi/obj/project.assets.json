@@ -29,6 +29,26 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "BouncyCastle/1.8.6.1": {
+        "type": "package",
+        "compile": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "DocX/1.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Xceed.Document.NET.dll": {},
+          "lib/net40/Xceed.Words.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Xceed.Document.NET.dll": {},
+          "lib/net40/Xceed.Words.NET.dll": {}
+        }
+      },
       "EPPlus/5.5.2": {
         "type": "package",
         "dependencies": {
@@ -60,6 +80,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {}
+        }
+      },
+      "iTextSharp/5.5.13.2": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle": "1.8.6.1"
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.7.0": {
@@ -613,7 +645,7 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Nsr.Common.Service/1.0.0": {
+      "Nsr.Common.Service/1.0.6": {
         "type": "package",
         "compile": {
           "lib/net5.0/Nsr.Common.Core.dll": {},
@@ -2196,7 +2228,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Nsr.Common.Service": "1.0.0"
+          "Nsr.Common.Service": "1.0.6"
         },
         "compile": {
           "bin/placeholder/Wp.Resumes.Core.dll": {}
@@ -2224,12 +2256,14 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "DocX": "1.7.1",
           "EPPlus": "5.5.2",
           "Microsoft.Extensions.Logging": "5.0.0",
-          "Nsr.Common.Service": "1.0.0",
+          "Nsr.Common.Service": "1.0.6",
           "Polly": "7.2.1",
           "Serilog": "2.10.0",
-          "Wp.Resumes.Core": "1.0.0"
+          "Wp.Resumes.Core": "1.0.0",
+          "iTextSharp": "5.5.13.2"
         },
         "compile": {
           "bin/placeholder/Wp.Resumes.Service.dll": {}
@@ -2268,6 +2302,36 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "BouncyCastle/1.8.6.1": {
+      "sha512": "rkqpuKmJkdcfTMBkIj1b5nMdBAWKwAyh+I/BQYeqqSD2jkIlhwc9qBNKmSbnpmmm5c29qHZGLpvBSTNWvDLtQA==",
+      "type": "package",
+      "path": "bouncycastle/1.8.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "bouncycastle.1.8.6.1.nupkg.sha512",
+        "bouncycastle.nuspec",
+        "lib/BouncyCastle.Crypto.dll"
+      ]
+    },
+    "DocX/1.7.1": {
+      "sha512": "WsbpQ238RrvZ/T/MT2UGt7GQg1CjVzntImtlKuV0Fiq37rieGPuU5wWorwZ2fKFBE78e9kx0msYqhlaIt40vLQ==",
+      "type": "package",
+      "path": "docx/1.7.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "Xceed_Logo_Retina-400x400.png",
+        "docx.1.7.1.nupkg.sha512",
+        "docx.nuspec",
+        "lib/net40/Xceed.Document.NET.dll",
+        "lib/net40/Xceed.Words.NET.dll",
+        "tools/install.ps1"
       ]
     },
     "EPPlus/5.5.2": {
@@ -2310,6 +2374,22 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "iTextSharp/5.5.13.2": {
+      "sha512": "8m9oT1nh9F4Z1tzWUey/8lEzZtMGFCDXQY5+8/SSmPgUWAAAWniRo8pimKUZyteNqJr5vtFBxjAhRwLxG7Q0zQ==",
+      "type": "package",
+      "path": "itextsharp/5.5.13.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "gnu-agpl-v3.0.md",
+        "itextsharp.5.5.13.2.nupkg.sha512",
+        "itextsharp.nuspec",
+        "lib/iTextSharp.xml",
+        "lib/itextsharp.dll",
+        "notice.txt"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -3206,17 +3286,17 @@
         "tools/install.ps1"
       ]
     },
-    "Nsr.Common.Service/1.0.0": {
-      "sha512": "yl1nxzOGKbG9wsXi3MQ7aBguXKguTobX9ldaMPEg2YgGkA5wtJOL5qahkXYy2hmwSir1sSpzKDLKNklppgQx7w==",
+    "Nsr.Common.Service/1.0.6": {
+      "sha512": "GGyWnre+TCozqpEMXhIEQX/5klw0Vh2qL4kA3+s8gkuqAxTsyHmtg+YEWAvB5dJrKlYDYaGGC5OZlNGjl3ND7w==",
       "type": "package",
-      "path": "nsr.common.service/1.0.0",
+      "path": "nsr.common.service/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net5.0/Nsr.Common.Core.dll",
         "lib/net5.0/Nsr.Common.Data.dll",
         "lib/net5.0/Nsr.Common.Service.dll",
-        "nsr.common.service.1.0.0.nupkg.sha512",
+        "nsr.common.service.1.0.6.nupkg.sha512",
         "nsr.common.service.nuspec"
       ]
     },
@@ -7607,14 +7687,15 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.0",
       "Microsoft.EntityFrameworkCore >= 5.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.2",
-      "Nsr.Common.Service >= 1.0.0",
+      "Nsr.Common.Service >= 1.0.6",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "Wp.Resumes.Data >= 1.0.0",
       "Wp.Resumes.Service >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nasir\\.nuget\\packages\\": {}
+    "C:\\Users\\nasir\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -7625,6 +7706,9 @@
       "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
       "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.WebApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -7675,7 +7759,7 @@
           },
           "Nsr.Common.Service": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.0.6, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
@@ -7703,5 +7787,37 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle 1.8.6.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DocX 1.7.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "DocX",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'iTextSharp 5.5.13.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "iTextSharp",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

@@ -23,16 +23,16 @@ namespace Wp.Services.Sections
             _hostingEnvironment = hostingEnvironment;
     }
 
-    //public Section GetById(int id)
-    //{
-    // return _sectionRepo.GetById(id);
-    //}
+        //public Section GetById(int id)
+        //{
+        //    return _sectionRepo.GetById(id);
+        //}
 
-    /// <summary>
-    /// Installed sections
-    /// </summary>
-    /// <returns>list of sections</returns>
-    public string[] GetAvailableSections()
+        /// <summary>
+        /// Installed sections
+        /// </summary>
+        /// <returns>list of sections</returns>
+        public string[] GetAvailableSections()
     {
             //    //var path = _httpContext.HttpContext..Current.Server.MapPath("~/Views/Sections";
             //    string webRootPath = _hostingEnvironment.WebRootPath;
@@ -41,7 +41,7 @@ namespace Wp.Services.Sections
             //    var sectionFolder = new DirectoryInfo(path);
             //var sections = sectionFolder.GetDirectories().Where(x => x.Name != "SectionBase" && !x.Name.StartsWith("_Old")).Select(x => x.Name).ToArray();
 
-            string[] sections = new string[] { "ContactForm", "Html" };
+            string[] sections = new string[] { "ContactForm", "Html", "Resume" };
             return sections;
     }    
   }  

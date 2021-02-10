@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Nsr.Common.Core.Localization;
 using System;
 using System.Reflection;
 using Wp.Core;

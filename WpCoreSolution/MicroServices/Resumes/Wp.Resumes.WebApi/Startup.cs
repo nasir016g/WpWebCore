@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Wp.Resumes.WebApi.Extensions;
 using Wp.Resumes.WebApi.Infrastructure.Mapper;
 using AutoMapper;
+using Nsr.Common.Extensions;
 
 namespace Wp.Resumes.WebApi
 {
@@ -24,8 +25,9 @@ namespace Wp.Resumes.WebApi
         {
             services.AddDbContexts(Configuration);
             services.AddServices();
+            services.AddHttpContextAccessor();
 
-            Wp.Localization.Extensions.ServiceCollectionExtensions.AddLocalization(services, Configuration);
+            services.AddNsrCommon(Configuration);
 
             services.AddAutoMapper(typeof(Startup));
             AutoMapperConfiguration.Init();
@@ -40,7 +42,7 @@ namespace Wp.Resumes.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Wp.Localization.Extensions.ServiceCollectionExtensions.UseLocalization(app);
+            Nsr.Common.Extensions.ServiceCollectionExtensions.UseNsrCommon(app);
             Wp.Resumes.WebApi.Extensions.ServiceCollectionExtensions.Migrate(app);
             if (env.IsDevelopment())
             {

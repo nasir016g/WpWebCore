@@ -1,0 +1,11 @@
+﻿@model Wp.Web.Mvc.About.Models.ExperienceModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("_CreateEdit", Model)      
+}
+
+
