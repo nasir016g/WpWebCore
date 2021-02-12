@@ -1,4 +1,5 @@
-﻿using Nsr.Common.Core.Localization;
+﻿using Nsr.Common.Core;
+using Nsr.Common.Core.Localization;
 using System;
 using System.Linq;
 namespace Wp.Services.Events

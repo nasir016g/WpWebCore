@@ -1,10 +1,10 @@
-﻿@model Wp.Web.Mvc.About.Models.SkillItemModel
+﻿@model Wp.Web.Mvc.About.Models.SkillItemAdminModel
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.SkillId)
 
-@(Html.LocalizedEditor<SkillItemModel, SkillItemLocalizedModel>("info-localized",
+@(Html.LocalizedEditor<SkillItemAdminModel, SkillItemLocalizedModel>("info-localized",
     @<div>
         <div class="form-group">
             @Html.HiddenFor(model => model.Locales[item].LanguageId);

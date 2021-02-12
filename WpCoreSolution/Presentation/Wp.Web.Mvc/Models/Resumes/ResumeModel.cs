@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nsr.Common.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using Wp.Web.Framework;
 
 namespace Wp.Web.Mvc.Models.Resumes
 {
-    public class ResumeModel
+    public class ResumeModel : IEntity, ILocalizedEntity
     {
         public ResumeModel()
         {
@@ -24,7 +25,8 @@ namespace Wp.Web.Mvc.Models.Resumes
         public string Mobile { get; set; }         
         public string Email { get; set; }                 
         public string Website { get; set; }
-        public string LinkedIn { get; set; }
+        public string LinkedIn { get; set; }   
+       
 
         [WpResourceDisplayName("Common.DateOfBirth")]
         public string DateOfBirth { get; set; }

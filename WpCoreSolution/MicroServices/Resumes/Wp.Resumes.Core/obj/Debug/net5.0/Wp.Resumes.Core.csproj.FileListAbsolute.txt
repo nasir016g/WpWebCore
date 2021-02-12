@@ -9,3 +9,4 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Core\obj\Debug\
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Core\obj\Debug\net5.0\Wp.Resumes.Core.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Core\obj\Debug\net5.0\ref\Wp.Resumes.Core.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Core\obj\Debug\net5.0\Wp.Resumes.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Core\obj\Debug\net5.0\Wp.Resumes.Core.csprojAssemblyReference.cache

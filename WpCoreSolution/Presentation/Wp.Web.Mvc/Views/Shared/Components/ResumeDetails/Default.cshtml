@@ -5,38 +5,35 @@
         <div class="col-md-9" style="margin-top:44px;">
             <div class="row">
                 <div class="col-md-11">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             <h4><strong>// @Html.DisplayNameFor(model => model.Summary)</strong></h4>
                         </div>
-                        <div class="panel-body">
-                            @Html.Raw(Model.Summary)
+                        <div class="card-body">
+                            <p class="card-text"> @Html.Raw(Model.Summary)</p>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-11">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4><strong>// @Html.DisplayNameFor(model => model.Educations)</strong></h4>
-                        </div>
-                        @*<div class="panel-body">
-                            @Html.Partial("_Education", Model.Educations)
-                        </div>*@
+                    <div class="card-header">
+                        <h4><strong>// @Html.DisplayNameFor(model => model.Educations)</strong></h4>
                     </div>
+                    <div class="card-body">
+                        <p class="card-text"> <partial name="~/Views/Sections/Resume/_Education.cshtml" model="Model.Educations">  @*@Html.Partial("_Education", Model.Educations)*@</p>
+                    </div>                   
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-11">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>// @Html.DisplayNameFor(model => model.Experiences)</h4>
-                        </div>
-                        @*<div class="panel-body">
-                            @Html.Partial("_Experience", Model.Experiences)
-                        </div>*@
+                    <div class="card-header">
+                        <h4>// @Html.DisplayNameFor(model => model.Experiences)</h4>
                     </div>
+                    <div class="card-body">
+                        
+                        <p class="card-text"> <partial name="~/Views/Sections/Resume/_Experience.cshtml" model="Model.Experiences">  @*@Html.Partial("_Experience", Model.Experiences)*@</p>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -83,9 +80,9 @@
                     <h4>// @Html.DisplayNameFor(model => model.Skills)</h4>
 
                     <div class="row">
-                        @*<div class="col-md-12">
-                            @Html.Partial("_Skill", Model.Skills)
-                        </div>*@
+                        <div class="col-md-12">
+                            <partial name="~/Views/Sections/Resume/_Skill.cshtml" model="Model.Skills">
+                        </div>
                     </div>
                     <br />
                 </div>

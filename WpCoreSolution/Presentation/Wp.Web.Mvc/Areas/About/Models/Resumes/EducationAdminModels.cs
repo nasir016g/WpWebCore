@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Wp.Web.Mvc.About.Models
 {
     #region group
-    public class EducationModel : ILocalizedModel<EducationLocalizedModel>
+    public class EducationAdminModel : ILocalizedModel<EducationLocalizedModel>
     {
-        public EducationModel()
+        public EducationAdminModel()
         {
             Locales = new List<EducationLocalizedModel>();
         }
@@ -26,9 +26,9 @@ namespace Wp.Web.Mvc.About.Models
 
     #region items    
 
-    public class EducationItemModel : ILocalizedModel<EducationItemLocalizedModel>
+    public class EducationItemAdminModel : ILocalizedModel<EducationItemLocalizedModel>
     {
-        public EducationItemModel()
+        public EducationItemAdminModel()
         {
             Locales = new List<EducationItemLocalizedModel>();
         }

@@ -5,9 +5,9 @@ namespace Wp.Web.Mvc.About.Models
 {
     #region group
 
-    public class SkillModel : ILocalizedModel<SkillLocalizedModel>
+    public class SkillAdminModel : ILocalizedModel<SkillLocalizedModel>
     {
-        public SkillModel()
+        public SkillAdminModel()
         {
             Locales = new List<SkillLocalizedModel>();
         }
@@ -28,9 +28,9 @@ namespace Wp.Web.Mvc.About.Models
 
     #region items
 
-    public class SkillItemModel : ILocalizedModel<SkillItemLocalizedModel>
+    public class SkillItemAdminModel : ILocalizedModel<SkillItemLocalizedModel>
     {
-        public SkillItemModel()
+        public SkillItemAdminModel()
         {
             Locales = new List<SkillItemLocalizedModel>();
         }

@@ -43,7 +43,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
                 var model = await _resumeManagementApi.GetResumeById(id);
 
-                return View(model);
+                return View("AdminEdit", model);
             }, View("Offline"));
         }
 

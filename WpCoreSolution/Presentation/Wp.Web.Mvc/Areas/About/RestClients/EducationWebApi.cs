@@ -20,12 +20,12 @@ namespace Wp.Web.Mvc.About.RestClients
             _restClient = RestService.For<IEducationWebApi>(httpClient);
         }
        
-        public async Task<List<EducationModel>> GetEducations([AliasAs("resumeId")] int resumeId)
+        public async Task<List<EducationAdminModel>> GetEducations([AliasAs("resumeId")] int resumeId)
         {
             return await _restClient.GetEducations(resumeId);
         }
 
-        public async Task<EducationModel> GetEducationById([AliasAs("id")] int id)
+        public async Task<EducationAdminModel> GetEducationById([AliasAs("id")] int id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Wp.Web.Mvc.About.RestClients
         }  
        
 
-        public async Task Update(int id, EducationModel model)
+        public async Task Update(int id, EducationAdminModel model)
         {
             await _restClient.Update(id, model);
         }
@@ -55,17 +55,17 @@ namespace Wp.Web.Mvc.About.RestClients
             await _restClient.Delete(id);
         }
 
-        public async Task<List<EducationItemModel>> GetItems(int educationId)
+        public async Task<List<EducationItemAdminModel>> GetItems(int educationId)
         {
             return await _restClient.GetItems(educationId);
         }
 
-        public async Task<EducationItemModel> GetItem(int id)
+        public async Task<EducationItemAdminModel> GetItem(int id)
         {
             return await _restClient.GetItem(id);
         }
 
-        public async Task UpdateItem(int id, EducationItemModel model)
+        public async Task UpdateItem(int id, EducationItemAdminModel model)
         {
             await _restClient.UpdateItem(id, model);
         }

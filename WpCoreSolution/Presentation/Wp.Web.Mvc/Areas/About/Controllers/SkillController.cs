@@ -53,7 +53,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(SkillModel model)
+        public async Task<IActionResult> Edit(SkillAdminModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> ItemEdit(SkillItemModel model)
+        public async Task<IActionResult> ItemEdit(SkillItemAdminModel model)
         {
             if (!ModelState.IsValid)
             {

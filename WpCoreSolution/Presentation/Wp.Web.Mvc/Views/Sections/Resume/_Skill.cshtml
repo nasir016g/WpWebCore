@@ -11,11 +11,10 @@
     
     <div class="row" >
         <div class="col-md-12">
-            @foreach (var item in skill.Items)
+            @foreach (var item in skill.SkillItems)
             {              
-                
                 <div class="progress" style="height:20px; margin-bottom:5px; ">
-                    
+
                     <div class="progress-bar progress-bar-warning" style="width: @item.Level%; text-align:left;">
                         <span style="padding-left:10px;">@Html.DisplayFor(x => item.Name)</span>
                     </div>

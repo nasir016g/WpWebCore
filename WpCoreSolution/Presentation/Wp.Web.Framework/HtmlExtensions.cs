@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
 using Nsr.Common.Core.Localization;
 using Nsr.Common.Core.Localization.Models;
 using Nsr.Common.Services;

@@ -45,7 +45,7 @@
           "dependencies": {
             "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.6, )"
+              "version": "[1.0.8, )"
             }
           },
           "imports": [
@@ -112,11 +112,11 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.3, )"
             }
           },
           "imports": [

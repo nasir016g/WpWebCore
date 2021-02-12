@@ -1,10 +1,10 @@
-﻿@model Wp.Web.Mvc.About.Models.EducationModel
+﻿@model Wp.Web.Mvc.About.Models.EducationAdminModel
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.ResumeId)
 
-@(Html.LocalizedEditor<EducationModel, EducationLocalizedModel>("info-localized",
+@(Html.LocalizedEditor<EducationAdminModel, EducationLocalizedModel>("info-localized",
     @<div class="form-group">
         @Html.HiddenFor(model => model.Locales[item].LanguageId)
         @Html.LabelFor(model => model.Locales[item].Name, new { @class = "control-label col-md-2" })

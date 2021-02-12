@@ -121,7 +121,7 @@ namespace Nsr.Common.Services
                        keySelector));
             }
             string result = "";
-            using (var serviceScope = Nsr.Common.Core.Localization.ServiceLocator.GetScope())
+            using (var serviceScope = ServiceLocator.GetScope())
             {
                 var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
                 var local = locales.FirstOrDefault(x => x.LanguageId == workContext.Current.WorkingLanguageId);

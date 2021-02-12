@@ -1,4 +1,4 @@
-﻿@model Wp.Web.Mvc.About.Models.EducationItemModel
+﻿@model Wp.Web.Mvc.About.Models.EducationItemAdminModel
 
 <script src="//cdn.ckeditor.com/4.5.0/full/ckeditor.js"></script>
 
@@ -6,7 +6,7 @@
  @Html.ValidationSummary(true) 
  @Html.HiddenFor(model => model.EducationId)
 
-@(Html.LocalizedEditor<EducationItemModel, EducationItemLocalizedModel>("education-item-info",    
+@(Html.LocalizedEditor<EducationItemAdminModel, EducationItemLocalizedModel>("education-item-info",    
     @<div>        
          @Html.HiddenFor(model => model.Locales[item].LanguageId)
     <div class="form-group">

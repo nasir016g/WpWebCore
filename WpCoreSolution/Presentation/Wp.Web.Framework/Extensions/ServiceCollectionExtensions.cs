@@ -103,54 +103,27 @@ namespace Wp.Web.Framework.Extensions
             // repositories
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(ITenantsBaseRepository), typeof(TenantsBaseRepository));
-            //services.AddScoped<IWebPageRepository, WebPageRepository>();
-            //services.AddScoped<IWebPageRoleRepository, WebPageRoleRepository>();
-            //services.AddScoped<ISectionRepository, SectionRepository>();
-
+            
             // services
             services.AddScoped<ITenantService, TenantService>();
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
-
             services.AddScoped<IWebPageService, WebPageService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<ISettingService, SettingService>();
-            //services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IThemeService, ThemeService>();
-            //services.AddScoped<IIdentityService, IIdentityService>();
-
-            //// career
-            //services.AddScoped<IResumeService, ResumeService>();
-            //services.AddScoped<IEducationService, EducationService>();
-            //services.AddScoped<IExperienceService, ExperienceService>();
-            //services.AddScoped<ISkillService, SkillService>();
-
 
             //// export/import services
             //services.AddScoped<IImportManager, ImportManager>();
 
             services.AddScoped<INavigationService, NavigationService>();
             services.AddScoped<IUrlRecordService, UrlRecordService>();
-            //services.AddScoped<ILocalizationService, LocalizationService>();
-            //services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
             services.AddScoped<ICacheManager, PerRequestCacheManager>();
             services.AddScoped<IStaticCacheManager, EasyMemoryCacheManager>();
             services.AddScoped<IInstallationService, CodeFirstInstallationService>();
             services.AddScoped<IClaimProvider, StandardClaimProvider>();
-            services.AddScoped(x =>
-            {
-                return x.GetService<ISettingService>().LoadSetting<WebsiteSettings>(); 
-            });
-            //services.AddScoped(x =>
-            //{
-            //    return x.GetService<ISettingService>().LoadSetting<LocalizationSettings>(); 
-            //});
-
 
             services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddScoped<IWebHelper, WebHelper>();
-            services.AddScoped<IWorkContext, WorkContext>();
 
             return services;
         }  

@@ -45,7 +45,7 @@
           "dependencies": {
             "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.6, )"
+              "version": "[1.0.8, )"
             }
           },
           "imports": [
@@ -116,7 +116,11 @@
             },
             "EPPlus": {
               "target": "Package",
-              "version": "[5.5.2, )"
+              "version": "[5.5.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.3, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
@@ -124,7 +128,7 @@
             },
             "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.6, )"
+              "version": "[1.0.8, )"
             },
             "Polly": {
               "target": "Package",

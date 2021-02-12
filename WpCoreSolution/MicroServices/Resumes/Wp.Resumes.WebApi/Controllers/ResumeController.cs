@@ -95,6 +95,15 @@ namespace Wp.Resumes.WebApi.Controllers
             return Ok(model);
         }
 
+
+       [HttpGet("details/{id}")]
+        public IActionResult GetResumeDetails(int id)
+        {
+            //Including eductions, experiences and etc.
+            var entity = _resumeService.GetDetails(id);
+            return Ok(entity);
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] ResumeModel model)
         {

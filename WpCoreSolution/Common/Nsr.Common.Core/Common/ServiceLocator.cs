@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nsr.Common.Core.Localization
+namespace Nsr.Common.Core
 {
     public static class ServiceLocator
     {

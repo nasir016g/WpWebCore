@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Nsr.Common.Core;
 using Wp.Resumes.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Wp.Resumes.Services
 {
@@ -17,6 +18,20 @@ namespace Wp.Resumes.Services
         public Resume GetByUserName(string userName)
         {
             return _resumeRepo.Table.Where(x => x.ApplicationUserName == userName).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Includes Eductions, Experiences and Skills
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Resume GetDetails(int id)
+        {
+            return _resumeRepo.Table.Where(x => x.Id == id)
+                .Include(x => x.Experiences).ThenInclude(e => e.Projects)
+                .Include(x => x.Educations).ThenInclude(e => e.EducationItems)
+                .Include(x => x.Skills).ThenInclude(s => s.SkillItems)
+                .FirstOrDefault();
         }
     }
 }

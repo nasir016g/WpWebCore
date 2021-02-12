@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wp.Web.Mvc.About.Models;
+using Wp.Web.Mvc.Models.Resumes;
 
 namespace Wp.Web.Mvc.About.RestClients
 {
@@ -11,7 +12,7 @@ namespace Wp.Web.Mvc.About.RestClients
         Task<List<ResumeAdminModel>> GetResume();
 
         [Get("/resume/{id}")]
-        Task<ResumeAdminModel> GetResumeById([AliasAs("id")] int id);
+        Task<ResumeAdminModel> GetResumeById([AliasAs("id")] int id);        
 
         [Put("/resume/{id}")]
         //[Put("/resume")]
@@ -19,6 +20,9 @@ namespace Wp.Web.Mvc.About.RestClients
 
         [Delete("/resume/{id}")]
         Task Delete([AliasAs("id")] int id);
+
+        [Get("/resume/details/{id}")]
+        Task<ResumeModel> GetResumeDetails([AliasAs("id")] int id);
 
     }
 }

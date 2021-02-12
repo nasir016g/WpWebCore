@@ -126,11 +126,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.3, )"
             }
           },
           "imports": [
@@ -153,7 +153,7 @@
       }
     },
     "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj": {
-      "version": "1.0.6",
+      "version": "1.0.8",
       "restore": {
         "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj",
         "projectName": "Nsr.Common.Service",
@@ -199,6 +199,10 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
               "version": "[2.2.0, )"
             }

@@ -6,5 +6,6 @@ namespace Wp.Resumes.Services
     public interface IResumeService : IEntityService<Resume>
     {
         Resume GetByUserName(string name);
+        Resume GetDetails(int id);
     }
 }

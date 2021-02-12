@@ -5,9 +5,9 @@ namespace Wp.Web.Mvc.About.Models
 {
     #region group
 
-    public class ExperienceModel : ILocalizedModel<ExperienceLocalizedModel>
+    public class ExperienceAdminModel : ILocalizedModel<ExperienceLocalizedModel>
     {
-        public ExperienceModel()
+        public ExperienceAdminModel()
         {
             Locales = new List<ExperienceLocalizedModel>();
         }
@@ -36,9 +36,9 @@ namespace Wp.Web.Mvc.About.Models
 
     #region projects
 
-    public class ProjectModel : ILocalizedModel<ProjectLocalizedModel>
+    public class ProjectAdminModel : ILocalizedModel<ProjectLocalizedModel>
     {
-        public ProjectModel()
+        public ProjectAdminModel()
         {
             Locales = new List<ProjectLocalizedModel>();
         }

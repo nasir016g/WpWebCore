@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "Nsr.Common.Service/1.0.6": {
+      "Nsr.Common.Service/1.0.8": {
         "type": "package",
         "compile": {
           "lib/net5.0/Nsr.Common.Core.dll": {},
@@ -18,24 +18,24 @@
     }
   },
   "libraries": {
-    "Nsr.Common.Service/1.0.6": {
-      "sha512": "GGyWnre+TCozqpEMXhIEQX/5klw0Vh2qL4kA3+s8gkuqAxTsyHmtg+YEWAvB5dJrKlYDYaGGC5OZlNGjl3ND7w==",
+    "Nsr.Common.Service/1.0.8": {
+      "sha512": "67DvpBZ2VNOAr06nSL17zTo2ARCsGIB6bAYRaYTwHvVWu0sJ5ob/Djifv7qhiDJAHsHPJyBJs5fD4J94OmhKlw==",
       "type": "package",
-      "path": "nsr.common.service/1.0.6",
+      "path": "nsr.common.service/1.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net5.0/Nsr.Common.Core.dll",
         "lib/net5.0/Nsr.Common.Data.dll",
         "lib/net5.0/Nsr.Common.Service.dll",
-        "nsr.common.service.1.0.6.nupkg.sha512",
+        "nsr.common.service.1.0.8.nupkg.sha512",
         "nsr.common.service.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Nsr.Common.Service >= 1.0.6"
+      "Nsr.Common.Service >= 1.0.8"
     ]
   },
   "packageFolders": {
@@ -83,7 +83,7 @@
         "dependencies": {
           "Nsr.Common.Service": {
             "target": "Package",
-            "version": "[1.0.6, )"
+            "version": "[1.0.8, )"
           }
         },
         "imports": [

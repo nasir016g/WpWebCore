@@ -19,12 +19,12 @@ namespace Wp.Web.Mvc.About.RestClients
             httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}");
             _restClient = RestService.For<ISkillWebApi>(httpClient);
         }
-        public async Task<List<SkillModel>> GetSkills([AliasAs("resumeId")] int resumeId)
+        public async Task<List<SkillAdminModel>> GetSkills([AliasAs("resumeId")] int resumeId)
         {
             return await _restClient.GetSkills(resumeId);
         }
 
-        public async Task<SkillModel> GetSkillById([AliasAs("id")] int id)
+        public async Task<SkillAdminModel> GetSkillById([AliasAs("id")] int id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Wp.Web.Mvc.About.RestClients
             }
         }
 
-        public async Task Update(int id, SkillModel model)
+        public async Task Update(int id, SkillAdminModel model)
         {
             await _restClient.Update(id, model);
         }
@@ -54,17 +54,17 @@ namespace Wp.Web.Mvc.About.RestClients
 
         }
 
-        public async Task<List<SkillItemModel>> GetItems(int skillId)
+        public async Task<List<SkillItemAdminModel>> GetItems(int skillId)
         {
             return await _restClient.GetItems(skillId);
         }
 
-        public async Task<SkillItemModel> GetItem(int id)
+        public async Task<SkillItemAdminModel> GetItem(int id)
         {
             return await _restClient.GetItem(id);
         }
 
-        public async Task UpdateItem(int id, SkillItemModel model)
+        public async Task UpdateItem(int id, SkillItemAdminModel model)
         {
             await _restClient.UpdateItem(id, model);
         }

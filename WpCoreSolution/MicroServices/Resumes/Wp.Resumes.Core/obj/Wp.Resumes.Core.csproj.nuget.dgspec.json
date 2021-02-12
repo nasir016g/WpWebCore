@@ -45,7 +45,7 @@
           "dependencies": {
             "Nsr.Common.Service": {
               "target": "Package",
-              "version": "[1.0.6, )"
+              "version": "[1.0.8, )"
             }
           },
           "imports": [

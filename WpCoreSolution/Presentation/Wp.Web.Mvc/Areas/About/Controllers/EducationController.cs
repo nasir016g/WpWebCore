@@ -52,7 +52,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(EducationModel model)
+        public async Task<IActionResult> Edit(EducationAdminModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> ItemEdit(EducationItemModel model)
+        public async Task<IActionResult> ItemEdit(EducationItemAdminModel model)
         {
             if (!ModelState.IsValid)
             {

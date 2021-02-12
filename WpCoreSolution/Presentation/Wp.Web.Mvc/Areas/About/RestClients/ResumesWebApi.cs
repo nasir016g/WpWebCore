@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Wp.Web.Mvc.About.Models;
-
+using Wp.Web.Mvc.Models.Resumes;
 
 namespace Wp.Web.Mvc.About.RestClients
 {
@@ -53,6 +53,25 @@ namespace Wp.Web.Mvc.About.RestClients
         public async Task Delete([AliasAs("id")] int id)
         {
             await _restClient.Delete(id);
+        }
+
+        public async Task<ResumeModel> GetResumeDetails([AliasAs("id")] int id)
+        {
+            try
+            {
+                return await _restClient.GetResumeDetails(id);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }

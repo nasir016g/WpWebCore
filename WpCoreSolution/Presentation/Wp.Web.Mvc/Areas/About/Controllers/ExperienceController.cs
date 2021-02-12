@@ -54,7 +54,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ExperienceModel model)
+        public async Task<IActionResult> Edit(ExperienceAdminModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace Wp.Web.Mvc.Areas.About.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> ProjectEdit(ProjectModel model)
+        public async Task<IActionResult> ProjectEdit(ProjectAdminModel model)
         {
             if (!ModelState.IsValid)
             {

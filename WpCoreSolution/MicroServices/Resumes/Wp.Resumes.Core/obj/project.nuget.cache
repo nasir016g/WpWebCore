@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kcw1c31Uu7KbLbXIBSKkTsxUvM8bC9bjn1gmeAV6PwtNXfNQ92/5A4v9og/9t5YkZPk7tYIzniyweTKlVtHJnQ==",
+  "dgSpecHash": "q3P9qwlKPJcC6njafp4YlyiWCeWs6O5//j5rMVSW3P2HuQk3BjKtLK3yRC8ZWo8eCO2mcMnKUlwGJXhjqvh8Qg==",
   "success": true,
   "projectFilePath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.6\\nsr.common.service.1.0.6.nupkg.sha512"
+    "C:\\Users\\nasir\\.nuget\\packages\\nsr.common.service\\1.0.8\\nsr.common.service.1.0.8.nupkg.sha512"
   ],
   "logs": []
 }

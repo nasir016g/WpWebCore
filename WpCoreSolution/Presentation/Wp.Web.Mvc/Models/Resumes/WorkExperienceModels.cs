@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nsr.Common.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using Wp.Web.Framework;
 
 namespace Wp.Web.Mvc.Models.Resumes
 {
-    public class ExperienceModel
+    public class ExperienceModel : IEntity, ILocalizedEntity
     {
         public ExperienceModel()
         {
@@ -30,10 +31,12 @@ namespace Wp.Web.Mvc.Models.Resumes
         [WpResourceDisplayName("Resume.Fields.Experiences.Tasks")]
         public string Tasks { get; set; }
 
+        public int DisplayOrder { get; set; }
+
         public IList<ProjectModel> Projects { get; set; }
     }
 
-    public class ProjectModel
+    public class ProjectModel : IEntity, ILocalizedEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

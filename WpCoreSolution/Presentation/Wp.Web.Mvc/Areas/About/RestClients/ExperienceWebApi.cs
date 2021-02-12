@@ -20,12 +20,12 @@ namespace Wp.Web.Mvc.About.RestClients
             _restClient = RestService.For<IExperienceWebApi>(httpClient);
         }
 
-        public async Task<List<ExperienceModel>> GetExperiences([AliasAs("resumeId")] int resumeId)
+        public async Task<List<ExperienceAdminModel>> GetExperiences([AliasAs("resumeId")] int resumeId)
         {
             return await _restClient.GetExperiences(resumeId);
         }
 
-        public async Task<ExperienceModel> GetExperienceById([AliasAs("id")] int id)
+        public async Task<ExperienceAdminModel> GetExperienceById([AliasAs("id")] int id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Wp.Web.Mvc.About.RestClients
                 }
             }
         }
-        public async Task Update(int id, ExperienceModel model)
+        public async Task Update(int id, ExperienceAdminModel model)
         {
             await _restClient.Update(id, model);
         }
@@ -53,17 +53,17 @@ namespace Wp.Web.Mvc.About.RestClients
             await _restClient.Delete(id);
         }
 
-        public async Task<List<ProjectModel>> GetItems(int experienceId)
+        public async Task<List<ProjectAdminModel>> GetItems(int experienceId)
         {
             return await _restClient.GetItems(experienceId);
         }
 
-        public async Task<ProjectModel> GetItem(int id)
+        public async Task<ProjectAdminModel> GetItem(int id)
         {
             return await _restClient.GetItem(id);
         }
 
-        public async Task UpdateItem(int id, ProjectModel model)
+        public async Task UpdateItem(int id, ProjectAdminModel model)
         {
             await _restClient.UpdateItem(id, model);
         }

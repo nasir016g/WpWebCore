@@ -10,25 +10,25 @@ namespace Wp.Web.Mvc.About.RestClients
     public interface IEducationWebApi
     {
         [Get("/education/GetByResumeId/{resumeId}")]
-        Task<List<EducationModel>> GetEducations([AliasAs("resumeId")] int resumeId);
+        Task<List<EducationAdminModel>> GetEducations([AliasAs("resumeId")] int resumeId);
 
         [Get("/education/{id}")]
-        Task<EducationModel> GetEducationById([AliasAs("id")] int id);
+        Task<EducationAdminModel> GetEducationById([AliasAs("id")] int id);
 
         [Put("/education/{id}")]        
-        Task Update(int id, EducationModel model);
+        Task Update(int id, EducationAdminModel model);
 
         [Delete("/education/{id}")]
         Task Delete([AliasAs("id")] int id);
 
         [Get("/education/items/{educationId}")]
-        Task<List<EducationItemModel>> GetItems(int educationId);
+        Task<List<EducationItemAdminModel>> GetItems(int educationId);
 
         [Get("/education/item/{id}")]
-        Task<EducationItemModel> GetItem(int id);
+        Task<EducationItemAdminModel> GetItem(int id);
 
         [Put("/education/item/{id}")]
-        Task UpdateItem(int id, EducationItemModel model);
+        Task UpdateItem(int id, EducationItemAdminModel model);
 
         [Delete("/education/item/{id}")]
         Task DeleteItem([AliasAs("id")] int id);

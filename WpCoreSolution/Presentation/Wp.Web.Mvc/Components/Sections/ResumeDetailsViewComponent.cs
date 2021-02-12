@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
+using Nsr.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Wp.Core;
 using Wp.Web.Mvc.About.Models;
@@ -31,7 +33,7 @@ namespace Wp.Web.Mvc.Components.Sections
 
         #region Utilities
 
-        protected ResumeModel PrepareResDetailsModel(ResumeAdminModel Resume)
+        protected ResumeModel PrepareResDetailsModel(ResumeModel Resume)
         {
             var model = new ResumeModel()
             {
@@ -47,7 +49,7 @@ namespace Wp.Web.Mvc.Components.Sections
                 DateOfBirth = Resume.DateOfBirth,
                 Website = Resume.Website
             };
-            var summary = Resume.GetLocalized(Resume.Locales, x => x.Summary);
+            var summary = Resume.GetLocalized(x => x.Summary);
 
             if (!String.IsNullOrWhiteSpace(summary))
             {
@@ -55,101 +57,101 @@ namespace Wp.Web.Mvc.Components.Sections
                 model.Summary = model.Summary.Replace("\n", "<br />");
             }
 
-            //#region Education
+            #region Education
 
-            //foreach (var education in Resume.Educations)
-            //{
-            //    var educationModel = new EducationModel()
-            //    {
-            //        Id = education.Id,
-            //        Name = education.GetLocalized(x => x.Name)
-            //    };
+            foreach (var education in Resume.Educations)
+            {
+                var educationModel = new EducationModel()
+                {
+                    Id = education.Id,
+                    Name = education.GetLocalized(x => x.Name)
+                };
 
-            //    foreach (var educationItem in education.EducationItems)
-            //    {
-            //        var educationItemModel = new EducationItemModel()
-            //        {
-            //            Id = educationItem.Id,
-            //            Name = educationItem.GetLocalized(x => x.Name),
-            //            //Descriptions = Regex.Split(educationItem.GetLocalized(x => x.Description), "\r\n").ToList(),
-            //            Period = educationItem.GetLocalized(x => x.Period),
-            //            Place = educationItem.GetLocalized(x => x.Place)
-            //        };
-            //        var description = Wp.Core.Common.HtmlHelper.StripTags(educationItem.GetLocalized(x => x.Description));
-            //        description = description.Replace("-", "");
+                foreach (var educationItem in education.EducationItems)
+                {
+                    var educationItemModel = new EducationItemModel()
+                    {
+                        Id = educationItem.Id,
+                        Name = educationItem.GetLocalized(x => x.Name),
+                        //Descriptions = Regex.Split(educationItem.GetLocalized(x => x.Description), "\r\n").ToList(),
+                        Period = educationItem.GetLocalized(x => x.Period),
+                        Place = educationItem.GetLocalized(x => x.Place)
+                    };
+                    var description = Wp.Core.Common.HtmlHelper.StripTags(educationItem.GetLocalized(x => x.Description));
+                    description = description.Replace("-", "");
 
-            //        if (description != null && description.Contains("\r\n"))
-            //        {
-            //            educationItemModel.Descriptions = Regex.Split(description, "\r\n").ToList();
-            //            educationItemModel.Descriptions.RemoveAll(x => String.IsNullOrWhiteSpace(x));
-            //        }
-            //        else
-            //        {
-            //            educationItemModel.Descriptions.Add(description);
-            //        }
+                    if (description != null && description.Contains("\r\n"))
+                    {
+                        educationItemModel.Descriptions = Regex.Split(description, "\r\n").ToList();
+                        educationItemModel.Descriptions.RemoveAll(x => String.IsNullOrWhiteSpace(x));
+                    }
+                    else
+                    {
+                        educationItemModel.Descriptions.Add(description);
+                    }
 
-            //        educationModel.Items.Add(educationItemModel);
-            //    }
-            //    model.Educations.Add(educationModel);
-            //}
+                    educationModel.EducationItems.Add(educationItemModel);
+                }
+                model.Educations.Add(educationModel);
+            }
 
-            //#endregion
+            #endregion
 
-            //#region Skill
-            //var skills = Resume.Skills;
-            //foreach (var skill in skills.OrderBy(x => x.DisplayOrder))
-            //{
-            //    var skillModel = new SkillModel()
-            //    {
-            //        Id = skill.Id,
-            //        Name = skill.GetLocalized(x => x.Name)
-            //    };
+            #region Skill
+            var skills = Resume.Skills;
+            foreach (var skill in skills.OrderBy(x => x.DisplayOrder))
+            {
+                var skillModel = new SkillModel()
+                {
+                    Id = skill.Id,
+                    Name = skill.GetLocalized(x => x.Name)
+                };
 
-            //    foreach (var skillItem in skill.SkillItems.OrderByDescending(x => x.Level))
-            //    {
-            //        var skillItemModel = new SkillItemModel()
-            //        {
-            //            Id = skillItem.Id,
-            //            Level = skillItem.Level * 10,
-            //            Name = skillItem.GetLocalized(x => x.Name),
-            //            LevelDescription = skillItem.GetLocalized(x => x.LevelDescription)
-            //        };
-            //        skillModel.Items.Add(skillItemModel);
-            //    }
-            //    model.Skills.Add(skillModel);
-            //}
-            //#endregion
+                foreach (var skillItem in skill.SkillItems.OrderByDescending(x => x.Level))
+                {
+                    var skillItemModel = new SkillItemModel()
+                    {
+                        Id = skillItem.Id,
+                        Level = skillItem.Level * 10,
+                        Name = skillItem.GetLocalized(x => x.Name),
+                        LevelDescription = skillItem.GetLocalized(x => x.LevelDescription)
+                    };
+                    skillModel.SkillItems.Add(skillItemModel);
+                }
+                model.Skills.Add(skillModel);
+            }
+            #endregion
 
-            //#region Experience
+            #region Experience
 
-            //foreach (var experience in Resume.Experiences.OrderByDescending(x => x.DisplayOrder))
-            //{
-            //    var experienceModel = new ExperienceModel()
-            //    {
-            //        Id = experience.Id,
-            //        Name = experience.GetLocalized(x => x.Name),
-            //        Period = experience.GetLocalized(x => x.Period),
-            //        Function = experience.GetLocalized(x => x.Function),
-            //        City = experience.GetLocalized(x => x.City),
-            //        //Tasks = Regex.Split(experience.GetLocalized(x => x.Tasks), "\r\n")
-            //    };
-            //    var tasks = experience.GetLocalized(x => x.Tasks);
-            //    experienceModel.Tasks = tasks.Replace("\r\n", "<br >");
+            foreach (var experience in Resume.Experiences.OrderByDescending(x => x.DisplayOrder))
+            {
+                var experienceModel = new ExperienceModel()
+                {
+                    Id = experience.Id,
+                    Name = experience.GetLocalized(x => x.Name),
+                    Period = experience.GetLocalized(x => x.Period),
+                    Function = experience.GetLocalized(x => x.Function),
+                    City = experience.GetLocalized(x => x.City),
+                    //Tasks = Regex.Split(experience.GetLocalized(x => x.Tasks), "\r\n")
+                };
+                var tasks = experience.GetLocalized(x => x.Tasks);
+                experienceModel.Tasks = tasks.Replace("\r\n", "<br >");
 
-            //    foreach (var project in experience.Projects)
-            //    {
-            //        var projectModel = new ProjectModel()
-            //        {
-            //            Id = project.Id,
-            //            Name = project.GetLocalized(x => x.Name),
-            //            Description = project.GetLocalized(x => x.Description),
-            //            Technology = project.GetLocalized(x => x.Technology)
-            //        };
-            //        experienceModel.Projects.Add(projectModel);
-            //    }
-            //    model.Experiences.Add(experienceModel);
-            //}
-            //#endregion
+                foreach (var project in experience.Projects)
+                {
+                    var projectModel = new ProjectModel()
+                    {
+                        Id = project.Id,
+                        Name = project.GetLocalized(x => x.Name),
+                        Description = project.GetLocalized(x => x.Description),
+                        Technology = project.GetLocalized(x => x.Technology)
+                    };
+                    experienceModel.Projects.Add(projectModel);
+                }
+                model.Experiences.Add(experienceModel);
+            }
+            #endregion
 
             return model;
         }
@@ -162,7 +164,7 @@ namespace Wp.Web.Mvc.Components.Sections
         {
             var res = await _resiliencyHelper.ExecuteResilient(async () =>
             {
-                var model = await _resumeManagementApi.GetResumeById(1);
+                var model = await _resumeManagementApi.GetResumeDetails(1);
                 return model;
             }, null);
 

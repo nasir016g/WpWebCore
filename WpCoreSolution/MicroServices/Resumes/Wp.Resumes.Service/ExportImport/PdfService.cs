@@ -13,11 +13,15 @@ namespace Wp.Resumes.Services
     // Maybe an alternative method for generating Pdf's? http://www.codeproject.com/Articles/260470/PDF-reporting-using-ASP-NET-MVC3
     public class PdfService : IPdfService
     {
-        #region Fields
+        private  ILocalizationService _localizationService;
+        private readonly ILanguageService _languageService;
 
-        private readonly ILocalizationService _localizationService;
+        public PdfService(ILocalizationService localizationService, ILanguageService languageService)
+        {
+            _localizationService = localizationService;
+            _languageService = languageService;
+        }
 
-        #endregion
 
         #region Properties
 

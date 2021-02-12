@@ -11,7 +11,7 @@ using Nsr.Common.Service.Configuration;
 using Nsr.Common.Services;
 using System;
 
-namespace Nsr.Common.Extensions
+namespace Nsr.Common.Service.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -58,6 +58,7 @@ namespace Nsr.Common.Extensions
             services.AddScoped(typeof(ICommonBaseRepository<>), typeof(CommonBaseRepository<>));
 
             // services
+            services.AddScoped<IWorkContext, WorkContext>();
             services.AddScoped<ICommonUnitOfWork, CommonUnitOfWork>();
             services.AddScoped<ICacheManager, PerRequestCacheManager>();
             
@@ -67,14 +68,15 @@ namespace Nsr.Common.Extensions
             services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
 
             services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped(x =>
+            {
+                return x.GetService<ISettingService>().LoadSetting<WebsiteSettings>();
+            });
             //services.AddScoped<ISettings>( sp =>
             //{
             //    var see = sp.GetService<ISettingService>().LoadSetting<LocalizationSettings>();
             //    return see;
             //});
-           
-
-
 
             return services;
         }
@@ -95,18 +97,7 @@ namespace Nsr.Common.Extensions
                     context.Database.Migrate();
 
                 }
-
-            //    var ls = serviceScope.ServiceProvider.GetService<ILanguageService>();
-            //    var les = serviceScope.ServiceProvider.GetService<ILocalizedEntityService>();
-            //    LocalizedUrlExtenstions.Configure(ls);
-            //    LocalizationExtensions.Configure(ls, les);
             }
-
-
-           //var ls = app.ApplicationServices.GetService<ILanguageService>();
-           // var les = app.ApplicationServices.GetService<ILocalizedEntityService>();
-           // LocalizedUrlExtenstions.Configure(ls);
-           // LocalizationExtensions.Configure(ls, les);
 
             ServiceLocator.Instance = app.ApplicationServices;
 

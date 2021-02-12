@@ -1,4 +1,3 @@
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,11 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Nsr.Common.Core.Localization;
-using Nsr.Common.Extensions;
+using Nsr.Common.Core;
+using Nsr.Common.Service.Extensions;
 using System;
 using System.Reflection;
-using Wp.Core;
 using Wp.Core.Security;
 using Wp.Data;
 using Wp.Web.Framework.Extensions;
@@ -135,7 +133,7 @@ namespace Wp.Web.Mvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             ServiceLocator.Instance = app.ApplicationServices;
-            Nsr.Common.Extensions.ServiceCollectionExtensions.UseNsrCommon(app);
+           Nsr.Common.Service.Extensions.ServiceCollectionExtensions.UseNsrCommon(app);
             app.UseSession();
 
             ServiceCollectionExtensions.Migrate(app);
