@@ -360,3 +360,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+WpCoreSolution/MicroServices/Resumes/Wp.Resumes.Data/obj/
+
+WpCoreSolution/MicroServices/Resumes/Wp.Resumes.Service/obj/
