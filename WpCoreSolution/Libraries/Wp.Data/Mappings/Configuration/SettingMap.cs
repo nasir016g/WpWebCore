@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Wp.Core.Domain.Configuration;
+using Nsr.Common.Core;
 using Wp.Data.Mappings;
 
 namespace Wp.Core.Mappings.Configuration

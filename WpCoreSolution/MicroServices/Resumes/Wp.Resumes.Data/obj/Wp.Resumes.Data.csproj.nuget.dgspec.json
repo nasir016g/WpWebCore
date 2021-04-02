@@ -4,14 +4,14 @@
     "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Data\\Wp.Resumes.Data.csproj": {}
   },
   "projects": {
-    "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj": {
+    "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
-        "projectName": "Wp.Resumes.Core",
-        "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
+        "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj",
+        "projectName": "Nsr.Common.Core",
+        "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj",
         "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\obj\\",
+        "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,11 +43,239 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Nsr.Common.Service": {
+            "EasyCaching.InMemory": {
               "target": "Package",
-              "version": "[1.0.8, )"
+              "version": "[1.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "System.Runtime.Caching": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\Nsr.Common.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\Nsr.Common.Data.csproj",
+        "projectName": "Nsr.Common.Data",
+        "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\Nsr.Common.Data.csproj",
+        "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj": {
+                "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj": {
+      "version": "1.0.8",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj",
+        "projectName": "Nsr.Common.Service",
+        "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj",
+        "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj": {
+                "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Core\\Nsr.Common.Core.csproj"
+              },
+              "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\Nsr.Common.Data.csproj": {
+                "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Data\\Nsr.Common.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
+        "projectName": "Wp.Resumes.Core",
+        "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\Wp.Resumes.Core.csproj",
+        "packagesPath": "C:\\Users\\nasir\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\MicroServices\\Resumes\\Wp.Resumes.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\nasir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj": {
+                "projectPath": "C:\\Git\\WpWebCore\\WpCoreSolution\\Common\\Nsr.Common.Service\\Nsr.Common.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "imports": [
             "net461",
             "net462",

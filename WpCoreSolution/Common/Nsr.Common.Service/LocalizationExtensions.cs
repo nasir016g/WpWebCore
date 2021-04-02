@@ -25,7 +25,8 @@ namespace Nsr.Common.Services
         public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector, int languageId, bool returnDefaultValue = true, bool ensureTwoPublishedLanguages = true)
             where T : IEntity, ILocalizedEntity
         {
-            return GetLocalized<T, string>(entity, keySelector, languageId, returnDefaultValue, ensureTwoPublishedLanguages);
+
+            return GetLocalized<T, string>(entity, keySelector, languageId, returnDefaultValue, ensureTwoPublishedLanguages) ?? "";
         }
 
         public static TPropType GetLocalized<T, TPropType>(this T entity,  Expression<Func<T, TPropType>> keySelector, int languageId, bool returnDefaultValue = true, bool ensureTwoPublishedLanguages = true)

@@ -135,10 +135,6 @@ namespace Wp.Resumes.Services.ExportImport
             return stringWriter.ToString();
         }       
 
-        public void ExportResumeToWord(Stream stream, Resume resume, int languageId)
-        {
-            var wordService = new ExportWordService(_localizationService, _languageService);
-            wordService.ExportResumeToWord(stream, resume, languageId);            
-        } 
+        
     }
 }

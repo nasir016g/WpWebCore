@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Nsr.Common.Core;
+using Nsr.Common.Core.Caching;
 using System.Collections.Generic;
 using System.Linq;
-using Nsr.Common.Core;
-using Wp.Core;
-using Wp.Core.Caching;
 using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
 using Wp.Core.Domain.WebPages;

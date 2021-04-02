@@ -1,0 +1,13 @@
+﻿@model Wp.Web.Mvc.AboutMe.Models.EducationAdminModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("_CreateEdit", Model)    
+  
+}
+
+

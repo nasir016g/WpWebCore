@@ -15,3 +15,6 @@ C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\obj\Debug\net5.0\Nsr.C
 C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\obj\Debug\net5.0\Nsr.Common.Service.dll
 C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\obj\Debug\net5.0\ref\Nsr.Common.Service.dll
 C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\obj\Debug\net5.0\Nsr.Common.Service.pdb
+C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\bin\Debug\net5.0\Nsr.Common.Service.runtimeconfig.json
+C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\bin\Debug\net5.0\Nsr.Common.Service.runtimeconfig.dev.json
+C:\Git\WpWebCore\WpCoreSolution\Common\Nsr.Common.Service\obj\Debug\net5.0\Nsr.Common.Service.genruntimeconfig.cache

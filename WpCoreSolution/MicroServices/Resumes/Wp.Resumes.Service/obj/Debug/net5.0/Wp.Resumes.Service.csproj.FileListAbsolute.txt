@@ -13,3 +13,12 @@ C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\obj\Deb
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\obj\Debug\net5.0\Wp.Resumes.Service.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\obj\Debug\net5.0\ref\Wp.Resumes.Service.dll
 C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\obj\Debug\net5.0\Wp.Resumes.Service.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Core.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Data.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Service.dll
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Service.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Core.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Nsr.Common.Data.pdb
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Wp.Resumes.Service.runtimeconfig.json
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\bin\Debug\net5.0\Wp.Resumes.Service.runtimeconfig.dev.json
+C:\Git\WpWebCore\WpCoreSolution\MicroServices\Resumes\Wp.Resumes.Service\obj\Debug\net5.0\Wp.Resumes.Service.genruntimeconfig.cache

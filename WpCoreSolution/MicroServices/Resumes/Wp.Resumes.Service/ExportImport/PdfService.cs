@@ -1,6 +1,12 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.draw;
+﻿using iText.IO.Font;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using Nsr.Common.Services;
 using System;
 using System.IO;
@@ -25,45 +31,12 @@ namespace Wp.Resumes.Services
 
         #region Properties
 
-        private BaseFont TimesRoman
-        {
+        private Text Newline {
             get
             {
-                return BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+                 return new Text("\n");
             }
-        }
-
-        private Font H2
-        {
-            get
-            {
-                return new Font(TimesRoman, 14, Font.BOLD, BaseColor.BLACK);
-            }
-        }
-
-        private Font H3
-        {
-            get
-            {
-                return new Font(TimesRoman, 12, Font.BOLDITALIC, BaseColor.BLACK);
-            }
-        }
-
-        private Font H4
-        {
-            get
-            {
-                return new Font(TimesRoman, 8, Font.BOLD, BaseColor.BLACK);
-            }
-        }
-
-        private Font Normal
-        {
-            get
-            {
-                return new Font(TimesRoman, 8, Font.NORMAL, BaseColor.BLACK);
-            }
-        }
+        }       
 
         #endregion
 
@@ -74,32 +47,32 @@ namespace Wp.Resumes.Services
            return text.Replace(Environment.NewLine, String.Empty).Replace("\n", String.Empty).Replace("  ", String.Empty);
         }
 
-        private void InsertExperienceRow(Experience exp, PdfPTable table, string resourceKey, string value, Font formatting = null, float leading = 0)
+        private void InsertExperienceRow(Experience exp, Table table, string resourceKey, Text value, float leading = 0)
         {
-            if (formatting == null) formatting = Normal;
+           
+            //var cell = new Cell();
+            //cell.SetBorder(Border.NO_BORDER);
 
             var resourceValue = _localizationService.GetResource(resourceKey);
 
-            PdfPCell cell = InsertColumn(resourceValue, Normal, leading);
+            Cell cell = InsertColumn(new Text(resourceValue), leading);
             table.AddCell(cell);
 
-            PdfPCell cellValue = InsertColumn(value, formatting, leading);
+            Cell cellValue = InsertColumn(value, leading);
             table.AddCell(cellValue);
         }
 
-        private PdfPCell InsertColumn(string value, Font formatting, float leading = 0)
+        private Cell InsertColumn(Text value, float leading = 0)
         {
-            var cell = new PdfPCell();
-            cell.Border = Rectangle.NO_BORDER;
-            cell.Padding = 0;
+            var cell = new Cell();           
 
             if (leading == 0)
             {
-                cell.AddElement(new Paragraph(value, formatting));
+                cell.Add(new Paragraph(value));
             }
             else
             {
-                cell.AddElement(new Paragraph(leading, value, formatting));
+                cell.Add(new Paragraph(value).SetFixedLeading(leading));
             }
 
             return cell;
@@ -109,7 +82,7 @@ namespace Wp.Resumes.Services
 
         #endregion
 
-        #region Private Methods
+        //#region Private Methods
 
         private void InsertEducations(Resume resume, Document doc)
         {
@@ -118,36 +91,32 @@ namespace Wp.Resumes.Services
 
             foreach (var education in resume.Educations)
             {
-                doc.Add(new Paragraph(30, education.GetLocalized(x => x.Name), H3)); // ict training
+                doc.Add(new Paragraph(new Text(education.GetLocalized(x => x.Name)).SetFontSize(12).SetBold().SetItalic())); // ict training
 
                 foreach (var item in education.EducationItems)
                 {
-                    var table = new PdfPTable(2); // computer science
-                    table.WidthPercentage = 100f;
-                    table.SetWidths(new[] { 70, 30 });
+                    var table = new Table(UnitValue.CreatePercentArray(new float[] { 70, 30 }));
+                    table.SetWidth(UnitValue.CreatePercentValue(100f));
 
-                    var cell = new PdfPCell();
-                    cell.Border = Rectangle.NO_BORDER;
-                    cell.AddElement(new Paragraph(20, item.GetLocalized(x => x.Name), H4));
+                    var cell = new Cell();
+                    cell.SetBorder(Border.NO_BORDER);
+                    cell.Add(new Paragraph(new Text(item.GetLocalized(x => x.Name)).SetBold().SetFontSize(10).SetItalic()));
                     if (!String.IsNullOrEmpty(item.GetLocalized(x => x.Place)))
-                        cell.AddElement(new Paragraph(item.GetLocalized(x => x.Place), Normal));
+                        cell.Add(new Paragraph(item.GetLocalized(x => x.Place)));
 
                     string description = item.GetLocalized(x => x.Description);
                     if (description != null)
                     {
                         //description = StripNewline(description);
                         //description = HtmlHelper.StripTags(description);
-                        cell.AddElement(new Paragraph(description, Normal));
+                        cell.Add(new Paragraph(description).SetMarginLeft(20f));
                     }
 
                     table.AddCell(cell);
 
-                    var paraPeriod = new Paragraph(item.GetLocalized(x => x.Period), Normal);
-                    paraPeriod.Alignment = Element.ALIGN_RIGHT;
-
-                    cell = new PdfPCell();
-                    cell.Border = Rectangle.NO_BORDER;
-                    cell.AddElement(paraPeriod);
+                    cell = new Cell();
+                    cell.SetBorder(Border.NO_BORDER);
+                    cell.Add(new Paragraph(item.GetLocalized(x => x.Period)).SetTextAlignment(TextAlignment.RIGHT));
                     table.AddCell(cell);
 
                     doc.Add(table);
@@ -157,44 +126,47 @@ namespace Wp.Resumes.Services
 
         private void InsertSkills(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(30, _localizationService.GetResource("Resume.Fields.Skills"), H3));
+            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Skills")).SetBold().SetItalic().SetFontSize(12)));
 
             foreach (var skill in resume.Skills)
-            {
-
-                doc.Add(new Paragraph(20, skill.GetLocalized(x => x.Name), H3));
+            {               
+                doc.Add(new Paragraph(new Text(skill.GetLocalized(x => x.Name)).SetBold().SetFontSize(10)));
+                var p = new Paragraph();
                 foreach (var item in skill.SkillItems)
                 {
                     if (String.IsNullOrWhiteSpace(item.LevelDescription))
                     {
-                        doc.Add(new Paragraph(item.GetLocalized(x => x.Name), Normal));
+                        p.Add(item.GetLocalized(x => x.Name));
                     }
                     else
                     {
-                        doc.Add(new Paragraph(String.Format("{0} ({1})", item.GetLocalized(x => x.Name), item.LevelDescription), Normal));
+                       p.Add(String.Format("{0} ({1})", item.GetLocalized(x => x.Name), item.LevelDescription));
                     }
+
+                    p.Add(Newline);
                 }
+                doc.Add(p);
             }
         }
 
         private void InsertExperiences(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(30, _localizationService.GetResource("Resume.Fields.Experiences"), H2));
+            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Experiences")).SetFontSize(12).SetBold().SetItalic()));
             //doc.Add(line);
             doc.Add(new Paragraph());
             foreach (var experience in resume.Experiences.OrderBy(x => x.DisplayOrder))
             {
                 //doc.Add(new Paragraph(exp.GetLocalized(x => x.Name), h3));// company name
 
-                var table = new PdfPTable(2);
-                table.WidthPercentage = 100f;
-                table.SetWidths(new[] { 20, 80 });
+              var table = new Table(UnitValue.CreatePercentArray(new float[] { 20, 80 }));
+              table.SetWidth(UnitValue.CreatePercentValue(100f));
 
-                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Name", experience.GetLocalized(x => x.Name), H4, 20);
-                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Period", experience.GetLocalized(x => x.Period));
-                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Function", experience.GetLocalized(x => x.Function));
-                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.City", experience.GetLocalized(x => x.City));
-                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Tasks", experience.GetLocalized(x => x.Tasks));
+
+                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Name", new Text(experience.GetLocalized(x => x.Name)).SetBold(), 20);
+                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Period", new Text(experience.GetLocalized(x => x.Period)));
+                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Function", new Text(experience.GetLocalized(x => x.Function)));
+                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.City", new Text(experience.GetLocalized(x => x.City)));
+                InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Tasks", new Text(experience.GetLocalized(x => x.Tasks)));
 
                 doc.Add(table);
 
@@ -212,7 +184,7 @@ namespace Wp.Resumes.Services
             }
         }
 
-        #endregion
+        //#endregion
 
         #region Ctor
 
@@ -232,58 +204,61 @@ namespace Wp.Resumes.Services
             if (resume == null)
                 throw new ArgumentNullException("Resume");
 
-            var pageSize = PageSize.A4;
-            var line = new LineSeparator(1, 100, BaseColor.BLACK, Element.ALIGN_CENTER, -6);
+            var pageSize = iText.Kernel.Geom.PageSize.A4;
 
-            var doc = new Document(pageSize);
-            PdfWriter.GetInstance(doc, stream);
-            doc.Open();
+            var line = new LineSeparator(new SolidLine());
+            var writer = new PdfWriter(stream);
+            var pdf = new PdfDocument(writer);
+            PdfFont font = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
 
-            doc.Add(new Paragraph(resume.Name, H3));
-            doc.Add(new Paragraph(resume.Address, Normal));
-            doc.Add(new Paragraph(string.Format("{0} {1}", resume.PostalCode, resume.Town), Normal));
+            var doc = new Document(pdf);
+            doc.SetFont(font).SetFontSize(8);
+            
 
-            doc.Add(new Paragraph(10, "\u00a0"));
-            var table = new PdfPTable(2);
-            table.WidthPercentage = 100f;
-            table.SetWidths(new[] { 10, 80 });
+            doc.Add(new Paragraph()
+                .Add(new Text(resume.Name).SetItalic().SetBold().SetFontSize(12)).Add(Newline)
+                .Add(new Text(resume.Address)).Add(Newline)
+                .Add(new Text(string.Format("{0} {1}", resume.PostalCode, resume.Town))));
+            
+            //doc.Add(new Paragraph(10, "\u00a0"));
+            var table = new Table(UnitValue.CreatePercentArray(new float[] { 10, 80 }));
+            table.SetWidth(UnitValue.CreatePercentValue(100f));
 
             if (!String.IsNullOrWhiteSpace(resume.Phone))
             {
-                table.AddCell(InsertColumn(string.Format("{0}", _localizationService.GetResource("Resume.Fields.TelePhone")), Normal));
-                table.AddCell(InsertColumn(resume.Phone, Normal));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.TelePhone")))));
+                table.AddCell(InsertColumn(new Text(resume.Phone)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.Mobile))
             {
-                table.AddCell(InsertColumn(string.Format("{0}", _localizationService.GetResource("Resume.Fields.Mobile")), Normal));
-                table.AddCell(InsertColumn(resume.Mobile, Normal));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.Mobile")))));
+                table.AddCell(InsertColumn(new Text(resume.Mobile)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.Email))
             {
-                table.AddCell(InsertColumn("Email:", Normal));
-                table.AddCell(InsertColumn(resume.Email, Normal));
+                table.AddCell(InsertColumn(new Text("Email:")));
+                table.AddCell(InsertColumn(new Text(resume.Email)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.Website))
             {
-                table.AddCell(InsertColumn("Website:", Normal));
-                table.AddCell(InsertColumn(resume.Website, Normal));
+                table.AddCell(InsertColumn(new Text("Website:")));
+                table.AddCell(InsertColumn(new Text(resume.Website)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.LinkedIn))
             {
-                table.AddCell(InsertColumn("LinkedIn:", Normal));
-                table.AddCell(InsertColumn(resume.LinkedIn, Normal));
+                table.AddCell(InsertColumn(new Text("LinkedIn:")));
+                table.AddCell(InsertColumn(new Text(resume.LinkedIn)));
             }
 
             doc.Add(table);
-            doc.Add(new Paragraph(10, "\u00a0"));
 
-            doc.Add(new Paragraph(20, _localizationService.GetResource("Resume.Fields.Summary"), H3));
-            doc.Add(new Paragraph(10, "\u00a0"));
-            doc.Add(new Paragraph(resume.GetLocalized(x => x.Summary), Normal));
+            doc.Add(new Paragraph().Add(new Text(_localizationService.GetResource("Resume.Fields.Summary")).SetItalic().SetBold().SetFontSize(12)));
+            doc.Add(new Paragraph().Add(new Text(resume.GetLocalized(x => x.Summary))).SetMarginLeft(20f));
+            
 
             InsertEducations(resume, doc);
             InsertSkills(resume, doc);

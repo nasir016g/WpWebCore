@@ -1,0 +1,9 @@
+﻿@model Wp.Web.Mvc.AboutMe.Models.ProjectAdminModel
+@{
+    ViewBag.Title = "ProjectEdit";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("_ProjectCreateEdit", Model)    
+}
+

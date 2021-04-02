@@ -190,34 +190,14 @@ namespace Wp.Resumes.WebApi.Controllers
         }
 
 
-        [HttpGet("ExportToWord/{id}/{languageId}")]
-        public ActionResult ExportToWord(int id, int languageId)
-        {
-            try
-            {
-                var entity = _resumeService.GetById(id);
-
-                byte[] bytes = null;
-                using (var stream = new MemoryStream())
-                {
-                    _exportManager.ExportResumeToWord(stream, entity, languageId);
-                    bytes = stream.ToArray();
-                }
-                return File(bytes, "application/docx", string.Format("{0}_Resume.docx", entity.Name));
-            }
-            catch (Exception exc)
-            {
-                //ErrorNotification(exc);
-                return RedirectToAction("Index");
-            }
-        }
+       
 
         [HttpGet("PrintToPdf/{id}")]
         public ActionResult PrintToPdf(int id)
         {
             try
             {
-                var entity = _resumeService.GetById(id);
+                var entity = _resumeService.GetDetails(id);
 
                 byte[] bytes = null;
                 using (var stream = new MemoryStream())

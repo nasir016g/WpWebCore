@@ -108,19 +108,19 @@ namespace Nsr.Common.Services
         //    return _lsrRepo.GetById(id);
         //}
 
-        public LocaleStringResource GetByName(string resourceName)
-        {
-            using (var serviceScope = ServiceLocator.GetScope())
-            {
-                var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
-                return GetByName(resourceName, workContext.Current.WorkingLanguageId);
-            }
-        }
+        //public LocaleStringResource GetByName(string resourceName)
+        //{
+        //    using (var serviceScope = ServiceLocator.GetScope())
+        //    {
+        //        var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
+        //        return GetByName(resourceName, workContext.Current.WorkingLanguageId);
+        //    }
+        //}
 
-        public LocaleStringResource GetByName(string resourceName, int languageId)
-        {
-            return _lsrRepo.Table.Where(x => x.ResourceName == resourceName && x.LanguageId == languageId).FirstOrDefault();
-        }
+        //public LocaleStringResource GetByName(string resourceName, int languageId)
+        //{
+        //    return _lsrRepo.Table.Where(x => x.ResourceName == resourceName && x.LanguageId == languageId).FirstOrDefault();
+        //}
 
         public override void Insert(LocaleStringResource t)
         {

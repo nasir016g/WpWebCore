@@ -1,23 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
+using Nsr.Common.Core;
 using Wp.Core;
 using Wp.Core.Domain.Sections;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
 using Wp.Web.Framework.UI;
-using Wp.Web.Mvc.About.Models;
-using Wp.Web.Mvc.About.RestClients;
-using Wp.Web.Mvc.Helpers;
-using Wp.Web.Mvc.Models.Resumes;
-using Wp.Web.Mvc.Models.Sections;
-using Nsr.Common.Services;
-using System.Threading.Tasks;
+using Wp.Web.Mvc.AboutMe.RestClients;
 using Wp.Web.Mvc.Extensions;
-using Nsr.Common.Core;
+using Wp.Web.Mvc.Helpers;
+using Wp.Web.Mvc.Models.Sections;
 
 namespace Wp.Web.Mvc.Controllers.Sections
 {

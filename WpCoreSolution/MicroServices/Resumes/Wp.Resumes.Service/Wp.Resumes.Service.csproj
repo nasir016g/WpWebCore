@@ -5,17 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DocX" Version="1.7.1" />
     <PackageReference Include="EPPlus" Version="5.5.3" />
-    <PackageReference Include="iTextSharp" Version="5.5.13.2" />
+    <PackageReference Include="itext7" Version="7.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Nsr.Common.Service" Version="1.0.8" />
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Nsr.Common.Service\Nsr.Common.Service.csproj" />
     <ProjectReference Include="..\Wp.Resumes.Core\Wp.Resumes.Core.csproj" />
   </ItemGroup>
 

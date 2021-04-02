@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <Compile Remove="Configuration\**" />
+    <Compile Remove="Domain\Localization\**" />
     <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Domain\Localization\**" />
     <None Remove="Configuration\**" />
+    <None Remove="Domain\Localization\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +19,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.3" />
-    <PackageReference Include="Nsr.Common.Service" Version="1.0.8" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
@@ -36,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Localization\" />
+    <ProjectReference Include="..\..\Common\Nsr.Common.Service\Nsr.Common.Service.csproj" />
   </ItemGroup>
 
 </Project>

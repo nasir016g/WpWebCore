@@ -6,6 +6,5 @@ namespace Wp.Resumes.Services.ExportImport
     public partial interface IExportManager
     {
         string ExportResumeToXml(Resume entity);
-        void ExportResumeToWord(Stream stream, Resume c, int languageId);
     }
 }

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Nsr.Common.Core;
+using Nsr.Common.Core.Caching;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nsr.Common.Core;
-using Wp.Core;
-using Wp.Core.Caching;
 using Wp.Core.Domain.Common;
-using Wp.Data;
 using Wp.Services.Events;
 
 namespace Wp.Services.Common
