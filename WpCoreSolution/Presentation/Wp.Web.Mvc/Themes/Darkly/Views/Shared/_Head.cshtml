@@ -1,6 +1,9 @@
 ﻿<link href="~/css/bootstrap_darkly.min.css" rel="stylesheet" />
 
-@inject Nsr.Common.Core.IWorkContext workContext;
+@inject Wp.Services.Websites.IWebsiteService websiteService;
 @{ 
-    string theme = workContext.Current.WebSite.Theme;
-}
+    string theme = "Default";
+
+    var website = websiteService.GetAll().FirstOrDefault();
+    theme = website?.Theme;
+  }

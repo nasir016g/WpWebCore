@@ -12,6 +12,7 @@ using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.WebPages;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
+using Wp.Services.Websites;
 using Wp.Web.Framework.Extensions.Mapper;
 using Wp.Web.Mvc.Extensions;
 
@@ -19,14 +20,16 @@ namespace Wp.Web.Mvc.Controllers
 {
     public class WebPageController : BaseWpController
     {
+        private readonly IWebsiteService _websiteService;
         private readonly IWebPageService _webPageService;
         private readonly ISectionService _sectionService;
         private readonly IWorkContext _workContext;
         private readonly IWebHelper _webHelper;
         private readonly ILogger<WebPageController> _logger;
 
-        public WebPageController(IWebPageService webPageService, ISectionService sectionService, IWorkContext workContext, IWebHelper webHelper, ILogger<WebPageController> logger)
+        public WebPageController(IWebsiteService websiteService, IWebPageService webPageService, ISectionService sectionService, IWorkContext workContext, IWebHelper webHelper, ILogger<WebPageController> logger)
         {
+            _websiteService = websiteService;
             _webPageService = webPageService;
             _sectionService = sectionService;
             _workContext = workContext;
@@ -58,7 +61,7 @@ namespace Wp.Web.Mvc.Controllers
             var model = entity.ToModel(_webPageService, _sectionService);
 
             // meta's
-            var website = _workContext.Current.WebSite;
+            var website = _websiteService.GetAll().First();  //_workContext.Current.WebSite;
 
             ////customer attribute services
             //if (_customAttributeService != null && _customAttributeParser != null)

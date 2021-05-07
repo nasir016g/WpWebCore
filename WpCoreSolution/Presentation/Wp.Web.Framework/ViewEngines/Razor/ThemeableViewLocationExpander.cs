@@ -4,6 +4,7 @@ using Nsr.Common.Core;
 using System.Collections.Generic;
 using System.Linq;
 using Wp.Core;
+using Wp.Services.Websites;
 
 namespace Wp.Web.Framework.ViewEngines.Razor
 {
@@ -33,9 +34,9 @@ namespace Wp.Web.Framework.ViewEngines.Razor
 
         public void PopulateValues(ViewLocationExpanderContext context)
         {
-            var workContext = context.ActionContext.HttpContext.RequestServices.GetRequiredService<IWorkContext>();
-            string theme = workContext.Current?.WebSite?.Theme;
-            //theme ??= "Default";
+            var website = context.ActionContext.HttpContext.RequestServices.GetRequiredService<IWebsiteService>().GetAll().FirstOrDefault();
+            string theme = website?.Theme;
+            theme ??= "Default";
             
             context.Values["Theme"] = theme;
         }

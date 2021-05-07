@@ -1,19 +1,21 @@
 ﻿@*@{
-    Layout = "_Layout";
-}*@
+        Layout = "_Layout";
+    }*@
 
-@inject Nsr.Common.Core.IWorkContext workContext;
+@inject Wp.Services.Websites.IWebsiteService websiteService;
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment;
 @using Wp.Core;
-@{
-    string theme = workContext.Current.WebSite.Theme;
+
+@{ string theme = "Default";
+    var website = websiteService.GetAll().FirstOrDefault();
+    theme = website?.Theme;
 
     string layoutName = "_Layout";
 
     Layout = "~/Views/Shared/" + layoutName + ".cshtml";
 
     var locationFormats = new List<string>
-                          {
+                              {
                                       "~/Themes/" + theme + "/Views/{0}.cshtml",
                                       "~/Themes/" + theme + "/Views/Shared/{0}.cshtml",
                                       "~/Views/Extensions/{0}.cshtml",
@@ -32,5 +34,4 @@
 
         this.Layout = virtualPath;
         break;
-    }
-}
+    } }

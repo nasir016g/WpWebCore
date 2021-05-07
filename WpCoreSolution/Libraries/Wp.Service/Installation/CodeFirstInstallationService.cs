@@ -17,6 +17,7 @@ using Wp.Core.Domain.Sections;
 using Wp.Core.Domain.Security;
 using Wp.Core.Domain.Seo;
 using Wp.Core.Domain.WebPages;
+using Wp.Core.Domain.Websites;
 using Wp.Core.Security;
 using Wp.Service.Security;
 
@@ -34,6 +35,7 @@ namespace Wp.Services.Installation
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICommonUnitOfWork _commonUnitOfWork;
         private readonly ISettingService _settingService;
+        private readonly IBaseRepository<Website> _websiteRepo;
         private readonly IBaseRepository<WebPage> _webPageRepo;
         private readonly IBaseRepository<WebPageRole> _webPageRoleRepo;
         private readonly IBaseRepository<UrlRecord> _urlRecordRepo;
@@ -55,6 +57,7 @@ namespace Wp.Services.Installation
         public CodeFirstInstallationService(IUnitOfWork unitOfWork,
             ICommonUnitOfWork commonUnitOfWork,
             ISettingService settingService,
+            IBaseRepository<Website> websiteRepo,
             IBaseRepository<WebPage> webPageRepo,
             IBaseRepository<WebPageRole> webPageRoleRepo,
             IBaseRepository<UrlRecord> urlRecordRepo,
@@ -76,6 +79,7 @@ namespace Wp.Services.Installation
             _languageRepo = languageRepo;
             this._sectionRepo = sectionRepo;
             _settingService = settingService;
+            _websiteRepo = websiteRepo;
             _userManager = userManager;
             _roleManager = roleManager;
             _hostingEnvironment = hostingEnvironment;
@@ -89,8 +93,23 @@ namespace Wp.Services.Installation
 
         #region Utilities
 
+        private void InstallWebsite()
+        {
+            if(_websiteRepo.Table.Any()) return;
+
+            var website = new Website();
+            website.WebsiteName = "Default";
+            website.Theme = "Default";
+
+            _websiteRepo.Add(website);
+            _unitOfWork.Complete();
+
+
+        }
+
         private void InstallWebPages()
         {
+            if (_webPageRepo.Table.Count() > 0) return;
 
             var sections = new List<Section>
             {
@@ -148,6 +167,7 @@ namespace Wp.Services.Installation
 
         private void InstallLocaleResources()
         {
+            if (_localizationService.GetAll().Count > 0) return;
             var webRoot = _hostingEnvironment.WebRootPath;
             foreach (var language in _languageRepo.Table.ToList())
             {
@@ -165,6 +185,7 @@ namespace Wp.Services.Installation
 
         private async Task InstallUsersAndRoles()
         {
+            if (_userManager.Users.Any()) return;
             // Add Users and Roles
 
             //Create Role Administrators if it does not exist
@@ -214,6 +235,8 @@ namespace Wp.Services.Installation
 
         private void InstallRolesAtAPage()
         {
+            if (_webPageRoleRepo.Table.Any()) return;
+
             _unitOfWork.Complete();
             var firstPage = _webPageRepo.Table.First();
             var roles = _roleManager.Roles;
@@ -237,11 +260,11 @@ namespace Wp.Services.Installation
         {
             if (_settingService.GetAll().Count() == 0)
             {
-                _settingService.SaveSetting(new WebsiteSettings()
-                {
-                    WebsiteName = "Default",
-                    Theme = "Darkly",
-                });
+                //_settingService.SaveSetting(new WebsiteSettings()
+                //{
+                //    WebsiteName = "Default",
+                //    Theme = "Darkly",
+                //});
 
                 _settingService.SaveSetting(new LocalizationSettings()
                 {
@@ -260,6 +283,7 @@ namespace Wp.Services.Installation
 
         public async Task InstallData()
         {
+            InstallWebsite();
             InstallWebPages();
             InstallLanguages();
             await InstallUsersAndRoles();

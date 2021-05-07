@@ -5,8 +5,9 @@ using System.ComponentModel;
 
 namespace Wp.Web.Framework.Models.Admin
 {
-    public class WebsiteSettingsModel
+    public class WebsiteModel
     {
+       
         public string WebsiteName { get; set; }
         public string FooterText { get; set; }
         //public string Theme { get; set; }

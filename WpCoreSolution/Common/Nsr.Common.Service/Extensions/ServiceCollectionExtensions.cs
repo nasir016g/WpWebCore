@@ -68,10 +68,10 @@ namespace Nsr.Common.Service.Extensions
             services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
 
             services.AddScoped<ISettingService, SettingService>();
-            services.AddScoped(x =>
-            {
-                return x.GetService<ISettingService>().LoadSetting<WebsiteSettings>();
-            });
+            //services.AddScoped(x =>
+            //{
+            //    return x.GetService<ISettingService>().LoadSetting<WebsiteSettings>();
+            //});
             //services.AddScoped<ISettings>( sp =>
             //{
             //    var see = sp.GetService<ISettingService>().LoadSetting<LocalizationSettings>();

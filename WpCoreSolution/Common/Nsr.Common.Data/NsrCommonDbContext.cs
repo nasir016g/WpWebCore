@@ -29,7 +29,6 @@ namespace Nsr.Common.Data
             optionsBuilder.EnableSensitiveDataLogging();
              if (_connectionString != null) //
             {                optionsBuilder.UseSqlServer(_connectionString, b => b.MigrationsAssembly("Nsr.Common.Data"));
-                //optionsBuilder.UseSqlite(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
             }
             base.OnConfiguring(optionsBuilder);
         }

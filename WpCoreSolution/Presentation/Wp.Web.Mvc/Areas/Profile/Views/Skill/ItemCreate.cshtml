@@ -1,0 +1,11 @@
+﻿@model Wp.Web.Mvc.Profile.Models.SkillItemAdminModel
+
+@{
+    ViewBag.Title = "ItemCreate";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("_ItemCreateEdit", Model)   
+  
+}

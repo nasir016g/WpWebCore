@@ -22,6 +22,7 @@ using Wp.Services.Installation;
 using Wp.Services.Sections;
 using Wp.Services.Seo;
 using Wp.Services.WebPages;
+using Wp.Services.Websites;
 
 namespace Wp.Web.Framework.Extensions
 {
@@ -106,6 +107,7 @@ namespace Wp.Web.Framework.Extensions
             // services
             services.AddScoped<ITenantService, TenantService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IWebsiteService, WebsiteService>();
             services.AddScoped<IWebPageService, WebPageService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<ISettingService, SettingService>();

@@ -8,7 +8,7 @@ using Wp.Web.Mvc.Models.Sections;
 
 namespace Wp.Web.Mvc.Infrastructure.Mapper
 {
-    public class WebMvcProfile : Profile
+    public class WebMvcProfile : AutoMapper.Profile
     {
         public WebMvcProfile()
         {

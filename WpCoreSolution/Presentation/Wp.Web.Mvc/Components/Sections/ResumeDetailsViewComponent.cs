@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.AboutMe.RestClients;
+using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Extensions;
 using Wp.Web.Mvc.Helpers;
 using Wp.Web.Mvc.Models.Resumes;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
+using Wp.Core.Domain.Websites;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.Models.Admin;
 
@@ -26,17 +27,17 @@ namespace Wp.Web.Framework.Extensions.Mapper
         #region Admin-Settings
 
         //Website
-        public static WebsiteSettingsModel ToModel(this WebsiteSettings entity)
+        public static WebsiteModel ToModel(this Website entity)
         {
-            return entity.MapTo<WebsiteSettings, WebsiteSettingsModel>();
+            return entity.MapTo<Website, WebsiteModel>();
         }
 
-        public static WebsiteSettings ToEntity(this WebsiteSettingsModel model)
+        public static Website ToEntity(this WebsiteModel model)
         {
-            return model.MapTo<WebsiteSettingsModel, WebsiteSettings>();
+            return model.MapTo<WebsiteModel, Website>();
         }
 
-        public static WebsiteSettings ToEntity(this WebsiteSettingsModel model, WebsiteSettings destination)
+        public static Website ToEntity(this WebsiteModel model, Website destination)
         {
             return model.MapTo(destination);
         }
