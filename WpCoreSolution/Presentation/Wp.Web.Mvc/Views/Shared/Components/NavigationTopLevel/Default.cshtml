@@ -56,7 +56,7 @@
     @if (Context.User.IsInRole(Wp.Core.Domain.Security.SystemRoleNames.Administrators.ToString()))
     {
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="@Url.Action("Website", "Setting", new { area = "Admin" })">Admin</a></li>
+            <li><a href="@Url.Action("Edit", "Website", new { area = "Admin" })">Admin</a></li>
         </ul>
     }
     <div class="col-md-2 pull-right" style="top:5px;"> @await Component.InvokeAsync("LanguageSelector")</div>

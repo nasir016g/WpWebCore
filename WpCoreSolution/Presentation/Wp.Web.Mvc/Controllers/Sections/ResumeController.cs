@@ -6,7 +6,7 @@ using Wp.Core.Domain.Sections;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
 using Wp.Web.Framework.UI;
-using Wp.Web.Mvc.AboutMe.RestClients;
+using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Extensions;
 using Wp.Web.Mvc.Helpers;
 using Wp.Web.Mvc.Models.Sections;

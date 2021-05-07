@@ -3,6 +3,7 @@ using Nsr.Common.Core;
 using Wp.Core.Domain.Common;
 using Wp.Core.Domain.Tenants;
 using Wp.Core.Domain.WebPages;
+using Wp.Core.Domain.Websites;
 using Wp.Web.Framework.Models.Admin;
 using static Wp.Web.Framework.Models.Admin.WebPageModel;
 
@@ -31,9 +32,9 @@ namespace Wp.Web.Framework.Infrastructure
             //    .ForMember(dest => dest.DefaultAdminLanguageId, mo => mo.Ignore());
             //CreateMap<LocalizationSettings, LocalizationSettingsModel>();
 
-            CreateMap<WebsiteSettingsModel, WebsiteSettings>()
+            CreateMap<WebsiteModel, Website>()
                 .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.SelectedTheme));
-            CreateMap<WebsiteSettings, WebsiteSettingsModel>()
+            CreateMap<Website, WebsiteModel>()
                 .ForMember(dest => dest.SelectedTheme, mo => mo.MapFrom(src => src.Theme))
                 .ForMember(dest => dest.AvailableThemes, mo => mo.Ignore());
             #endregion

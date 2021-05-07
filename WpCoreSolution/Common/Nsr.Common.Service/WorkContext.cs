@@ -10,19 +10,16 @@ namespace Nsr.Common.Service
     public class WorkContext : IWorkContext
     {
         private readonly ILanguageService _languageService;
-        private readonly WebsiteSettings _websiteSettings;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public WorkContext(ILanguageService languageService, WebsiteSettings websiteSettings, IHttpContextAccessor httpContextAccessor)
+        public WorkContext(ILanguageService languageService, IHttpContextAccessor httpContextAccessor)
         {
             _languageService = languageService;
-            _websiteSettings = websiteSettings;
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public WorkContext(WebsiteSettings websiteSettings, IHttpContextAccessor httpContextAccessor)
+        public WorkContext(IHttpContextAccessor httpContextAccessor)
         {
-            _websiteSettings = websiteSettings;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -41,7 +38,6 @@ namespace Nsr.Common.Service
                 if (model == null)
                 {
                     model = new WorkContextModel();
-                    model.WebSite = _websiteSettings;
 
                     if (_languageService.GetAll().Count > 0)
                     {

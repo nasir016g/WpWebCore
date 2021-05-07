@@ -18,7 +18,7 @@ using Wp.Data;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
-using Wp.Web.Mvc.AboutMe.RestClients;
+using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Infrastructure.Mapper;
 using Wp.Web.Mvc.Infrastructure.Routing;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;

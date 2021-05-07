@@ -1,4 +1,5 @@
-﻿@inject Nsr.Common.Core.IWorkContext workContext;
-@{
-    string theme = workContext.Current.WebSite.Theme;
-}
+﻿@inject Wp.Services.Websites.IWebsiteService websiteService;
+@{ string theme = "Default";
+
+                var website = websiteService.GetAll().FirstOrDefault();
+                theme = website?.Theme; }

@@ -29,36 +29,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
             return View();
         }
 
-        #region Website
-
-        public ActionResult Website()
-        {
-            var entity = _settingService.LoadSetting<WebsiteSettings>();
-
-            var model = entity.ToModel();
-            model.AvailableThemes = _themeService.GetThemes().Select(x => new SelectListItem { Text = x });
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Website(WebsiteSettingsModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                ErrorNotification("An error occured during updating website settings.", false);
-                model.AvailableThemes = _themeService.GetThemes().Select(x => new SelectListItem { Text = x, Selected = model.SelectedTheme == x });
-                return View(model);
-            }
-
-            var entity = model.ToEntity();
-            _settingService.SaveSetting(entity);
-            _workContext.ClearCurrentSession();
-
-            SuccessNotification("Website settings updated successfully.", true);
-            return RedirectToAction("Website");
-        }
-
-        #endregion
+    
 
         #region Localization
 
