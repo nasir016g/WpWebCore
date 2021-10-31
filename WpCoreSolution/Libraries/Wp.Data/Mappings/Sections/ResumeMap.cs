@@ -5,9 +5,9 @@ using Wp.Data.Mappings;
 
 namespace Wp.Core.Mappings.Sections
 {
-    public class ResumeMap : EntityBaseConfiguration<ResumeSection>
+    public class ResumeMap : EntityBaseConfiguration<WorkHistorySection>
     {
-        public override void Configure(EntityTypeBuilder<ResumeSection> entityBuilder)
+        public override void Configure(EntityTypeBuilder<WorkHistorySection> entityBuilder)
         {
             entityBuilder.ToTable("Section_Resume"); 
         }

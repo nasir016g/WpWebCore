@@ -48,17 +48,17 @@ namespace Wp.Web.Mvc.Extensions
 
         #region ResumeSection
 
-        public static ResumeSectionModel ToModel(this ResumeSection entity)
+        public static WorkHistorySectionModels ToModel(this WorkHistorySection entity)
         {
-            return entity.MapTo<ResumeSection, ResumeSectionModel>();
+            return entity.MapTo<WorkHistorySection, WorkHistorySectionModels>();
         }
 
-        public static ResumeSection ToEntity(this ResumeSectionModel model)
+        public static WorkHistorySection ToEntity(this WorkHistorySectionModels model)
         {
-            return model.MapTo<ResumeSectionModel, ResumeSection>();
+            return model.MapTo<WorkHistorySectionModels, WorkHistorySection>();
         }
 
-        public static ResumeSection ToEntity(this ResumeSectionModel model, ResumeSection destination)
+        public static WorkHistorySection ToEntity(this WorkHistorySectionModels model, WorkHistorySection destination)
         {
             return model.MapTo(destination);
         }
@@ -106,11 +106,11 @@ namespace Wp.Web.Mvc.Extensions
                 htmlContent.Controller = "HtmlContent";
                 return htmlContent;
             }
-            else if (entity is ResumeSection)
+            else if (entity is WorkHistorySection)
             {
-                var resume = new ResumeSectionReadOnlyModel();
-                resume.ApplicationUserName = ((ResumeSection)entity).ApplicationUserName;
-                resume.Controller = "Resume";
+                var resume = new WorkHistorySectionReadOnlyModel();
+                resume.ApplicationUserName = ((WorkHistorySection)entity).ApplicationUserName;
+                resume.Controller = "WorkHistory";
                 return resume;
             }           
             return null;

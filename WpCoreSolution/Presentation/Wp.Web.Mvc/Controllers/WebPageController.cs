@@ -95,7 +95,7 @@ namespace Wp.Web.Mvc.Controllers
                     section = new ContactFormSection { EmailTo = "your@email.com" };
                     break;
                 case "resume":
-                    section = new ResumeSection { ApplicationUserName = HttpContext.User.Identity.Name };
+                    section = new WorkHistorySection { ApplicationUserName = HttpContext.User.Identity.Name };
                     break;
             }
 

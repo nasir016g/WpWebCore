@@ -1,4 +1,4 @@
-﻿@model Wp.Web.Mvc.Profile.Models.ProjectAdminModel
+﻿@model Nsr.Common.Core.Models.ProjectModel
 
 <script src="//cdn.ckeditor.com/4.5.0/full/ckeditor.js"></script>
 
@@ -7,7 +7,7 @@
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.ExperienceId)
 
-@(Html.LocalizedEditor<ProjectAdminModel, ProjectLocalizedModel>("info-localized",
+@(Html.LocalizedEditor<ProjectModel, ProjectLocalizedModel>("info-localized",
     @<div>
         @Html.HiddenFor(model => model.Locales[item].LanguageId)
         <div class="form-group">

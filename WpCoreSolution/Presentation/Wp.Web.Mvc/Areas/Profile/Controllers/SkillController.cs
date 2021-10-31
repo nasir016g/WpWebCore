@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Wp.Core;
-using Wp.Web.Mvc.Profile.Models;
 using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Helpers;
+using Nsr.Common.Core.Models;
 
 namespace Wp.Web.Mvc.Areas.Profile.Controllers
 {
@@ -53,7 +49,7 @@ namespace Wp.Web.Mvc.Areas.Profile.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(SkillAdminModel model)
+        public async Task<IActionResult> Edit(SkillModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -108,7 +104,7 @@ namespace Wp.Web.Mvc.Areas.Profile.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> ItemEdit(SkillItemAdminModel model)
+        public async Task<IActionResult> ItemEdit(SkillItemModel model)
         {
             if (!ModelState.IsValid)
             {

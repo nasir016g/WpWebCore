@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Wp.Web.Mvc.Models.WorkHistories.WorkExperienceDetailsModels>
+
+@foreach (var e in Model)
+{    
+    <div class="row">
+        <div class="col-md-12"> 
+            <table class="table">
+                <tr>
+                    <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Name)</th>
+                    <td>@Html.DisplayFor(x => e.Name)</td>
+                </tr>
+
+                <tr>
+                    <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Period)</th>
+                    <td>@Html.DisplayFor(x => e.Period)</td>
+                </tr>
+
+                <tr>
+                    <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Function)</th>
+                    <td>@Html.DisplayFor(x => e.Function)</td>
+                </tr>
+
+                <tr>
+                    <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().City)</th>
+                    <td>@Html.DisplayFor(x => e.City)</td>
+                </tr>
+
+                <tr>
+                    <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Tasks)</th>
+                    <td>
+                        @*@Html.Raw("<pre>" + Html.Encode(e.Tasks) + "</pre>");*@                   
+                       @Html.Raw(e.Tasks)
+                   
+                </td>
+                   
+                </tr>
+            </table>
+              
+            @*<br />        
+            <strong><em>@Html.DisplayFor(x => e.Name)</em></strong>*@  
+        </div>
+    </div>   
+    @*foreach (var item in e.Projects)
+    {
+         <div class="row" style="padding-left:20px;">
+        <div class="col-md-9">
+            <br />
+            <strong><em>@Html.DisplayFor(x => item.Name)</em></strong> <br />
+            @Html.Raw(item.Description)@*<br />
+            <em>@Html.DisplayNameFor(x => x.FirstOrDefault().Projects.FirstOrDefault().Technology):</em>
+           
+             @Html.DisplayFor(x => item.Technology)  
+                 
+        </div>       
+    </div>   
+    }*@       
+}
+
+
+
+

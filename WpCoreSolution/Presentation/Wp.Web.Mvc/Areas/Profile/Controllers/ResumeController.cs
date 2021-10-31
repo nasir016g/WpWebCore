@@ -2,10 +2,9 @@
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
 using System.Threading.Tasks;
-using Wp.Core;
-using Wp.Web.Mvc.Profile.Models;
 using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Helpers;
+using Nsr.Common.Core.Models;
 
 namespace Wp.Web.Mvc.Areas.Profile.Controllers
 {
@@ -50,7 +49,7 @@ namespace Wp.Web.Mvc.Areas.Profile.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ResumeAdminModel model)
+        public async Task<IActionResult> Edit(ResumeModel model)
         {
             if (!ModelState.IsValid)
             {

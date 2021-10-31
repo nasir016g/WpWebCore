@@ -1,10 +1,10 @@
-﻿@model Wp.Web.Mvc.Profile.Models.ExperienceAdminModel
+﻿@model Nsr.Common.Core.Models.ExperienceModel
 
  @Html.AntiForgeryToken()
  @Html.ValidationSummary(true) 
  @Html.HiddenFor(model => model.ResumeId)
 
-@(Html.LocalizedEditor<ExperienceAdminModel, ExperienceLocalizedModel>("info-localized",
+@(Html.LocalizedEditor<ExperienceModel, ExperienceLocalizedModel>("info-localized",
     @<div>
     <div class="form-group">
         @Html.HiddenFor(model => model.Locales[item].LanguageId)

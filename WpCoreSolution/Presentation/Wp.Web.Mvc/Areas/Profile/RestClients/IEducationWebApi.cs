@@ -1,34 +1,32 @@
-﻿using Refit;
-using System;
+﻿using Nsr.Common.Core.Models;
+using Refit;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.Profile.Models;
 
 namespace Wp.Web.Mvc.Profile.RestClients
 {
     public interface IEducationWebApi
     {
         [Get("/education/GetByResumeId/{resumeId}")]
-        Task<List<EducationAdminModel>> GetEducations([AliasAs("resumeId")] int resumeId);
+        Task<List<EducationModel>> GetEducations([AliasAs("resumeId")] int resumeId);
 
         [Get("/education/{id}")]
-        Task<EducationAdminModel> GetEducationById([AliasAs("id")] int id);
+        Task<EducationModel> GetEducationById([AliasAs("id")] int id);
 
         [Put("/education/{id}")]        
-        Task Update(int id, EducationAdminModel model);
+        Task Update(int id, EducationModel model);
 
         [Delete("/education/{id}")]
         Task Delete([AliasAs("id")] int id);
 
         [Get("/education/items/{educationId}")]
-        Task<List<EducationItemAdminModel>> GetItems(int educationId);
+        Task<List<EducationItemModel>> GetItems(int educationId);
 
         [Get("/education/item/{id}")]
-        Task<EducationItemAdminModel> GetItem(int id);
+        Task<EducationItemModel> GetItem(int id);
 
         [Put("/education/item/{id}")]
-        Task UpdateItem(int id, EducationItemAdminModel model);
+        Task UpdateItem(int id, EducationItemModel model);
 
         [Delete("/education/item/{id}")]
         Task DeleteItem([AliasAs("id")] int id);

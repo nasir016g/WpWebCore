@@ -22,7 +22,7 @@ using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Infrastructure.Mapper;
 using Wp.Web.Mvc.Infrastructure.Routing;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
-
+using Refit;
 
 namespace Wp.Web.Mvc
 {
@@ -84,10 +84,14 @@ namespace Wp.Web.Mvc
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
             services.AddScoped<SlugRouteTransformer>();
-            services.AddHttpClient<IResumesWebApi, ResumesWebApi>();
-            services.AddHttpClient<IEducationWebApi, EducationWebApi>();
-            services.AddHttpClient<IExperienceWebApi, ExperienceWebApi>();
-            services.AddHttpClient<ISkillWebApi, SkillWebApi>();
+
+            string apiHostAndPort = Configuration.GetSection("APIServiceLocations").GetValue<string>("ResumesWebApi");
+            var uri = new Uri($"http://{apiHostAndPort}");
+            services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+
 
 
             //add routing

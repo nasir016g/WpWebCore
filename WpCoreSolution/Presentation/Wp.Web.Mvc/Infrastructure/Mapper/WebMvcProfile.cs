@@ -15,7 +15,7 @@ namespace Wp.Web.Mvc.Infrastructure.Mapper
             CreateMap<HtmlContentSection, HtmlContentSectionModel>()
               .ReverseMap();
 
-            CreateMap<ResumeSection, ResumeSectionModel>()
+            CreateMap<WorkHistorySection, WorkHistorySectionModels>()
                 .ReverseMap();
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Wp.Web.Mvc.Profile.Models.ResumeAdminModel
+﻿@model Nsr.Common.Core.Models.ResumeModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,7 +9,7 @@
 <hr />
 <form asp-action="Edit">
 
-    @(Html.LocalizedEditor<ResumeAdminModel, ResumeLocalizedModel>("info-localized",
+    @(Html.LocalizedEditor<ResumeModel, ResumeLocalizedModel>("info-localized",
 
     @<div>
         <div class="form-row mt-4">
