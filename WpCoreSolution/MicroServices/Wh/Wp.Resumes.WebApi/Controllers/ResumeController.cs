@@ -207,7 +207,7 @@ namespace Wp.Wh.WebApi.Controllers
                 }
                 return File(bytes, "application/pdf", string.Format("{0}_Resume.pdf", entity.Name));
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 //ErrorNotification(exc);
                 return RedirectToAction("Index");

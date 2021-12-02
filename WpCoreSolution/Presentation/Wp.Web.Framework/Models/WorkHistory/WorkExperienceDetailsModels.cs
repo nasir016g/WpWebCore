@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Wp.Web.Framework;
 
-namespace Wp.Web.Mvc.Models.WorkHistories
+namespace Wp.Web.Framework.Models.WorkHistories
 {
     public class WorkExperienceDetailsModels : IEntity, ILocalizedEntity
     {

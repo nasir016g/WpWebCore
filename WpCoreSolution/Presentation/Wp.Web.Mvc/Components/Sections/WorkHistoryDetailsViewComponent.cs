@@ -6,10 +6,10 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Wp.Web.Framework.Models.WorkHistories;
+using Wp.Web.Framework.RestClients;
 using Wp.Web.Mvc.Extensions;
 using Wp.Web.Mvc.Helpers;
-using Wp.Web.Mvc.Models.WorkHistories;
-using Wp.Web.Mvc.Profile.RestClients;
 
 namespace Wp.Web.Mvc.Components.Sections
 {

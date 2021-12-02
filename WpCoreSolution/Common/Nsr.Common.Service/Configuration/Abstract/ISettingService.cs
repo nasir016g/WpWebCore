@@ -10,7 +10,6 @@ namespace Nsr.Common.Service.Configuration
 {
     public partial interface ISettingService : IEntityService<Setting>
     {
-        Setting GetById(int settingId);
 
         void SetSetting<T>(string key, T value);
         T LoadSetting<T>() where T : ISettings, new();

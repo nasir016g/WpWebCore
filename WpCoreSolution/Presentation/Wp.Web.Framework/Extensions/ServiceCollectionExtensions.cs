@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
 using Nsr.Common.Core.Caching;
 using Nsr.Common.Service.Configuration;
+using Refit;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -23,6 +24,7 @@ using Wp.Services.Sections;
 using Wp.Services.Seo;
 using Wp.Services.WebPages;
 using Wp.Services.Websites;
+using Wp.Web.Framework.RestClients;
 
 namespace Wp.Web.Framework.Extensions
 {
@@ -127,8 +129,22 @@ namespace Wp.Web.Framework.Extensions
             services.AddScoped<IWebHelper, WebHelper>();
 
             return services;
-        }  
-     
+        }
+
+        public static IServiceCollection AddRestClients(this IServiceCollection services, IConfiguration configuration)
+        {
+
+            string apiHostAndPort = configuration.GetSection("APIServiceLocations").GetValue<string>("ResumesWebApi");
+            var uri = new Uri($"http://{apiHostAndPort}");
+            services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+
+            return services;
+        }
+
+
         public static void AddLogger()
         {
             Log.Logger = new LoggerConfiguration()

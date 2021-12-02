@@ -3,7 +3,7 @@ using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Wp.Web.Mvc.Profile.RestClients
+namespace Wp.Web.Framework.RestClients
 {
     public interface ISkillWebApi
     {

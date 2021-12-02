@@ -2,9 +2,9 @@
 using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.Models.WorkHistories;
+using Wp.Web.Framework.Models.WorkHistories;
 
-namespace Wp.Web.Mvc.Profile.RestClients
+namespace Wp.Web.Framework.RestClients
 {
     public interface IResumesWebApi
     {

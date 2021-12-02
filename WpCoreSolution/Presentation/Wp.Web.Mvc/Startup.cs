@@ -18,11 +18,9 @@ using Wp.Data;
 using Wp.Web.Framework.Extensions;
 using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
-using Wp.Web.Mvc.Profile.RestClients;
 using Wp.Web.Mvc.Infrastructure.Mapper;
 using Wp.Web.Mvc.Infrastructure.Routing;
 using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
-using Refit;
 
 namespace Wp.Web.Mvc
 {
@@ -83,16 +81,9 @@ namespace Wp.Web.Mvc
 
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
+            services.AddRestClients(Configuration);
             services.AddScoped<SlugRouteTransformer>();
-
-            string apiHostAndPort = Configuration.GetSection("APIServiceLocations").GetValue<string>("ResumesWebApi");
-            var uri = new Uri($"http://{apiHostAndPort}");
-            services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-
-
+           
 
             //add routing
             services.AddRouting(options =>

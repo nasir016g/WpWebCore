@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Wp.Web.Mvc.Models.WorkHistories
+namespace Wp.Web.Framework.Models.WorkHistories
 {
     public class SkillDetailsModels : IEntity, ILocalizedEntity
     {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
-using System.Threading.Tasks;
-using Wp.Web.Mvc.Profile.RestClients;
-using Wp.Web.Mvc.Helpers;
 using Nsr.Common.Core.Models;
+using System.Threading.Tasks;
+using Wp.Web.Framework.RestClients;
+using Wp.Web.Mvc.Helpers;
 
 namespace Wp.Web.Mvc.Areas.Profile.Controllers
 {
