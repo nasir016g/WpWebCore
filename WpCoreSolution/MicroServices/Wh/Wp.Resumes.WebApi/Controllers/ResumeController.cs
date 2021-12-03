@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Nsr.Common.Core.Models;
 using Nsr.Common.Services;
+using Nsr.RestClient.Models.WorkHistories;
 using System;
 using System.IO;
 using System.Text;

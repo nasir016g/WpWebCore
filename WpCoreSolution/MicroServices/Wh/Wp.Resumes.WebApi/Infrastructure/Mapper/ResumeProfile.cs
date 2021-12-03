@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Nsr.Common.Core.Models;
+using Nsr.RestClient.Models.WorkHistories;
 using Wp.Wh.Core.Domain;
 
 namespace Wp.Wh.WebApi.Infrastructure

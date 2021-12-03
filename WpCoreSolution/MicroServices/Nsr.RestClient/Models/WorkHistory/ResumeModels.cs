@@ -1,7 +1,7 @@
 ﻿using Nsr.Common.Core.Localization.Models;
 using System.Collections.Generic;
 
-namespace Nsr.Common.Core.Models
+namespace Nsr.RestClient.Models.WorkHistories
 {
     public class ResumeModel : ILocalizedModel<ResumeLocalizedModel>
     {

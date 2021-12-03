@@ -1,11 +1,8 @@
-﻿using Nsr.Common.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Wp.Web.Framework;
+﻿using Nrs.RestClient;
+using Nsr.Common.Core;
 
-namespace Wp.Web.Framework.Models.WorkHistories
+
+namespace Nsr.RestClient.Models.WorkHistories
 {
     public class WorkHistoryDetailsModel : IEntity, ILocalizedEntity
     {

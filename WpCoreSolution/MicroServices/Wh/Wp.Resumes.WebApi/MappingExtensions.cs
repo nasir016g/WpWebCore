@@ -1,4 +1,4 @@
-﻿using Nsr.Common.Core.Models;
+﻿using Nsr.RestClient.Models.WorkHistories;
 using System.Collections.Generic;
 using Wp.Wh.Core.Domain;
 using Wp.Wh.WebApi.Infrastructure.Mapper;

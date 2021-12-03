@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Nsr.Common.Service\Nsr.Common.Service.csproj" />
+    <ProjectReference Include="..\..\Nsr.RestClient\Nsr.RestClient.csproj" />
     <ProjectReference Include="..\Wp.Resumes.Data\Wp.Wh.Data.csproj" />
     <ProjectReference Include="..\Wp.Resumes.Service\Wp.Wh.Service.csproj" />
   </ItemGroup>

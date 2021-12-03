@@ -1,17 +1,13 @@
-﻿using Nsr.Common.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Wp.Web.Framework;
+﻿using Nrs.RestClient;
+using Nsr.Common.Core;
 
-namespace Wp.Web.Framework.Models.WorkHistories
+namespace Nsr.RestClient.Models.WorkHistories
 {
     public class WorkExperienceDetailsModels : IEntity, ILocalizedEntity
     {
         public WorkExperienceDetailsModels()
         {
-            Projects = new List<ProjectModel>();
+            Projects = new List<ProjectDetailModel>();
         }
 
         public int Id { get; set; }
@@ -33,10 +29,10 @@ namespace Wp.Web.Framework.Models.WorkHistories
 
         public int DisplayOrder { get; set; }
 
-        public IList<ProjectModel> Projects { get; set; }
+        public IList<ProjectDetailModel> Projects { get; set; }
     }
 
-    public class ProjectModel : IEntity, ILocalizedEntity
+    public class ProjectDetailModel : IEntity, ILocalizedEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

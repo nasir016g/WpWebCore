@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
 using Nsr.Common.Services;
+using Nsr.RestClient.Models.WorkHistories;
+using Nsr.RestClient.RestClients;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Wp.Web.Framework.Models.WorkHistories;
-using Wp.Web.Framework.RestClients;
 using Wp.Web.Mvc.Extensions;
 using Wp.Web.Mvc.Helpers;
 
@@ -66,7 +66,7 @@ namespace Wp.Web.Mvc.Components.Sections
 
                 foreach (var educationItem in education.EducationItems)
                 {
-                    var educationItemModel = new EducationItemModel()
+                    var educationItemModel = new EducationDetialItemModel()
                     {
                         Id = educationItem.Id,
                         Name = educationItem.GetLocalized(x => x.Name),
@@ -106,7 +106,7 @@ namespace Wp.Web.Mvc.Components.Sections
 
                 foreach (var skillItem in skill.SkillItems.OrderByDescending(x => x.Level))
                 {
-                    var skillItemModel = new SkillItemModel()
+                    var skillItemModel = new SkillItemDetailModel()
                     {
                         Id = skillItem.Id,
                         Level = skillItem.Level * 10,
@@ -137,7 +137,7 @@ namespace Wp.Web.Mvc.Components.Sections
 
                 foreach (var project in experience.Projects)
                 {
-                    var projectModel = new ProjectModel()
+                    var projectModel = new ProjectDetailModel()
                     {
                         Id = project.Id,
                         Name = project.GetLocalized(x => x.Name),

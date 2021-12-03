@@ -1,10 +1,7 @@
-﻿using Nsr.Common.Core.Models;
+﻿using Nsr.RestClient.Models.WorkHistories;
 using Refit;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Wp.Web.Framework.Models.WorkHistories;
 
-namespace Wp.Web.Framework.RestClients
+namespace Nsr.RestClient.RestClients
 {
     public interface IResumesWebApi
     {

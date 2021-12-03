@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
+using Nsr.RestClient.RestClients;
 using Wp.Core;
 using Wp.Core.Domain.Sections;
 using Wp.Services.Sections;
 using Wp.Services.WebPages;
-using Wp.Web.Framework.RestClients;
 using Wp.Web.Framework.UI;
 using Wp.Web.Mvc.Extensions;
 using Wp.Web.Mvc.Helpers;

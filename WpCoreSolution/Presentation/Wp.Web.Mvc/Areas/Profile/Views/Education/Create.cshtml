@@ -1,4 +1,4 @@
-﻿@model Nsr.Common.Core.Models.EducationModel
+﻿@model Nsr.RestClient.Models.WorkHistories.EducationModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
 {
-    @Html.Partial("_CreateEdit", Model)    
+    @Html.PartialAsync("_CreateEdit", Model)    
   
 }
 

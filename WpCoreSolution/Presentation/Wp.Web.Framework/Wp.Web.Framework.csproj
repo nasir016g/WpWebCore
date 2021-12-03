@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Seo\**" />
+    <EmbeddedResource Remove="Seo\**" />
+    <None Remove="Seo\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.0" />
@@ -19,10 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Nsr.Common.Service\Nsr.Common.Service.csproj" />
     <ProjectReference Include="..\..\Libraries\Wp.Service\Wp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Seo\" />
+    <ProjectReference Include="..\..\MicroServices\Nsr.RestClient\Nsr.RestClient.csproj" />
   </ItemGroup>
 
 </Project>

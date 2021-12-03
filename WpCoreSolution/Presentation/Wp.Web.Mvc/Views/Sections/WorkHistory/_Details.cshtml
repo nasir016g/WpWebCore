@@ -1,4 +1,4 @@
-﻿@model Wp.Web.Framework.Models.WorkHistories.WorkHistoryDetailsModel
+﻿@model Nsr.RestClient.Models.WorkHistories.WorkHistoryDetailsModel
 <div class="container">
     <div class="row">
         <div class="col-md-9" style="margin-top:44px;">
@@ -21,7 +21,7 @@
                             <h4><strong>// @Html.DisplayNameFor(model => model.Educations)</strong></h4>
                         </div>
                         <div class="panel-body">
-                            @Html.Partial("_Education", Model.Educations)
+                            @Html.PartialAsync("_Education", Model.Educations)
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                             <h4>// @Html.DisplayNameFor(model => model.Experiences)</h4>
                         </div>
                         <div class="panel-body">
-                            @Html.Partial("_Experience", Model.Experiences)
+                            @Html.PartialAsync("_Experience", Model.Experiences)
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            @Html.Partial("_Skill", Model.Skills)
+                            @Html.PartialAsync("_Skill", Model.Skills)
                         </div>
                     </div>
                     <br />

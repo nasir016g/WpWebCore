@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Wp.Web.Framework.Models.WorkHistories
+namespace Nsr.RestClient.Models.WorkHistories
 {
     public class SkillDetailsModels : IEntity, ILocalizedEntity
     {
         public SkillDetailsModels()
         {
-            SkillItems = new List<SkillItemModel>();
+            SkillItems = new List<SkillItemDetailModel>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public int DisplayOrder { get; set; }
-        public IList<SkillItemModel> SkillItems { get; set; }
+        public IList<SkillItemDetailModel> SkillItems { get; set; }
     }
 
-    public class SkillItemModel : IEntity, ILocalizedEntity
+    public class SkillItemDetailModel : IEntity, ILocalizedEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }       

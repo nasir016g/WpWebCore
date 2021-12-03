@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Nsr.Common.Core.Models;
 using Nsr.Common.Services;
+using Nsr.RestClient.Models.WorkHistories;
 using Wp.Wh.Core.Domain;
 using Wp.Wh.Services;
 

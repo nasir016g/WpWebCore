@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
 using Nsr.Common.Core.Caching;
 using Nsr.Common.Service.Configuration;
+using Nsr.RestClient.RestClients;
 using Refit;
 using Serilog;
 using Serilog.Events;
@@ -24,7 +25,6 @@ using Wp.Services.Sections;
 using Wp.Services.Seo;
 using Wp.Services.WebPages;
 using Wp.Services.Websites;
-using Wp.Web.Framework.RestClients;
 
 namespace Wp.Web.Framework.Extensions
 {
