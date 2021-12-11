@@ -1,6 +1,6 @@
-﻿using Nsr.Common.Core;
-using Nsr.Common.Core.Localization;
-using Nsr.Common.Services;
+﻿using Nrs.RestClient;
+using Nsr.Common.Core;
+using Nsr.RestClient.Models.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

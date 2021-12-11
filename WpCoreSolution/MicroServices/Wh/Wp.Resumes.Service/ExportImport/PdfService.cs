@@ -7,7 +7,9 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Nrs.RestClient;
 using Nsr.Common.Services;
+using Nsr.RestClient.RestClients.Localization;
 using System;
 using System.IO;
 using System.Linq;
@@ -19,13 +21,13 @@ namespace Wp.Wh.Services
     // Maybe an alternative method for generating Pdf's? http://www.codeproject.com/Articles/260470/PDF-reporting-using-ASP-NET-MVC3
     public class PdfService : IPdfService
     {
-        private  ILocalizationService _localizationService;
-        private readonly ILanguageService _languageService;
+        private ILocalizationWebApi _localizationWebApi;
+        private readonly ILanguageWebApi _languageWebApi;
 
-        public PdfService(ILocalizationService localizationService, ILanguageService languageService)
+        public PdfService(ILocalizationWebApi localizationWebApi, ILanguageWebApi languageWebApi)
         {
-            _localizationService = localizationService;
-            _languageService = languageService;
+            _localizationWebApi = localizationWebApi;
+            _languageWebApi = languageWebApi;
         }
 
 
@@ -53,7 +55,7 @@ namespace Wp.Wh.Services
             //var cell = new Cell();
             //cell.SetBorder(Border.NO_BORDER);
 
-            var resourceValue = _localizationService.GetResource(resourceKey);
+            var resourceValue = _localizationWebApi.GetResource(resourceKey).GetAwaiter().GetResult();
 
             Cell cell = InsertColumn(new Text(resourceValue), leading);
             table.AddCell(cell);
@@ -126,7 +128,7 @@ namespace Wp.Wh.Services
 
         private void InsertSkills(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Skills")).SetBold().SetItalic().SetFontSize(12)));
+            doc.Add(new Paragraph(new Text(_localizationWebApi.GetResource("Resume.Fields.Skills").GetAwaiter().GetResult()).SetBold().SetItalic().SetFontSize(12)));
 
             foreach (var skill in resume.Skills)
             {               
@@ -151,7 +153,7 @@ namespace Wp.Wh.Services
 
         private void InsertExperiences(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Experiences")).SetFontSize(12).SetBold().SetItalic()));
+            doc.Add(new Paragraph(new Text(_localizationWebApi.GetResource("Resume.Fields.Experiences").GetAwaiter().GetResult()).SetFontSize(12).SetBold().SetItalic()));
             //doc.Add(line);
             doc.Add(new Paragraph());
             foreach (var experience in resume.Experiences.OrderBy(x => x.DisplayOrder))
@@ -226,13 +228,13 @@ namespace Wp.Wh.Services
 
             if (!String.IsNullOrWhiteSpace(resume.Phone))
             {
-                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.TelePhone")))));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationWebApi.GetResource("Resume.Fields.TelePhone")))));
                 table.AddCell(InsertColumn(new Text(resume.Phone)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.Mobile))
             {
-                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.Mobile")))));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationWebApi.GetResource("Resume.Fields.Mobile")))));
                 table.AddCell(InsertColumn(new Text(resume.Mobile)));
             }
 
@@ -256,7 +258,7 @@ namespace Wp.Wh.Services
 
             doc.Add(table);
 
-            doc.Add(new Paragraph().Add(new Text(_localizationService.GetResource("Resume.Fields.Summary")).SetItalic().SetBold().SetFontSize(12)));
+            doc.Add(new Paragraph().Add(new Text(_localizationWebApi.GetResource("Resume.Fields.Summary").GetAwaiter().GetResult()).SetItalic().SetBold().SetFontSize(12)));
             doc.Add(new Paragraph().Add(new Text(resume.GetLocalized(x => x.Summary))).SetMarginLeft(20f));
             
 

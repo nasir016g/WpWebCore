@@ -2,29 +2,29 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Nsr.Common.Core.Localization;
-using Nsr.Common.Services;
+using Nsr.RestClient.Models.Localization;
+using Nsr.RestClient.RestClients.Localization;
 using System;
 using System.IO;
 using System.Linq;
-using Wp.Web.Mvc.Helpers;
+using System.Threading.Tasks;
 
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class LocalizationController : Controller
     {
-        private readonly ILocalizationService _localizationService;
-        private readonly ILanguageService _languageService;
+        private readonly ILocalizationWebApi _localizationWebApi;
+        private readonly ILanguageWebApi _languageWebApi;
         private readonly ILogger _logger;
 
         public LocalizationController(
-            ILocalizationService localizationService,
-            ILanguageService languageService,
+            ILocalizationWebApi localizationWebApi,
+            ILanguageWebApi languageWebApi,
             ILogger<LocalizationController> logger)
         {
-            _localizationService = localizationService;
-            _languageService = languageService;
+            _localizationWebApi = localizationWebApi;
+            _languageWebApi = languageWebApi;
             _logger = logger;
         }
 
@@ -33,7 +33,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           var model = _languageService.GetAll();           
+           var model = _languageWebApi.GetAll();           
 
             return View(model);
         }
@@ -41,7 +41,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {           
-           var model = _languageService.GetById(id);
+           var model = _languageWebApi.GetById(id);
            return View(model);
         }
 
@@ -54,41 +54,41 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
             //    return View(model);
             //}, View("Offline"));
-            var model = _languageService.GetById(id);
+            var model = _languageWebApi.GetById(id);
             return View(model);
         }
 
       
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Edit(Language model)
+        public async Task<IActionResult> Edit(Language model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var entity = _languageService.GetById(model.Id);
+            var entity = await _languageWebApi.GetById(model.Id);
             entity.FlagImageFileName = model.FlagImageFileName;
             entity.DisplayOrder = model.DisplayOrder;
             entity.LanguageCulture = model.LanguageCulture;
             entity.Name = model.Name;
             entity.Published = model.Published;
-            _languageService.Update(entity);
+            await _languageWebApi.Update(model.Id, entity);
 
             return RedirectToAction("Index");
         }
 
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             //return await _resiliencyHelper.ExecuteResilient<IActionResult>(async () =>
             //{
             //    await _localizationManagementApi.Delete(id);
             //    return RedirectToAction("Index");
             //}, View("Offline"));
-           var entity = _languageService.GetById(id);
-            _languageService.Delete(entity);
+          // var entity = await _languageWebApi.GetById(id);
+           await _languageWebApi.Delete(id);
             return RedirectToAction("Index");
         }
         
@@ -99,36 +99,36 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         public IActionResult Resources(int languageId)
         {
             ViewBag.LanguageId = languageId;
-            var model = _localizationService.GetAll().Where(x => x.LanguageId == languageId).ToList();
+            var model = _localizationWebApi.GetAll().GetAwaiter().GetResult().Where(x => x.LanguageId == languageId).ToList();
             return View(model);
         }        
        
 
-        public IActionResult ResourceEdit(int id)
+        public async Task<IActionResult> ResourceEdit(int id)
         {            
-            var model = _localizationService.GetById(id);
+            var model = await _localizationWebApi.GetById(id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult ResourceEdit(LocaleStringResource model)
+        public async Task<IActionResult> ResourceEdit(LocaleStringResource model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }           
 
-            _localizationService.Update(model);
+            await _localizationWebApi.Update(model.Id, model);
             return RedirectToAction("Resources");
         }
 
         
 
         [HttpPost]
-        public IActionResult ResourceDelete(int id)
+        public async Task<IActionResult> ResourceDelete(int id)
         {            
-           var entity = _localizationService.GetById(id);
-            _localizationService.Delete(entity);
+           //var entity = _localizationWebApi.GetById(id);
+            await _localizationWebApi.Delete(id);
 
             return RedirectToAction("Resources");
         }
@@ -138,9 +138,9 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         #region Export / Import
 
         [HttpPost("ImportXml")]
-        public IActionResult ImportXml(int languageId, IFormFile file)
+        public async Task<IActionResult> ImportXml(int languageId, IFormFile file)
         {
-            var language = _languageService.GetById(languageId);
+            var language = _languageWebApi.GetById(languageId);
             if (language == null)
                 //No language found with the specified id
                 return BadRequest("Language is not found");
@@ -152,7 +152,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
                 using (var sr = new StreamReader(file.OpenReadStream()))
                 {
                     string content = sr.ReadToEnd();
-                    _localizationService.ImportResourcesFromXml(language, content);
+                  // await _localizationWebApi.ImportResourcesFromXml(language, content); // not implemented yet
                 }
             }
             catch (Exception exc)

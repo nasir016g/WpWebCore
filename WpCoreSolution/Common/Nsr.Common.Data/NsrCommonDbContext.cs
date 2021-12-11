@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nsr.Common.Data.Mapping;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +39,7 @@ namespace Nsr.Common.Data
             base.OnModelCreating(builder);            
 
             // dynamically 
-            System.Type configType = typeof(LanguageMap);
+            System.Type configType = typeof(SettingMap);
             var typesToRegister = Assembly.GetAssembly(configType).GetTypes()
                 .Where(t => !string.IsNullOrEmpty(t.Namespace))
                 .Where(t => t.BaseType != null && t.BaseType.IsGenericType && t.BaseType.GetGenericTypeDefinition() == typeof(EntityBaseConfiguration<>));

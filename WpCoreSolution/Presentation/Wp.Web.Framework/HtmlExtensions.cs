@@ -7,6 +7,7 @@ using Nsr.Common.Core;
 using Nsr.Common.Core.Localization;
 using Nsr.Common.Core.Localization.Models;
 using Nsr.Common.Services;
+using Nsr.RestClient.RestClients.Localization;
 using System;
 using System.IO;
 using System.Text;
@@ -44,7 +45,7 @@ namespace Wp.Web.Framework
                 for (int i = 0; i < helper.ViewData.Model.Locales.Count; i++)
                 {
                     var locale = helper.ViewData.Model.Locales[i];
-                    var language = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageService>().GetById(locale.LanguageId);
+                    var language = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageWebApi>().GetById(locale.LanguageId).GetAwaiter().GetResult();
                     var tabPane = new TagBuilder("div");
                     tabPane.AddCssClass("tab-pane");
                     tabPane.Attributes.Add("id", language.Name);
@@ -66,7 +67,7 @@ namespace Wp.Web.Framework
            where T : ILocalizedModel<TLocalizedModel>
            where TLocalizedModel : ILocalizedModelLocal
         {
-            var languageService = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageService>();
+            var languageWebApi = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageWebApi>();
             var urlHelper = ServiceLocator.GetScope().ServiceProvider.GetService<IUrlHelperFactory>().GetUrlHelper(helper.ViewContext);
 
             TagBuilder ul = new TagBuilder("ul");
@@ -87,7 +88,7 @@ namespace Wp.Web.Framework
 
             foreach (var local in helper.ViewData.Model.Locales)
             {
-                var language = languageService.GetById(local.LanguageId);
+                var language = languageWebApi.GetById(local.LanguageId).GetAwaiter().GetResult();
                 TagBuilder li = new TagBuilder("li");
                 li.AddCssClass("nav-item");
 

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Nsr.Common.Core;
 using Nsr.Common.Service.Extensions;
+using Nsr.RestClient.Extensions;
 using System;
 using System.Reflection;
 using Wp.Core.Security;
@@ -82,6 +83,7 @@ namespace Wp.Web.Mvc
             services.AddWpAndCatalogDbContexts(Configuration);
             services.AddWp();
             services.AddRestClients(Configuration);
+            services.AddLocalizationRestClients(Configuration);
             services.AddScoped<SlugRouteTransformer>();
            
 

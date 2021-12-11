@@ -7,7 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\Localization\defaultResources.public.en.res.xml" />
+    <None Remove="Files\Localization\defaultResources.public.nl.res.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\Localization\defaultResources.public.en.res.xml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Files\Localization\defaultResources.public.nl.res.xml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
@@ -15,10 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Nsr.Common.Core\Nsr.Common.Core.csproj" />
     <ProjectReference Include="..\..\..\Libraries\Wp.Data\Wp.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\..\Nsr.RestClient\Nsr.RestClient.csproj" />
   </ItemGroup>
 
 </Project>

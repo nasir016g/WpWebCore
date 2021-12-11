@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nsr.Common.Core;
+using Nsr.RestClient;
 using Nsr.RestClient.Models.WorkHistories;
 using Nsr.RestClient.RestClients;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.Helpers;
 
 namespace Wp.Web.Mvc.Areas.Profile.Controllers
 {

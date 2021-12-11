@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
 using Nsr.Common.Core.Caching;
 using Nsr.Common.Service.Configuration;
+using Nsr.RestClient;
 using Nsr.RestClient.RestClients;
+using Nsr.RestClient.RestClients.Localization;
 using Refit;
 using Serilog;
 using Serilog.Events;
@@ -105,8 +107,8 @@ namespace Wp.Web.Framework.Extensions
             // repositories
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(ITenantsBaseRepository), typeof(TenantsBaseRepository));
-            
-            // services
+
+            // services            
             services.AddScoped<ITenantService, TenantService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IWebsiteService, WebsiteService>();
@@ -140,7 +142,6 @@ namespace Wp.Web.Framework.Extensions
             services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-
             return services;
         }
 

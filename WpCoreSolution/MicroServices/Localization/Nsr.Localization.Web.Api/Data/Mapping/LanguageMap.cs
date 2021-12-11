@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nsr.Common.Core.Localization;
+using Nsr.RestClient.Models.Localization;
 using Wp.Data.Mappings;
 
 namespace Nsr.Localization.Web.Api.Data

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nsr.Common.Core;
 using Nsr.Common.Services;
+using Nsr.RestClient.RestClients.Localization;
 using System.Linq;
 using Wp.Core;
 using Wp.Web.Mvc.Models;
@@ -9,22 +10,23 @@ namespace Wp.Web.Mvc.Components
 {
     public class LanguageSelectorViewComponent : ViewComponent
     {
-        private readonly ILanguageService _languageService;
+        private readonly ILanguageWebApi _languageWebApi;
         private readonly IWorkContext _workContext;
         //private readonly LocalizationSettings _localizationSettings;
 
-        public LanguageSelectorViewComponent(ILanguageService languageService,
+        public LanguageSelectorViewComponent(ILanguageWebApi languageWebApi,
             IWorkContext workContext)
         {
-            _languageService = languageService;
+            _languageWebApi = languageWebApi;
             _workContext = workContext;
             //_localizationSettings = localizationSettings;
         }
 
         private LanguageSelectorModel PrepareLanguageSelectorModel()
         {
-            var availableLanguages = _languageService
-                    .GetAll()
+            var lans = _languageWebApi.GetAll().GetAwaiter().GetResult();
+            var availableLanguages = _languageWebApi
+                    .GetAll().GetAwaiter().GetResult()
                     .Select(x => new LanguageSelectorModel.LanguageModel()
                     {
                         Id = x.Id,

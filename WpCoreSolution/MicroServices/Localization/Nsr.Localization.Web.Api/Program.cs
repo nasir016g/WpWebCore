@@ -1,6 +1,10 @@
+using Nsr.Localization.Web.Api;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContexts(builder.Configuration);
+builder.Services.AddServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

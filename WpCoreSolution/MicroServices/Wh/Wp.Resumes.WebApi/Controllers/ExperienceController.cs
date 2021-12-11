@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nrs.RestClient;
 using Nsr.Common.Services;
+using Nsr.RestClient;
 using Nsr.RestClient.Models.WorkHistories;
+using Nsr.RestClient.RestClients.Localization;
 using Wp.Wh.Core.Domain;
 using Wp.Wh.Services;
 
@@ -10,17 +13,17 @@ namespace Wp.Wh.WebApi.Controllers
     [ApiController]
     public class ExperienceController : WpBaseController
     {
-        private readonly ILocalizedEntityService _localizedEntityService;
+        private readonly ILocalizedEnitityHelperService _localizedEnitityHelperService;
         private readonly IExperienceService _experienceService;
-        private readonly ILanguageService _languageService;
+        private readonly ILanguageWebApi _languageWebApi;
 
-        public ExperienceController(ILocalizedEntityService localizedEntityService,
+        public ExperienceController(ILocalizedEnitityHelperService localizedEnitityHelperService,
             IExperienceService experienceService,
-            ILanguageService languageService)
+            ILanguageWebApi languageWebApi)
         {
-            _localizedEntityService = localizedEntityService;
+            _localizedEnitityHelperService = localizedEnitityHelperService;
             _experienceService = experienceService;
-            _languageService = languageService;
+            _languageWebApi = languageWebApi;
         }
 
         #region Utilities
@@ -30,19 +33,19 @@ namespace Wp.Wh.WebApi.Controllers
         {
             foreach (var localized in model.Locales)
             {
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                         x => x.Name,
                                                         localized.Name,
                                                         localized.LanguageId);
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                         x => x.Period,
                                                         localized.Period,
                                                         localized.LanguageId);
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                        x => x.Function,
                                                        localized.Function,
                                                        localized.LanguageId);
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                        x => x.Tasks,
                                                        localized.Tasks,
                                                        localized.LanguageId);
@@ -55,15 +58,15 @@ namespace Wp.Wh.WebApi.Controllers
         {
             foreach (var localized in model.Locales)
             {
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                         x => x.Name,
                                                         localized.Name,
                                                         localized.LanguageId);
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                        x => x.Description,
                                                        localized.Description,
                                                        localized.LanguageId);
-                _localizedEntityService.SaveLocalizedValue(entity,
+                _localizedEnitityHelperService.SaveLocalizedValue(entity,
                                                        x => x.Technology,
                                                        localized.Technology,
                                                        localized.LanguageId);
@@ -87,7 +90,7 @@ namespace Wp.Wh.WebApi.Controllers
             var model = entity.ToModel();
 
             //locals
-            AddLocales(_languageService, model.Locales, (locale, languageId) =>
+            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
             {
                 locale.Name = entity.GetLocalized(x => x.Name, languageId, false, false);
                 locale.Period = entity.GetLocalized(x => x.Period, languageId, false, false);
@@ -160,7 +163,7 @@ namespace Wp.Wh.WebApi.Controllers
             var model = entity.ToModel();
 
             //locals
-            AddLocales(_languageService, model.Locales, (locale, languageId) =>
+            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
             {
                 locale.Name = entity.GetLocalized(x => x.Name, languageId, false, false);
                 locale.Description = entity.GetLocalized(x => x.Description, languageId, false, false);

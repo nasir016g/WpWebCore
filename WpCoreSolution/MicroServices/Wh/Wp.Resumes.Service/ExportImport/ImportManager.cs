@@ -1,4 +1,5 @@
-﻿using Nsr.Common.Services;
+﻿using Nsr.RestClient;
+using Nsr.RestClient.RestClients.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +16,25 @@ namespace Wp.Wh.Services.ExportImport
         private readonly IEducationService _educationService;
         private readonly ISkillService _skillService;
         private readonly IExperienceService _workExperienceService;
-        private readonly ILanguageService _languageService;
-        private readonly ILocalizedEntityService _localizedEntityService;
+        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILocalizedEntityWebApi _localizedEntityWebApi;
+        private readonly ILocalizedEnitityHelperService _localizedEntityHelperService;
 
         public ImportManager(IResumeService resService,
             IEducationService educationService,
             ISkillService skillService,
             IExperienceService werkExperienceService,
-            ILanguageService languageService,
-            ILocalizedEntityService localizedEntityService)
+            ILanguageWebApi languageWebApi,
+            ILocalizedEntityWebApi localizedEntityWebApi,
+            ILocalizedEnitityHelperService localizedEntityHelperService)
         {
             _resService = resService;
             _educationService = educationService;
             _skillService = skillService;
             _workExperienceService = werkExperienceService;
-            _languageService = languageService;
-            _localizedEntityService = localizedEntityService;
+            _languageWebApi = languageWebApi;
+            _localizedEntityWebApi = localizedEntityWebApi;
+            _localizedEntityHelperService = localizedEntityHelperService;
         }
 
         private string GetValue(XElement xElement)
@@ -65,8 +69,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -79,8 +83,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -90,8 +94,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xPeriod.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Period,
                                                             value,
                                                             languageId);
@@ -103,8 +107,8 @@ namespace Wp.Wh.Services.ExportImport
                 foreach (var locale in xPlace.Descendants("Locale"))
                 {
                     var value = locale.Element("Value").Value;
-                    int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                    _localizedEntityService.SaveLocalizedValue(entity,
+                    int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                    _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                                 x => x.Place,
                                                                 value,
                                                                 languageId);
@@ -117,8 +121,8 @@ namespace Wp.Wh.Services.ExportImport
                 foreach (var locale in xDescription.Descendants("Locale"))
                 {
                     var value = locale.Element("Value").Value;
-                    int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                    _localizedEntityService.SaveLocalizedValue(entity,
+                    int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                    _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                                 x => x.Description,
                                                                 value,
                                                                 languageId);
@@ -170,8 +174,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -184,8 +188,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -195,8 +199,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xLevel.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.LevelDescription,
                                                             value,
                                                             languageId);
@@ -245,8 +249,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -256,8 +260,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xPeriod.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Period,
                                                             value,
                                                             languageId);
@@ -267,8 +271,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xFunction.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Function,
                                                             value,
                                                             languageId);
@@ -278,8 +282,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xTasks.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Tasks,
                                                             value,
                                                             languageId);
@@ -292,8 +296,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Name,
                                                             value,
                                                             languageId);
@@ -303,8 +307,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xDescription.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Description,
                                                             value,
                                                             languageId);
@@ -314,8 +318,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xTechnology.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Technology,
                                                             value,
                                                             languageId);
@@ -369,8 +373,8 @@ namespace Wp.Wh.Services.ExportImport
             foreach (var locale in xName.Descendants("Locale"))
             {
                 var value = locale.Element("Value").Value;
-                int languageId = _languageService.GetAll().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
-                _localizedEntityService.SaveLocalizedValue(entity,
+                int languageId = _languageWebApi.GetAll().GetAwaiter().GetResult().FirstOrDefault(x => x.UniqueSeoCode == locale.Attribute("Language").Value).Id;
+                _localizedEntityHelperService.SaveLocalizedValue(entity,
                                                             x => x.Summary,
                                                             value,
                                                             languageId);

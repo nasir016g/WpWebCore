@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
-using Nsr.Common.Services;
+using Nsr.RestClient.RestClients.Localization;
 using System.ComponentModel;
 
 namespace Nrs.RestClient
@@ -24,7 +24,8 @@ namespace Nrs.RestClient
                 using(var serviceScope = ServiceLocator.GetScope())
                 {
                     var langId = serviceScope.ServiceProvider.GetService<IWorkContext>().Current.WorkingLanguageId;
-                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
+                    //_resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
+                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationWebApi>().GetResource(ResourceKey, langId).GetAwaiter().GetResult();
                     if (string.IsNullOrEmpty(_resourceValue))
                     {
                         return ResourceKey;

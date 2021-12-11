@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
+using Nsr.RestClient;
+using Nsr.RestClient.RestClients.Localization;
+using Refit;
 using System;
 using Wp.Wh.Data;
 using Wp.Wh.Data.Repositories;
@@ -67,5 +70,6 @@ namespace Wp.Wh.WebApi.Extensions
 
             return services;
         }
+       
     }
 }

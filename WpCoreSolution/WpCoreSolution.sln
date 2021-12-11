@@ -21,7 +21,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServices", "{53FF5399-4CD5-4013-A5FB-265778A08979}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wh", "Wh", "{6FD0C194-3CB6-4073-90C6-5AB950614D28}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkHistory", "WorkHistory", "{6FD0C194-3CB6-4073-90C6-5AB950614D28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{386997B3-3D78-48F6-AE96-446CC7AD973B}"
 EndProject
@@ -43,14 +43,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wp.Wh.WebApi", "MicroServic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Localization", "Localization", "{B381D7A7-6591-4EA2-BF01-E8944874B26A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nsr.Localization.Web.Api", "MicroServices\Localization\Nsr.Localization.Web.Api\Nsr.Localization.Web.Api.csproj", "{0DB0282B-BAEB-478A-A0FA-D2ECB38B6C3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nsr.Localization.Web.Api", "MicroServices\Localization\Nsr.Localization.Web.Api\Nsr.Localization.Web.Api.csproj", "{0DB0282B-BAEB-478A-A0FA-D2ECB38B6C3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D24EC52-224D-4207-ACA4-8898DBC57589}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nsr.RestClient", "MicroServices\Nsr.RestClient\Nsr.RestClient.csproj", "{E43177E8-6E97-45EA-B1C0-47A89229A2EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nsr.RestClient", "MicroServices\Nsr.RestClient\Nsr.RestClient.csproj", "{E43177E8-6E97-45EA-B1C0-47A89229A2EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

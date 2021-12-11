@@ -3,13 +3,14 @@ using Nsr.Common.Services;
 using Nsr.Common.Core;
 using Wp.Web.Framework.Localization;
 using Wp.Core;
+using Nsr.RestClient.RestClients.Localization;
 
 namespace Wp.Web.Framework.ViewEngines.Razor
 {
     public abstract class WebViewPage<TModel> : Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
     {
         [RazorInject]
-        public ILocalizationService LocalizationService { get; set; }
+        public ILocalizationWebApi LocalizationWebApi { get; set; }
 
         [RazorInject]
         public IWorkContext WorkContext { get; set; }
@@ -34,7 +35,7 @@ namespace Wp.Web.Framework.ViewEngines.Razor
                        // using (var serviceScope = Wp.Localization.Core.ServiceLocator.GetScope())
                         //{
                          //   var localizationService = serviceScope.ServiceProvider.GetService<ILocalizationService>();
-                            var resFormat = LocalizationService.GetResource(format, WorkContext.Current.WorkingLanguageId);
+                            var resFormat = LocalizationWebApi.GetResource(format, WorkContext.Current.WorkingLanguageId).GetAwaiter().GetResult();
                             if (string.IsNullOrEmpty(resFormat))
                             {
                                 return new LocalizedString(format);

@@ -1,6 +1,7 @@
-﻿using Nsr.Common.Services;
+﻿using Nsr.RestClient.RestClients.Localization;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using Wp.Wh.Core.Domain;
 
@@ -11,24 +12,24 @@ namespace Wp.Wh.Services.ExportImport
     {
         #region Fields
 
-        private readonly ILocalizationService _localizationService;
-        private readonly ILanguageService _languageService;
+        private readonly ILocalizationWebApi _localizationWebApi;
+        private readonly ILanguageWebApi _languageWebApi;
 
         #endregion
 
         #region Ctor
 
-        public ExportManager(ILocalizationService localizationService, ILanguageService languageService)
+        public ExportManager(ILocalizationWebApi localizationWebApi, ILanguageWebApi languageWebApi)
         {
-            this._localizationService = localizationService;
-            this._languageService = languageService;
+            this._localizationWebApi = localizationWebApi;
+            this._languageWebApi = languageWebApi;
         }
 
         #endregion
 
-        public string ExportResumeToXml(Resume Resume)
+        public async Task<string> ExportResumeToXml(Resume Resume)
         {
-            var languages = _languageService.GetAll();
+            var languages = await _languageWebApi.GetAll();
 
             var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);

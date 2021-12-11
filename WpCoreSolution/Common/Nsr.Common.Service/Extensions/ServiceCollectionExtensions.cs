@@ -57,15 +57,9 @@ namespace Nsr.Common.Service.Extensions
             // repositories
             services.AddScoped(typeof(ICommonBaseRepository<>), typeof(CommonBaseRepository<>));
 
-            // services
-            services.AddScoped<IWorkContext, WorkContext>();
+            // services           
             services.AddScoped<ICommonUnitOfWork, CommonUnitOfWork>();
-            services.AddScoped<ICacheManager, PerRequestCacheManager>();
-            
-
-            services.AddScoped<ILanguageService, LanguageService>();
-            services.AddScoped<ILocalizationService, LocalizationService>();
-            services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
+            services.AddScoped<ICacheManager, PerRequestCacheManager>();            
 
             services.AddScoped<ISettingService, SettingService>();
             //services.AddScoped(x =>

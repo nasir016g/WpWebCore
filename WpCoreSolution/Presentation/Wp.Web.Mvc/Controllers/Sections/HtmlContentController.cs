@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Nrs.RestClient;
 using Nsr.Common.Services;
+using Nsr.RestClient;
+using Nsr.RestClient.RestClients.Localization;
 using Wp.Core;
 using Wp.Core.Domain.Sections;
 using Wp.Services.Sections;
@@ -12,13 +15,15 @@ namespace Wp.Web.Mvc.Controllers.Sections
 {
     public class HtmlContentController : SectionBaseController
     {
-        private readonly ILanguageService _languageService;
-        private readonly ILocalizedEntityService _localizedEntityService;
+        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILocalizedEntityWebApi _localizedEntityWebApi;
+        private readonly ILocalizedEnitityHelperService _localizedEntityHelperService;
 
-        public HtmlContentController(ILanguageService languageService, ILocalizedEntityService localizedEntityService ,IWebPageService webPageService, ISectionService sectionService, IWebHelper webHelper) : base(webPageService, sectionService, webHelper)
+        public HtmlContentController(ILanguageWebApi languageWebApi, ILocalizedEntityWebApi localizedEntityWebApi, ILocalizedEnitityHelperService localizedEntityHelperService, IWebPageService webPageService, ISectionService sectionService, IWebHelper webHelper) : base(webPageService, sectionService, webHelper)
         {
-            _languageService = languageService;
-            _localizedEntityService = localizedEntityService;
+            _languageWebApi = languageWebApi;
+            _localizedEntityWebApi = localizedEntityWebApi;
+            _localizedEntityHelperService = localizedEntityHelperService;
         }
 
         #region Utilities
@@ -28,7 +33,7 @@ namespace Wp.Web.Mvc.Controllers.Sections
         {
             foreach(var localized in model.Locales)
             {
-                _localizedEntityService.SaveLocalizedValue(htmlContent,
+                _localizedEntityHelperService.SaveLocalizedValue(htmlContent,
                                                                 x => x.Html,
                                                                 localized.Html,
                                                                 localized.LanguageId);
@@ -48,7 +53,7 @@ namespace Wp.Web.Mvc.Controllers.Sections
             var model = htmlContent.ToModel();
 
             //locales
-            AddLocales(_languageService, model.Locales, (locale, languageId) =>
+            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
                 {
                     locale.Html = htmlContent.GetLocalized(x => x.Html, languageId, false, false);
                 });

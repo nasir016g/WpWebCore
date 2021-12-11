@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nsr.Common.Core.Localization;
 using Nsr.Common.Data;
+using Nsr.RestClient.Models.Localization;
 
 namespace Nsr.Localization.Web.Api.Data
 {
