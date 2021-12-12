@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Nsr.Common.Service\Nsr.Common.Service.csproj" />
+    <ProjectReference Include="..\..\MicroServices\Nsr.RestClient\Nsr.RestClient.csproj" />
     <ProjectReference Include="..\Wp.Web.Framework\Wp.Web.Framework.csproj" />
   </ItemGroup>
 
