@@ -21,7 +21,7 @@ namespace Nsr.Localization.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var entities = _languageService.GetAll();
+            var entities = _languageService.GetAll().ToList();
             //var model = entities.ToModels();
             return Ok(entities);
         }

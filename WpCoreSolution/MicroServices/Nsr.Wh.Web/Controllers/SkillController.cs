@@ -2,10 +2,13 @@
 using Nrs.RestClient;
 using Nsr.Common.Services;
 using Nsr.RestClient;
+using Nsr.RestClient.Models.ActivityLogs;
 using Nsr.RestClient.Models.WorkHistories;
+using Nsr.RestClient.RestClients.ActivityLogs;
 using Nsr.RestClient.RestClients.Localization;
 using Nsr.Wh.Web.Domain;
 using Nsr.Wh.Web.Services;
+using System.Threading.Tasks;
 
 namespace Nsr.Wh.Web.Controllers
 {
@@ -16,14 +19,17 @@ namespace Nsr.Wh.Web.Controllers
          private readonly ILocalizedEnitityHelperService _localizedEnitityHelperService;
         private readonly ISkillService _skillService;
         private readonly ILanguageWebApi _languageWebApi;
+        private readonly IActivityLogWebApi _activityLogWebApi;
 
         public SkillController(ILocalizedEnitityHelperService localizedEnitityHelperService,
             ISkillService skillService,
-            ILanguageWebApi languageWebApi)
+            ILanguageWebApi languageWebApi,
+            IActivityLogWebApi activityLogWebApi)
         {
             _localizedEnitityHelperService = localizedEnitityHelperService;
             _skillService = skillService;
             _languageWebApi = languageWebApi;
+            _activityLogWebApi = activityLogWebApi;
         }
 
         #region Utilities
@@ -97,7 +103,7 @@ namespace Nsr.Wh.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] SkillModel model)
+        public async Task<IActionResult> Put(int id, [FromBody] SkillModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -111,6 +117,8 @@ namespace Nsr.Wh.Web.Controllers
             //locales
             UpdateLocales(entity, model);
 
+            await _activityLogWebApi.Insert("EditSkill", "Skill", entity.Id);
+           
             return NoContent();
         }
 
@@ -183,6 +191,7 @@ namespace Nsr.Wh.Web.Controllers
 
             //locales
             UpdateLocales(entity, model);
+
 
             return NoContent();
         }

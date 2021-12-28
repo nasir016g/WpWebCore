@@ -84,6 +84,7 @@ namespace Wp.Web.Mvc
             services.AddWp();
             services.AddRestClients(Configuration);
             services.AddLocalizationRestClients(Configuration);
+            services.AddActivityLogRestClients(Configuration);
             services.AddScoped<SlugRouteTransformer>();
            
 

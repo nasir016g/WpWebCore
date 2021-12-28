@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
+using Nsr.RestClient.RestClients.ActivityLogs;
 using Nsr.RestClient.RestClients.Localization;
 using Refit;
 
@@ -18,11 +19,21 @@ namespace Nsr.RestClient.Extensions
             var uri = new Uri($"http://{apiHostAndPort}");
             services.AddRefitClient<ILanguageWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<ILocalizationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<ILocalizedEntityWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<ILocalizedEntityWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);           
+
             //services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             //services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             //services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
 
+            return services;
+        }
+
+        public static IServiceCollection AddActivityLogRestClients(this IServiceCollection services, IConfiguration configuration)
+        {
+            string apiHostAndPort = configuration.GetSection("APIServiceLocations").GetValue<string>("ActivityLogWebApi");
+            var uri = new Uri($"http://{apiHostAndPort}");
+
+            services.AddRefitClient<IActivityLogWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             return services;
         }
     }

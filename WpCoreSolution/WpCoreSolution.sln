@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nsr.Wh.Web", "MicroServices
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nsr.Localization.Web", "MicroServices\Nsr.Localization.Web\Nsr.Localization.Web.csproj", "{255C2E48-7C59-41ED-AFCC-E318307B851E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nsr.ActivityLogs.Web", "MicroServices\Nsr.ActivityLog.Web\Nsr.ActivityLogs.Web.csproj", "{C775D80F-C56E-45DE-BEBE-561686079ECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{255C2E48-7C59-41ED-AFCC-E318307B851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255C2E48-7C59-41ED-AFCC-E318307B851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255C2E48-7C59-41ED-AFCC-E318307B851E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C775D80F-C56E-45DE-BEBE-561686079ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C775D80F-C56E-45DE-BEBE-561686079ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C775D80F-C56E-45DE-BEBE-561686079ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C775D80F-C56E-45DE-BEBE-561686079ECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{7623A199-6806-4D36-A188-BD4950D4E144} = {53FF5399-4CD5-4013-A5FB-265778A08979}
 		{C63AB8AD-E65C-40A5-A08D-FDBCC89696EB} = {53FF5399-4CD5-4013-A5FB-265778A08979}
 		{255C2E48-7C59-41ED-AFCC-E318307B851E} = {53FF5399-4CD5-4013-A5FB-265778A08979}
+		{C775D80F-C56E-45DE-BEBE-561686079ECD} = {53FF5399-4CD5-4013-A5FB-265778A08979}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {049C5F27-9141-4E80-B1C5-0F84B62FD726}

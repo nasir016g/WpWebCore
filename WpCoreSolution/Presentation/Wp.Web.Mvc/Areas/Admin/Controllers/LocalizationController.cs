@@ -31,21 +31,21 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         #region Language
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-           var model = _languageWebApi.GetAll();           
+           var model = await _languageWebApi.GetAll();           
 
             return View(model);
         }
 
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {           
-           var model = _languageWebApi.GetById(id);
+           var model = await _languageWebApi.GetById(id);
            return View(model);
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             //return await _resiliencyHelper.ExecuteResilient(async () =>
             //{
@@ -54,7 +54,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
             //    return View(model);
             //}, View("Offline"));
-            var model = _languageWebApi.GetById(id);
+            var model = await _languageWebApi.GetById(id);
             return View(model);
         }
 

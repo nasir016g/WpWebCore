@@ -48,7 +48,6 @@ namespace Wp.Data
             else if (_connectionString != null) //
             {
                 optionsBuilder.UseSqlServer(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
-                //optionsBuilder.UseSqlite(_connectionString, b => b.MigrationsAssembly("Wp.Data"));
             }
             base.OnConfiguring(optionsBuilder);
         }
