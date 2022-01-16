@@ -44,3 +44,18 @@ body {
 
 /* form controls */
 
+/* START OF DIFF STYLE */
+.diffContainer {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.diffInsert {
+    background: #e6ffe6;
+}
+
+.diffDelete {
+    background: #ffe6e6;
+}
+
+/* END OF DIFF STYLE */
+

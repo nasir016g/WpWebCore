@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DiffMatchPatch;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nsr.ActivityLogs.Web.Service.Abstract;
 using Nsr.RestClient.Models.ActivityLogs;
@@ -28,6 +29,12 @@ namespace Nsr.ActivityLogs.Web.Controllers
         public IActionResult Get(int id)
         {
             var entity = _activityLogService.GetById(id);
+            foreach(var ali in entity.ActivityLogItems)
+            {
+                var diffs = Diff.Compute(ali.OldValue, ali.NewValue);
+                ali.Diff = diffs.ToHtmlDocument();
+            }
+            
             return Ok(entity);
         }
 
@@ -62,7 +69,8 @@ namespace Nsr.ActivityLogs.Web.Controllers
         {
             var entity = _activityLogService.GetById(id);
             _activityLogService.Delete(entity);
-            return RedirectToAction("Get");
+            return NoContent();
+
         }
     }
 }

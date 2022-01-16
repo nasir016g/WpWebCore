@@ -1,4 +1,6 @@
-﻿using Nsr.Common.Core;
+﻿using Microsoft.AspNetCore.Html;
+using Nsr.Common.Core;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nsr.RestClient.Models.ActivityLogs
 {
@@ -9,7 +11,10 @@ namespace Nsr.RestClient.Models.ActivityLogs
         public int EntityId { get; set; }
         public int LanguageId { get; set; }
         public string OldValue { get; set; }
-        public string NewValue { get; set; }  
+        public string NewValue { get; set; } 
+       
+        [NotMapped]
+        public string Diff { get; set; }
         public virtual ActivityLog ActivityLog { get; set; }
 
     }

@@ -1,4 +1,5 @@
-﻿using Nsr.ActivityLogs.Web.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Nsr.ActivityLogs.Web.Data;
 using Nsr.ActivityLogs.Web.Data.Repositories;
 using Nsr.ActivityLogs.Web.Service.Abstract;
 using Nsr.Common.Core;
@@ -15,9 +16,13 @@ namespace Nsr.ActivityLogs.Web.Service
         {
             _activityLogTypeRepository = activityLogTypeRepository;
             _activityLogItemRepository = activityLogItemRepository;
-        }      
+        }
 
-        
+        public override ActivityLog GetById(int id)
+        {
+           return _repository.Table.Include(x => x.ActivityLogItems).FirstOrDefault(x => x.Id == id);            
+        }
+
         public ActivityLog InsertActivity(string systemKeyword, string entityType, int entityId)
         {
            
@@ -98,6 +103,7 @@ namespace Nsr.ActivityLogs.Web.Service
             }
            
 
-        }
+        }   
+
     }
 }

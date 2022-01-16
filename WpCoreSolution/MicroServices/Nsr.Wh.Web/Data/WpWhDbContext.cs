@@ -71,6 +71,7 @@ namespace Nsr.Wh.Web.Data
             return base.SaveChanges();
         }        
 
+
         private void OnBeforeSaveChanges()
         {
             ChangeTracker.DetectChanges();
