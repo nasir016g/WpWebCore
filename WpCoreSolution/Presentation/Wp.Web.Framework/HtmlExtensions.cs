@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
-using Nsr.Common.Core.Localization;
 using Nsr.Common.Core.Localization.Models;
-using Nsr.Common.Services;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
 using System;
 using System.IO;
 using System.Text;
@@ -45,13 +43,13 @@ namespace Wp.Web.Framework
                 for (int i = 0; i < helper.ViewData.Model.Locales.Count; i++)
                 {
                     var locale = helper.ViewData.Model.Locales[i];
-                    var language = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageWebApi>().GetById(locale.LanguageId).GetAwaiter().GetResult();
+                    var language = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageService>().GetById(locale.LanguageId);
                     var tabPane = new TagBuilder("div");
                     tabPane.AddCssClass("tab-pane");
                     tabPane.Attributes.Add("id", language.Name);
                     tabPane.InnerHtml.AppendHtml(localizedTemplate(i).RenderHtmlContent());
                     tabContent.InnerHtml.AppendHtml(tabPane.RenderHtmlContent());
-                   
+
                 }
                 tabStrip.Append(tabContent.RenderHtmlContent());
                 var str = tabStrip.ToString();
@@ -59,15 +57,15 @@ namespace Wp.Web.Framework
             }
             else
             {
-               return new HtmlString(standardTemplate(helper.ViewData.Model).RenderHtmlContent());
-            }            
+                return new HtmlString(standardTemplate(helper.ViewData.Model).RenderHtmlContent());
+            }
         }
 
         private static TagBuilder Tab<T, TLocalizedModel>(this IHtmlHelper<T> helper)
            where T : ILocalizedModel<TLocalizedModel>
            where TLocalizedModel : ILocalizedModelLocal
         {
-            var languageWebApi = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageWebApi>();
+            var languageService = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageService>();
             var urlHelper = ServiceLocator.GetScope().ServiceProvider.GetService<IUrlHelperFactory>().GetUrlHelper(helper.ViewContext);
 
             TagBuilder ul = new TagBuilder("ul");
@@ -88,7 +86,7 @@ namespace Wp.Web.Framework
 
             foreach (var local in helper.ViewData.Model.Locales)
             {
-                var language = languageWebApi.GetById(local.LanguageId).GetAwaiter().GetResult();
+                var language = languageService.GetById(local.LanguageId);
                 TagBuilder li = new TagBuilder("li");
                 li.AddCssClass("nav-item");
 

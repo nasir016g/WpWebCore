@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Nsr.Common.Core;
+using Nsr.Common.Service.Localization;
 using Nsr.Common.Services;
+using Nsr.RestClient;
 using Nsr.RestClient.Models.WorkHistories;
-using Nsr.RestClient.RestClients.Localization;
-using System;
-using System.IO;
-using System.Text;
 using Nsr.Wh.Web.Domain;
 using Nsr.Wh.Web.Services;
 using Nsr.Wh.Web.Services.ExportImport;
-using Nrs.RestClient;
-using System.Threading.Tasks;
-using Nsr.RestClient;
-using Nsr.Common.Core;
-using System.Text.RegularExpressions;
+using System;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,8 +27,8 @@ namespace Nsr.Wh.Web.Controllers
         private readonly IResumeService _resumeService;
         private readonly IImportManager _importManager;
         private readonly IExportManager _exportManager;
-        private readonly ILanguageWebApi _languageWebApi;
-        private readonly ILocalizedEnitityHelperService _localizedEnitityHelperService;
+        private readonly ILanguageService _languageService;
+        private readonly ILocalizedEntityService _localizedEntityService;
         private readonly IPdfService _pdfService;
         private ResiliencyHelper _resiliencyHelper;
 
@@ -39,8 +37,8 @@ namespace Nsr.Wh.Web.Controllers
             IResumeService resumeService,
             IImportManager importManager,
             IExportManager exportManager,
-            ILanguageWebApi languageWebApi,
-            ILocalizedEnitityHelperService localizedEnitityHelperService,
+            ILanguageService languageService,
+            ILocalizedEntityService localizedEntityService,
             ILogger<ResumeController> logger,
             IPdfService pdfService
             )
@@ -49,8 +47,8 @@ namespace Nsr.Wh.Web.Controllers
             _resumeService = resumeService;
             _importManager = importManager;
             _exportManager = exportManager;
-            _languageWebApi = languageWebApi;
-            _localizedEnitityHelperService = localizedEnitityHelperService;
+            _languageService = languageService;
+            _localizedEntityService = localizedEntityService;
             _pdfService = pdfService;
             _resiliencyHelper = new ResiliencyHelper(logger);
         }
@@ -193,7 +191,7 @@ namespace Nsr.Wh.Web.Controllers
         {
             foreach (var localized in model.Locales)
             {
-                _localizedEnitityHelperService.SaveLocalizedValue(entity,
+                _localizedEntityService.SaveLocalizedValue(entity,
                     x => x.Summary,
                     localized.Summary,
                     localized.LanguageId);
@@ -218,7 +216,7 @@ namespace Nsr.Wh.Web.Controllers
             var model = entity.ToModel();
 
             //locals
-            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
+            AddLocales(_languageService, model.Locales, (locale, languageId) =>
             {
                 locale.Summary = entity.GetLocalized(x => x.Summary, languageId, false, false);
             });
@@ -308,12 +306,12 @@ namespace Nsr.Wh.Web.Controllers
         }
 
         [HttpGet("ExportToXml/{id}")]
-        public async Task<IActionResult> ExportToXml(int id)
+        public IActionResult ExportToXml(int id)
         {
             try
             {
                 var entity = _resumeService.GetDetails(id);
-                var xml = await _exportManager.ExportResumeToXml(entity);
+                var xml = _exportManager.ExportResumeToXml(entity);
                 return File(Encoding.UTF8.GetBytes(xml), "application/xml", entity.Name + ".xml");
             }
             catch (Exception exc)

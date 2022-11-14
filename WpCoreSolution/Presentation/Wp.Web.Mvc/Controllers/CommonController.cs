@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nsr.Common.Core;
-using Nsr.Common.Services;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
 using System;
-using Wp.Core;
 
 namespace Wp.Web.Mvc.Controllers
 {
     public class CommonController : Controller
     {
-        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILanguageService _languageService;
         private readonly IWorkContext _workContext;
         //private readonly LocalizationSettings _localizationSettings;
 
-        public CommonController(ILanguageWebApi languageWebApi, IWorkContext workContext)
+        public CommonController(ILanguageService languageService, IWorkContext workContext)
         {
-            _languageWebApi = languageWebApi;
+            _languageService = languageService;
             _workContext = workContext;
             //_localizationSettings = localizationSettings;
         }
@@ -23,7 +21,7 @@ namespace Wp.Web.Mvc.Controllers
 
         public IActionResult SetLanguage(int langid, string returnUrl = "")
         {
-            var language = _languageWebApi.GetById(langid).GetAwaiter().GetResult();
+            var language = _languageService.GetById(langid);
             if (language != null && language.Published)
             {
                 var current = _workContext.Current;

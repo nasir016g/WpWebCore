@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
 using System.ComponentModel;
 
-namespace Nrs.RestClient
+//namespace Wp.Web.Framework
+namespace Nsr.RestClient
 {
     public class WpResourceDisplayNameAttribute : DisplayNameAttribute
     {
@@ -24,8 +25,7 @@ namespace Nrs.RestClient
                 using(var serviceScope = ServiceLocator.GetScope())
                 {
                     var langId = serviceScope.ServiceProvider.GetService<IWorkContext>().Current.WorkingLanguageId;
-                    //_resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
-                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationWebApi>().GetResource(ResourceKey, langId).GetAwaiter().GetResult();
+                    _resourceValue = serviceScope.ServiceProvider.GetService<ILocalizationService>().GetResource(ResourceKey, langId);
                     if (string.IsNullOrEmpty(_resourceValue))
                     {
                         return ResourceKey;

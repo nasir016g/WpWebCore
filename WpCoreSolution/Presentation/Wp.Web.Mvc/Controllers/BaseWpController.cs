@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nsr.Common.Core.Localization.Models;
-using Nsr.Common.Services;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
 using System;
 using System.Collections.Generic;
 using Wp.Web.Framework.UI;
@@ -54,14 +53,14 @@ namespace Wp.Web.Mvc.Controllers
             }
         }
 
-        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageWebApi languageWebApi, IList<TLocalizedModelLocal> locales) where TLocalizedModelLocal : ILocalizedModelLocal
+        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageService languageService, IList<TLocalizedModelLocal> locales) where TLocalizedModelLocal : ILocalizedModelLocal
         {
-            AddLocales(languageWebApi, locales, null);
+            AddLocales(languageService, locales, null);
         }
 
-        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageWebApi languageWebApi, IList<TLocalizedModelLocal> locales, Action<TLocalizedModelLocal, int> configure) where TLocalizedModelLocal : ILocalizedModelLocal
+        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageService languageService, IList<TLocalizedModelLocal> locales, Action<TLocalizedModelLocal, int> configure) where TLocalizedModelLocal : ILocalizedModelLocal
         {
-            foreach (var language in languageWebApi.GetAll().GetAwaiter().GetResult())
+            foreach (var language in languageService.GetAll())
             {
                 var locale = Activator.CreateInstance<TLocalizedModelLocal>();
                 locale.LanguageId = language.Id;
@@ -71,6 +70,6 @@ namespace Wp.Web.Mvc.Controllers
                 }
                 locales.Add(locale);
             }
-        }        
+        }
     }
 }

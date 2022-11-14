@@ -16,7 +16,6 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddServices();
-builder.Services.AddLocalizationRestClients(builder.Configuration);
 builder.Services.AddActivityLogRestClients(builder.Configuration);
 //services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
