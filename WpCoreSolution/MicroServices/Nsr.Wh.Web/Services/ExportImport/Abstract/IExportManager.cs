@@ -6,6 +6,6 @@ namespace Nsr.Wh.Web.Services.ExportImport
 {
     public partial interface IExportManager
     {
-        Task<string> ExportResumeToXml(Resume entity);
+        string ExportResumeToXml(Resume entity);
     }
 }

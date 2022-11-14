@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Nrs.RestClient;
+using Nsr.Common.Service.Localization;
 using Nsr.Common.Services;
-using Nsr.RestClient;
-using Nsr.RestClient.Models.ActivityLogs;
 using Nsr.RestClient.Models.WorkHistories;
 using Nsr.RestClient.RestClients.ActivityLogs;
-using Nsr.RestClient.RestClients.Localization;
 using Nsr.Wh.Web.Domain;
 using Nsr.Wh.Web.Services;
 using System.Threading.Tasks;
@@ -16,19 +13,19 @@ namespace Nsr.Wh.Web.Controllers
     [ApiController]
     public class SkillController : WpBaseController
     {
-         private readonly ILocalizedEnitityHelperService _localizedEnitityHelperService;
+         private readonly ILocalizedEntityService _localizedEnitityService;
         private readonly ISkillService _skillService;
-        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILanguageService _languageService;
         private readonly IActivityLogWebApi _activityLogWebApi;
 
-        public SkillController(ILocalizedEnitityHelperService localizedEnitityHelperService,
+        public SkillController(ILocalizedEntityService localizedEnitityService,
             ISkillService skillService,
-            ILanguageWebApi languageWebApi,
+            ILanguageService languageService,
             IActivityLogWebApi activityLogWebApi)
         {
-            _localizedEnitityHelperService = localizedEnitityHelperService;
+            _localizedEnitityService = localizedEnitityService;
             _skillService = skillService;
-            _languageWebApi = languageWebApi;
+            _languageService = languageService;
             _activityLogWebApi = activityLogWebApi;
         }
 
@@ -39,7 +36,7 @@ namespace Nsr.Wh.Web.Controllers
         {
             foreach (var localized in model.Locales)
             {
-                _localizedEnitityHelperService.SaveLocalizedValue(entity,
+                _localizedEnitityService.SaveLocalizedValue(entity,
                     x => x.Name,
                     localized.Name,
                     localized.LanguageId);
@@ -51,7 +48,7 @@ namespace Nsr.Wh.Web.Controllers
         {
             foreach (var localized in model.Locales)
             {
-                _localizedEnitityHelperService.SaveLocalizedValue(entity,
+                _localizedEnitityService.SaveLocalizedValue(entity,
                     x => x.Name,
                     localized.Name,
                     localized.LanguageId);
@@ -76,7 +73,7 @@ namespace Nsr.Wh.Web.Controllers
             var model = entity.ToModel();
 
             //locals
-            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
+            AddLocales(_languageService, model.Locales, (locale, languageId) =>
             {
                 locale.Name = entity.GetLocalized(x => x.Name, languageId, false, false);
             });
@@ -150,7 +147,7 @@ namespace Nsr.Wh.Web.Controllers
             var model = entity.ToModel();
 
             //locals
-            AddLocales(_languageWebApi, model.Locales, (locale, languageId) =>
+            AddLocales(_languageService, model.Locales, (locale, languageId) =>
             {
                 locale.Name = entity.GetLocalized(x => x.Name, languageId, false, false);
             });

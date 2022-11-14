@@ -1,5 +1,4 @@
-﻿using Nrs.RestClient;
-using Nsr.Common.Core;
+﻿using Nsr.Common.Core;
 
 
 namespace Nsr.RestClient.Models.WorkHistories

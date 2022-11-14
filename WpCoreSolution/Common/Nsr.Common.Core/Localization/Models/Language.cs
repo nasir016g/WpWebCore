@@ -1,7 +1,7 @@
 ﻿using Nsr.Common.Core;
 using System.Collections.Generic;
 
-namespace Nsr.RestClient.Models.Localization
+namespace Nsr.Common.Core.Localization.Models
 {
     public class Language : EntityAuditable
     {        

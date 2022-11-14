@@ -6,8 +6,8 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using Nrs.RestClient;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
+using Nsr.Common.Services;
 using Nsr.Wh.Web.Domain;
 using System;
 using System.IO;
@@ -20,24 +20,25 @@ namespace Nsr.Wh.Web.Services
     // Maybe an alternative method for generating Pdf's? http://www.codeproject.com/Articles/260470/PDF-reporting-using-ASP-NET-MVC3
     public class PdfService : IPdfService
     {
-        private ILocalizationWebApi _localizationWebApi;
-        private readonly ILanguageWebApi _languageWebApi;
+        private ILocalizationService _localizationService;
+        private readonly ILanguageService _languageService;
 
-        public PdfService(ILocalizationWebApi localizationWebApi, ILanguageWebApi languageWebApi)
+        public PdfService(ILocalizationService localizationService, ILanguageService languageService)
         {
-            _localizationWebApi = localizationWebApi;
-            _languageWebApi = languageWebApi;
+            _localizationService = localizationService;
+            _languageService = languageService;
         }
 
 
         #region Properties
 
-        private Text Newline {
+        private Text Newline
+        {
             get
             {
-                 return new Text("\n");
+                return new Text("\n");
             }
-        }       
+        }
 
         #endregion
 
@@ -45,16 +46,16 @@ namespace Nsr.Wh.Web.Services
 
         private string StripNewline(string text)
         {
-           return text.Replace(Environment.NewLine, String.Empty).Replace("\n", String.Empty).Replace("  ", String.Empty);
+            return text.Replace(Environment.NewLine, String.Empty).Replace("\n", String.Empty).Replace("  ", String.Empty);
         }
 
         private void InsertExperienceRow(Experience exp, Table table, string resourceKey, Text value, float leading = 0)
         {
-           
+
             //var cell = new Cell();
             //cell.SetBorder(Border.NO_BORDER);
 
-            var resourceValue = _localizationWebApi.GetResource(resourceKey).GetAwaiter().GetResult();
+            var resourceValue = _localizationService.GetResource(resourceKey);
 
             Cell cell = InsertColumn(new Text(resourceValue), leading);
             table.AddCell(cell);
@@ -65,7 +66,7 @@ namespace Nsr.Wh.Web.Services
 
         private Cell InsertColumn(Text value, float leading = 0)
         {
-            var cell = new Cell();           
+            var cell = new Cell();
 
             if (leading == 0)
             {
@@ -127,10 +128,10 @@ namespace Nsr.Wh.Web.Services
 
         private void InsertSkills(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(new Text(_localizationWebApi.GetResource("Resume.Fields.Skills").GetAwaiter().GetResult()).SetBold().SetItalic().SetFontSize(12)));
+            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Skills")).SetBold().SetItalic().SetFontSize(12)));
 
             foreach (var skill in resume.Skills)
-            {               
+            {
                 doc.Add(new Paragraph(new Text(skill.GetLocalized(x => x.Name)).SetBold().SetFontSize(10)));
                 var p = new Paragraph();
                 foreach (var item in skill.SkillItems)
@@ -141,7 +142,7 @@ namespace Nsr.Wh.Web.Services
                     }
                     else
                     {
-                       p.Add(String.Format("{0} ({1})", item.GetLocalized(x => x.Name), item.LevelDescription));
+                        p.Add(String.Format("{0} ({1})", item.GetLocalized(x => x.Name), item.LevelDescription));
                     }
 
                     p.Add(Newline);
@@ -152,15 +153,15 @@ namespace Nsr.Wh.Web.Services
 
         private void InsertExperiences(Resume resume, Document doc)
         {
-            doc.Add(new Paragraph(new Text(_localizationWebApi.GetResource("Resume.Fields.Experiences").GetAwaiter().GetResult()).SetFontSize(12).SetBold().SetItalic()));
+            doc.Add(new Paragraph(new Text(_localizationService.GetResource("Resume.Fields.Experiences")).SetFontSize(12).SetBold().SetItalic()));
             //doc.Add(line);
             doc.Add(new Paragraph());
             foreach (var experience in resume.Experiences.OrderBy(x => x.DisplayOrder))
             {
                 //doc.Add(new Paragraph(exp.GetLocalized(x => x.Name), h3));// company name
 
-              var table = new Table(UnitValue.CreatePercentArray(new float[] { 20, 80 }));
-              table.SetWidth(UnitValue.CreatePercentValue(100f));
+                var table = new Table(UnitValue.CreatePercentArray(new float[] { 20, 80 }));
+                table.SetWidth(UnitValue.CreatePercentValue(100f));
 
 
                 InsertExperienceRow(experience, table, "Resume.Fields.Experiences.Name", new Text(experience.GetLocalized(x => x.Name)).SetBold(), 20);
@@ -214,26 +215,26 @@ namespace Nsr.Wh.Web.Services
 
             var doc = new Document(pdf);
             doc.SetFont(font).SetFontSize(8);
-            
+
 
             doc.Add(new Paragraph()
                 .Add(new Text(resume.Name).SetItalic().SetBold().SetFontSize(12)).Add(Newline)
                 .Add(new Text(resume.Address)).Add(Newline)
                 .Add(new Text(string.Format("{0} {1}", resume.PostalCode, resume.Town))));
-            
+
             //doc.Add(new Paragraph(10, "\u00a0"));
             var table = new Table(UnitValue.CreatePercentArray(new float[] { 10, 80 }));
             table.SetWidth(UnitValue.CreatePercentValue(100f));
 
             if (!String.IsNullOrWhiteSpace(resume.Phone))
             {
-                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationWebApi.GetResource("Resume.Fields.TelePhone")))));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.TelePhone")))));
                 table.AddCell(InsertColumn(new Text(resume.Phone)));
             }
 
             if (!String.IsNullOrWhiteSpace(resume.Mobile))
             {
-                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationWebApi.GetResource("Resume.Fields.Mobile")))));
+                table.AddCell(InsertColumn(new Text(string.Format("{0}", _localizationService.GetResource("Resume.Fields.Mobile")))));
                 table.AddCell(InsertColumn(new Text(resume.Mobile)));
             }
 
@@ -257,9 +258,9 @@ namespace Nsr.Wh.Web.Services
 
             doc.Add(table);
 
-            doc.Add(new Paragraph().Add(new Text(_localizationWebApi.GetResource("Resume.Fields.Summary").GetAwaiter().GetResult()).SetItalic().SetBold().SetFontSize(12)));
+            doc.Add(new Paragraph().Add(new Text(_localizationService.GetResource("Resume.Fields.Summary")).SetItalic().SetBold().SetFontSize(12)));
             doc.Add(new Paragraph().Add(new Text(resume.GetLocalized(x => x.Summary))).SetMarginLeft(20f));
-            
+
 
             InsertEducations(resume, doc);
             InsertSkills(resume, doc);

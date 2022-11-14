@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Nrs.RestClient;
 using Nsr.Common.Core;
 using Nsr.RestClient;
-using Nsr.RestClient.Models.WorkHistories;
 using Nsr.RestClient.RestClients;
-using System;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Wp.Web.Mvc.Extensions;
 
 namespace Wp.Web.Mvc.Components.Sections
 {

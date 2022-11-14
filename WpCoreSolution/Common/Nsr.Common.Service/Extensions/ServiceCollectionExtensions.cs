@@ -8,6 +8,7 @@ using Nsr.Common.Core.Localization;
 using Nsr.Common.Data;
 using Nsr.Common.Data.Repositories;
 using Nsr.Common.Service.Configuration;
+using Nsr.Common.Service.Localization;
 using Nsr.Common.Services;
 using System;
 
@@ -57,9 +58,14 @@ namespace Nsr.Common.Service.Extensions
             // repositories
             services.AddScoped(typeof(ICommonBaseRepository<>), typeof(CommonBaseRepository<>));
 
-            // services           
+            // services
+            services.AddScoped<IWorkContext, WorkContext>();
             services.AddScoped<ICommonUnitOfWork, CommonUnitOfWork>();
-            services.AddScoped<ICacheManager, PerRequestCacheManager>();            
+            services.AddScoped<ICacheManager, PerRequestCacheManager>();
+
+            services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<ILocalizationService, LocalizationService>();
+            services.AddScoped<ILocalizedEntityService, LocalizedEntityService>();
 
             services.AddScoped<ISettingService, SettingService>();
             //services.AddScoped(x =>

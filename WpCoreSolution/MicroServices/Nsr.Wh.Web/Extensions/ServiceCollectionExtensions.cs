@@ -65,6 +65,7 @@ namespace Nsr.Wh.Web.Extensions
             services.AddScoped<IExportManager, ExportManager>();
             services.AddScoped<IPdfService, PdfService>();
 
+
             return services;
         }
        

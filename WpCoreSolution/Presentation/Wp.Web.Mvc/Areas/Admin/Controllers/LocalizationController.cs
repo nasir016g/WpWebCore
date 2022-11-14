@@ -2,50 +2,49 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Nsr.RestClient.Models.Localization;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Core.Localization.Models;
+using Nsr.Common.Service.Localization;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Wp.Web.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class LocalizationController : Controller
     {
-        private readonly ILocalizationWebApi _localizationWebApi;
-        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILocalizationService _localizationService;
+        private readonly ILanguageService _languageService;
         private readonly ILogger _logger;
 
         public LocalizationController(
-            ILocalizationWebApi localizationWebApi,
-            ILanguageWebApi languageWebApi,
+            ILocalizationService localizationService,
+            ILanguageService languageService,
             ILogger<LocalizationController> logger)
         {
-            _localizationWebApi = localizationWebApi;
-            _languageWebApi = languageWebApi;
+            _localizationService = localizationService;
+            _languageService = languageService;
             _logger = logger;
         }
 
         #region Language
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-           var model = await _languageWebApi.GetAll();           
+            var model = _languageService.GetAll();
 
             return View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {           
-           var model = await _languageWebApi.GetById(id);
-           return View(model);
+        public IActionResult Details(int id)
+        {
+            var model = _languageService.GetById(id);
+            return View(model);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
             //return await _resiliencyHelper.ExecuteResilient(async () =>
             //{
@@ -54,44 +53,44 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
             //    return View(model);
             //}, View("Offline"));
-            var model = await _languageWebApi.GetById(id);
+            var model = _languageService.GetById(id);
             return View(model);
         }
 
-      
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Language model)
+        public IActionResult Edit(Language model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var entity = await _languageWebApi.GetById(model.Id);
+            var entity = _languageService.GetById(model.Id);
             entity.FlagImageFileName = model.FlagImageFileName;
             entity.DisplayOrder = model.DisplayOrder;
             entity.LanguageCulture = model.LanguageCulture;
             entity.Name = model.Name;
             entity.Published = model.Published;
-            await _languageWebApi.Update(model.Id, entity);
+            _languageService.Update(entity);
 
             return RedirectToAction("Index");
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
             //return await _resiliencyHelper.ExecuteResilient<IActionResult>(async () =>
             //{
             //    await _localizationManagementApi.Delete(id);
             //    return RedirectToAction("Index");
             //}, View("Offline"));
-          // var entity = await _languageWebApi.GetById(id);
-           await _languageWebApi.Delete(id);
+            var entity = _languageService.GetById(id);
+            _languageService.Delete(entity);
             return RedirectToAction("Index");
         }
-        
+
         #endregion
 
         #region Resources
@@ -99,36 +98,36 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         public IActionResult Resources(int languageId)
         {
             ViewBag.LanguageId = languageId;
-            var model = _localizationWebApi.GetAll().GetAwaiter().GetResult().Where(x => x.LanguageId == languageId).ToList();
+            var model = _localizationService.GetAll().Where(x => x.LanguageId == languageId).ToList();
             return View(model);
-        }        
-       
+        }
 
-        public async Task<IActionResult> ResourceEdit(int id)
-        {            
-            var model = await _localizationWebApi.GetById(id);
+
+        public IActionResult ResourceEdit(int id)
+        {
+            var model = _localizationService.GetById(id);
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResourceEdit(LocaleStringResource model)
+        public IActionResult ResourceEdit(LocaleStringResource model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }           
+            }
 
-            await _localizationWebApi.Update(model.Id, model);
+            _localizationService.Update(model);
             return RedirectToAction("Resources");
         }
 
-        
+
 
         [HttpPost]
-        public async Task<IActionResult> ResourceDelete(int id)
-        {            
-           //var entity = _localizationWebApi.GetById(id);
-            await _localizationWebApi.Delete(id);
+        public IActionResult ResourceDelete(int id)
+        {
+            var entity = _localizationService.GetById(id);
+            _localizationService.Delete(entity);
 
             return RedirectToAction("Resources");
         }
@@ -138,9 +137,9 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
         #region Export / Import
 
         [HttpPost("ImportXml")]
-        public async Task<IActionResult> ImportXml(int languageId, IFormFile file)
+        public IActionResult ImportXml(int languageId, IFormFile file)
         {
-            var language = _languageWebApi.GetById(languageId);
+            var language = _languageService.GetById(languageId);
             if (language == null)
                 //No language found with the specified id
                 return BadRequest("Language is not found");
@@ -152,7 +151,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
                 using (var sr = new StreamReader(file.OpenReadStream()))
                 {
                     string content = sr.ReadToEnd();
-                  // await _localizationWebApi.ImportResourcesFromXml(language, content); // not implemented yet
+                    _localizationService.ImportResourcesFromXml(language, content);
                 }
             }
             catch (Exception exc)
@@ -162,7 +161,7 @@ namespace Wp.Web.Mvc.Areas.Admin.Controllers
 
             return NoContent();
         }
-        
+
         #endregion
     }
 }

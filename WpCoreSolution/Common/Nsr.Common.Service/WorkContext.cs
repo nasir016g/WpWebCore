@@ -1,31 +1,28 @@
-﻿
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Http;
 using Nsr.Common.Core;
 using Nsr.Common.Service.Extensions;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
+using Nsr.Common.Services;
+using System.Linq;
 
-namespace Nsr.RestClient
+
+namespace Nsr.Common.Service
 {
     public class WorkContext : IWorkContext
     {
-        private readonly ILanguageWebApi _languageWebApi;
+        private readonly ILanguageService _languageService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ILogger<WorkContext> _logger;
-        private ResiliencyHelper _resiliencyHelper;
 
-        //public WorkContext(ILanguageWebApi languageWebApi, IHttpContextAccessor httpContextAccessor)
-        //{
-        //    _languageWebApi = languageWebApi;
-        //    _httpContextAccessor = httpContextAccessor;
-        //}
-
-        public WorkContext(ILanguageWebApi languageWebApi, IHttpContextAccessor httpContextAccessor, ILogger<WorkContext> logger)
+        public WorkContext(ILanguageService languageService, IHttpContextAccessor httpContextAccessor)
         {
-            _languageWebApi = languageWebApi;
+            _languageService = languageService;
             _httpContextAccessor = httpContextAccessor;
-            _logger = logger;
-            _resiliencyHelper = new ResiliencyHelper(_logger);
+        }
+
+        public WorkContext(IHttpContextAccessor httpContextAccessor)
+        {
+           
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -44,12 +41,9 @@ namespace Nsr.RestClient
                 {
                     model = new WorkContextModel();
 
-                   var languages = _languageWebApi.GetAll().GetAwaiter().GetResult();               
-
-
-                    if (languages.Count > 0)
+                    if (_languageService.GetAll().Count > 0)
                     {
-                        model.WorkingLanguageId = languages.Where(x => x.Published == true).FirstOrDefault().Id;
+                        model.WorkingLanguageId = _languageService.GetAll().Where(x => x.Published == true).FirstOrDefault().Id;
                     }
 
                     if (_httpContextAccessor.HttpContext.Session != null)

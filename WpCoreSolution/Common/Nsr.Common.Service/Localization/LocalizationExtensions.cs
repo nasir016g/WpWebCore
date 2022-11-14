@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
-using Nsr.Common.Core.Localization;
 using Nsr.Common.Core.Localization.Models;
-using Nsr.RestClient.RestClients.Localization;
+using Nsr.Common.Service.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Nrs.RestClient
+namespace Nsr.Common.Services
 {
     public static class LocalizationExtensions
     {
@@ -20,7 +19,7 @@ namespace Nrs.RestClient
             {
                 var workContext = serviceScope.ServiceProvider.GetService<IWorkContext>();
                 return GetLocalized(entity, keySelector, workContext.Current.WorkingLanguageId);
-            }
+            }            
         }
 
         public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector, int languageId, bool returnDefaultValue = true, bool ensureTwoPublishedLanguages = true)
@@ -65,11 +64,12 @@ namespace Nrs.RestClient
                 bool loadLocalizedValue = true;
                 if (ensureTwoPublishedLanguages)
                 {
+                    //var lService = ServiceLocator.Instance.GetService<ILanguageService>();
                     using (var serviceScope = ServiceLocator.GetScope())
                     {
-                        //var languageService = serviceScope.ServiceProvider.GetService<ILanguageService>();
-                        //var totalPublishedLanguages = languageService.GetAll().Count;
-                        //loadLocalizedValue = totalPublishedLanguages >= 2;
+                        var languageService = serviceScope.ServiceProvider.GetService<ILanguageService>();
+                        var totalPublishedLanguages = languageService.GetAll().Count;
+                        loadLocalizedValue = totalPublishedLanguages >= 2;
                     }                        
                 }
 
@@ -78,8 +78,8 @@ namespace Nrs.RestClient
                 {
                     using (var serviceScope = ServiceLocator.GetScope())
                     {
-                        var localizedEntityService = serviceScope.ServiceProvider.GetService<ILocalizedEntityWebApi>();
-                        resultStr = localizedEntityService.GetLocalizedValue(languageId, entity.Id, localeKeyGroup, localeKey).GetAwaiter().GetResult();
+                        var localizedEntityService = serviceScope.ServiceProvider.GetService<ILocalizedEntityService>();
+                        resultStr = localizedEntityService.GetLocalizedValue(languageId, entity.Id, localeKeyGroup, localeKey);
                         if (!String.IsNullOrEmpty(resultStr))
                             result = CommonHelper.To<TPropType>(resultStr);
                     } 

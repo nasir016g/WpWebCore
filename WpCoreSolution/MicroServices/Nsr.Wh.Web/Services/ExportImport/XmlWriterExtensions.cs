@@ -1,6 +1,6 @@
-﻿using Nrs.RestClient;
-using Nsr.Common.Core;
-using Nsr.RestClient.Models.Localization;
+﻿using Nsr.Common.Core;
+using Nsr.Common.Core.Localization.Models;
+using Nsr.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -21,7 +21,7 @@ namespace Nsr.Wh.Web.Services.ExportImport
                     "Expression '{0}' refers to a method, not a property.",
                     keySelector));
             }
-            
+
             var propInfo = member.Member as PropertyInfo;
             if (propInfo == null)
             {
@@ -36,9 +36,9 @@ namespace Nsr.Wh.Web.Services.ExportImport
             var value = ((PropertyInfo)member.Member).GetValue(fieldInfoValue, null);
             var item2 = ((T)fieldInfoValue);
 
-            if(value != null)
+            if (value != null)
             {
-                writer.WriteStartElement(propInfo.Name); 
+                writer.WriteStartElement(propInfo.Name);
                 //writer.WriteElementString("Standard", null, propInfo.GetValue(item).ToString());
                 writer.WriteElementString("Standard", null, value.ToString());
                 writer.WriteStartElement("Locales");

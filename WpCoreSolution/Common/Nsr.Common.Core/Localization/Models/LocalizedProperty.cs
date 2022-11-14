@@ -1,6 +1,6 @@
 ﻿using Nsr.Common.Core;
 
-namespace Nsr.RestClient.Models.Localization
+namespace Nsr.Common.Core.Localization.Models
 {
     public class LocalizedProperty : Entity
     {
