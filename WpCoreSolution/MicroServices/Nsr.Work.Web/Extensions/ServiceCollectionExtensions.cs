@@ -1,24 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Nsr.ActivityLogs.Web.Data;
-using Nsr.ActivityLogs.Web.Data.Repositories;
-using Nsr.ActivityLogs.Web.Service;
-using Nsr.ActivityLogs.Web.Service.Abstract;
-using Nsr.ActivityLogs.Web.Service.Installation;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Nsr.Common.Core;
+using Nsr.Work.Web.Data;
+using Nsr.Work.Web.Data.Repositories;
+using Nsr.Work.Web.Services;
+using Nsr.Work.Web.Services.ExportImport;
+using System;
 
-namespace Nsr.ActivityLogs.Web.Extensions
+namespace Nsr.Work.Web.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-
         public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
         {
             //services.AddEntityFrameworkSqlServer();
-            services.AddDbContext<ActivityLogDbContext>(options =>
+            services.AddDbContext<WpWhDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                 sqlServerOptionsAction: x =>
                 {
-                    //x.MigrationsAssembly("Nsr.Work.Web");
+                    x.MigrationsAssembly("Nsr.Work.Web");
                     x.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                 });
                 //options
@@ -40,24 +43,31 @@ namespace Nsr.ActivityLogs.Web.Extensions
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                using (ActivityLogDbContext context = serviceScope.ServiceProvider.GetService<ActivityLogDbContext>())
+                using (WpWhDbContext context = serviceScope.ServiceProvider.GetService<WpWhDbContext>())
                 {
                     context.Database.Migrate();
 
                 }
             }
-        }
+        }     
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IActivityLogBaseRepository<>), typeof(ActivityLogBaseRepository<>));
-            services.AddScoped<IActivityLogUnitOfWork, ActivityLogUnitOfWork>();
-            services.AddScoped<IActivityLogInstallationService, ActivityLogInstallationService>();
-            services.AddScoped<IActivityLogService, ActivityLogService>();
-            services.AddScoped<IActivityLogTypeService, ActivityLogTypeService>();
-           
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IEducationService, EducationService>();
+            services.AddScoped<IExperienceService, ExperienceService>();
+            services.AddScoped<IResumeService, ResumeService>();
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IImportManager, ImportManager>();
+            services.AddScoped<IExportManager, ExportManager>();
+            services.AddScoped<IPdfService, PdfService>();
+
 
             return services;
         }
+       
     }
 }
