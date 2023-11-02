@@ -10,7 +10,7 @@ namespace Nsr.Work.Web.Data.Mappings
         public override void Configure(EntityTypeBuilder<Resume> builder)
         {
             base.Configure(builder);
-            builder.ToTable("Resume");
+            builder.ToTable("ProfileResume");
             builder.Property(r => r.Name).IsRequired().HasMaxLength(100);
         }
       

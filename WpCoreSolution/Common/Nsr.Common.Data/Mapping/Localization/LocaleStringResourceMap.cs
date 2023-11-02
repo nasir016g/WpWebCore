@@ -9,7 +9,7 @@ namespace Nsr.Common.Data.Mapping
         public override void Configure(EntityTypeBuilder<LocaleStringResource> entityBuilder) 
         {
             base.Configure(entityBuilder);
-            entityBuilder.ToTable("LocaleStringResource");
+            entityBuilder.ToTable("CommonLocaleStringResource");
             entityBuilder.Property(lsr => lsr.ResourceName).IsRequired().HasMaxLength(200);
             entityBuilder.Property(lsr => lsr.ResourceValue).IsRequired();
 

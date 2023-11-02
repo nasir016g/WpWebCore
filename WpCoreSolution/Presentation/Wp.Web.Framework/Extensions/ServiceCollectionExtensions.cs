@@ -81,16 +81,20 @@ namespace Wp.Web.Framework.Extensions
                 {
                     tContext.Database.Migrate();
                     var tenantService = serviceScope.ServiceProvider.GetService<ITenantService>();
+                    tenantService.InstallTenants();
+
+
+                    // * I have commented out the following code snippet since i can't utilize multiple databases on my Azure free subscription *
                     using (WpDbContext context = serviceScope.ServiceProvider.GetService<WpDbContext>())
                     {
                         context.Database.Migrate();
 
-                        tenantService.InstallTenants();
+                        //tenantService.InstallTenants();
                         var tenants = tenantService.GetAll();
                         foreach (var t in tenants)
                         {
                             WpDbContext wpContext = new WpDbContext(new DbContextOptions<WpDbContext>(), t.ConnectionString);
-                            wpContext.Database.Migrate();                            
+                            //wpContext.Database.Migrate();
                         }
                     }
 

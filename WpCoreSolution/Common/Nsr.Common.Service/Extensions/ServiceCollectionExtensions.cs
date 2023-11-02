@@ -40,17 +40,17 @@ namespace Nsr.Common.Service.Extensions
             return services;
         }
 
-        private static void Migrate(IApplicationBuilder app)
-        {
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                using (NsrCommonDbContext context = serviceScope.ServiceProvider.GetService<NsrCommonDbContext>())
-                {
-                    context.Database.Migrate();
+        //private static void Migrate(IApplicationBuilder app)
+        //{
+        //    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        //    {
+        //        using (NsrCommonDbContext context = serviceScope.ServiceProvider.GetService<NsrCommonDbContext>())
+        //        {
+        //            context.Database.Migrate();
 
-                }
-            }
-        }     
+        //        }
+        //    }
+        //}     
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
@@ -101,7 +101,7 @@ namespace Nsr.Common.Service.Extensions
 
             ServiceLocator.Instance = app.ApplicationServices;
 
-            Migrate(app);
+            //Migrate(app);
         }
     }
 }

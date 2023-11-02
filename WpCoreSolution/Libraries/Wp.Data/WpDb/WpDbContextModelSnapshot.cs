@@ -3,23 +3,24 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wp.Data;
 
-namespace Wp.Data.Migrations.WpContext
+#nullable disable
+
+namespace Wp.Data.WpDb
 {
     [DbContext(typeof(WpDbContext))]
-    [Migration("20210503144112_AddedWebste")]
-    partial class AddedWebste
+    partial class WpDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -45,15 +46,16 @@ namespace Wp.Data.Migrations.WpContext
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -69,15 +71,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -93,7 +96,7 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -117,7 +120,7 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -132,7 +135,7 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -153,37 +156,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Nsr.Common.Core.Setting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Setting");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Logging.Log", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -213,15 +195,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("Id");
 
-                    b.ToTable("Log");
+                    b.ToTable("Log", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Media.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -240,15 +223,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("Id");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photo", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Sections.Section", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -266,15 +250,18 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("WebPageId");
 
-                    b.ToTable("Section");
+                    b.ToTable("Section", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Seo.UrlRecord", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -303,15 +290,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("Id");
 
-                    b.ToTable("UrlRecord");
+                    b.ToTable("UrlRecord", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.WebPages.WebPage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("AllowAnonymousAccess")
                         .HasColumnType("bit");
@@ -350,15 +338,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("Id");
 
-                    b.ToTable("WebPage");
+                    b.ToTable("WebPage", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.WebPages.WebPageRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -379,15 +368,16 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasIndex("WebPageId");
 
-                    b.ToTable("WebPage_Role_Mapping");
+                    b.ToTable("WebPage_Role_Mapping", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Websites.Website", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -430,7 +420,7 @@ namespace Wp.Data.Migrations.WpContext
 
                     b.HasKey("Id");
 
-                    b.ToTable("Website");
+                    b.ToTable("Website", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Security.ApplicationUser", b =>
@@ -498,7 +488,7 @@ namespace Wp.Data.Migrations.WpContext
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Sections.ContactFormSection", b =>
@@ -530,7 +520,7 @@ namespace Wp.Data.Migrations.WpContext
                     b.Property<string>("ThankYouText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Section_ContactForm");
+                    b.ToTable("Section_ContactForm", (string)null);
                 });
 
             modelBuilder.Entity("Wp.Core.Domain.Sections.HtmlContentSection", b =>
@@ -541,17 +531,17 @@ namespace Wp.Data.Migrations.WpContext
                         .HasMaxLength(4000)
                         .HasColumnType("nvarchar(4000)");
 
-                    b.ToTable("Section_HtmlContent");
+                    b.ToTable("Section_HtmlContent", (string)null);
                 });
 
-            modelBuilder.Entity("Wp.Core.Domain.Sections.ResumeSection", b =>
+            modelBuilder.Entity("Wp.Core.Domain.Sections.WorkHistorySection", b =>
                 {
                     b.HasBaseType("Wp.Core.Domain.Sections.Section");
 
                     b.Property<string>("ApplicationUserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Section_Resume");
+                    b.ToTable("Section_Resume", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -632,7 +622,7 @@ namespace Wp.Data.Migrations.WpContext
                     b.HasOne("Wp.Core.Domain.Sections.Section", null)
                         .WithOne()
                         .HasForeignKey("Wp.Core.Domain.Sections.ContactFormSection", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -641,16 +631,16 @@ namespace Wp.Data.Migrations.WpContext
                     b.HasOne("Wp.Core.Domain.Sections.Section", null)
                         .WithOne()
                         .HasForeignKey("Wp.Core.Domain.Sections.HtmlContentSection", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Wp.Core.Domain.Sections.ResumeSection", b =>
+            modelBuilder.Entity("Wp.Core.Domain.Sections.WorkHistorySection", b =>
                 {
                     b.HasOne("Wp.Core.Domain.Sections.Section", null)
                         .WithOne()
-                        .HasForeignKey("Wp.Core.Domain.Sections.ResumeSection", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .HasForeignKey("Wp.Core.Domain.Sections.WorkHistorySection", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

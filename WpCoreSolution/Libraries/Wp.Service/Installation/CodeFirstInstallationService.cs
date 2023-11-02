@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Nsr.Common.Core;
 using Nsr.Common.Core.Localization;
+using Nsr.Common.Core.Localization.Models;
 using Nsr.Common.Data;
 using Nsr.Common.Data.Repositories;
 using Nsr.Common.Service.Configuration;
+using Nsr.Common.Service.Localization;
 using Nsr.Common.Services;
 using System;
 using System.Collections.Generic;
@@ -35,6 +38,8 @@ namespace Wp.Services.Installation
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICommonUnitOfWork _commonUnitOfWork;
         private readonly ISettingService _settingService;
+        private readonly ICommonBaseRepository<Language> _languageRepo;
+        private readonly ILocalizationService _localizationService;
         private readonly IBaseRepository<Website> _websiteRepo;
         private readonly IBaseRepository<WebPage> _webPageRepo;
         private readonly IBaseRepository<WebPageRole> _webPageRoleRepo;
@@ -54,6 +59,9 @@ namespace Wp.Services.Installation
 
         public CodeFirstInstallationService(IUnitOfWork unitOfWork,
             ICommonUnitOfWork commonUnitOfWork,
+            ICommonBaseRepository<Language> languageRepo,
+            ILocalizationService localizationService,
+
             ISettingService settingService,
             IBaseRepository<Website> websiteRepo,
             IBaseRepository<WebPage> webPageRepo,
@@ -74,6 +82,8 @@ namespace Wp.Services.Installation
             this._urlRecordRepo = urlRecordRepo;
             this._sectionRepo = sectionRepo;
             _settingService = settingService;
+            _languageRepo = languageRepo;
+            _localizationService = localizationService;
             _websiteRepo = websiteRepo;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -138,6 +148,41 @@ namespace Wp.Services.Installation
             }
             //_unitOfWork.Complete();
 
+        }
+
+        private void InstallLanguages()
+        {
+            //if (_languageRepo.Table.Count() == 0)
+            {
+                var languages = new List<Language>()
+                {
+                    new Language { Name = "English", LanguageCulture = "en-Us", UniqueSeoCode = "en", FlagImageFileName = "us.png", Published = true },
+                    new Language { Name = "Nederlands", LanguageCulture = "nl-NL", UniqueSeoCode = "nl", FlagImageFileName = "nl.png", Published = true }
+                };
+
+                //languages.ForEach(l => _languageRepo.Add(l));
+                //_commonUnitOfWork.Complete();
+
+                InstallLocaleResources();
+            }
+        }
+
+        private void InstallLocaleResources()
+        {
+            var webRoot = _hostingEnvironment.WebRootPath;
+            //var file = System.IO.Path.Combine(webRoot, "test.txt");
+            foreach (var language in _languageRepo.Table.ToList())
+            {
+                foreach (var filePath in System.IO.Directory.EnumerateFiles(Path.Combine(webRoot, "Localization/"), string.Format("*.{0}.res.xml", language.UniqueSeoCode), SearchOption.TopDirectoryOnly))
+                {
+                    // 
+                    string xmlText = File.ReadAllText(filePath);
+                    //var localizationService = ServiceLocator.Instance.GetService<ILocalizationService>();
+                    _localizationService.ImportResourcesFromXml(language, xmlText);
+                }
+
+                _commonUnitOfWork.Complete();
+            }
         }
 
         private async Task InstallUsersAndRoles()
@@ -240,11 +285,12 @@ namespace Wp.Services.Installation
 
         public async Task InstallData()
         {
-            InstallWebsite();
-            InstallWebPages();
-            await InstallUsersAndRoles();
-            InstallRolesAtAPage();
-            InstallSettings();
+            //InstallWebsite();
+            //InstallWebPages();
+            InstallLanguages();
+            //await InstallUsersAndRoles();
+            //InstallRolesAtAPage();
+            //InstallSettings();
         }       
     }
 }

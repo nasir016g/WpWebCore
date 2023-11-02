@@ -9,7 +9,7 @@ namespace Nsr.Common.Data.Mapping
         public override void Configure(EntityTypeBuilder<LocalizedProperty> entityBuilder) 
         {
             base.Configure(entityBuilder);
-            entityBuilder.ToTable("LocalizedProperty");
+            entityBuilder.ToTable("CommonLocalizedProperty");
 
 
             entityBuilder.Property(lp => lp.LocaleKeyGroup).IsRequired().HasMaxLength(400);

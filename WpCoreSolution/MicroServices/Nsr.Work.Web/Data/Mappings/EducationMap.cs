@@ -9,7 +9,7 @@ namespace Nsr.Work.Web.Data.Mappings
         public override void Configure(EntityTypeBuilder<Education> builder)
         {
             base.Configure(builder);
-            builder.ToTable("Education");
+            builder.ToTable("ProfileEducation");
             builder.Property(e => e.Name).IsRequired().HasMaxLength(200);
             builder.HasOne(e => e.Resume)
                 .WithMany(r => r.Educations)

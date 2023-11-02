@@ -1,14 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Nsr.Work.Web.Data.Migrations
+#nullable disable
+
+namespace Nsr.Work.Web.Migrations
 {
+    /// <inheritdoc />
     public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Resume",
+                name: "ProfileResume",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -30,11 +34,11 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resume", x => x.Id);
+                    table.PrimaryKey("PK_ProfileResume", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Education",
+                name: "ProfileEducation",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -46,17 +50,17 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Education", x => x.Id);
+                    table.PrimaryKey("PK_ProfileEducation", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Education_Resume_ResumeId",
+                        name: "FK_ProfileEducation_ProfileResume_ResumeId",
                         column: x => x.ResumeId,
-                        principalTable: "Resume",
+                        principalTable: "ProfileResume",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Experience",
+                name: "ProfileExperience",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -73,17 +77,17 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Experience", x => x.Id);
+                    table.PrimaryKey("PK_ProfileExperience", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Experience_Resume_ResumeId",
+                        name: "FK_ProfileExperience_ProfileResume_ResumeId",
                         column: x => x.ResumeId,
-                        principalTable: "Resume",
+                        principalTable: "ProfileResume",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Resume_Skill",
+                name: "ProfileResume_Skill",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -96,17 +100,17 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resume_Skill", x => x.Id);
+                    table.PrimaryKey("PK_ProfileResume_Skill", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Resume_Skill_Resume_ResumeId",
+                        name: "FK_ProfileResume_Skill_ProfileResume_ResumeId",
                         column: x => x.ResumeId,
-                        principalTable: "Resume",
+                        principalTable: "ProfileResume",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EducationItem",
+                name: "ProfileEducationItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -121,17 +125,17 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EducationItem", x => x.Id);
+                    table.PrimaryKey("PK_ProfileEducationItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EducationItem_Education_EducationId",
+                        name: "FK_ProfileEducationItem_ProfileEducation_EducationId",
                         column: x => x.EducationId,
-                        principalTable: "Education",
+                        principalTable: "ProfileEducation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Resume_Project",
+                name: "ProfileResume_Project",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -145,17 +149,17 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resume_Project", x => x.Id);
+                    table.PrimaryKey("PK_ProfileResume_Project", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Resume_Project_Experience_ExperienceId",
+                        name: "FK_ProfileResume_Project_ProfileExperience_ExperienceId",
                         column: x => x.ExperienceId,
-                        principalTable: "Experience",
+                        principalTable: "ProfileExperience",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Resume_SkillItem",
+                name: "ProfileResume_SkillItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -169,68 +173,69 @@ namespace Nsr.Work.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resume_SkillItem", x => x.Id);
+                    table.PrimaryKey("PK_ProfileResume_SkillItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Resume_SkillItem_Resume_Skill_SkillId",
+                        name: "FK_ProfileResume_SkillItem_ProfileResume_Skill_SkillId",
                         column: x => x.SkillId,
-                        principalTable: "Resume_Skill",
+                        principalTable: "ProfileResume_Skill",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Education_ResumeId",
-                table: "Education",
+                name: "IX_ProfileEducation_ResumeId",
+                table: "ProfileEducation",
                 column: "ResumeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EducationItem_EducationId",
-                table: "EducationItem",
+                name: "IX_ProfileEducationItem_EducationId",
+                table: "ProfileEducationItem",
                 column: "EducationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Experience_ResumeId",
-                table: "Experience",
+                name: "IX_ProfileExperience_ResumeId",
+                table: "ProfileExperience",
                 column: "ResumeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Resume_Project_ExperienceId",
-                table: "Resume_Project",
+                name: "IX_ProfileResume_Project_ExperienceId",
+                table: "ProfileResume_Project",
                 column: "ExperienceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Resume_Skill_ResumeId",
-                table: "Resume_Skill",
+                name: "IX_ProfileResume_Skill_ResumeId",
+                table: "ProfileResume_Skill",
                 column: "ResumeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Resume_SkillItem_SkillId",
-                table: "Resume_SkillItem",
+                name: "IX_ProfileResume_SkillItem_SkillId",
+                table: "ProfileResume_SkillItem",
                 column: "SkillId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EducationItem");
+                name: "ProfileEducationItem");
 
             migrationBuilder.DropTable(
-                name: "Resume_Project");
+                name: "ProfileResume_Project");
 
             migrationBuilder.DropTable(
-                name: "Resume_SkillItem");
+                name: "ProfileResume_SkillItem");
 
             migrationBuilder.DropTable(
-                name: "Education");
+                name: "ProfileEducation");
 
             migrationBuilder.DropTable(
-                name: "Experience");
+                name: "ProfileExperience");
 
             migrationBuilder.DropTable(
-                name: "Resume_Skill");
+                name: "ProfileResume_Skill");
 
             migrationBuilder.DropTable(
-                name: "Resume");
+                name: "ProfileResume");
         }
     }
 }

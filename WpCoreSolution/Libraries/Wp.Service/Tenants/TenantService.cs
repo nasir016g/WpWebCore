@@ -58,7 +58,7 @@ namespace Wp.Service.Tenants
                 {
                     tenantName = _httpContextAccessor.HttpContext.Request.Query["Name"];
                     if (tenantName == null)
-                        tenantName = "WpCore2"; // default
+                        tenantName = "Nsr2"; // default
                 }
             }
 
@@ -90,8 +90,8 @@ namespace Wp.Service.Tenants
 
             var tenants = new List<Tenant>()
             {
-                new Tenant { TenantId = Guid.Parse("10DEE2B7-DCBA-45E6-8E03-380D27772944"), TenantName = "WpCore1", ConnectionString = @"server=.\sqlexpress;user id=sa;pwd=aq;persist security info=False;initial catalog=WpCore1;Integrated security=false;Trusted_Connection=false;MultipleActiveResultSets=true"},
-                new Tenant { TenantId = Guid.Parse("66616AEF-53B4-45D8-A9CE-7E6A5CED7EF3"), TenantName = "WpCore2", ConnectionString = @"server=.\sqlexpress;user id=sa;pwd=aq;persist security info=False;initial catalog=WpCore2;Integrated security=false;Trusted_Connection=false;MultipleActiveResultSets=true"},
+                //new Tenant { TenantId = Guid.Parse("10DEE2B7-DCBA-45E6-8E03-380D27772944"), TenantName = "WpCore1", ConnectionString = @"server=.\sqlexpress;user id=sa;pwd=aq;persist security info=False;initial catalog=WpCore1;Integrated security=false;Trusted_Connection=false;MultipleActiveResultSets=true"},
+                new Tenant { TenantId = Guid.Parse("66616AEF-53B4-45D8-A9CE-7E6A5CED7EF3"), TenantName = "Nsr2", ConnectionString = @"server=.\sqlexpress;user id=sa;pwd=aq;persist security info=False;initial catalog=Nsr;Integrated security=false;Trusted_Connection=false;TrustServerCertificate=Yes;MultipleActiveResultSets=true"},
 
                 //new Tenant { TenantId = Guid.Parse("10DEE2B7-DCBA-45E6-8E03-380D27772944"), TenantName = "WpCore1", ConnectionString = @"Filename=./WpCore1.sqlite"},
                 //new Tenant { TenantId = Guid.Parse("66616AEF-53B4-45D8-A9CE-7E6A5CED7EF3"), TenantName = "WpCore2", ConnectionString = @"Filename=WpCore2.sqlite"},

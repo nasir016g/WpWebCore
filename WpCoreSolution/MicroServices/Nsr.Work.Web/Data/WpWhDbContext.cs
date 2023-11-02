@@ -115,7 +115,7 @@ namespace Nsr.Work.Web.Data
                     }
                 }
             }
-            _activityLogWebApi.InsertAuditEntries(auditEntries).GetAwaiter().GetResult();
+           // _activityLogWebApi.InsertAuditEntries(auditEntries).GetAwaiter().GetResult();
             //foreach (var auditEntry in auditEntries)
             //{
             //    AuditLogs.Add(auditEntry.ToAudit());

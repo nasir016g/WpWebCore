@@ -10,7 +10,7 @@ namespace Nsr.Common.Data.Mapping
         public override void Configure(EntityTypeBuilder<Language> entityBuilder) 
         {
             base.Configure(entityBuilder);
-            entityBuilder.ToTable("Language");
+            entityBuilder.ToTable("CommonLanguage");
 
             entityBuilder.Property(l => l.Name).IsRequired().HasMaxLength(100);
             entityBuilder.Property(l => l.LanguageCulture).IsRequired().HasMaxLength(20);

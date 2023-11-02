@@ -7,26 +7,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nsr.Common.Data;
 
+#nullable disable
+
 namespace Nsr.Common.Data.Migrations
 {
     [DbContext(typeof(NsrCommonDbContext))]
-    [Migration("20210129231701_Init")]
+    [Migration("20231102073635_Init")]
     partial class Init
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.Language", b =>
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.Language", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -63,15 +68,16 @@ namespace Nsr.Common.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Language");
+                    b.ToTable("CommonLanguage", (string)null);
                 });
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.LocaleStringResource", b =>
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.LocaleStringResource", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
@@ -89,15 +95,16 @@ namespace Nsr.Common.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("LocaleStringResource");
+                    b.ToTable("CommonLocaleStringResource", (string)null);
                 });
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.LocalizedProperty", b =>
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.LocalizedProperty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("EntityId")
                         .HasColumnType("int");
@@ -123,15 +130,16 @@ namespace Nsr.Common.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("LocalizedProperty");
+                    b.ToTable("CommonLocalizedProperty", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Common.Core.Setting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -145,12 +153,12 @@ namespace Nsr.Common.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Setting");
+                    b.ToTable("CommonSetting", (string)null);
                 });
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.LocaleStringResource", b =>
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.LocaleStringResource", b =>
                 {
-                    b.HasOne("Nsr.Common.Core.Localization.Language", "Language")
+                    b.HasOne("Nsr.Common.Core.Localization.Models.Language", "Language")
                         .WithMany("LocaleStringResources")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -159,9 +167,9 @@ namespace Nsr.Common.Data.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.LocalizedProperty", b =>
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.LocalizedProperty", b =>
                 {
-                    b.HasOne("Nsr.Common.Core.Localization.Language", "Language")
+                    b.HasOne("Nsr.Common.Core.Localization.Models.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -170,7 +178,7 @@ namespace Nsr.Common.Data.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("Nsr.Common.Core.Localization.Language", b =>
+            modelBuilder.Entity("Nsr.Common.Core.Localization.Models.Language", b =>
                 {
                     b.Navigation("LocaleStringResources");
                 });

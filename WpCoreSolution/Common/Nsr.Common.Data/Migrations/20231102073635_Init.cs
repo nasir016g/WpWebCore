@@ -1,14 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Nsr.Common.Data.Migrations
 {
+    /// <inheritdoc />
     public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Language",
+                name: "CommonLanguage",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -25,11 +29,11 @@ namespace Nsr.Common.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Language", x => x.Id);
+                    table.PrimaryKey("PK_CommonLanguage", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Setting",
+                name: "CommonSetting",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -39,11 +43,11 @@ namespace Nsr.Common.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Setting", x => x.Id);
+                    table.PrimaryKey("PK_CommonSetting", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocaleStringResource",
+                name: "CommonLocaleStringResource",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -54,17 +58,17 @@ namespace Nsr.Common.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocaleStringResource", x => x.Id);
+                    table.PrimaryKey("PK_CommonLocaleStringResource", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LocaleStringResource_Language_LanguageId",
+                        name: "FK_CommonLocaleStringResource_CommonLanguage_LanguageId",
                         column: x => x.LanguageId,
-                        principalTable: "Language",
+                        principalTable: "CommonLanguage",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalizedProperty",
+                name: "CommonLocalizedProperty",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -77,39 +81,40 @@ namespace Nsr.Common.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalizedProperty", x => x.Id);
+                    table.PrimaryKey("PK_CommonLocalizedProperty", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LocalizedProperty_Language_LanguageId",
+                        name: "FK_CommonLocalizedProperty_CommonLanguage_LanguageId",
                         column: x => x.LanguageId,
-                        principalTable: "Language",
+                        principalTable: "CommonLanguage",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocaleStringResource_LanguageId",
-                table: "LocaleStringResource",
+                name: "IX_CommonLocaleStringResource_LanguageId",
+                table: "CommonLocaleStringResource",
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocalizedProperty_LanguageId",
-                table: "LocalizedProperty",
+                name: "IX_CommonLocalizedProperty_LanguageId",
+                table: "CommonLocalizedProperty",
                 column: "LanguageId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LocaleStringResource");
+                name: "CommonLocaleStringResource");
 
             migrationBuilder.DropTable(
-                name: "LocalizedProperty");
+                name: "CommonLocalizedProperty");
 
             migrationBuilder.DropTable(
-                name: "Setting");
+                name: "CommonSetting");
 
             migrationBuilder.DropTable(
-                name: "Language");
+                name: "CommonLanguage");
         }
     }
 }

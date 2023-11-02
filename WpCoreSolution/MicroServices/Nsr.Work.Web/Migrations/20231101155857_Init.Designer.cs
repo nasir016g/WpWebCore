@@ -3,28 +3,35 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Nsr.Work.Web;
+using Nsr.Work.Web.Data;
 
-namespace Nsr.Work.Web.Data.Migrations
+#nullable disable
+
+namespace Nsr.Work.Web.Migrations
 {
     [DbContext(typeof(WpWhDbContext))]
-    partial class WpWhDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231101155857_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Education", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -44,15 +51,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Education");
+                    b.ToTable("ProfileEducation", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.EducationItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -81,15 +89,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("EducationId");
 
-                    b.ToTable("EducationItem");
+                    b.ToTable("ProfileEducationItem", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Experience", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -124,15 +133,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Experience");
+                    b.ToTable("ProfileExperience", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -158,15 +168,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("ExperienceId");
 
-                    b.ToTable("Resume_Project");
+                    b.ToTable("ProfileResume_Project", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Resume", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -214,15 +225,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Resume");
+                    b.ToTable("ProfileResume", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -245,15 +257,16 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("ResumeId");
 
-                    b.ToTable("Resume_Skill");
+                    b.ToTable("ProfileResume_Skill", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.SkillItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -279,7 +292,7 @@ namespace Nsr.Work.Web.Data.Migrations
 
                     b.HasIndex("SkillId");
 
-                    b.ToTable("Resume_SkillItem");
+                    b.ToTable("ProfileResume_SkillItem", (string)null);
                 });
 
             modelBuilder.Entity("Nsr.Work.Web.Domain.Education", b =>
