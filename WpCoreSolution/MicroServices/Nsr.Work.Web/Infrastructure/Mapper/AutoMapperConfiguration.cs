@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿
+
+using AutoMapper;
 
 namespace Nsr.Work.Web.Infrastructure.Mapper
 {
