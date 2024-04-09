@@ -17,6 +17,12 @@ namespace Nsr.ActivityLogs.Web.Controllers
             _activityLogService = activityLogService;
         }
 
+        [HttpGet("test")]
+        public IActionResult GetTest()
+        {
+            return Ok("Activity controller");
+        }
+
         [HttpGet]
         public IActionResult Get()
         {

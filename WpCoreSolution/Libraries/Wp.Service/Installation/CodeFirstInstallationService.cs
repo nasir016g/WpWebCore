@@ -152,7 +152,7 @@ namespace Wp.Services.Installation
 
         private void InstallLanguages()
         {
-            //if (_languageRepo.Table.Count() == 0)
+            if (_languageRepo.Table.Count() == 0)
             {
                 var languages = new List<Language>()
                 {
@@ -160,8 +160,8 @@ namespace Wp.Services.Installation
                     new Language { Name = "Nederlands", LanguageCulture = "nl-NL", UniqueSeoCode = "nl", FlagImageFileName = "nl.png", Published = true }
                 };
 
-                //languages.ForEach(l => _languageRepo.Add(l));
-                //_commonUnitOfWork.Complete();
+                languages.ForEach(l => _languageRepo.Add(l));
+                _commonUnitOfWork.Complete();
 
                 InstallLocaleResources();
             }
@@ -285,12 +285,12 @@ namespace Wp.Services.Installation
 
         public async Task InstallData()
         {
-            //InstallWebsite();
-            //InstallWebPages();
+            InstallWebsite();
+            InstallWebPages();
             InstallLanguages();
-            //await InstallUsersAndRoles();
-            //InstallRolesAtAPage();
-            //InstallSettings();
+            await InstallUsersAndRoles();
+            InstallRolesAtAPage();
+            InstallSettings();
         }       
     }
 }

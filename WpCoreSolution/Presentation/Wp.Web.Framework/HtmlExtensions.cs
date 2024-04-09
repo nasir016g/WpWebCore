@@ -17,14 +17,32 @@ namespace Wp.Web.Framework
     //http://www.prideparrot.com/blog/archive/2012/9/simplifying_html_generation_using_razor_templates
     public static class HtmlExtensions
     {
+
+        /// <summary>
+        /// This method generates an HTML content for a localized model.
+        /// It first checks if the model has more than one locale. If it does, it creates a tab structure with a tab for each locale and a "Standard" tab.
+        /// Each tab is represented by a div element in a tab strip. The Tab helper method is used to create the tab strip.
+        /// The localizedTemplate and standardTemplate functions are used to generate the content for each tab.
+        /// The ServiceLocator.GetScope().ServiceProvider.GetService method is used to get services from the service provider.
+        /// The IHtmlHelper.ViewData.Model.Locales property is used to get the locales of the model.
+        /// The ILanguageService.GetById method is used to get a language by its ID.
+        /// If the model has only one locale, it simply returns the standard template result.
+        /// The StringBuilder, TagBuilder, and HtmlString classes are used to build the HTML content.
+        /// The AddCssClass, Attributes.Add, and InnerHtml.AppendHtml methods are used to set the properties of the HTML elements.
+        /// The RenderHtmlContent extension method is used to convert the HTML content of the elements to a string.
+        /// The Func delegate is used to represent functions that take an integer or a model and return a HelperResult.
+        /// The where keyword is used to specify constraints on the type parameters T and TLocalizedModelLocal.
+        /// </summary>
         public static IHtmlContent LocalizedEditor<T, TLocalizedModelLocal>(this IHtmlHelper<T> helper, string name,
             Func<int, HelperResult> localizedTemplate,
             Func<T, HelperResult> standardTemplate)
             where T : ILocalizedModel<TLocalizedModelLocal>
             where TLocalizedModelLocal : ILocalizedModelLocal
         {
+            // If the model has more than one locale...
             if (helper.ViewData.Model.Locales.Count > 1)
             {
+                // Create a new StringBuilder for the tab strip.
                 var tabStrip = new StringBuilder();
                 tabStrip.Append(Tab<T, TLocalizedModelLocal>(helper).RenderHtmlContent());
 
@@ -37,9 +55,14 @@ namespace Wp.Web.Framework
 
                 var test1 = standardTemplate(helper.ViewData.Model).RenderHtmlContent();
 
+                // Append the standard template result to the active pane.
                 paneActive.InnerHtml.AppendHtml(standardTemplate(helper.ViewData.Model).RenderHtmlContent());
+
+                // Append the active pane to the tab content.
                 tabContent.InnerHtml.AppendHtml(paneActive.RenderHtmlContent());
 
+
+                // Loop through each locale in the model's Locales property.
                 for (int i = 0; i < helper.ViewData.Model.Locales.Count; i++)
                 {
                     var locale = helper.ViewData.Model.Locales[i];
@@ -55,12 +78,22 @@ namespace Wp.Web.Framework
                 var str = tabStrip.ToString();
                 return new HtmlString(tabStrip.ToString());
             }
-            else
+            else  // If the model has only one locale...
             {
+                // Return the standard template result as an HTML string.
                 return new HtmlString(standardTemplate(helper.ViewData.Model).RenderHtmlContent());
             }
         }
 
+        /// <summary>
+        /// This method creates a tab structure for a localized model.
+        /// It first creates a "Standard" tab and then creates a tab for each locale in the model's Locales property.
+        /// Each tab is represented by a list item (li) element in an unordered list (ul) element.
+        /// </summary>
+        /// <typeparam name="T">The type of the model, which must implement the ILocalizedModel interface with TLocalizedModel as the type parameter.</typeparam>
+        /// <typeparam name="TLocalizedModel">The type of the localized model, which must implement the ILocalizedModelLocal interface.</typeparam>
+        /// <param name="helper">An instance of IHtmlHelper for the model.</param>
+        /// <returns>A TagBuilder object representing the ul element with the tab structure.</returns>
         private static TagBuilder Tab<T, TLocalizedModel>(this IHtmlHelper<T> helper)
            where T : ILocalizedModel<TLocalizedModel>
            where TLocalizedModel : ILocalizedModelLocal
@@ -68,12 +101,15 @@ namespace Wp.Web.Framework
             var languageService = ServiceLocator.GetScope().ServiceProvider.GetService<ILanguageService>();
             var urlHelper = ServiceLocator.GetScope().ServiceProvider.GetService<IUrlHelperFactory>().GetUrlHelper(helper.ViewContext);
 
+            // Create a new unordered list (ul) element.
             TagBuilder ul = new TagBuilder("ul");
             ul.AddCssClass("nav nav-tabs");
 
+            // Create a new list item (li) for the "Standard" tab.
             TagBuilder liStandard = new TagBuilder("li");
             liStandard.AddCssClass("nav-item");
 
+            // Create a new anchor (a) element for the "Standard" tab.
             TagBuilder aStandard = new TagBuilder("a");
             aStandard.MergeAttribute("href", "#standard");
             aStandard.MergeAttribute("data-toggle", "tab");
@@ -81,9 +117,13 @@ namespace Wp.Web.Framework
             aStandard.Attributes.Add("value", "Standard");
             aStandard.InnerHtml.AppendHtml("Standard");
 
+            // Append the anchor element to the list item element.
             liStandard.InnerHtml.AppendHtml(aStandard.RenderHtmlContent());
+
+            // Append the list item element to the unordered list element.
             ul.InnerHtml.AppendHtml(liStandard.RenderHtmlContent());
 
+            // Loop through each locale in the model's Locales property.
             foreach (var local in helper.ViewData.Model.Locales)
             {
                 var language = languageService.GetById(local.LanguageId);
@@ -109,6 +149,8 @@ namespace Wp.Web.Framework
             return ul;
         }
 
+        // Renders HTML content.
+        // This is an extension method for the IHtmlContent interface that converts the HTML content into a string.
         public static string RenderHtmlContent(this IHtmlContent htmlContent)
         {
             using var writer = new StringWriter();
@@ -117,6 +159,7 @@ namespace Wp.Web.Framework
             return htmlOutput;
         }
 
+        // Retrieves string content from IHtmlContent.
         public static string GetString(IHtmlContent content)
         {
             using (var writer = new System.IO.StringWriter())

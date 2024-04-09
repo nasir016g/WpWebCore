@@ -36,7 +36,11 @@ namespace Wp.Web.Framework.Extensions
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<WpDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                //var connString = configuration.GetConnectionString("DefaultConnection");
+                //var connString = configuration.GetValue<string>("NsrConnString"); 
+                var connString = configuration.GetValue<string>("KV_Dev_Nsr_ConnString"); 
+
+                options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {
                     x.MigrationsAssembly("Wp.Data");
@@ -53,7 +57,9 @@ namespace Wp.Web.Framework.Extensions
             
             services.AddDbContext<TenantDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("CatalogConnection"),
+                //var connString = configuration.GetConnectionString("DefaultConnection");
+                var connString = configuration.GetValue<string>("NsrConnString");
+                options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {
                     x.MigrationsAssembly("Wp.Data");
@@ -137,9 +143,14 @@ namespace Wp.Web.Framework.Extensions
 
         public static IServiceCollection AddRestClients(this IServiceCollection services, IConfiguration configuration)
         {
+            // Retrieve the base URI for the web APIs from configuration
+            //string profileUrl = configuration.GetSection("APIServiceLocations").GetValue<string>("ProfileUrl");
+            var profileUrl = configuration.GetValue<string>("ProfileUrl"); // azure app configuration
 
-            string apiHostAndPort = configuration.GetSection("APIServiceLocations").GetValue<string>("ResumesWebApi");
-            var uri = new Uri($"http://{apiHostAndPort}");
+            // Construct the complete URI with the retrieved host and port
+            var uri = new Uri(profileUrl);
+
+            // Add Refit clients, configuring its base addresses
             services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
@@ -150,13 +161,19 @@ namespace Wp.Web.Framework.Extensions
 
         public static void AddLogger()
         {
+            // Configure Serilog logger
             Log.Logger = new LoggerConfiguration()
+              // Set minimum log level to Debug
               .MinimumLevel.Debug()
+              // Override minimum log level for specific namespaces
               .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
               .MinimumLevel.Override("System", LogEventLevel.Warning)
               .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
+              // Enrich log events with contextual information
               .Enrich.FromLogContext()
+              // Write log events to the console with a specified output template and theme
               .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
+              // Write log events to a file with specified options
               .WriteTo.File(@"C:\home\LogFiles\Application\myapp.txt", fileSizeLimitBytes: 1_000_000, rollOnFileSizeLimit: true, shared: true, flushToDiskInterval: TimeSpan.FromSeconds(1))
               .CreateLogger();
         }

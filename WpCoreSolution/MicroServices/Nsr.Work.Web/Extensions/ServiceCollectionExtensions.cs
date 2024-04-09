@@ -18,7 +18,12 @@ namespace Nsr.Work.Web.Extensions
             //services.AddEntityFrameworkSqlServer();
             services.AddDbContext<WpWhDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                //var connString = configuration.GetConnectionString("DefaultConnection");
+                //var connString = configuration.GetValue<string>("NsrConnString");
+                var connString = configuration.GetValue<string>("KV_Dev_Nsr_ConnString");
+
+
+                options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {
                     x.MigrationsAssembly("Nsr.Work.Web");

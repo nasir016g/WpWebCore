@@ -15,7 +15,9 @@ namespace Nsr.ActivityLogs.Web.Extensions
             //services.AddEntityFrameworkSqlServer();
             services.AddDbContext<ActivityLogDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                //var connString = configuration.GetConnectionString("DefaultConnection");
+                var connString = configuration.GetValue<string>("NsrConnString");
+                options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {
                     //x.MigrationsAssembly("Nsr.Work.Web");
