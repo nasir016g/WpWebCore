@@ -12,6 +12,9 @@ namespace Wp.Web.Mvc.Infrastructure.Mapper
     {
         public WebMvcProfile()
         {
+            CreateMap<ContactFormSection, ContactFormSectionModel>()
+             .ReverseMap();
+
             CreateMap<HtmlContentSection, HtmlContentSectionModel>()
               .ReverseMap();
 

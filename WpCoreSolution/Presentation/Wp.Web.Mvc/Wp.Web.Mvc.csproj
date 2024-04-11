@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <UserSecretsId>aspnet-Wp.Web.Mvc-04037D1D-EDB0-48AC-AC34-B102DDBE9C75</UserSecretsId>
+    <UserSecretsId>aspnet-Wp.Web.Mvc-04037D1D-EDB0-48AC-AC34-B102DDBE9C75</UserSecretsId>	  
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

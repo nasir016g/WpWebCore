@@ -25,6 +25,25 @@ namespace Wp.Web.Mvc.Extensions
 
         #region Sections
 
+        #region ContactFormSection
+
+        public static ContactFormSectionModel ToModel(this ContactFormSection entity)
+        {
+            return entity.MapTo<ContactFormSection, ContactFormSectionModel>();
+        }
+
+        public static ContactFormSection ToEntity(this ContactFormSectionModel model)
+        {
+            return model.MapTo<ContactFormSectionModel, ContactFormSection>();
+        }
+
+        public static ContactFormSection ToEntity(this ContactFormSectionModel model, ContactFormSection destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        #endregion
+
         #region HtmlContentSection
 
         public static HtmlContentSectionModel ToModel(this HtmlContentSection entity)
@@ -97,6 +116,13 @@ namespace Wp.Web.Mvc.Extensions
 
         private static BaseReadOnlyModel GetSectionModel(Section entity)
         {
+            if (entity is ContactFormSection)
+            {
+                var contactForm = new ContactFormSectionReadOnlyModel();
+                contactForm.IntroText = ((ContactFormSection)entity).GetLocalized(x => x.IntroText);
+                contactForm.Controller = "ContactForm";
+                return contactForm;
+            }
             if (entity is HtmlContentSection)
             {
                 var htmlContent = new HtmlContentSectionReadOnlyModel();

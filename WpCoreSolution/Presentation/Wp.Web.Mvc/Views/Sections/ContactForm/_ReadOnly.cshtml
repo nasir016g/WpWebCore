@@ -1,0 +1,93 @@
+﻿@model Wp.Web.Mvc.Models.Sections.ContactFormSectionReadOnlyModel
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-6">
+        @Html.Raw(Model.IntroText)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.NameEnabled)
+
+                @if (Model.NameEnabled)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Name)
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(x => x.EmailFrom, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(x => x.EmailFrom, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.EmailFrom)
+                    </div>
+                </div>
+
+                @if (Model.ExtendedEnabled)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Address, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Address)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Postcode, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.Postcode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Postcode)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.City, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.City)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Telephone, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.Telephone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Telephone)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Mobile, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Mobile)
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Message, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(x => x.Message, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Message)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" name="submitType" value="@SubmitType.Save" class="btn btn-default">@T("Common.Submit")</button>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+   
+</div>
+
+
+
