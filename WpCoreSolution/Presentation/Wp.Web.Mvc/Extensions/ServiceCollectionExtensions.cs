@@ -1,27 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Nsr.Common.Service.Extensions;
-using System;
-using Wp.Core.Security;
-using Wp.Data;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Nsr.Common.Core;
 using Nsr.Common.Service.Extensions;
 using Nsr.RestClient.Extensions;
-using System;
-using System.Reflection;
 using Wp.Core.Security;
 using Wp.Data;
 using Wp.Web.Framework.Extensions;
@@ -29,11 +9,6 @@ using Wp.Web.Framework.Infrastructure.Mapper;
 using Wp.Web.Framework.ViewEngines.Razor;
 using Wp.Web.Mvc.Infrastructure.Mapper;
 using Wp.Web.Mvc.Infrastructure.Routing;
-using ServiceCollectionExtensions = Wp.Web.Framework.Extensions.ServiceCollectionExtensions;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-
-using FrameWorkExtenstions = Wp.Web.Framework.Extensions;
 
 namespace Wp.Web.Mvc.Extensions
 {

@@ -154,7 +154,8 @@ namespace Wp.Web.Framework.Extensions
             services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);            
+
             return services;
         }
 

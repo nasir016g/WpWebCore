@@ -11,6 +11,7 @@ using FrameWorkExtenstions = Wp.Web.Framework.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews()
                //.AddFluentValidation(opt =>
@@ -42,6 +43,7 @@ builder.Services.ConfigureServices(configuration);
 
 var app = builder.Build();
 
+
 ServiceLocator.Instance = app.Services;
 Nsr.Common.Service.Extensions.ServiceCollectionExtensions.UseNsrCommon(app);
 app.UseSession();
@@ -63,7 +65,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCookiePolicy();
-
+                 
 app.UseRouting();
 
 app.UseAuthentication();
@@ -75,7 +77,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
+app.UseEndpoints(endpoints =>     
 {
     var pattern = "{SeName}";
 
