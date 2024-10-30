@@ -20,8 +20,8 @@ namespace Nsr.Common.Service.Extensions
         {
             services.AddDbContext<NsrCommonDbContext>(options =>
             {
-                //var connString = configuration.GetConnectionString("CommonConnection");
-                var connString = configuration.GetValue<string>("NsrConnString");
+                var connString = configuration.GetConnectionString("CommonConnection");
+                //var connString = configuration.GetValue<string>("NsrConnString");
 
                 options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nsr.Common.Core;
 using Nsr.Common.Service.Extensions;
@@ -13,6 +12,7 @@ using Nsr.Work.Web.Extensions;
 using Nsr.Work.Web.Infrastructure.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Retrieve the connection string
 var appConfig = builder.Configuration.GetSection("AppConfig");
@@ -35,13 +35,10 @@ builder.Services.AddSession();
 builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddServices();
 builder.Services.AddActivityLogRestClients(builder.Configuration);
-//services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddNsrCommon(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(WpBaseController));
 AutoMapperConfiguration.Init();
-
-
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

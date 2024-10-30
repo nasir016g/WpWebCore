@@ -15,8 +15,8 @@ namespace Nsr.ActivityLogs.Web.Extensions
             //services.AddEntityFrameworkSqlServer();
             services.AddDbContext<ActivityLogDbContext>(options =>
             {
-                //var connString = configuration.GetConnectionString("DefaultConnection");
-                var connString = configuration.GetValue<string>("NsrConnString");
+                var connString = configuration.GetConnectionString("DefaultConnection");
+                //var connString = configuration.GetValue<string>("NsrConnString");
                 options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {

@@ -8,5 +8,6 @@ namespace Wp.Core
     public interface IWebHelper
     {
         string GetRawUrl(HttpRequest request);
+        string ApplicationPath { get; }
     }
 }

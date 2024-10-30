@@ -2,12 +2,23 @@
 using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace Wp.Core
 {
     public class WebHelper : IWebHelper
     {
+        private readonly IHttpContextAccessor _httpContext;
+
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="httpContext">HTTP context</param>
+        public WebHelper(IHttpContextAccessor httpContext)
+        {
+            _httpContext = httpContext;
+        }
         /// <summary>
         /// Get the raw path and full query of request
         /// </summary>
@@ -24,6 +35,17 @@ namespace Wp.Core
                 rawUrl = $"{request.PathBase}{request.Path}{request.QueryString}";
 
             return rawUrl;
+        }
+
+        public virtual string ApplicationPath
+        {
+            get
+            {
+                if (_httpContext.HttpContext.Request.Path == "/")
+                    return _httpContext.HttpContext.Request.Path;
+                else
+                    return _httpContext.HttpContext.Request.Path + "/";
+            }
         }
     }
 }

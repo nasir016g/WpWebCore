@@ -1,3 +1,4 @@
+using Azure.Identity;
 using Microsoft.Identity.Client;
 using Nsr.ActivityLogs.Web.Extensions;
 
@@ -8,7 +9,16 @@ var appConfig = builder.Configuration.GetSection("AppConfig");
 string connectionString = appConfig.GetValue<string>("Connection");
 
 // Load configuration from Azure App Configuration
-builder.Configuration.AddAzureAppConfiguration(connectionString);
+//builder.Configuration.AddAzureAppConfiguration(connectionString);
+
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.Connect(connectionString)
+    .ConfigureKeyVault(x =>
+    {
+        x.SetCredential(new DefaultAzureCredential());
+    });
+});
 
 // Add services to the container.
 builder.Services.AddDbContexts(builder.Configuration);

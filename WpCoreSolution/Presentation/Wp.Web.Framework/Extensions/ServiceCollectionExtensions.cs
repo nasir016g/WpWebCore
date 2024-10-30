@@ -36,9 +36,9 @@ namespace Wp.Web.Framework.Extensions
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<WpDbContext>(options =>
             {
-                //var connString = configuration.GetConnectionString("DefaultConnection");
+                var connString = configuration.GetConnectionString("DefaultConnection");
                 //var connString = configuration.GetValue<string>("NsrConnString"); 
-                var connString = configuration.GetValue<string>("KV_Dev_Nsr_ConnString"); 
+                //var connString = configuration.GetValue<string>("KV_Dev_Nsr_ConnString"); 
 
                 options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
@@ -57,8 +57,8 @@ namespace Wp.Web.Framework.Extensions
             
             services.AddDbContext<TenantDbContext>(options =>
             {
-                //var connString = configuration.GetConnectionString("DefaultConnection");
-                var connString = configuration.GetValue<string>("NsrConnString");
+                var connString = configuration.GetConnectionString("DefaultConnection");
+                //var connString = configuration.GetValue<string>("NsrConnString");
                 options.UseSqlServer(connString,
                 sqlServerOptionsAction: x =>
                 {
@@ -144,8 +144,8 @@ namespace Wp.Web.Framework.Extensions
         public static IServiceCollection AddRestClients(this IServiceCollection services, IConfiguration configuration)
         {
             // Retrieve the base URI for the web APIs from configuration
-            //string profileUrl = configuration.GetSection("APIServiceLocations").GetValue<string>("ProfileUrl");
-            var profileUrl = configuration.GetValue<string>("ProfileUrl"); // azure app configuration
+            string profileUrl = configuration.GetSection("APIServiceLocations").GetValue<string>("ProfileUrl");
+            //var profileUrl = configuration.GetValue<string>("ProfileUrl"); // azure app configuration
 
             // Construct the complete URI with the retrieved host and port
             var uri = new Uri(profileUrl);
@@ -154,7 +154,8 @@ namespace Wp.Web.Framework.Extensions
             services.AddRefitClient<IResumesWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IEducationWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
             services.AddRefitClient<IExperienceWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
-            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
+            services.AddRefitClient<ISkillWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);            
+
             return services;
         }
 

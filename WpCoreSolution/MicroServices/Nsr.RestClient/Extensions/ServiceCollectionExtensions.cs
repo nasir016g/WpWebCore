@@ -11,8 +11,8 @@ namespace Nsr.RestClient.Extensions
 
         public static IServiceCollection AddActivityLogRestClients(this IServiceCollection services, IConfiguration configuration)
         {
-            //string activityLogUrl = configuration.GetSection("APIServiceLocations").GetValue<string>("ActivityLogUrl");
-            var activityLogUrl = configuration.GetValue<string>("ActivityLogUrl"); // azure app configuration
+            string activityLogUrl = configuration.GetSection("APIServiceLocations").GetValue<string>("ActivityLogUrl");
+            //var activityLogUrl = configuration.GetValue<string>("ActivityLogUrl"); // azure app configuration
             var uri = new Uri(activityLogUrl);
 
             services.AddRefitClient<IActivityLogWebApi>().ConfigureHttpClient(x => x.BaseAddress = uri);
